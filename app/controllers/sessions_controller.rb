@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       #   session[:orig_destination] = nil
       #   redirect_to orig, notice: 'Logged in!'
       # else
-        redirect_to '/game', notice: 'Logged in!'
+      redirect_to '/game', notice: 'Logged in!'
       # end
     else
       flash.now[:alert] = 'Email or password is invalid'

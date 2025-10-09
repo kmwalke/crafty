@@ -1,6 +1,5 @@
 class GameController < ApplicationController
   before_action :logged_in
 
-  def index
-  end
+  def index; end
 end

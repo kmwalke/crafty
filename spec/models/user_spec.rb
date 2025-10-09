@@ -13,5 +13,4 @@ RSpec.describe User, type: :model do
     user = create(:user)
     expect { create(:user, email: user.email) }.to raise_error(ActiveRecord::RecordInvalid)
   end
-
 end
