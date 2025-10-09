@@ -21,4 +21,11 @@ RSpec.describe Location, type: :model do
     location = create(:location)
     expect { create(:location, name: location.name) }.to raise_error(ActiveRecord::RecordInvalid)
   end
+
+  it 'calculates distance between locations' do
+    loc1 = create(:location)
+    loc2 = create(:location)
+
+    expect { loc1.distance_from(loc2) }.to eq()
+  end
 end
