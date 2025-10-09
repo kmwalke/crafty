@@ -1,0 +1,9 @@
+<nav class="sidebar-menu">
+  <ul class="links">
+    <% if current_user -%>
+      <li><%= link_to 'Log Out', logout_path %></li>
+    <% else -%>
+      <li><%= link_to 'Log In', login_path %></li>
+    <% end %>
+  </ul>
+</nav>
