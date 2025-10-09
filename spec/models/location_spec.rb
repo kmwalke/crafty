@@ -27,6 +27,6 @@ RSpec.describe Location, type: :model do
     loc2 = create(:location)
 
     # Pythagoras FTW!
-    expect(loc1.distance_from(loc2)).to be > 0
+    expect(loc1.distance_from(loc2)).to eq(999) # do actual calculations
   end
 end
