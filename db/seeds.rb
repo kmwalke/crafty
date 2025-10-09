@@ -33,6 +33,6 @@ Location.create(
       pos_x: 8,
       pos_y: -2,
       description: 'desc'
-    },
+    }
   ]
 )

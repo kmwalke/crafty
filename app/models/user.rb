@@ -4,6 +4,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
 
+  DEFAULT_ENERGY = 1000
+
   STATUSES = {
     mining: 'Mining',
     resting: 'Resting',
