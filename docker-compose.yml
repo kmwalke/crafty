@@ -1,0 +1,42 @@
+x-crafty-common:
+  &crafty-common
+  build:
+    context: .
+    args:
+      USERNAME: $USER
+      UID: ${USER_ID:-0}
+      GID: ${GROUP_ID:-0}
+  volumes:
+    - .:/app
+    - crafty-gems:/gems
+    - /app/node_modules
+  stdin_open: true # docker run -i
+  tty: true        # docker run -t
+  environment:
+    DB_DEV: crafty-development
+    DB_HOST: db
+    DB_TEST: crafty-test
+    DB_USERNAME: postgres
+    XERO_ID: ${XERO_ID}
+    XERO_SECRET: ${XERO_SECRET}
+
+
+services:
+  web:
+    << : *crafty-common
+    command: "./script/start-dev.sh"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:11.5
+    volumes:
+      - crafty-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  crafty-data:
+  crafty-gems:
