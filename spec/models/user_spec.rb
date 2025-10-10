@@ -39,6 +39,8 @@ RSpec.describe User, type: :model do
   describe 'actions' do
     let(:user) { create(:user) }
 
+    pending 'combine actions from multiple pieces of equipment'
+
     describe 'inventory' do
       let(:item) { create(:item) }
 
@@ -94,42 +96,45 @@ RSpec.describe User, type: :model do
       end
     end
 
-    it 'cannot equip a vehicle not in inventory' do
-      vehicle = create(:vehicle)
+    describe 'vehicles' do
+      let(:vehicle) { create(:vehicle, inventory: user.inventory) }
 
-      user.equip_vehicle(vehicle)
+      before do
+        user.equip_vehicle(vehicle)
+      end
 
-      expect(user.vehicle).not_to eq(vehicle)
-    end
+      it 'cannot equip a vehicle not in inventory' do
+        bad_vehicle = create(:vehicle)
 
-    it 'equips a vehicle from inventory' do
-      vehicle = create(:vehicle, inventory: user.inventory)
+        user.equip_vehicle(bad_vehicle)
 
-      user.equip_vehicle(vehicle)
+        expect(user.vehicle).not_to eq(bad_vehicle)
+      end
 
-      expect(user.vehicle).to eq(vehicle)
-    end
+      it 'equips a vehicle from inventory' do
+        expect(user.vehicle).to eq(vehicle)
+      end
 
-    it 'lists available actions' do
-      # user.actions = ['travel', 'mine', 'refine', etc]
-      # equipment gives the user actions
-      # vehicles allow travel
-      # mines allow mining
-      # refiners allow refining
-      # crafting equipment allows building things
-      expect(true).to be(false)
-    end
+      it 'lists available actions' do
+        expect(user.actions).to eq(vehicle.actions)
+      end
 
-    it 'travels between locations' do
-      # travel between locations
-      # Costs energy based on distance
-      # use less energy if on vehicle
-      # energy recharges over time?
-      # Items to recharge energy?
-      # later it will take time, too
-      # Actually, always requires a vehicle.  User starts with the vehicle "shoes".
-      #     That way, "traveling" is always an action of the vehicle, not the user
-      expect(true).to be(false)
+      it 'lists no actions without a vehicle' do
+        user2 = create(:user)
+
+        expect(user2.actions).to eq([])
+      end
+
+      it 'wont travel without a vehicle' do
+        user2 = create(:user)
+
+        expect(user2.travel(create(:location))).to be_nil
+      end
+
+      it 'travels between locations' do
+        expect(vehicle).to receive(:travel)
+        user.travel(create(:location))
+      end
     end
   end
 end

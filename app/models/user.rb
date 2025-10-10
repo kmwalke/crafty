@@ -13,11 +13,25 @@ class User < ApplicationRecord
   DEFAULT_ENERGY         = 1000
   DEFAULT_INVENTORY_SIZE = 10
 
+  def actions
+    actions = []
+
+    actions << vehicle.actions unless vehicle.nil?
+
+    actions.flatten
+  end
+
   def equip_vehicle(vehicle)
     return unless vehicle.type == 'Vehicle' &&
                   inventory.items.include?(vehicle)
 
     update(vehicle: vehicle)
+  end
+
+  def travel(new_location)
+    return if vehicle.nil?
+
+    vehicle.travel(new_location)
   end
 
   private
