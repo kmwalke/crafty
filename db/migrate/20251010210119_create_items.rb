@@ -6,6 +6,7 @@ class CreateItems < ActiveRecord::Migration[8.0]
       t.integer :level, null: false
       t.integer :inventory_id
       t.integer :created_by_id, null: false
+      t.string :type
 
       t.timestamps
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_10_210119) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_10_215745) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -27,6 +27,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_10_210119) do
     t.integer "level", null: false
     t.integer "inventory_id"
     t.integer "created_by_id", null: false
+    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,6 +54,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_10_210119) do
     t.integer "energy", default: 1000, null: false
     t.string "status", default: "Resting", null: false
     t.integer "location_id"
+    t.integer "vehicle_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

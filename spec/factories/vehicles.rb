@@ -1,5 +1,6 @@
 FactoryBot.define do
-  factory :item do
+  factory :vehicle do
+    type { 'Vehicle' }
     sequence(:name) { |n| "User_#{n}" }
     description { 'MyText' }
     level { Item::LEVELS.sample }

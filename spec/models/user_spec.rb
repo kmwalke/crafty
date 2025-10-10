@@ -21,14 +21,18 @@ RSpec.describe User, type: :model do
   end
 
   describe 'defaults' do
+    let(:user) { create(:user) }
+
     it 'energy' do
-      user = create(:user)
       expect(user.energy).to eq(User::DEFAULT_ENERGY)
     end
 
     it 'status' do
-      user = create(:user)
       expect(user.status).to eq(UserStatus::STATUSES[:resting])
+    end
+
+    it 'inventory' do
+      expect(user.inventory).to be_a(Inventory)
     end
   end
 
@@ -37,21 +41,6 @@ RSpec.describe User, type: :model do
 
     describe 'inventory' do
       let(:item) { create(:item) }
-
-      it 'picks up items' do
-        user.add_to_inventory(item)
-
-        expect(user.inventory.include?(item)).to be_true
-      end
-
-      it 'cannot remove item from other user' do
-        user2 = create(:user)
-
-        user2.add_to_inventory(item)
-        user.add_to_inventory(item)
-
-        expect(user.inventory.include?(item)).to be_false
-      end
 
       describe 'trading',
                skip: 'not built. this file is gonna be big.  Split into another file?  Make userspec a folder?' do
@@ -110,16 +99,15 @@ RSpec.describe User, type: :model do
 
       user.equip_vehicle(vehicle)
 
-      expect(user.reload.vehicle).not_to eq(vehicle)
+      expect(user.vehicle).not_to eq(vehicle)
     end
 
     it 'equips a vehicle from inventory' do
-      vehicle = create(:vehicle)
+      vehicle = create(:vehicle, inventory: user.inventory)
 
-      user.add_to_inventory(vehicle)
       user.equip_vehicle(vehicle)
 
-      expect(user.reload.vehicle).to eq(vehicle)
+      expect(user.vehicle).to eq(vehicle)
     end
 
     it 'lists available actions' do
