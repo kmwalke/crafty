@@ -26,7 +26,8 @@ RSpec.describe Location, type: :model do
     loc1 = create(:location)
     loc2 = create(:location)
 
-    # Pythagoras FTW!
-    expect(loc1.distance_from(loc2)).to eq(999) # do actual calculations
+    distance = Math.sqrt(((loc2.pos_x - loc1.pos_x) ^ (2 - (loc2.pos_y - loc1.pos_y)) ^ 2).abs)
+
+    expect(loc1.distance_from(loc2)).to eq(distance)
   end
 end

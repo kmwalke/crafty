@@ -35,6 +35,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_10_143507) do
     t.datetime "updated_at", null: false
     t.integer "energy", default: 1000, null: false
     t.string "status", default: "Resting", null: false
+    t.integer "location_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

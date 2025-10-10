@@ -18,10 +18,6 @@ RSpec.describe User, type: :model do
     it 'requires a status' do
       expect(described_class.create(status: '').errors).to have_key(:status)
     end
-
-    it 'requires a location' do
-      expect(described_class.create(location_id: '').errors).to have_key(:location_id)
-    end
   end
 
   describe 'defaults' do
@@ -30,39 +26,52 @@ RSpec.describe User, type: :model do
       expect(user.energy).to eq(User::DEFAULT_ENERGY)
     end
 
-    it 'location' do
-      # user must exist somewhere in the world
-      # default to starting city
-      # try do do something other than hardcoding this
-      # maybe a flag on the location "spawn point"
+    it 'status' do
+      user = create(:user)
+      expect(user.status).to eq(UserStatus::STATUSES[:resting])
+    end
+  end
+
+  describe 'actions' do
+    let(:user) { create(:user) }
+
+    it 'cannot equip a vehicle not in inventory' do
+      vehicle = create(:vehicle)
+
+      user.equip_vehicle(vehicle)
+
+      expect(user.reload.vehicle).not_to eq(vehicle)
+    end
+
+    it 'equips a vehicle from inventory' do
+      vehicle = create(:vehicle)
+
+      user.add_to_inventory(vehicle)
+      user.equip_vehicle(vehicle)
+
+      expect(user.reload.vehicle).to eq(vehicle)
+    end
+
+    it 'lists available actions' do
+      # user.actions = ['travel', 'mine', 'refine', etc]
+      # equipment gives the user actions
+      # vehicles allow travel
+      # mines allow mining
+      # refiners allow refining
+      # crafting equipment allows building things
       expect(true).to be(false)
     end
 
-    it 'status' do
-      user = create(:user)
-      expect(user.status).to eq(User::STATUSES[:resting])
+    it 'travels between locations' do
+      # travel between locations
+      # Costs energy based on distance
+      # use less energy if on vehicle
+      # energy recharges over time?
+      # Items to recharge energy?
+      # later it will take time, too
+      # Actually, always requires a vehicle.  User starts with the vehicle "shoes".
+      #     That way, "traveling" is always an action of the vehicle, not the user
+      expect(true).to be(false)
     end
-  end
-
-  it 'lists available actions' do
-    # user.actions = ['travel', 'mine', 'refine', etc]
-    # equipment gives the user actions
-    # vehicles allow travel
-    # mines allow mining
-    # refiners allow refining
-    # crafting equipment allows building things
-    expect(true).to be(false)
-  end
-
-  it 'travels between locations' do
-    # travel between locations
-    # Costs energy based on distance
-    # use less energy if on vehicle
-    # energy recharges over time?
-    # Items to recharge energy?
-    # later it will take time, too
-    # Actually, always requires a vehicle.  User starts with the vehicle "shoes".
-    #     That way, "traveling" is always an action of the vehicle, not the user
-    expect(true).to be(false)
   end
 end
