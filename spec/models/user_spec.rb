@@ -41,7 +41,7 @@ RSpec.describe User, type: :model do
       it 'picks up items' do
         user.add_to_inventory(item)
 
-        expect(user.inventory.include? item).to be_true
+        expect(user.inventory.include?(item)).to be_true
       end
 
       it 'cannot remove item from other user' do
@@ -50,12 +50,13 @@ RSpec.describe User, type: :model do
         user2.add_to_inventory(item)
         user.add_to_inventory(item)
 
-        expect(user.inventory.include? item).to be_false
+        expect(user.inventory.include?(item)).to be_false
       end
 
-      describe 'trading', skip: 'not built. this file is gonna be big.  SPlit into another file?  Make userspec a folder?' do
+      describe 'trading',
+               skip: 'not built. this file is gonna be big.  Split into another file?  Make userspec a folder?' do
         it 'gifts item to another user' do
-          before :each do
+          before do
             user2 = create(:user)
 
             user2.add_to_inventory(item)
@@ -77,7 +78,7 @@ RSpec.describe User, type: :model do
         end
 
         it 'trades with another user' do
-          before :each do
+          before do
             user2 = create(:user)
             item2 = create(:item)
             item3 = create(:item)
@@ -94,11 +95,11 @@ RSpec.describe User, type: :model do
           end
 
           it 'adds items to user' do
-            expect(Set[item2, item3].subset? user.inventory.to_set).to be_true
+            expect(Set[item2, item3].subset?(user.inventory.to_set)).to be_true
           end
 
           it 'removes item from user' do
-            expect(user2.inventory.include? item).to be_true
+            expect(user2.inventory.include?(item)).to be_true
           end
         end
       end
