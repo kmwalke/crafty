@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe UserStatus, type: :model do
+RSpec.describe UserStatus do
   it 'populates statuses' do
     described_class.delete_all
 
