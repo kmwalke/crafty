@@ -26,8 +26,14 @@ RSpec.describe Location, type: :model do
     loc1 = create(:location)
     loc2 = create(:location)
 
-    distance = Math.sqrt(((loc2.pos_x - loc1.pos_x) ^ (2 - (loc2.pos_y - loc1.pos_y)) ^ 2).abs)
+    distance = Math.sqrt(
+      (
+        ((loc2.pos_x - loc1.pos_x) ** 2) -
+          ((loc2.pos_y - loc1.pos_y) ** 2)
+      ).abs
+    ).round
 
     expect(loc1.distance_from(loc2)).to eq(distance)
+    expect(loc2.distance_from(loc1)).to eq(distance)
   end
 end

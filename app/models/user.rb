@@ -21,6 +21,12 @@ class User < ApplicationRecord
     actions.flatten
   end
 
+  def spend_energy(amount)
+    return unless amount > 0
+
+    update(energy: (energy - amount))
+  end
+
   def equip_vehicle(vehicle)
     return unless vehicle.type == 'Vehicle' &&
                   inventory.items.include?(vehicle)

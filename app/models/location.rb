@@ -7,6 +7,11 @@ class Location < ApplicationRecord
   has_many :users
 
   def distance_from(location)
-    Math.sqrt(((location.pos_x - pos_x) ^ (2 - (location.pos_y - pos_y)) ^ 2).abs)
+    Math.sqrt(
+      (
+        ((location.pos_x - pos_x) ** 2) -
+          ((location.pos_y - pos_y) ** 2)
+      ).abs
+    ).round
   end
 end
