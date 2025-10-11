@@ -8,7 +8,6 @@ plugins:
 AllCops:
   Exclude:
     - 'db/schema.rb'
-    - 'db/migrate/*acts_as_taggable*'
     - 'config/environments/*'
     - 'bin/*'
     - 'node_modules/**/*'
@@ -65,8 +64,6 @@ Metrics/PerceivedComplexity:
 
 Metrics/MethodLength:
   Max: 20
-  Exclude:
-    - 'app/models/xero/*'
 
 Rails/CreateTableWithTimestamps:
   Enabled: false
@@ -81,13 +78,12 @@ Rails/Exit:
 Rails/HasManyOrHasOneDependent:
   Enabled: false
 
-RSpec/LetSetup:
-  Exclude:
-    - 'spec/reports/*'
+RSpec/MessageSpies:
+  Enabled: false
 
-RSpec/MultipleMemoizedHelpers:
+RSpec/MultipleExpectations:
   Exclude:
-    - 'spec/reports/*'
+    - 'spec/models/location_spec.rb'
 
 RSpec/NestedGroups:
   Max: 5

@@ -32,8 +32,7 @@ RSpec.describe Vehicle do
     end
 
     describe 'spends the users energy' do
-      let!(:old_energy) { user.energy }
-      let!(:low_energy) { old_energy - location1.distance_from(location2) }
+      let!(:low_energy) { user.energy - location1.distance_from(location2) }
 
       it 'low level vehicle' do
         vehicle.update(level: 0)
@@ -52,6 +51,8 @@ RSpec.describe Vehicle do
       end
 
       it 'high level vehicle' do
+        old_energy = user.energy
+
         vehicle.update(level: 4)
 
         vehicle.travel(location2)
