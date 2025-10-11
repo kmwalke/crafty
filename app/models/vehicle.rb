@@ -14,11 +14,10 @@ class Vehicle < Item
 
   private
   def energy_usage(location1, location2)
-    location1.distance_from(location2) * 2
+    location1.distance_from(location2) * energy_multiplier
   end
 
   def energy_multiplier
-    0
-    # =(((A2-3)*-1)/2)+1
+    (((level - 3.0) * -1) / 2) + 1
   end
 end

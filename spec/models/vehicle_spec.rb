@@ -34,15 +34,23 @@ RSpec.describe Vehicle, type: :model do
     end
 
     describe 'spends the users energy' do
-      let(:old_energy) { user.energy }
-      let(:low_energy) { old_energy - (location1.distance_from(location2)) }
+      let!(:old_energy) { user.energy }
+      let!(:low_energy) { old_energy - (location1.distance_from(location2)) }
 
       it 'low level vehicle' do
         vehicle.update(level: 0)
 
         vehicle.travel(location2)
 
-        expect(user.energy).to be < low_energy
+        expect(user.energy < low_energy).to be true
+      end
+
+      it 'mid level vehicle' do
+        vehicle.update(level: 3)
+
+        vehicle.travel(location2)
+
+        expect(user.energy).to eq(low_energy)
       end
 
       it 'high level vehicle' do
@@ -54,14 +62,5 @@ RSpec.describe Vehicle, type: :model do
       end
 
     end
-    # travel between locations
-    # Costs energy based on distance
-    # use less energy if on vehicle, better vehicles use less energy
-    # energy recharges over time?
-    # Items to recharge energy?
-    # later it will take time, too
-    # Actually, always requires a vehicle.  User starts with the vehicle "shoes".
-    #     That way, "traveling" is always an action of the vehicle, not the user
-    # expect(true).to be(false)
   end
 end

@@ -8,8 +8,6 @@
 
 UserStatus.populates_statuses
 
-User.create(email: 'kmwalke@gmail.com', name: 'Kent', password: '123')
-
 Location.create(
   [
     {
@@ -20,21 +18,24 @@ Location.create(
     },
     {
       name: 'Rolling Hills',
-      pos_x: 1,
-      pos_y: 5,
+      pos_x: 10,
+      pos_y: 57,
       description: 'desc'
     },
     {
       name: 'Harsh Desert',
       pos_x: 20,
-      pos_y: 7,
+      pos_y: 78,
       description: 'desc'
     },
     {
       name: 'Dark Forest',
-      pos_x: 8,
-      pos_y: -2,
+      pos_x: 89,
+      pos_y: -62,
       description: 'desc'
     }
   ]
 )
+
+user = User.create(email: 'kmwalke@gmail.com', name: 'Kent', password: '123', location: Location.first)
+Vehicle.create(inventory: user.inventory, created_by: user, description: 'desc', name: 'Shoes', level: 0)
