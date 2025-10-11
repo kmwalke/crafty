@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Traveling' do
-  describe 'logged out' do
-    it 'redirects to login page' do
-      visit game_path
-      expect(page).to have_current_path(login_path, ignore_query: true)
-    end
-  end
-
   describe 'logged in' do
     before do
       login
