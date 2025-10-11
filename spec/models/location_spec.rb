@@ -28,8 +28,8 @@ RSpec.describe Location, type: :model do
 
     distance = Math.sqrt(
       (
-        ((loc2.pos_x - loc1.pos_x) ** 2) -
-          ((loc2.pos_y - loc1.pos_y) ** 2)
+        ((loc2.pos_x - loc1.pos_x)**2) -
+          ((loc2.pos_y - loc1.pos_y)**2)
       ).abs
     ).round
 

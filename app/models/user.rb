@@ -22,7 +22,7 @@ class User < ApplicationRecord
   end
 
   def spend_energy(amount)
-    return unless amount > 0
+    return unless amount.positive?
 
     update(energy: (energy - amount))
   end

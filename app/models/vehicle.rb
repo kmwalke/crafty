@@ -13,6 +13,7 @@ class Vehicle < Item
   end
 
   private
+
   def energy_usage(location1, location2)
     location1.distance_from(location2) * energy_multiplier
   end
