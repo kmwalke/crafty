@@ -6,9 +6,8 @@ class Vehicle < Item
   end
 
   def travel(location)
-    return if user.nil?
+    return unless user&.spend_energy(energy_usage(user.location, location))
 
-    user.spend_energy(energy_usage(user.location, location))
     user.update(location: location)
   end
 

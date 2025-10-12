@@ -31,6 +31,14 @@ RSpec.describe Vehicle do
       expect(user.location).to eq(location2)
     end
 
+    it 'doesn\'t update if user has low energy' do
+      user.update(energy: 0)
+
+      vehicle.travel(location2)
+
+      expect(user.reload.location).to eq(location1)
+    end
+
     describe 'spends the users energy' do
       let!(:low_energy) { user.energy - location1.distance_from(location2) }
 

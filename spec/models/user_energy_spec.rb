@@ -9,22 +9,24 @@ RSpec.describe User do
     pending 'recharge energy faster in certain locations (restful ones)'
 
     describe 'spends energy' do
-      pending 'expect error thrown if negative energy. All this stuff shouldnt fail silently'
+      let!(:old_energy) { user.energy }
 
       it 'cannot spend negative energy' do
-        old_energy = user.energy
-
         user.spend_energy(-10)
 
         expect(user.energy).to eq(old_energy)
       end
 
       it 'spends energy' do
-        old_energy = user.energy
-
         user.spend_energy(10)
 
         expect(user.energy).to eq(old_energy - 10)
+      end
+
+      it 'cannot spend more than the user has' do
+        user.spend_energy(old_energy + 1)
+
+        expect(user.energy).to eq(old_energy)
       end
     end
   end
