@@ -10,9 +10,29 @@ RSpec.describe 'Inventory' do
     end
 
     it 'shows the inventory items' do
-      # current_user.inventory.items.each do |item|
-      expect(page).to have_css("fieldset.inventory ul li #{current_user.inventory.items.last.name}")
-      # end
+      current_user.inventory.items.each do |item|
+        expect(page).to have_css('fieldset.inventory ul li', text: item.name)
+      end
+    end
+
+    describe 'details on click' do
+      let(:item) { current_user.inventory.items.last }
+
+      before do
+        click_link item.name
+      end
+
+      it 'shows description' do
+        expect(page).to have_css('fieldset.item-details p', text: item.description)
+      end
+
+      it 'shows level' do
+        expect(page).to have_css('fieldset.item-details span', text: item.level)
+      end
+
+      it 'shows created by' do
+        expect(page).to have_css('fieldset.item-details span', text: item.created_by.name)
+      end
     end
   end
 end
