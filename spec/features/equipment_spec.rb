@@ -22,6 +22,8 @@ RSpec.describe 'Equipment' do
       it 'displays equipped vehicle' do
         expect(page).to have_content("Vehicle: #{vehicle.name}")
       end
+
+      pending 'unequips a vehicle'
     end
   end
 end
