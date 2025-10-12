@@ -25,15 +25,15 @@ RSpec.describe 'Inventory' do
       end
 
       it 'shows description' do
-        expect(page).to have_css('fieldset.item-details p', text: item.description)
+        expect(page).to have_css('div.item-details p', text: item.description)
       end
 
       it 'shows level' do
-        expect(page).to have_css('fieldset.item-details span', text: item.level)
+        expect(page).to have_css('div.item-details span', text: item.level)
       end
 
       it 'shows created by' do
-        expect(page).to have_css('fieldset.item-details span', text: item.created_by.name)
+        expect(page).to have_css('div.item-details span', text: item.created_by.name)
       end
     end
   end

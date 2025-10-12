@@ -26,6 +26,9 @@
       <div id="item-<%= item.id %>-details" class="item-details">
         <div class="item-details-content">
           <h4 class="name"><%= item.name %></h4>
+          <% if item.type == Vehicle.name %>
+            <%= link_to 'Equip', equip_item_path(item) %>
+          <% end %>
           <span class="level"><%= item.level %></span>
           <span class="created-by"><%= item.created_by.name %></span>
           <p class="description"><%= item.description %></p>
