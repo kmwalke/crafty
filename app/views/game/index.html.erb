@@ -1,2 +1,41 @@
-<h1>Play Crafty</h1>
-<p>This is the placeholder for the page where you play the game</p>
+<div class="player-card">
+  <h2><%= @current_user.name %></h2>
+  <span>Energy: <%= @current_user.energy %></span>
+  <span>Status: <%= @current_user.status %></span>
+</div>
+
+<fieldset class="location">
+  <legend><%= @current_user.location.name %></legend>
+  <p><%= @current_user.location.description %></p>
+  <% if @local_players.any? -%>
+    <span>Local Players:</span>
+    <ul>
+      <% @local_players.each do |player| -%>
+        <li><%= player.name %></li>
+      <% end -%>
+    </ul>
+  <% end -%>
+</fieldset>
+
+<fieldset class="inventory">
+  <legend>Inventory</legend>
+</fieldset>
+
+<fieldset class="actions">
+  <legend>Actions</legend>
+  <ul>
+    <% @current_user.actions.each do |action| -%>
+      <li><%= action %></li>
+    <% end -%>
+  </ul>
+</fieldset>
+
+<fieldset class="equipment">
+  <legend>Equipment</legend>
+  <ul>
+    <% if @current_user.vehicle -%>
+      <li>Vehicle: <%= @current_user.vehicle.name %></li>
+    <% end -%>
+  </ul>
+</fieldset>
+
