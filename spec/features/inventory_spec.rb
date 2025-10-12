@@ -15,6 +15,8 @@ RSpec.describe 'Inventory' do
       end
     end
 
+    pending 'shows remaining inventory space'
+
     describe 'details on click' do
       let(:item) { current_user.inventory.items.last }
 

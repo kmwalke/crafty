@@ -25,8 +25,11 @@
       <li><a href="#item-<%= item.id %>-details"><%= item.name %></a></li>
       <div id="item-<%= item.id %>-details" class="item-details">
         <div class="item-details-content">
-          <h4><%= item.name %></h4>
-          <a href="#">Close</a>
+          <h4 class="name"><%= item.name %></h4>
+          <span class="level"><%= item.level %></span>
+          <span class="created-by"><%= item.created_by.name %></span>
+          <p class="description"><%= item.description %></p>
+          <a href="#" class="close">X</a>
         </div>
       </div>
     <% end %>

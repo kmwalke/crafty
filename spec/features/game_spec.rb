@@ -58,12 +58,8 @@ RSpec.describe 'Game' do
       end
     end
 
-    describe 'displays inventory' do
-      it 'has inventory section' do
-        expect(page).to have_content('Inventory')
-      end
-
-      pending 'shows number of items in inventory'
+    it 'has inventory section' do
+      expect(page).to have_content('Inventory')
     end
 
     it 'displays actions' do

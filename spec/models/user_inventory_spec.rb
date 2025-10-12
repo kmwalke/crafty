@@ -7,7 +7,7 @@ RSpec.describe User do
     let(:item) { create(:item) }
 
     describe 'trading', skip: 'not built' do
-      it 'gifts item to another user' do
+      describe 'gifts item to another user' do
         before do
           user2 = create(:user)
 
@@ -29,7 +29,7 @@ RSpec.describe User do
         end
       end
 
-      it 'trades with another user' do
+      describe 'trades with another user' do
         before do
           user2 = create(:user)
           item2 = create(:item)
