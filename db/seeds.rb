@@ -43,8 +43,30 @@ Location.create(
   { email: 'b@b.com', name: 'Shifty Rogue', location: Location.last }
 ].each do |info|
   user = User.create(email: info[:email], name: info[:name], password: '123', location: info[:location])
-  Vehicle.create(inventory: user.inventory, created_by: user, description: 'desc', name: 'Shoes', level: 0)
-  Item.create(inventory: user.inventory, created_by: user, description: 'desc', name: 'Bent Stick', level: 0)
-  Item.create(inventory: user.inventory, created_by: user, description: 'desc', name: 'Dented Copper', level: 0)
-  Item.create(inventory: user.inventory, created_by: user, description: 'desc', name: 'Wilted Flower', level: 0)
+  Vehicle.create(
+    inventory: user.inventory,
+    created_by: user,
+    description: 'Simple walking shoes.',
+    name: 'Shoes',
+    level: 0
+  )
+  Item.create(
+    inventory: user.inventory,
+    created_by: user,
+    description: 'A small, crooked stick.',
+    name: 'Bent Stick',
+    level: 0
+  )
+  Item.create(
+    inventory: user.inventory,
+    created_by: user,
+    description: 'You can\'t remember where you found this.',
+    name: 'Dented Copper', level: 0
+  )
+  Item.create(
+    inventory: user.inventory,
+    created_by: user,
+    description: 'An old flame gave you this.',
+    name: 'Wilted Flower', level: 0
+  )
 end
