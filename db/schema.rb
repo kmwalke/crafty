@@ -10,8 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 0) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_10_215745) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
+  create_table "inventories", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "size", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.integer "level", null: false
+    t.integer "inventory_id"
+    t.integer "created_by_id", null: false
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "pos_x", null: false
+    t.integer "pos_y", null: false
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_locations_on_name", unique: true
+  end
+
+  create_table "user_statuses", primary_key: "name", id: :string, force: :cascade do |t|
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "energy", default: 1000, null: false
+    t.string "status", default: "Resting", null: false
+    t.integer "location_id"
+    t.integer "vehicle_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  add_foreign_key "users", "user_statuses", column: "status", primary_key: "name"
 end

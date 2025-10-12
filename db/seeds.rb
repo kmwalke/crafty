@@ -5,3 +5,68 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+UserStatus.populates_statuses
+
+Location.create(
+  [
+    {
+      name: 'Starting City',
+      pos_x: 0,
+      pos_y: 0,
+      description: 'A small metropolis ruled over by Governor Parker.'
+    },
+    {
+      name: 'Rolling Hills',
+      pos_x: 10,
+      pos_y: 57,
+      description: 'Gentle hills.  Known for beginner ores and flowers.'
+    },
+    {
+      name: 'Harsh Desert',
+      pos_x: 20,
+      pos_y: 78,
+      description: 'Sun blasted plains.  Odd Cactuses grow occasionally.'
+    },
+    {
+      name: 'Dark Forest',
+      pos_x: 89,
+      pos_y: -62,
+      description: 'Spooky. Sounds of creatures just out of sight.'
+    }
+  ]
+)
+
+[
+  { email: 'kmwalke@gmail.com', name: 'Kent', location: Location.first },
+  { email: 'a@b.com', name: 'Lumber Jack', location: Location.last },
+  { email: 'b@b.com', name: 'Shifty Rogue', location: Location.last }
+].each do |info|
+  user = User.create(email: info[:email], name: info[:name], password: '123', location: info[:location])
+  Vehicle.create(
+    inventory: user.inventory,
+    created_by: user,
+    description: 'Simple walking shoes.',
+    name: 'Shoes',
+    level: 0
+  )
+  Item.create(
+    inventory: user.inventory,
+    created_by: user,
+    description: 'A small, crooked stick.',
+    name: 'Bent Stick',
+    level: 0
+  )
+  Item.create(
+    inventory: user.inventory,
+    created_by: user,
+    description: 'You can\'t remember where you found this.',
+    name: 'Dented Copper', level: 0
+  )
+  Item.create(
+    inventory: user.inventory,
+    created_by: user,
+    description: 'An old flame gave you this.',
+    name: 'Wilted Flower', level: 0
+  )
+end

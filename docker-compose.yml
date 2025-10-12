@@ -17,8 +17,6 @@ x-crafty-common:
     DB_HOST: db
     DB_TEST: crafty-test
     DB_USERNAME: postgres
-    XERO_ID: ${XERO_ID}
-    XERO_SECRET: ${XERO_SECRET}
 
 
 services:

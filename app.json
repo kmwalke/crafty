@@ -1,0 +1,16 @@
+{
+  "name": "crafty-world",
+  "stack": "heroku-24",
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ],
+  "scripts": {
+    "postdeploy": "./script/postdeploy.sh"
+  },
+  "addons": [
+    "papertrail",
+    "heroku-redis"
+  ]
+}
