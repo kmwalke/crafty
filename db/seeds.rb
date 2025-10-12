@@ -37,8 +37,11 @@ Location.create(
   ]
 )
 
-user = User.create(email: 'kmwalke@gmail.com', name: 'Kent', password: '123', location: Location.first)
-Vehicle.create(inventory: user.inventory, created_by: user, description: 'desc', name: 'Shoes', level: 0)
-
-User.create(email: 'a@b.c', name: 'Luber Jack', password: '123', location: Location.last)
-User.create(email: 'b@b.c', name: 'Shifty Rogue', password: '123', location: Location.last)
+[
+  { email: 'kmwalke@gmail.com', name: 'Kent', location: Location.first },
+  { email: 'a@b.com', name: 'Lumber Jack', location: Location.last },
+  { email: 'b@b.com', name: 'Shifty Rogue', location: Location.last }
+].each do |info|
+  user = User.create(email: info[:email], name: info[:name], password: '123', location: info[:location])
+  Vehicle.create(inventory: user.inventory, created_by: user, description: 'desc', name: 'Shoes', level: 0)
+end
