@@ -14,25 +14,25 @@ Location.create(
       name: 'Starting City',
       pos_x: 0,
       pos_y: 0,
-      description: 'desc'
+      description: 'A small metropolis ruled over by Governor Parker.'
     },
     {
       name: 'Rolling Hills',
       pos_x: 10,
       pos_y: 57,
-      description: 'desc'
+      description: 'Gentle hills.  Known for beginner ores and flowers.'
     },
     {
       name: 'Harsh Desert',
       pos_x: 20,
       pos_y: 78,
-      description: 'desc'
+      description: 'Sun blasted plains.  Odd Cactuses grow occasionally.'
     },
     {
       name: 'Dark Forest',
       pos_x: 89,
       pos_y: -62,
-      description: 'desc'
+      description: 'Spooky. Sounds of creatures just out of sight.'
     }
   ]
 )
@@ -44,4 +44,7 @@ Location.create(
 ].each do |info|
   user = User.create(email: info[:email], name: info[:name], password: '123', location: info[:location])
   Vehicle.create(inventory: user.inventory, created_by: user, description: 'desc', name: 'Shoes', level: 0)
+  Item.create(inventory: user.inventory, created_by: user, description: 'desc', name: 'Bent Stick', level: 0)
+  Item.create(inventory: user.inventory, created_by: user, description: 'desc', name: 'Dented Copper', level: 0)
+  Item.create(inventory: user.inventory, created_by: user, description: 'desc', name: 'Wilted Flower', level: 0)
 end

@@ -5,7 +5,8 @@
 </div>
 
 <fieldset class="location">
-  <legend><%= @current_user.location.name %></legend>
+  <legend>Location</legend>
+  <h3><%= @current_user.location.name %></h3>
   <p><%= @current_user.location.description %></p>
   <% if @local_players.any? -%>
     <span>Local Players:</span>
@@ -19,6 +20,11 @@
 
 <fieldset class="inventory">
   <legend>Inventory</legend>
+  <ul>
+    <% @current_user.inventory.items.each do |item| -%>
+      <li><%= item.name %></li>
+    <% end -%>
+  </ul>
 </fieldset>
 
 <fieldset class="actions">
