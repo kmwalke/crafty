@@ -39,3 +39,6 @@ Location.create(
 
 user = User.create(email: 'kmwalke@gmail.com', name: 'Kent', password: '123', location: Location.first)
 Vehicle.create(inventory: user.inventory, created_by: user, description: 'desc', name: 'Shoes', level: 0)
+
+User.create(email: 'a@b.c', name: 'Luber Jack', password: '123', location: Location.last)
+User.create(email: 'b@b.c', name: 'Shifty Rogue', password: '123', location: Location.last)
