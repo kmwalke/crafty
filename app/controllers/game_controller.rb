@@ -12,4 +12,12 @@ class GameController < ApplicationController
 
     redirect_to game_path
   end
+
+  def travel
+    location = Location.find(params[:id])
+
+    @current_user.travel(location)
+
+    redirect_to game_path
+  end
 end

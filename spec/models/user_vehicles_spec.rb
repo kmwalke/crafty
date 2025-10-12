@@ -42,5 +42,9 @@ RSpec.describe User do
       expect(vehicle).to receive(:travel)
       user.travel(create(:location))
     end
+
+    it 'lists valid travel locations' do
+      expect(user.valid_travel_locations).to eq(Location.all)
+    end
   end
 end

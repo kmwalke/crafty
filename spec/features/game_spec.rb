@@ -68,7 +68,7 @@ RSpec.describe 'Game' do
       visit game_path
 
       player.actions.each do |action|
-        expect(page).to have_content(action)
+        expect(page).to have_content(action.capitalize)
       end
     end
 

@@ -40,6 +40,10 @@ class User < ApplicationRecord
     vehicle.travel(new_location)
   end
 
+  def valid_travel_locations
+    Location.all
+  end
+
   private
 
   def create_inventory

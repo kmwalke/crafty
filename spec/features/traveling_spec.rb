@@ -20,7 +20,6 @@ RSpec.describe 'Traveling' do
     end
 
     describe 'shows the map' do
-      # In the future, an actual map, using the x,y coors and a background satellite image
       let!(:locations) { [location1, location2, location3] }
 
       it 'shows valid travel locations' do

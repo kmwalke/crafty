@@ -2,7 +2,7 @@ class Vehicle < Item
   has_one :user
 
   def actions
-    %w[Travel]
+    %w[travel]
   end
 
   def travel(location)
