@@ -2,7 +2,7 @@
   <div class="popup-content">
     <a href="#" class="close">X</a>
     <h4 class="name"><%= item.name %></h4>
-    <% if item.type == Vehicle.name %>
+    <% if item.equipable? %>
       <%= link_to 'Equip', equip_item_path(item) %>
     <% end %>
     <span class="level"><%= item.level_name %></span>

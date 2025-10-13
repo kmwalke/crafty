@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe 'Inventory' do
-  let!(:current_user) { login }
+  let!(:player) { login }
 
   before do
-    5.times.map { create(:item, inventory: current_user.inventory) }
+    5.times.map { create(:item, inventory: player.inventory) }
     visit game_path
   end
 
   it 'shows the inventory items' do
-    current_user.inventory.items.each do |item|
+    player.inventory.items.each do |item|
       expect(page).to have_css('fieldset.inventory ul li', text: item.name)
     end
   end
@@ -17,7 +17,7 @@ RSpec.describe 'Inventory' do
   pending 'shows remaining inventory space'
 
   describe 'details on click' do
-    let(:item) { current_user.inventory.items.last }
+    let(:item) { player.inventory.items.last }
 
     before do
       click_link item.name

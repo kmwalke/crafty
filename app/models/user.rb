@@ -34,6 +34,10 @@ class User < ApplicationRecord
     update(vehicle: vehicle)
   end
 
+  def unequip_vehicle
+    update(vehicle: nil)
+  end
+
   def travel(new_location)
     return if vehicle.nil?
 

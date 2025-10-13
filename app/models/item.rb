@@ -7,10 +7,13 @@ class Item < ApplicationRecord
   belongs_to :created_by, class_name: 'User'
 
   LEVELS = [0, 1, 2, 3, 4].freeze
-
   LEVEL_NAMES = %w[Common Uncommon Rare Epic Legendary].freeze
-
+  TYPES = [Vehicle.name]
   def level_name
     LEVEL_NAMES[level]
+  end
+
+  def equipable?
+    TYPES.include? type
   end
 end

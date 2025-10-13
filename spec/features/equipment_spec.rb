@@ -1,27 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe 'Equipment' do
-  let!(:current_user) { login }
-  let!(:vehicle) { create(:vehicle, inventory: current_user.inventory) }
+  let!(:player) { login }
+  let!(:vehicle) { create(:vehicle, inventory: player.inventory) }
 
   before do
     visit game_path
+    click_link vehicle.name
+    click_link 'Equip'
   end
 
-  describe 'vehicle' do
-    before do
-      click_link vehicle.name
-      click_link 'Equip'
-    end
+  it 'equips the vehicle' do
+    expect(player.reload.vehicle).to eq(vehicle)
+  end
 
-    it 'equips the vehicle' do
-      expect(current_user.reload.vehicle).to eq(vehicle)
-    end
+  it 'displays equipped vehicle' do
+    expect(page).to have_content("Vehicle: #{vehicle.name}")
+  end
 
-    it 'displays equipped vehicle' do
-      expect(page).to have_content("Vehicle: #{vehicle.name}")
-    end
+  it 'unequips a vehicle' do
+    find_by_id('unequip_vehicle').click
 
-    pending 'unequips a vehicle'
+    expect(player.reload.vehicle).to be_nil
   end
 end

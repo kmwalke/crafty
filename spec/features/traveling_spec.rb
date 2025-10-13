@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Traveling' do
-  let!(:current_user) { login }
-  let!(:location1) { current_user.location }
+  let!(:player) { login }
+  let!(:location1) { player.location }
   let!(:location2) { create(:location) }
   let!(:location3) { create(:location) }
 
   before do
-    current_user.equip_vehicle(create(:vehicle, inventory: current_user.inventory))
+    player.equip_vehicle(create(:vehicle, inventory: player.inventory))
     visit game_path
   end
 
@@ -15,7 +15,7 @@ RSpec.describe 'Traveling' do
     click_link 'Travel'
     click_link location2.name
 
-    expect(current_user.reload.location).to eq(location2)
+    expect(player.reload.location).to eq(location2)
   end
 
   describe 'shows the map' do
