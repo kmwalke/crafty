@@ -12,7 +12,14 @@
     <span>Local Players:</span>
     <ul>
       <% @local_players.each do |player| %>
-        <li><%= player.name %></li>
+        <li><%= link_to player.name, "#player-#{ player.id }-details" %></li>
+        <div id="player-<%= player.id %>-details" class="popup">
+          <div class="popup-content">
+            <a href="#" class="close">X</a>
+            <h4><%= player.name %></h4>
+            <span class="status">Status: <%= player.status %></span>
+          </div>
+        </div>
       <% end %>
     </ul>
   <% end %>
@@ -22,7 +29,7 @@
   <legend>Inventory</legend>
   <ul>
     <% @current_user.inventory.items.each do |item| %>
-      <li><a href="#item-<%= item.id %>-details"><%= item.name %></a></li>
+      <li><%= link_to item.name, "#item-#{ item.id }-details" %></li>
       <div id="item-<%= item.id %>-details" class="popup">
         <div class="popup-content">
           <a href="#" class="close">X</a>
@@ -43,7 +50,7 @@
   <legend>Actions</legend>
   <ul>
     <% @current_user.actions.each do |action| %>
-      <li><a href="#<%= action %>-popup"><%= action.capitalize %></a></li>
+      <li><%= link_to action.capitalize, "##{ action }-popup" %></li>
       <div id="<%= action %>-popup" class="popup">
         <div class="popup-content">
           <a href="#" class="close">X</a>
