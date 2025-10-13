@@ -8,7 +8,8 @@ class Item < ApplicationRecord
 
   LEVELS      = [0, 1, 2, 3, 4].freeze
   LEVEL_NAMES = %w[Common Uncommon Rare Epic Legendary].freeze
-  TYPES       = [Vehicle.name].freeze
+  TYPES       = %w[Vehicle].freeze
+
   def level_name
     LEVEL_NAMES[level]
   end

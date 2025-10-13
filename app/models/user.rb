@@ -28,7 +28,7 @@ class User < ApplicationRecord
   end
 
   def equip_vehicle(vehicle)
-    return unless vehicle.type == Vehicle.name &&
+    return unless vehicle.type == 'Vehicle' &&
                   inventory.items.include?(vehicle)
 
     update(vehicle: vehicle)

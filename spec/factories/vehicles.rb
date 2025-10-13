@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :vehicle do
-    type { Vehicle.name }
+    type { 'Vehicle' }
     sequence(:name) { |n| "Vehicle_#{n}" }
     sequence(:description) { |n| "This is the description for Vehicle_#{n}" }
     level { Item::LEVELS.sample }
