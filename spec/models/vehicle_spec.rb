@@ -14,7 +14,7 @@ RSpec.describe Vehicle do
     let(:vehicle) { create(:vehicle, inventory: user.inventory) }
 
     before do
-      user.equip_vehicle(vehicle)
+      user.equip_item(vehicle)
     end
 
     pending 'updates status to traveling'

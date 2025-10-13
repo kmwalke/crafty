@@ -7,13 +7,13 @@ RSpec.describe User do
     let(:vehicle) { create(:vehicle, inventory: user.inventory) }
 
     before do
-      user.equip_vehicle(vehicle)
+      user.equip_item(vehicle)
     end
 
     it 'cannot equip a vehicle not in inventory' do
       bad_vehicle = create(:vehicle)
 
-      user.equip_vehicle(bad_vehicle)
+      user.equip_item(bad_vehicle)
 
       expect(user.vehicle).not_to eq(bad_vehicle)
     end
