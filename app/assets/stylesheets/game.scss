@@ -14,30 +14,48 @@ html {
       color: blue
     }
 
-    div.popup:target {
-      display: flex;
-    }
+    div.fieldsets {
 
-    div.popup {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: center;
+      fieldset {
+        display: inline-block;
+        width: 25em;
+        vertical-align: top;
+        margin: 2em 0 0 3em;
 
-      div.popup-content {
-        background: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        text-align: center;
-        position: relative;
+        legend {
+          font-weight: bold;
+          font-variant: small-caps;
+          font-size: larger;
+        }
+      }
 
-        a.close {
-          position: absolute;
-          top: 0.5em;
-          right: 0.5em;
+      div.popup:target {
+        display: flex;
+      }
+
+      div.popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+
+        div.popup-content {
+          background: #fff;
+          padding: 20px;
+          border-radius: 5px;
+          text-align: center;
+          position: relative;
+
+          a.close {
+            position: absolute;
+            top: 0.5em;
+            right: 0.5em;
+          }
         }
       }
     }

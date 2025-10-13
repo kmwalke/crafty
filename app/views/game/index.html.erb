@@ -1,10 +1,13 @@
-<%= render 'player_card' %>
+<%= render partial: 'player_card' %>
 
-<%= render 'location_fieldset' %>
+<div class="fieldsets">
 
-<%= render partial: 'inventory_fieldset' %>
+  <%= render partial: 'location_fieldset' %>
 
-<%= render partial: 'actions_fieldset' %>
+  <%= render partial: 'inventory_fieldset' %>
 
-<%= render partial: 'equipment_fieldset' %>
+  <%= render partial: 'actions_fieldset' %>
 
+  <%= render partial: 'equipment_fieldset' %>
+
+</div>
