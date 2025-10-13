@@ -1,40 +1,38 @@
 require 'rails_helper'
 
 RSpec.describe 'Inventory' do
-  describe 'logged in' do
-    let!(:current_user) { login }
+  let!(:player) { login }
+
+  before do
+    5.times.map { create(:item, inventory: player.inventory) }
+    visit game_path
+  end
+
+  it 'shows the inventory items' do
+    player.inventory.items.each do |item|
+      expect(page).to have_css('fieldset.inventory ul li', text: item.name)
+    end
+  end
+
+  pending 'shows remaining inventory space'
+
+  describe 'details on click' do
+    let(:item) { player.inventory.items.last }
 
     before do
-      5.times.map { create(:item, inventory: current_user.inventory) }
-      visit game_path
+      click_link item.name
     end
 
-    it 'shows the inventory items' do
-      current_user.inventory.items.each do |item|
-        expect(page).to have_css('fieldset.inventory ul li', text: item.name)
-      end
+    it 'shows description' do
+      expect(page).to have_css("div.popup#item-#{item.id}-details p", text: item.description)
     end
 
-    pending 'shows remaining inventory space'
+    it 'shows level' do
+      expect(page).to have_css("div.popup#item-#{item.id}-details span", text: item.level_name)
+    end
 
-    describe 'details on click' do
-      let(:item) { current_user.inventory.items.last }
-
-      before do
-        click_link item.name
-      end
-
-      it 'shows description' do
-        expect(page).to have_css("div.popup#item-#{item.id}-details p", text: item.description)
-      end
-
-      it 'shows level' do
-        expect(page).to have_css("div.popup#item-#{item.id}-details span", text: item.level_name)
-      end
-
-      it 'shows created by' do
-        expect(page).to have_css("div.popup#item-#{item.id}-details span", text: item.created_by.name)
-      end
+    it 'shows created by' do
+      expect(page).to have_css("div.popup#item-#{item.id}-details span", text: item.created_by.name)
     end
   end
 end

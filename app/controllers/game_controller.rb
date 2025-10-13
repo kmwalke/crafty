@@ -13,6 +13,12 @@ class GameController < ApplicationController
     redirect_to game_path
   end
 
+  def unequip_vehicle
+    @current_user.unequip_vehicle
+
+    redirect_to game_path
+  end
+
   def travel
     location = Location.find(params[:id])
 

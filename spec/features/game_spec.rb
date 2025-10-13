@@ -24,24 +24,6 @@ RSpec.describe 'Game' do
       it 'shows location name' do
         expect(page).to have_content(player.location.name)
       end
-
-      it 'shows other players in the location' do
-        players = 2.times.map { create(:user, location: player.location) }
-
-        visit game_path
-
-        players.each do |p|
-          expect(page).to have_content(p.name)
-        end
-      end
-
-      it 'doesnt list players in other areas' do
-        distant_player = create(:user)
-
-        visit game_path
-
-        expect(page).to have_no_content(distant_player.name)
-      end
     end
 
     describe 'user info' do

@@ -1,0 +1,12 @@
+<div id="item-<%= item.id %>-details" class="popup">
+  <div class="popup-content">
+    <a href="#" class="close">X</a>
+    <h4 class="name"><%= item.name %></h4>
+    <% if item.equipable? %>
+      <%= link_to 'Equip', equip_item_path(item) %>
+    <% end %>
+    <span class="level"><%= item.level_name %></span>
+    <span class="created-by">Created by <%= item.created_by.name %></span>
+    <p class="description"><%= item.description %></p>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<fieldset class="equipment">
+  <legend>Equipment</legend>
+  <ul>
+    <% if @current_user.vehicle %>
+      <li>
+        <span>Vehicle: <%= @current_user.vehicle.name %></span>
+        <%= link_to 'X', unequip_vehicle_path, id: 'unequip_vehicle' %>
+      </li>
+    <% end %>
+  </ul>
+</fieldset>
