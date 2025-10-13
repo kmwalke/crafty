@@ -39,34 +39,9 @@ Location.create(
 
 [
   { email: 'kmwalke@gmail.com', name: 'Kent', location: Location.first },
+  { email: 'kfretz2@gmail.com', name: 'Keith', location: Location.first },
   { email: 'a@b.com', name: 'Lumber Jack', location: Location.last },
   { email: 'b@b.com', name: 'Shifty Rogue', location: Location.last }
 ].each do |info|
-  user = User.create(email: info[:email], name: info[:name], password: '123', location: info[:location])
-  Vehicle.create(
-    inventory: user.inventory,
-    created_by: user,
-    description: 'Simple walking shoes.',
-    name: 'Shoes',
-    level: 0
-  )
-  Item.create(
-    inventory: user.inventory,
-    created_by: user,
-    description: 'A small, crooked stick.',
-    name: 'Bent Stick',
-    level: 0
-  )
-  Item.create(
-    inventory: user.inventory,
-    created_by: user,
-    description: 'You can\'t remember where you found this.',
-    name: 'Dented Copper', level: 0
-  )
-  Item.create(
-    inventory: user.inventory,
-    created_by: user,
-    description: 'An old flame gave you this.',
-    name: 'Wilted Flower', level: 0
-  )
+  UserUtil.provision_user(email: info[:email], name: info[:name], location: info[:location])
 end

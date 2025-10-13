@@ -30,8 +30,8 @@
           <% if item.type == Vehicle.name %>
             <%= link_to 'Equip', equip_item_path(item) %>
           <% end %>
-          <span class="level"><%= item.level %></span>
-          <span class="created-by"><%= item.created_by.name %></span>
+          <span class="level"><%= item.level_name %></span>
+          <span class="created-by">Created by <%= item.created_by.name %></span>
           <p class="description"><%= item.description %></p>
         </div>
       </div>
