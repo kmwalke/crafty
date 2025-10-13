@@ -21,6 +21,10 @@ RSpec.describe Vehicle do
     pending 'takes time to travel. high level vehicles are faster'
     pending 'sets status to resting on arrival'
 
+    it 'vehicles are equipable' do
+      expect(vehicle.equipable?).to be true
+    end
+
     it 'nil user protection' do
       expect(create(:vehicle).travel(location2)).to be_nil
     end
