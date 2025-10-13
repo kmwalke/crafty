@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_10_215745) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_13_190528) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -55,6 +55,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_10_215745) do
     t.string "status", default: "Resting", null: false
     t.integer "location_id"
     t.integer "vehicle_id"
+    t.integer "tool_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
