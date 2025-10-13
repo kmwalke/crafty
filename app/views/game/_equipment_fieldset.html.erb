@@ -1,0 +1,8 @@
+<fieldset class="equipment">
+  <legend>Equipment</legend>
+  <ul>
+    <% if @current_user.vehicle %>
+      <li>Vehicle: <%= @current_user.vehicle.name %></li>
+    <% end %>
+  </ul>
+</fieldset>

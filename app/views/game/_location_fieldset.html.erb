@@ -1,0 +1,14 @@
+<fieldset class="location">
+  <legend>Location</legend>
+  <h3><%= @current_user.location.name %></h3>
+  <p><%= @current_user.location.description %></p>
+  <% if @local_players.any? %>
+    <span>Local Players:</span>
+    <ul>
+      <% @local_players.each do |player| %>
+        <li><%= link_to player.name, "#player-#{ player.id }-details" %></li>
+        <%= render partial: 'location_popup', locals: { player: } %>
+      <% end %>
+    </ul>
+  <% end %>
+</fieldset>
