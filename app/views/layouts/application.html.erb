@@ -11,7 +11,7 @@
   </head>
 
   <body class="<%= controller.controller_name%><%= current_user ? ' admin' : '' %>"
-    style="background-color: <%= @current_location&.bg_color || '#FFF' %>"
+    <%= render partial: 'layouts/game_background' %>
   >
     <%= render partial: 'layouts/header' %>
 
