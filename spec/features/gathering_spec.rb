@@ -2,14 +2,22 @@ require 'rails_helper'
 
 RSpec.describe 'Gathering' do
   let!(:player) { login }
-  let!(:location) { create(:location) }
+  let!(:local_resource1) { create(:resource, location: player.location) }
+  let!(:local_resource2) { create(:resource, location: player.location) }
+  let!(:distant_resource) { create(:resource) }
 
   before do
     visit game_path
   end
 
   it 'displays the location\'s resources' do
-    expect(true).to be false
+    [local_resource1, local_resource2].each do |resource|
+      expect(page).to have_content resource.name
+    end
+  end
+
+  it 'does not display distant resources' do
+    expect(page).to have_no_content distant_resource.name
   end
 
   it 'gathers resources' do

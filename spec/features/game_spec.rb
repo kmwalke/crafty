@@ -40,6 +40,10 @@ RSpec.describe 'Game' do
       end
     end
 
+    it 'has resource section' do
+      expect(page).to have_content('Resources')
+    end
+
     it 'has inventory section' do
       expect(page).to have_content('Inventory')
     end

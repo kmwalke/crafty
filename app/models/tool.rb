@@ -6,4 +6,8 @@ class Tool < Item
   def actions
     %w[gather]
   end
+
+  def gather
+    raise 'Not Implemented.'
+  end
 end

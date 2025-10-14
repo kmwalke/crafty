@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :resource do
-    location_id { 1 }
-    type { '' }
+    sequence(:name) { |n| "Resource_#{n}" }
+    location
+    type { ResourceType::TYPE_NAMES.sample }
   end
 end
