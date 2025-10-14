@@ -1,26 +1,31 @@
 class UserUtil
   def self.provision_user(name: nil, email: nil, location: nil, password: '123')
     user = User.create(email:, name:, password:, location:)
-    create_vehicle(user:, description: 'Simple walking shoes.', name: 'Shoes', level: 0, color: '#ffcccc')
+    create_item(
+      user,
+      Vehicle.new(
+        description: 'Simple walking shoes.', name: 'Shoes', level: 0, color: '#ffcccc', created_by: user
+      )
+    )
+
     item_data.each do |datum|
       create_item(
-        user:,
-        name: datum[:name],
-        description: datum[:description],
-        level: datum[:level],
-        color: datum[:color]
+        user,
+        Item.new(
+          name: datum[:name],
+          description: datum[:description],
+          level: datum[:level],
+          color: datum[:color],
+          created_by: user
+        )
       )
     end
 
     user
   end
 
-  def self.create_vehicle(user: nil, name: nil, description: nil, level: 0, color: nil)
-    create_item(user:, name:, description:, level:, type: 'Vehicle', color:)
-  end
-
-  def self.create_item(user: nil, name: nil, description: nil, level: 0, type: nil, color: nil)
-    user.inventory.add_item(created_by: user, description:, name:, level:, type:, color:)
+  def self.create_item(user, item)
+    user.inventory.add_item(item)
   end
 
   def self.item_data

@@ -90,6 +90,10 @@ Rails/NotNullColumn:
   Exclude:
     - 'db/migrate/20251010143507_add_fields_to_user.rb'
 
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'db/migrate/*'
+
 RSpec/MessageSpies:
   Enabled: false
 

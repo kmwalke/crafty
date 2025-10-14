@@ -65,7 +65,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_14_163927) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "energy", default: 1000, null: false
+    t.integer "energy", null: false
     t.string "status", default: "Resting", null: false
     t.integer "location_id"
     t.integer "vehicle_id"
