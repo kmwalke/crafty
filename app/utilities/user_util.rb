@@ -10,12 +10,11 @@ class UserUtil
   end
 
   def self.create_vehicle(user: nil, name: nil, description: nil, level: 0)
-    create_item(user:, name:, description:, level:, type: Vehicle.name)
+    create_item(user:, name:, description:, level:, type: 'Vehicle')
   end
 
   def self.create_item(user: nil, name: nil, description: nil, level: 0, type: nil)
-    Item.create(
-      inventory: user.inventory,
+    user.inventory.add_item(
       created_by: user,
       description:,
       name:,

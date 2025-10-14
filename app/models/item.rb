@@ -8,12 +8,17 @@ class Item < ApplicationRecord
 
   LEVELS      = [0, 1, 2, 3, 4].freeze
   LEVEL_NAMES = %w[Common Uncommon Rare Epic Legendary].freeze
-  TYPES       = [Vehicle.name].freeze
+  TYPES       = {
+    vehicle: 'Vehicle',
+    tool: 'Tool'
+  }.freeze
+  TYPE_NAMES  = TYPES.values.freeze
+
   def level_name
     LEVEL_NAMES[level]
   end
 
   def equipable?
-    TYPES.include? type
+    TYPE_NAMES.include? type
   end
 end

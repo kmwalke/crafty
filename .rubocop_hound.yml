@@ -68,6 +68,8 @@ Metrics/PerceivedComplexity:
 
 Metrics/MethodLength:
   Max: 20
+  Exclude:
+    - 'app/utilities/*.rb'
 
 Rails/CreateTableWithTimestamps:
   Enabled: false
@@ -81,6 +83,10 @@ Rails/Exit:
 
 Rails/HasManyOrHasOneDependent:
   Enabled: false
+
+Rails/NotNullColumn:
+  Exclude:
+    - 'db/migrate/20251010143507_add_fields_to_user.rb'
 
 RSpec/MessageSpies:
   Enabled: false

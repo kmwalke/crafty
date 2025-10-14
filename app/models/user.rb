@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  before_create :set_energy
   after_create :create_inventory
 
   validates :email, presence: true, uniqueness: true
@@ -27,11 +28,10 @@ class User < ApplicationRecord
     update(energy: (energy - amount))
   end
 
-  def equip_vehicle(vehicle)
-    return unless vehicle.type == Vehicle.name &&
-                  inventory.items.include?(vehicle)
+  def equip_item(item)
+    return unless inventory.items.include?(item)
 
-    update(vehicle: vehicle)
+    equip_vehicle(item) if item.type == 'Vehicle'
   end
 
   def unequip_vehicle
@@ -52,5 +52,13 @@ class User < ApplicationRecord
 
   def create_inventory
     Inventory.create(user: self, size: DEFAULT_INVENTORY_SIZE)
+  end
+
+  def equip_vehicle(vehicle)
+    update(vehicle: vehicle)
+  end
+
+  def set_energy
+    self.energy = User::DEFAULT_ENERGY
   end
 end

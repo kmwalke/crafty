@@ -1,4 +1,6 @@
 class Vehicle < Item
+  include Equippable
+
   has_one :user
 
   def actions
@@ -15,9 +17,5 @@ class Vehicle < Item
 
   def energy_usage(location1, location2)
     location1.distance_from(location2) * energy_multiplier
-  end
-
-  def energy_multiplier
-    (((level - 3.0) * -1) / 2) + 1
   end
 end

@@ -6,12 +6,6 @@ RSpec.describe 'Sessions' do
       visit game_path
       expect(page).to have_current_path(login_path, ignore_query: true)
     end
-
-    it 'redirects to requested admin page', skip: 'admins not implemented' do
-      visit game_path
-      login_as_admin
-      expect(page).to have_current_path(admin_users_path, ignore_query: true)
-    end
   end
 
   describe 'logged in' do

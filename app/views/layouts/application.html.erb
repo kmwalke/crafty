@@ -10,7 +10,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="<%= controller.controller_name%><%= current_user ? ' admin' : '' %>">
+  <body class="<%= controller.controller_name%><%= current_user ? ' admin' : '' %>"
+    style="background-color: <%= @current_location&.bg_color || '#FFF' %>"
+  >
     <%= render partial: 'layouts/header' %>
 
     <p id=”notice”><%= notice&.html_safe %></p>

@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Game' do
+  pending 'create settings section for each user. Things like email notifications and change PW'
+  # pending 'create changelog.  DB entry, version_number and description. build_number?'
+  # buildnumber would be auto generated.  Incremented on heroku releases or something
+  # pending 'display changelog on homepage, link to it in header.  Show last version, click to see all.  Standard CRUD'
+  # pending 'make a way for me to input changelogs'
+  # pending 'email users who asked for it when new version released'
+
   describe 'logged out' do
     it 'redirects to login page' do
       visit game_path
@@ -40,12 +47,16 @@ RSpec.describe 'Game' do
       end
     end
 
+    it 'has resource section' do
+      expect(page).to have_content('Resources')
+    end
+
     it 'has inventory section' do
       expect(page).to have_content('Inventory')
     end
 
     it 'displays actions' do
-      player.equip_vehicle(create(:vehicle, inventory: player.inventory))
+      player.equip_item(create(:vehicle, inventory: player.inventory))
 
       visit game_path
 
@@ -58,7 +69,7 @@ RSpec.describe 'Game' do
       let!(:vehicle) { create(:vehicle, inventory: player.inventory) }
 
       it 'shows the vehicle' do
-        player.equip_vehicle(vehicle)
+        player.equip_item(vehicle)
 
         visit game_path
 

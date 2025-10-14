@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_10_215745) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_14_145045) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -30,6 +30,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_10_215745) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "subtype"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -39,7 +40,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_10_215745) do
     t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bg_color", default: "#000", null: false
     t.index ["name"], name: "index_locations_on_name", unique: true
+  end
+
+  create_table "resource_types", primary_key: "name", id: :string, force: :cascade do |t|
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.integer "location_id", null: false
+    t.string "type", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_statuses", primary_key: "name", id: :string, force: :cascade do |t|
@@ -55,8 +68,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_10_215745) do
     t.string "status", default: "Resting", null: false
     t.integer "location_id"
     t.integer "vehicle_id"
+    t.integer "tool_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "resources", "resource_types", column: "type", primary_key: "name"
   add_foreign_key "users", "user_statuses", column: "status", primary_key: "name"
 end

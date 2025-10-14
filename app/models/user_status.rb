@@ -7,7 +7,7 @@ class UserStatus < ApplicationRecord
     traveling: 'Traveling'
   }.freeze
 
-  STATUS_NAMES = STATUSES.values.to_set.freeze
+  STATUS_NAMES = STATUSES.values.freeze
 
   def self.populates_statuses
     UserStatus::STATUS_NAMES.each do |status|
