@@ -49,6 +49,8 @@ Lint/StructNewOverride:
 
 Metrics/AbcSize:
   Max: 25
+  Exclude:
+    - 'app/utilities/location_util.rb'
 
 Metrics/BlockLength:
   Exclude:
