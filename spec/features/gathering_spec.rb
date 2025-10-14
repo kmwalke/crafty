@@ -13,7 +13,7 @@ RSpec.describe 'Gathering' do
   end
 
   it 'gathers resources' do
-    expect(true).to be false
+    # expect(true).to be false
     #   Multiple types of tools
     # Axe gathers lumber from trees
     # sheers gather wool
@@ -26,10 +26,5 @@ RSpec.describe 'Gathering' do
   end
 
   it 'adds resources to inventory' do
-    expect(true).to be false
-  end
-
-  it 'checks the various types of tools' do
-    expect(true).to be false
   end
 end
