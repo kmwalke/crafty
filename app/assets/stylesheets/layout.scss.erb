@@ -20,12 +20,18 @@ html {
       width: 100%;
       height: $header-height;
 
+      span.version {
+        float: right;
+        display: inline-block;
+        margin-right: 1em;
+      }
+
       nav {
         ul {
           display: flex;
           justify-content: left;
           align-items: center;
-          
+
           li {
             display: inline-block;
             list-style: none;
@@ -34,7 +40,7 @@ html {
               text-decoration: none;
               background-color: #333;
               color: #FFF;
-              border: 1px outset black;
+              border: 2px outset black;
               padding: 0.25em 0.5em;
               margin-right: 1em;
             }
@@ -44,7 +50,7 @@ html {
             }
 
             a:active {
-              border: 1px inset black;
+              border: 2px inset black;
             }
           }
         }
