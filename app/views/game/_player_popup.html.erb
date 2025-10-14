@@ -1,0 +1,12 @@
+<div id="player-<%= player.id %>-details" class="popup">
+  <div class="popup-content player-popup">
+    <a href="#" class="close">X</a>
+    <h4 class="title"><%= player.name %></h4>
+    <span class="status">Status: <%= player.status %></span>
+    <div class="equipment">
+      <% if player.vehicle %>
+        <span class="vehicle">Vehicle: <%= player.vehicle.name %></span>
+      <% end %>
+    </div>
+  </div>
+</div>

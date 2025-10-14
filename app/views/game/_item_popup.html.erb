@@ -1,7 +1,9 @@
 <div id="item-<%= item.id %>-details" class="popup">
-  <div class="popup-content">
+  <div class="popup-content inventory-popup">
     <a href="#" class="close">X</a>
-    <h4 class="name"><%= item.name %></h4>
+    <h4 class="title" style="background-color: <%= item.color %>">
+      <%= item.name %>
+    </h4>
     <% if item.equipable? %>
       <%= link_to 'Equip', equip_item_path(item) %>
     <% end %>

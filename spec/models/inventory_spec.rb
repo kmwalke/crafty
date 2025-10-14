@@ -7,10 +7,18 @@ RSpec.describe Inventory do
   pending 'equipping a backpack or something increases the users inventory size'
 
   it 'limits contents to inventory size' do
-    inventory.add_item(name: 'one', description: 'desc', created_by: inventory.user, level: 0)
-    inventory.add_item(name: 'two', description: 'desc', created_by: inventory.user, level: 0)
+    inventory.add_item(Item.new(name: 'one', description: 'desc', created_by: inventory.user, level: 0))
+    inventory.add_item(Item.new(name: 'two', description: 'desc', created_by: inventory.user, level: 0))
 
     expect(inventory.items.count).to eq(1)
+  end
+
+  it 'wont add saved items' do
+    expect(inventory.add_item(create(:item))).to be false
+  end
+
+  it 'only adds unsaved items' do
+    expect(inventory.add_item(build(:item))).to be true
   end
 
   it 'must belong to a user' do
