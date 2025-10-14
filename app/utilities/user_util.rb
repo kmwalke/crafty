@@ -4,7 +4,7 @@ class UserUtil
     create_item(
       user,
       Vehicle.new(
-        description: 'Simple walking shoes.', name: 'Shoes', level: 0, color: '#ffcccc', created_by: user
+        description: 'An old bike with a rusty trailer.', name: 'Bicycle', level: 0, color: '#ffcccc', created_by: user
       )
     )
 
