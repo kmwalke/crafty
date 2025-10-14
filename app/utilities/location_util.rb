@@ -2,12 +2,12 @@ class LocationUtil
   def self.provision_locations
     location_data.each do |info|
       LocationUtil.new.provision_location(name: info[:name], pos_x: info[:pos_x], pos_y: info[:pos_y],
-                                          description: info[:description])
+                                          description: info[:description], bg_color: info[:bg_color])
     end
   end
 
-  def provision_location(name: nil, pos_x: nil, pos_y: nil, description: nil)
-    @location = Location.find_or_create_by(name:, pos_x:, pos_y:, description:)
+  def provision_location(name: nil, pos_x: nil, pos_y: nil, description: nil, bg_color: nil)
+    @location = Location.find_or_create_by(name:, pos_x:, pos_y:, description:, bg_color:)
     create_resources
   end
 
@@ -47,25 +47,29 @@ class LocationUtil
         name: 'Starting City',
         pos_x: 0,
         pos_y: 0,
-        description: 'A small metropolis ruled over by Governor Parker.'
+        description: 'A small metropolis ruled over by Governor Parker.',
+        bg_color: '#cce6ff'
       },
       {
         name: 'Rolling Hills',
         pos_x: 10,
         pos_y: 57,
-        description: 'Gentle hills.  Known for beginner ores and flowers.'
+        description: 'Gentle hills.  Known for beginner ores and flowers.',
+        bg_color: '#8cd98c'
       },
       {
         name: 'Harsh Desert',
         pos_x: 20,
         pos_y: 78,
-        description: 'Sun blasted plains.  Odd Cacti grow occasionally.'
+        description: 'Sun blasted plains.  Odd Cacti grow occasionally.',
+        bg_color: '#ffe699'
       },
       {
         name: 'Dark Forest',
         pos_x: 89,
         pos_y: -62,
-        description: 'Spooky. Sounds of creatures just out of sight.'
+        description: 'Spooky. Sounds of creatures just out of sight.',
+        bg_color: '#003300'
       }
     ]
   end
