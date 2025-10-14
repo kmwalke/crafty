@@ -43,15 +43,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_14_112419) do
     t.index ["name"], name: "index_locations_on_name", unique: true
   end
 
-  create_table "resource_nodes", force: :cascade do |t|
+  create_table "resource_types", primary_key: "name", id: :string, force: :cascade do |t|
+  end
+
+  create_table "resources", force: :cascade do |t|
     t.integer "location_id", null: false
     t.string "type", null: false
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "resource_types", primary_key: "name", id: :string, force: :cascade do |t|
   end
 
   create_table "user_statuses", primary_key: "name", id: :string, force: :cascade do |t|
@@ -71,6 +71,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_14_112419) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "resource_nodes", "resource_types", column: "type", primary_key: "name"
+  add_foreign_key "resources", "resource_types", column: "type", primary_key: "name"
   add_foreign_key "users", "user_statuses", column: "status", primary_key: "name"
 end

@@ -1,0 +1,2 @@
+class Meadow < Resource
+end

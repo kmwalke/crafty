@@ -1,2 +1,0 @@
-class Crystal < ResourceNode
-end

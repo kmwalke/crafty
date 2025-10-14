@@ -1,0 +1,2 @@
+class Ore < Resource
+end

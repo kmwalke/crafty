@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :resource_node do
+  factory :resource do
     location_id { 1 }
     type { '' }
   end

@@ -1,2 +1,0 @@
-class Ore < ResourceNode
-end

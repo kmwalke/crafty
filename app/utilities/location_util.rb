@@ -1,7 +1,8 @@
 class LocationUtil
   def self.provision_locations
     location_data.each do |info|
-      LocationUtil.new.provision_location(name: info[:name], pos_x: info[:pos_x], pos_y: info[:pos_y], description: info[:description])
+      LocationUtil.new.provision_location(name: info[:name], pos_x: info[:pos_x], pos_y: info[:pos_y],
+                                          description: info[:description])
     end
   end
 
@@ -12,9 +13,7 @@ class LocationUtil
 
   def create_resources
     LocationUtil.resource_data.each do |datum|
-      if datum[:location] == @location.name
-        ResourceNode.create(type: datum[:type], name: datum[:name], location: @location)
-      end
+      Resource.create(type: datum[:type], name: datum[:name], location: @location) if datum[:location] == @location.name
     end
   end
 

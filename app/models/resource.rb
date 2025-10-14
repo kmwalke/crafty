@@ -1,4 +1,4 @@
-class ResourceNode < ApplicationRecord
+class Resource < ApplicationRecord
   validates :name, presence: true
   validates :type, presence: true
 
