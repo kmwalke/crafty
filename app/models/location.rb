@@ -5,6 +5,7 @@ class Location < ApplicationRecord
   validates :description, presence: true
 
   has_many :users
+  has_many :resource_nodes
 
   def distance_from(location)
     Math.sqrt(

@@ -6,37 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+puts 'CREATING CONSTANTS...'
 UserStatus.populates_statuses
+ResourceType.populates_types
+puts '...DONE'
 
-Location.create(
-  [
-    {
-      name: 'Starting City',
-      pos_x: 0,
-      pos_y: 0,
-      description: 'A small metropolis ruled over by Governor Parker.'
-    },
-    {
-      name: 'Rolling Hills',
-      pos_x: 10,
-      pos_y: 57,
-      description: 'Gentle hills.  Known for beginner ores and flowers.'
-    },
-    {
-      name: 'Harsh Desert',
-      pos_x: 20,
-      pos_y: 78,
-      description: 'Sun blasted plains.  Odd Cactuses grow occasionally.'
-    },
-    {
-      name: 'Dark Forest',
-      pos_x: 89,
-      pos_y: -62,
-      description: 'Spooky. Sounds of creatures just out of sight.'
-    }
-  ]
-)
+puts 'PROVISIONING LOCATIONS...'
+LocationUtil.provision_locations
+puts '...DONE'
 
+puts 'PROVISIONING USERS...'
 [
   { email: 'kmwalke@gmail.com', name: 'Kent', location: Location.first },
   { email: 'kfretz2@gmail.com', name: 'Keith', location: Location.first },
@@ -45,3 +24,4 @@ Location.create(
 ].each do |info|
   UserUtil.provision_user(email: info[:email], name: info[:name], location: info[:location])
 end
+puts '...DONE'
