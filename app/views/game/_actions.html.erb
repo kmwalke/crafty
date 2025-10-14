@@ -3,12 +3,7 @@
   <ul>
     <% @current_user.actions.each do |action| %>
       <li><%= link_to action.capitalize, "##{ action }-popup" %></li>
-      <div id="<%= action %>-popup" class="popup">
-        <div class="popup-content">
-          <a href="#" class="close">X</a>
-          <%= render partial: "#{action}_popup" %>
-        </div>
-      </div>
+      <%= render partial: 'action_popup', locals: { action: action } %>
     <% end %>
   </ul>
 </fieldset>

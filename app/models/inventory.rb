@@ -2,7 +2,7 @@ class Inventory < ApplicationRecord
   belongs_to :user
   has_many :items
 
-  def add_item(name: nil, description: nil, created_by: nil, level: nil, type: nil)
+  def add_item(name: nil, description: nil, created_by: nil, level: nil, type: nil, color: nil)
     return false unless items.count < size
 
     Item.create(
@@ -11,7 +11,8 @@ class Inventory < ApplicationRecord
       description:,
       name:,
       level:,
-      type:
+      type:,
+      color:
     )
   end
 end

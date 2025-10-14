@@ -89,6 +89,21 @@ html {
           background-color: #EEE;
           border: 1px outset black;
         }
+
+        ul {
+          li {
+            list-style: none;
+            line-height: 2em;
+
+            a, a:visited {
+              text-decoration: none;
+            }
+
+            a:hover {
+              text-decoration: underline;
+            }
+          }
+        }
       }
 
       div.popup:target {
@@ -112,6 +127,14 @@ html {
           border-radius: 5px;
           text-align: center;
           position: relative;
+
+          h4.title {
+            background: #EEE;
+            width: 100%;
+            margin: 0;
+            line-height: 2em;
+
+          }
 
           a.close {
             position: absolute;
