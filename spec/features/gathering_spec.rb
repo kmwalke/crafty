@@ -14,18 +14,18 @@ RSpec.describe 'Gathering' do
 
   it 'gathers resources' do
     expect(true).to be false
-  #   Multiple types of tools
-  # Axe gathers lumber from trees
-  # sheers gather wool
-  # pickaxe gathers ores
-  # secateurs gather herbs/fruits
-  # etc...
-  # various tools inherit from Tool class
-  # Use subtype, somehow.  Maybe polymorphism, maybe just a method that checks it
-  # add equipping tools to equipment spec
+    #   Multiple types of tools
+    # Axe gathers lumber from trees
+    # sheers gather wool
+    # pickaxe gathers ores
+    # secateurs gather herbs/fruits
+    # etc...
+    # various tools inherit from Tool class
+    # Use subtype, somehow.  Maybe polymorphism, maybe just a method that checks it
+    # add equipping tools to equipment spec
   end
 
-  it 'adds gathered resources to inventory' do
+  it 'adds resources to inventory' do
     expect(true).to be false
   end
 

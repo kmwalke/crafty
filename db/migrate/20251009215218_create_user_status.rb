@@ -4,6 +4,7 @@ class CreateUserStatus < ActiveRecord::Migration[8.0]
       t.string :name, primary_key: true
     end
 
+    Rails.logger.debug '-- populate UserStatuses'
     UserStatus.populates_statuses
   end
 end

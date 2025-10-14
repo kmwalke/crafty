@@ -1,0 +1,2 @@
+class Fish < ResourceNode
+end

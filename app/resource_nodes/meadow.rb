@@ -1,0 +1,2 @@
+class Meadow < ResourceNode
+end
