@@ -23,6 +23,7 @@ stdout_logger.warn 'PROVISIONING USERS...'
 [
   { email: 'kmwalke@gmail.com', name: 'Kent', location: Location.first },
   { email: 'kfretz2@gmail.com', name: 'Keith', location: Location.first },
+  { email: 'cristin.slaymaker@gmail.com', name: 'Cris', location: Location.first },
   { email: 'a@b.com', name: 'Lumber Jack', location: Location.last },
   { email: 'b@b.com', name: 'Shifty Rogue', location: Location.last }
 ].each do |info|
