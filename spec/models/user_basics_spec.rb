@@ -26,7 +26,7 @@ RSpec.describe User do
     let(:user) { create(:user) }
 
     it 'energy' do
-      expect(user.energy).to eq(User::DEFAULT_ENERGY)
+      expect(user.energy).to eq(User::MAX_ENERGY)
     end
 
     it 'status' do

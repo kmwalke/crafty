@@ -65,6 +65,14 @@ RSpec.describe 'Game' do
       end
     end
 
+    it 'cheats to recharge energy' do
+      player.update(energy: 0)
+
+      click_link 'Drink a Monster Energy'
+
+      expect(player.reload.energy).to eq(User::MAX_ENERGY)
+    end
+
     describe 'displays equipment' do
       let!(:vehicle) { create(:vehicle, inventory: player.inventory) }
 

@@ -11,7 +11,7 @@ class User < ApplicationRecord
   belongs_to :vehicle, optional: true
   has_one :inventory
 
-  DEFAULT_ENERGY         = 1000
+  MAX_ENERGY             = 1000
   DEFAULT_INVENTORY_SIZE = 10
 
   def actions
@@ -59,6 +59,6 @@ class User < ApplicationRecord
   end
 
   def set_energy
-    self.energy = User::DEFAULT_ENERGY
+    self.energy = User::MAX_ENERGY
   end
 end
