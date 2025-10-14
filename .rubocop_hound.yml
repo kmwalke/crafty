@@ -68,6 +68,8 @@ Metrics/PerceivedComplexity:
 
 Metrics/MethodLength:
   Max: 20
+  Exclude:
+    - 'app/utilities/*.rb'
 
 Rails/CreateTableWithTimestamps:
   Enabled: false
