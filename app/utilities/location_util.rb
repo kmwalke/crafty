@@ -19,7 +19,25 @@ class LocationUtil
 
   def self.resource_data
     [
-      { type: 'Crystal', name: 'Singing Crystal Mound', location: location_data[1][:name] }
+      { type: ResourceType::TYPES[:crystal], name: 'Singing Crystal Mound', location: location_data[1][:name] },
+      { type: ResourceType::TYPES[:fish], name: 'Babbling Brook', location: location_data[1][:name] },
+      { type: ResourceType::TYPES[:forest], name: 'Sun Dappled Woods', location: location_data[1][:name] },
+      { type: ResourceType::TYPES[:fruit], name: 'Blackberry Bush', location: location_data[1][:name] },
+      { type: ResourceType::TYPES[:herd], name: 'Grazing Sheep', location: location_data[1][:name] },
+      { type: ResourceType::TYPES[:meadow], name: 'Blooming Field', location: location_data[1][:name] },
+      { type: ResourceType::TYPES[:ore], name: 'Copper Vein', location: location_data[1][:name] },
+      { type: ResourceType::TYPES[:ore], name: 'Iron Vein', location: location_data[1][:name] },
+      { type: ResourceType::TYPES[:crystal], name: 'Cracked Quartz Mound', location: location_data[2][:name] },
+      { type: ResourceType::TYPES[:herd], name: 'Skittering Lizards', location: location_data[2][:name] },
+      { type: ResourceType::TYPES[:meadow], name: 'Sparse Cacti', location: location_data[2][:name] },
+      { type: ResourceType::TYPES[:ore], name: 'Titanium Vein', location: location_data[2][:name] },
+      { type: ResourceType::TYPES[:ore], name: 'Aluminum Vein', location: location_data[2][:name] },
+      { type: ResourceType::TYPES[:crystal], name: 'Roselite Deposit', location: location_data[3][:name] },
+      { type: ResourceType::TYPES[:fish], name: 'Fetid Pool', location: location_data[3][:name] },
+      { type: ResourceType::TYPES[:forest], name: 'Twisted Trees', location: location_data[3][:name] },
+      { type: ResourceType::TYPES[:fruit], name: 'Poison Apples', location: location_data[3][:name] },
+      { type: ResourceType::TYPES[:herd], name: 'Mangy Wolves', location: location_data[3][:name] },
+      { type: ResourceType::TYPES[:meadow], name: 'Briar Patch', location: location_data[3][:name] }
     ]
   end
 
@@ -41,7 +59,7 @@ class LocationUtil
         name: 'Harsh Desert',
         pos_x: 20,
         pos_y: 78,
-        description: 'Sun blasted plains.  Odd Cactuses grow occasionally.'
+        description: 'Sun blasted plains.  Odd Cacti grow occasionally.'
       },
       {
         name: 'Dark Forest',

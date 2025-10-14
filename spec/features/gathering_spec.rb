@@ -16,6 +16,12 @@ RSpec.describe 'Gathering' do
     end
   end
 
+  it 'lists gatherable resources as links' do
+  end
+
+  it 'lists non-gatherable resources as spans' do
+  end
+
   it 'does not display distant resources' do
     expect(page).to have_no_content distant_resource.name
   end
