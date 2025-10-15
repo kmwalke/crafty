@@ -1,2 +1,0 @@
-class Forest < Resource
-end

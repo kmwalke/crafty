@@ -10,7 +10,7 @@ class GameController < ApplicationController
   def equip_item
     item = Item.find(params[:id])
 
-    @current_user.equip_item(item) if item.type == 'Vehicle'
+    @current_user.equip_item(item) if item.type == ItemType::TYPES[:vehicle]
 
     redirect_to game_path
   end

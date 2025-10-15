@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Vehicle do
+RSpec.describe Item::Vehicle do
   let(:vehicle) { create(:vehicle) }
 
   it 'lists actions' do

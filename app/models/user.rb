@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :status, presence: true
 
   belongs_to :location, optional: true
-  belongs_to :vehicle, optional: true
+  belongs_to :vehicle, optional: true, class_name: 'Item::Vehicle'
   has_one :inventory
 
   MAX_ENERGY             = 1000
@@ -31,7 +31,7 @@ class User < ApplicationRecord
   def equip_item(item)
     return unless inventory.items.include?(item)
 
-    equip_vehicle(item) if item.type == 'Vehicle'
+    equip_vehicle(item) if item.type == ItemType::TYPES[:vehicle]
   end
 
   def unequip_vehicle

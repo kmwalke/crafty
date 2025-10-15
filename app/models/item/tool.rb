@@ -1,4 +1,4 @@
-class Tool < Item
+class Item::Tool < Item
   include Equippable
 
   has_one :user

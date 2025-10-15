@@ -1,4 +1,4 @@
-class Vehicle < Item
+class Item::Vehicle < Item
   include Equippable
 
   has_one :user

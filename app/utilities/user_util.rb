@@ -3,7 +3,7 @@ class UserUtil
     user = User.create(email:, name:, password:, location:)
     create_item(
       user,
-      Vehicle.new(
+      Item::Vehicle.new(
         description: 'An old bike with a rusty trailer.', name: 'Bicycle', level: 0, color: '#ffcccc', created_by: user
       )
     )

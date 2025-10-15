@@ -1,2 +1,0 @@
-class Crystal < Resource
-end
