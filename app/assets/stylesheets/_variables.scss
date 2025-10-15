@@ -7,8 +7,6 @@ $white: white;
 $grey: grey;
 $grey-light: grey;
 
-$header-height: 4em;
-
 @mixin rounded-corners($radius) {
   border-radius: $radius;
   -moz-border-radius: $radius;
