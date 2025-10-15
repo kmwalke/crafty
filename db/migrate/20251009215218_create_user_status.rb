@@ -5,6 +5,6 @@ class CreateUserStatus < ActiveRecord::Migration[8.0]
     end
 
     Rails.logger.debug '-- populate UserStatuses'
-    UserStatus.populates_statuses
+    UserStatus.populate_statuses
   end
 end

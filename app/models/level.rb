@@ -10,4 +10,10 @@ class Level < ApplicationRecord
   def self.name(level)
     NAMES[level - 1]
   end
+
+  def self.populate_levels
+    Level::NUMBERS.each do |level_number|
+      Levels.find_or_create_by(id: level_number, name: Level.name(level_number))
+    end
+  end
 end

@@ -11,8 +11,10 @@ stdout_logger           = ActiveSupport::Logger.new($stdout)
 stdout_logger.warn 'SEEDING DATA...'
 stdout_logger.warn ''
 stdout_logger.warn 'CREATING CONSTANTS...'
-UserStatus.populates_statuses
-ResourceType.populates_types
+Level.populate_levels
+UserStatus.populate_statuses
+ResourceType.populate_types
+ItemType.populate_types
 stdout_logger.warn '...DONE'
 
 stdout_logger.warn 'PROVISIONING LOCATIONS...'
