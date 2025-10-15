@@ -16,14 +16,14 @@ html {
     }
 
     div.game-menu {
-      display: inline-block;
-      position: absolute;
-      top: 1em;
-      right: 1em;
-      border: none;
 
 
       nav {
+        display: inline-block;
+        position: absolute;
+        top: 1em;
+        right: 1em;
+        border: none;
         ul {
           display: flex;
           justify-content: left;
@@ -45,11 +45,10 @@ html {
 
   div.content {
     margin-left: 0.5em;
-    padding-top: 0.5em;
   }
 
-  fieldset.player-card {
-    display: block;
+  .player-card {
+    display: block!important;
   }
 
   .section {
@@ -104,7 +103,7 @@ html {
       padding: 20px;
       border-radius: 5px;
       text-align: center;
-      position: relative;
+      position: fixed;
 
       h4.title {
         background: #EEE;
