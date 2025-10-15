@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   DEFAULT_COLOR = '#EEE'.freeze
 
   def level_name
-    Level.name(level)
+    Level.level_name(level)
   end
 
   def equipable?

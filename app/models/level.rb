@@ -7,13 +7,13 @@ class Level < ApplicationRecord
   EPIC      = 4
   LEGENDARY = 5
 
-  def self.name(level)
+  def self.level_name(level)
     NAMES[level - 1]
   end
 
   def self.populate_levels
     Level::NUMBERS.each do |level_number|
-      Levels.find_or_create_by(id: level_number, name: Level.name(level_number))
+      Level.find_or_create_by(id: level_number, name: Level.level_name(level_number))
     end
   end
 end
