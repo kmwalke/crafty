@@ -14,8 +14,8 @@ class ItemToolSubtype < ApplicationRecord
   TYPE_NAMES = TYPES.values.freeze
 
   def self.populates_types
-    ResourceType::TYPE_NAMES.each do |type|
-      ResourceType.find_or_create_by(name: type)
+    ItemToolSubtype::TYPE_NAMES.each do |type|
+      ItemToolSubtype.find_or_create_by(name: type)
     end
   end
 end
