@@ -3,7 +3,7 @@ class ResourceType < ApplicationRecord
 
   TYPES = {
     crystal: 'Crystal',
-    fishing: 'Fish',
+    fish: 'Fish',
     forest: 'Forest',
     fruit: 'Fruit',
     herd: 'Herd',
