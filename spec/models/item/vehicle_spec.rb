@@ -32,7 +32,7 @@ RSpec.describe Item::Vehicle do
     it 'updates the users location' do
       vehicle.travel(location2)
 
-      expect(user.location).to eq(location2)
+      expect(user.reload.location).to eq(location2)
     end
 
     it 'doesn\'t update if user has low energy' do
@@ -51,7 +51,7 @@ RSpec.describe Item::Vehicle do
 
         vehicle.travel(location2)
 
-        expect(user.energy < low_energy).to be true
+        expect(user.reload.energy < low_energy).to be true
       end
 
       it 'mid level vehicle' do
@@ -59,7 +59,7 @@ RSpec.describe Item::Vehicle do
 
         vehicle.travel(location2)
 
-        expect(user.energy).to eq(low_energy)
+        expect(user.reload.energy).to eq(low_energy)
       end
 
       it 'high level vehicle' do
@@ -69,7 +69,7 @@ RSpec.describe Item::Vehicle do
 
         vehicle.travel(location2)
 
-        expect(user.energy).to be_between(low_energy, old_energy).exclusive
+        expect(user.reload.energy).to be_between(low_energy, old_energy).exclusive
       end
     end
   end
