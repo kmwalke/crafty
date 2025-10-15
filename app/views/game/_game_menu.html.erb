@@ -1,0 +1,19 @@
+<div class="game-menu section">
+  <a href="#game-menu-popup" class="button">Game Menu</a>
+  <div id="game-menu-popup" class="popup">
+    <div class="popup-content game-menu-popup">
+      <a href="#" class="button">X</a>
+      <h4 class="title">Game Menu</h4>
+      <span class="version">Version 0.0.1.buildnumber</span>
+      <ul class="links">
+        <% if current_user -%>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Change Log</a></li>
+          <li><%= link_to 'Log Out', logout_path %></li>
+        <% else -%>
+          <li><%= link_to 'Log In', login_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
