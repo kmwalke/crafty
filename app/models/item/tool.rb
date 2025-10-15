@@ -1,5 +1,7 @@
 class Item::Tool < Item
-  has_one :user
+  include Equippable
+
+  has_one :equipped_by, class_name: 'User'
 
   def actions
     %w[gather]
