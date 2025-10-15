@@ -9,11 +9,9 @@ class Item < ApplicationRecord
   belongs_to :created_by, class_name: 'User'
 
   DEFAULT_COLOR = '#EEE'.freeze
-  LEVELS        = [0, 1, 2, 3, 4].freeze
-  LEVEL_NAMES   = %w[Common Uncommon Rare Epic Legendary].freeze
 
   def level_name
-    LEVEL_NAMES[level]
+    Level.name(level)
   end
 
   def equipable?
