@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Gathering' do
   let!(:player) { login }
+  let!(:gathering_tool) { create(:gathering_tool, inventory: player.inventory) }
   let!(:local_resource1) { create(:resource, location: player.location) }
   let!(:local_resource2) { create(:resource, location: player.location) }
   let!(:distant_resource) { create(:resource) }
@@ -17,6 +18,7 @@ RSpec.describe 'Gathering' do
   end
 
   it 'lists gatherable resources as links' do
+    expect(gathering_tool).to be_a Item::Tool::GatheringTool
   end
 
   it 'lists non-gatherable resources as spans' do

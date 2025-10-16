@@ -1,6 +1,12 @@
 <fieldset class="equipment section">
   <legend>Equipment</legend>
   <ul>
+    <% if @current_user.tool %>
+      <li>
+        <span>Tool: <%= @current_user.tool.name %></span>
+        <%= link_to 'X', unequip_tool_path, id: 'unequip_tool' %>
+      </li>
+    <% end %>
     <% if @current_user.vehicle %>
       <li>
         <span>Vehicle: <%= @current_user.vehicle.name %></span>

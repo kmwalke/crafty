@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :status, presence: true
 
   belongs_to :location, optional: true
+  belongs_to :tool, optional: true, class_name: 'Item::Tool'
   belongs_to :vehicle, optional: true, class_name: 'Item::Vehicle'
   has_one :inventory
 
@@ -32,6 +33,11 @@ class User < ApplicationRecord
     return unless inventory.items.include?(item)
 
     equip_vehicle(item) if item.type == ItemType::TYPES[:vehicle]
+    equip_tool(item) if item.type == ItemType::TYPES[:tool]
+  end
+
+  def unequip_tool
+    update(tool: nil)
   end
 
   def unequip_vehicle
@@ -52,6 +58,10 @@ class User < ApplicationRecord
 
   def create_inventory
     Inventory.create(user: self, size: DEFAULT_INVENTORY_SIZE)
+  end
+
+  def equip_tool(tool)
+    update(tool: tool)
   end
 
   def equip_vehicle(vehicle)

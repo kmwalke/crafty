@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Equipment' do
+RSpec.describe 'Vehicle' do
   let!(:player) { login }
   let!(:vehicle) { create(:vehicle, inventory: player.inventory) }
 
