@@ -24,22 +24,43 @@ class LocationUtil
       { type: ResourceType::TYPES[:crystal], name: 'Singing Crystal Mound', location: location_data[1][:name], level: Level::COMMON },
       { type: ResourceType::TYPES[:fish], name: 'Babbling Brook', location: location_data[1][:name], level: Level::COMMON },
       { type: ResourceType::TYPES[:forest], name: 'Sun Dappled Woods', location: location_data[1][:name], level: Level::COMMON },
-      { type: ResourceType::TYPES[:fruit], name: 'Blackberry Bush', location: location_data[1][:name], level: Level::COMMON },
+      { type: ResourceType::TYPES[:fruit], name: 'Blackberry Bush', location: location_data[1][:name], level: Level::UNCOMMON },
       { type: ResourceType::TYPES[:herd], name: 'Grazing Sheep', location: location_data[1][:name], level: Level::COMMON },
       { type: ResourceType::TYPES[:meadow], name: 'Blooming Field', location: location_data[1][:name], level: Level::COMMON },
       { type: ResourceType::TYPES[:ore], name: 'Copper Vein', location: location_data[1][:name], level: Level::COMMON },
       { type: ResourceType::TYPES[:ore], name: 'Iron Vein', location: location_data[1][:name], level: Level::COMMON },
-      { type: ResourceType::TYPES[:crystal], name: 'Cracked Quartz Mound', location: location_data[2][:name], level: Level::UNCOMMON },
+
+      { type: ResourceType::TYPES[:crystal], name: 'Cracked Quartz Mound', location: location_data[2][:name], level: Level::RARE },
       { type: ResourceType::TYPES[:herd], name: 'Skittering Lizards', location: location_data[2][:name], level: Level::UNCOMMON },
       { type: ResourceType::TYPES[:meadow], name: 'Sparse Cacti', location: location_data[2][:name], level: Level::UNCOMMON },
-      { type: ResourceType::TYPES[:ore], name: 'Titanium Vein', location: location_data[2][:name], level: Level::UNCOMMON },
-      { type: ResourceType::TYPES[:ore], name: 'Aluminum Vein', location: location_data[2][:name], level: Level::UNCOMMON },
+      { type: ResourceType::TYPES[:ore], name: 'Copper Vein', location: location_data[2][:name], level: Level::UNCOMMON },
+      { type: ResourceType::TYPES[:ore], name: 'Iron Vein', location: location_data[2][:name], level: Level::UNCOMMON },
+      { type: ResourceType::TYPES[:ore], name: 'Titanium Vein', location: location_data[2][:name], level: Level::COMMON },
+      { type: ResourceType::TYPES[:ore], name: 'Aluminum Vein', location: location_data[2][:name], level: Level::COMMON },
+
       { type: ResourceType::TYPES[:crystal], name: 'Roselite Deposit', location: location_data[3][:name], level: Level::RARE },
       { type: ResourceType::TYPES[:fish], name: 'Fetid Pool', location: location_data[3][:name], level: Level::RARE },
-      { type: ResourceType::TYPES[:forest], name: 'Twisted Trees', location: location_data[3][:name], level: Level::RARE },
+      { type: ResourceType::TYPES[:forest], name: 'Twisted Trees', location: location_data[3][:name], level: Level::UNCOMMON },
       { type: ResourceType::TYPES[:fruit], name: 'Poison Apples', location: location_data[3][:name], level: Level::RARE },
       { type: ResourceType::TYPES[:herd], name: 'Mangy Wolves', location: location_data[3][:name], level: Level::RARE },
-      { type: ResourceType::TYPES[:meadow], name: 'Briar Patch', location: location_data[3][:name], level: Level::RARE }
+      { type: ResourceType::TYPES[:meadow], name: 'Briar Patch', location: location_data[3][:name], level: Level::COMMON },
+
+      { type: ResourceType::TYPES[:crystal], name: 'Obsidian', location: location_data[4][:name], level: Level::EPIC },
+      { type: ResourceType::TYPES[:fruit], name: 'Habanero', location: location_data[4][:name], level: Level::RARE },
+      { type: ResourceType::TYPES[:herd], name: 'Lava Frog', location: location_data[4][:name], level: Level::EPIC },
+      { type: ResourceType::TYPES[:meadow], name: 'Red Cactus', location: location_data[4][:name], level: Level::EPIC },
+      { type: ResourceType::TYPES[:ore], name: 'Copper Vein', location: location_data[4][:name], level: Level::EPIC },
+      { type: ResourceType::TYPES[:ore], name: 'Iron Vein', location: location_data[4][:name], level: Level::EPIC },
+      { type: ResourceType::TYPES[:ore], name: 'Titanium Vein', location: location_data[4][:name], level: Level::RARE },
+      { type: ResourceType::TYPES[:ore], name: 'Aluminum Vein', location: location_data[4][:name], level: Level::RARE },
+
+      { type: ResourceType::TYPES[:crystal], name: 'Singing Crystal Mound', location: location_data[5][:name], level: Level::LEGENDARY },
+      { type: ResourceType::TYPES[:crystal], name: 'Human-like Bone', location: location_data[5][:name], level: Level::LEGENDARY },
+      { type: ResourceType::TYPES[:fish], name: 'Rotting Creek', location: location_data[5][:name], level: Level::LEGENDARY },
+      { type: ResourceType::TYPES[:fruit], name: 'Large Mushroom', location: location_data[5][:name], level: Level::LEGENDARY },
+      { type: ResourceType::TYPES[:herd], name: 'Roaming Zombie', location: location_data[5][:name], level: Level::LEGENDARY },
+      { type: ResourceType::TYPES[:ore], name: 'Copper Vein', location: location_data[5][:name], level: Level::LEGENDARY },
+      { type: ResourceType::TYPES[:ore], name: 'Iron Vein', location: location_data[5][:name], level: Level::LEGENDARY }
     ]
   end
 
@@ -55,7 +76,7 @@ class LocationUtil
       {
         name: 'Rolling Hills',
         pos_x: 10,
-        pos_y: 57,
+        pos_y: 21,
         description: 'Gentle hills.  Known for beginner ores and flowers.',
         bg_color: '#8cd98c'
       },
@@ -68,10 +89,24 @@ class LocationUtil
       },
       {
         name: 'Dark Forest',
-        pos_x: 89,
+        pos_x: -32,
         pos_y: -62,
         description: 'Spooky. Sounds of creatures just out of sight.',
         bg_color: '#003300'
+      },
+      {
+        name: 'Flowing Volcano',
+        pos_x: 89,
+        pos_y: -62,
+        description: 'Tall and steep. It is hard to breathe through the noxious air',
+        bg_color: '#cc0000'
+      },
+      {
+        name: 'Necromancer\'s Killing Field',
+        pos_x: -93,
+        pos_y: 87,
+        description: 'There are bones everywhere.',
+        bg_color: '#000000'
       }
     ]
   end
