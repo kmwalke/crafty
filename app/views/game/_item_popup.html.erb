@@ -5,9 +5,9 @@
       <%= item.name %>
     </h4>
     <% if item.equipable? %>
-      <%= link_to 'Equip', equip_item_path(item) %>
+      <%= link_to 'Equip', equip_item_path(item) %><br />
     <% end %>
-    <span class="level"><%= item.level_name %></span>
+    <%= render partial: 'level_color', locals: { level: item.level, text: item.level_name } %>
     <span class="created-by">Created by <%= item.created_by.name %></span>
     <p class="description"><%= item.description %></p>
   </div>

@@ -7,6 +7,12 @@ $white: white;
 $grey: grey;
 $grey-light: grey;
 
+$common-color: #000000;
+$uncommon-color: #01ff00;
+$rare-color: #0080ff;
+$epic-color: #8000ff;
+$legendary-color: #ff8000;
+
 @mixin rounded-corners($radius) {
   border-radius: $radius;
   -moz-border-radius: $radius;
