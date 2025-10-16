@@ -12,6 +12,17 @@ module Equippable
   end
 
   def energy_multiplier
-    (((level - 3.0) * -1) / 2) + 1
+    case level
+    when Level::COMMON
+      2
+    when Level::UNCOMMON
+      1.5
+    when Level::RARE
+      1
+    when Level::EPIC
+      0.5
+    when Level::LEGENDARY
+      0.1
+    end
   end
 end
