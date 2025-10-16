@@ -52,8 +52,6 @@ class GameController < ApplicationController
     yield
   rescue CraftyError => e
     @notice = e.to_s
-  rescue StandardError
-    @notice = 'An unknown error has occurred.'
   ensure
     redirect_to game_path, notice: @notice if redirect
   end
