@@ -3,7 +3,7 @@
   <ul>
     <% @local_resources.each do |resource| %>
       <li>
-        <%= render partial: 'level_color', locals: { level: resource.level, text: resource.name } %>
+        <%= level_color(resource.level, resource.name) %>
         <%#= link_to resource.name, "#resource-#{ resource.id }-popup" %>
         <!--        <span><%#= resource.name %></span>-->
       </li>
