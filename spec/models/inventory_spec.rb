@@ -6,6 +6,10 @@ RSpec.describe Inventory do
   pending 'sorts the inventory'
   pending 'equipping a backpack or something increases the users inventory size'
 
+  it 'must belong to a user' do
+    expect { create(:inventory, user: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
   it 'limits contents to inventory size' do
     inventory.add_item(Item.new(name: 'one', description: 'desc', created_by: inventory.user, level: Level::COMMON))
     inventory.add_item(Item.new(name: 'two', description: 'desc', created_by: inventory.user, level: Level::COMMON))
@@ -19,9 +23,5 @@ RSpec.describe Inventory do
 
   it 'only adds unsaved items' do
     expect(inventory.add_item(build(:item))).to be true
-  end
-
-  it 'must belong to a user' do
-    expect { create(:inventory, user: nil) }.to raise_error(ActiveRecord::RecordInvalid)
   end
 end
