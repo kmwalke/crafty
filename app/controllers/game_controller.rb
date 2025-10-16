@@ -12,7 +12,7 @@ class GameController < ApplicationController
 
     @current_user.equip_item(item) if item.equipable?
 
-    redirect_to game_path, notice: "#{item.name} equipped"
+    redirect_to game_path, notice: "#{level_color(item.level, item.name)} equipped"
   end
 
   def unequip_tool
