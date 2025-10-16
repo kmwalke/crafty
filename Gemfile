@@ -6,6 +6,7 @@ ruby '3.4.7'
 gem 'bcrypt'
 gem 'bootsnap'
 gem 'faraday'
+gem 'hotwire-rails'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'pg'
@@ -13,7 +14,6 @@ gem 'puma'
 gem 'rails'
 gem 'sass-rails'
 gem 'turbo-rails'
-gem 'hotwire-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
