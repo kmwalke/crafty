@@ -1,7 +1,7 @@
 class Resource::Herd < Resource
   def gather
     Item.new(
-      name: 'Pelt',
+      name: "#{name} Pelt",
       description: 'A pelt placeholder item. Not good for crafting',
       level: item_level
     )
