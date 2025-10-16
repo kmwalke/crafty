@@ -57,6 +57,7 @@ RSpec.describe 'Gathering' do
       end
 
       it 'shows the error' do
+        expect(page).to have_css('div.notice-popup', text: ErrorMessage::INVENTORY[:no_space])
       end
     end
   end

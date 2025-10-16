@@ -9,8 +9,8 @@ class Inventory < ApplicationRecord
   end
 
   def add_item(item)
-    raise CraftyError, 'No space remaining.' unless remaining_space.positive?
-    raise CraftyError, 'Already in an inventory.' if item.inventory
+    raise CraftyError, ErrorMessage::INVENTORY[:no_space] unless remaining_space.positive?
+    raise CraftyError, ErrorMessage::INVENTORY[:already_in_inventory] if item.inventory
 
     item.inventory = self
     item.save

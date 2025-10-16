@@ -8,6 +8,6 @@ class Item::Tool < Item
   end
 
   def gather(_resource)
-    raise 'Not Implemented.'
+    raise CraftyError, ErrorMessage::GENERIC[:interface_method]
   end
 end

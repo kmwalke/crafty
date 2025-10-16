@@ -8,9 +8,9 @@ class Item::Vehicle < Item
   end
 
   def travel(location)
-    raise CraftyError, 'You have to equip a vehicle to travel in it.' if equipped_by.nil?
+    raise CraftyError, ErrorMessage::ITEM[:must_equip_item] if equipped_by.nil?
     unless equipped_by.spend_energy(energy_usage(equipped_by.location, location))
-      raise CraftyError, 'You don\'t have enough energy.'
+      raise CraftyError, ErrorMessage::USER[:build_additional_pylons]
     end
 
     equipped_by.update(location: location)

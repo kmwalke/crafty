@@ -6,7 +6,6 @@ class GameController < ApplicationController
       @current_location = @current_user.location
       @local_players    = User.where(location: @current_location).where.not(id: @current_user.id)
       @local_resources  = Resource.where(location: @current_location)
-      raise CraftyError, 'thing'
     end
   end
 
