@@ -7,7 +7,7 @@ class Resource < ApplicationRecord
   belongs_to :location
 
   def gather
-    raise 'Not Implemented.'
+    raise CraftyError, ErrorMessage::GENERIC[:interface_method]
   end
 
   private

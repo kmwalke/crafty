@@ -1,5 +1,6 @@
 <fieldset class="inventory section">
   <legend>Inventory</legend>
+  <span class="remaining-space"><%= @current_user.inventory.remaining_space %></span>
   <ul>
     <% @current_user.inventory.items.each do |item| %>
       <li>

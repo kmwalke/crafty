@@ -26,7 +26,7 @@ RSpec.describe Item::Vehicle do
     end
 
     it 'nil user protection' do
-      expect(create(:vehicle).travel(location2)).to be_nil
+      expect { create(:vehicle).travel(location2) }.to raise_error(CraftyError)
     end
 
     it 'updates the users location' do
@@ -38,9 +38,7 @@ RSpec.describe Item::Vehicle do
     it 'doesn\'t update if user has low energy' do
       user.update(energy: 0)
 
-      vehicle.travel(location2)
-
-      expect(user.reload.location).to eq(location1)
+      expect { vehicle.travel(location2) }.to raise_error(CraftyError)
     end
 
     describe 'spends the users energy' do

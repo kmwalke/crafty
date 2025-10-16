@@ -4,13 +4,17 @@ class Item::Tool::GatheringTool < Item::Tool
   self.inheritance_column = 'subtype'
 
   def gather(resource)
-    return unless equipped_by&.spend_energy(energy_usage(resource))
+    raise CraftyError, ErrorMessage::ITEM[:must_equip_item] if equipped_by.nil?
 
-    item = resource.gather
-    item.update!(
-      inventory: equipped_by.inventory,
-      created_by: equipped_by
-    )
+    unless equipped_by&.spend_energy(energy_usage(resource))
+      raise CraftyError,
+            ErrorMessage::USER[:build_additional_pylons]
+    end
+
+    item            = resource.gather
+    item.created_by = equipped_by
+
+    equipped_by.inventory.add_item(item)
 
     item
   end

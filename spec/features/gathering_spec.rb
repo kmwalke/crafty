@@ -36,18 +36,37 @@ RSpec.describe 'Gathering' do
     # add equipping tools to equipment spec
     # currently using placeholder items.  Just a plain Item with a name of the type
     # later it will be Item::Ore::Copper or Item::Flower::Dandelion
-    let!(:old_inv_size) { player.inventory.items.count }
+    let!(:old_inv_count) { player.inventory.items.count }
 
     before do
-      visit game_path
-      within '.actions' do
-        click_link 'Gather'
-        click_link local_resource.name
-      end
+      gather_resource
     end
 
     it 'adds resources to inventory' do
-      expect(player.reload.inventory.items.count).to eq(old_inv_size + 1)
+      expect(player.reload.inventory.items.count).to eq(old_inv_count + 1)
     end
+
+    describe 'does not overfill the inventory' do
+      before do
+        player.inventory.update(size: old_inv_count)
+        gather_resource
+      end
+
+      it 'doesnt add to the inventory' do
+        expect(player.reload.inventory.size).to eq(old_inv_count)
+      end
+
+      it 'shows the error' do
+        expect(page).to have_css('div.notice-popup', text: ErrorMessage::INVENTORY[:no_space])
+      end
+    end
+  end
+end
+
+def gather_resource
+  visit game_path
+  within '.actions' do
+    click_link 'Gather'
+    click_link local_resource.name
   end
 end
