@@ -2,13 +2,17 @@
   <legend>Resources</legend>
   <ul>
     <% @local_resources.each do |resource| %>
-      <li><%= resource.level_name %> <%= link_to resource.name, "#resource-#{ resource.id }-popup" %></li>
-<!--      <div id="<%#= action %>-popup" class="popup">-->
-<!--        <div class="popup-content">-->
-<!--          <a href="#" class="button"">X</a>-->
-          <%#= render partial: "#{action}_popup" %>
-<!--        </div>-->
-<!--      </div>-->
+      <li>
+        <%= render partial: 'level_color', locals: { level: resource.level, text: resource.name } %>
+        <%#= link_to resource.name, "#resource-#{ resource.id }-popup" %>
+        <!--        <span><%#= resource.name %></span>-->
+      </li>
+      <!--      <div id="<%#= action %>-popup" class="popup">-->
+      <!--        <div class="popup-content">-->
+      <!--          <a href="#" class="button"">X</a>-->
+      <%#= render partial: "#{action}_popup" %>
+      <!--        </div>-->
+      <!--      </div>-->
     <% end %>
   </ul>
 </fieldset>

@@ -2,7 +2,10 @@
   <legend>Inventory</legend>
   <ul>
     <% @current_user.inventory.items.each do |item| %>
-      <li><%= link_to item.name, "#item-#{ item.id }-details" %></li>
+      <li>
+        <%= render partial: 'level_color', locals: { level: item.level, text: item.level_name } %>
+        <%= link_to item.name, "#item-#{ item.id }-details" %>
+      </li>
       <%= render partial: 'item_popup', locals: { item: } %>
     <% end %>
   </ul>
