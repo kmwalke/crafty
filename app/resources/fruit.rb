@@ -1,2 +1,0 @@
-class Fruit < Resource
-end

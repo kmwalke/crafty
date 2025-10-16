@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   get 'game', to: 'game#index'
 
   get '/item/:id/equip', to: 'game#equip_item', as: 'equip_item'
+  get '/unequip_tool', to: 'game#unequip_tool', as: 'unequip_tool'
   get '/unequip_vehicle', to: 'game#unequip_vehicle', as: 'unequip_vehicle'
 
+  get '/resource/:id/gather', to: 'game#gather', as: 'gather'
   get '/location/:id/travel', to: 'game#travel', as: 'travel'
 
   # Cheats

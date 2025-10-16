@@ -7,8 +7,8 @@ RSpec.describe Inventory do
   pending 'equipping a backpack or something increases the users inventory size'
 
   it 'limits contents to inventory size' do
-    inventory.add_item(Item.new(name: 'one', description: 'desc', created_by: inventory.user, level: 0))
-    inventory.add_item(Item.new(name: 'two', description: 'desc', created_by: inventory.user, level: 0))
+    inventory.add_item(Item.new(name: 'one', description: 'desc', created_by: inventory.user, level: Level::COMMON))
+    inventory.add_item(Item.new(name: 'two', description: 'desc', created_by: inventory.user, level: Level::COMMON))
 
     expect(inventory.items.count).to eq(1)
   end

@@ -1,10 +1,18 @@
 class UserUtil
   def self.provision_user(name: nil, email: nil, location: nil, password: '123')
     user = User.create(email:, name:, password:, location:)
+
     create_item(
       user,
-      Vehicle.new(
-        description: 'An old bike with a rusty trailer.', name: 'Bicycle', level: 0, color: '#ffcccc', created_by: user
+      Item::Vehicle.new(
+        description: 'An old bike with a rusty trailer.', name: 'Bicycle', level: Level::COMMON, color: '#ffcccc', created_by: user
+      )
+    )
+
+    create_item(
+      user,
+      Item::Tool::GatheringTool.new(
+        name: 'Universal Extractor', description: 'Magical seeming tech.  Can gather from any resource.', level: Level::LEGENDARY, color: 'gold', created_by: user
       )
     )
 
@@ -30,9 +38,10 @@ class UserUtil
 
   def self.item_data
     [
-      { description: 'A small, crooked stick.', name: 'Bent Stick', level: 0, color: '#996633' },
-      { description: 'You can\'t remember where you found this.', name: 'Dented Copper', level: 0, color: '#e4be9b' },
-      { description: 'An old flame gave you this.', name: 'Wilted Flower', level: 0, color: 'grey' }
+      { description: 'A small, crooked stick.', name: 'Bent Stick', level: Level::COMMON, color: '#996633' },
+      { description: 'You can\'t remember where you found this.', name: 'Dented Copper', level: Level::COMMON,
+        color: '#e4be9b' },
+      { description: 'An old flame gave you this.', name: 'Wilted Flower', level: Level::COMMON, color: 'grey' }
     ]
   end
 end
