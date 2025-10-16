@@ -13,9 +13,7 @@ RSpec.describe User do
     it 'cannot equip a vehicle not in inventory' do
       bad_vehicle = create(:vehicle)
 
-      user.equip_item(bad_vehicle)
-
-      expect(user.vehicle).not_to eq(bad_vehicle)
+      expect { user.equip_item(bad_vehicle) }.to raise_error(CraftyError)
     end
 
     it 'equips a vehicle from inventory' do
@@ -35,7 +33,7 @@ RSpec.describe User do
     it 'wont travel without a vehicle' do
       user2 = create(:user)
 
-      expect(user2.travel(create(:location))).to be_nil
+      expect { user2.travel(create(:location)) }.to raise_error(CraftyError)
     end
 
     it 'travels between locations' do

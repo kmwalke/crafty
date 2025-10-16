@@ -12,9 +12,7 @@ RSpec.describe User do
       let!(:old_energy) { user.energy }
 
       it 'cannot spend negative energy' do
-        user.spend_energy(-10)
-
-        expect(user.energy).to eq(old_energy)
+        expect { user.spend_energy(-10) }.to raise_error(CraftyError)
       end
 
       it 'spends energy' do
@@ -24,9 +22,7 @@ RSpec.describe User do
       end
 
       it 'cannot spend more than the user has' do
-        user.spend_energy(old_energy + 1)
-
-        expect(user.energy).to eq(old_energy)
+        expect { user.spend_energy(old_energy + 1) }.to raise_error(CraftyError)
       end
     end
   end

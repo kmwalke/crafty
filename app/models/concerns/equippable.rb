@@ -2,13 +2,13 @@ module Equippable
   extend ActiveSupport::Concern
 
   def actions
-    raise 'Not implemented.'
+    raise CraftyError, ErrorMessage::GENERIC[:interface_method]
   end
 
   private
 
   def energy_usage(*_args)
-    raise 'Not implemented.'
+    raise CraftyError, ErrorMessage::GENERIC[:interface_method]
   end
 
   def energy_multiplier
