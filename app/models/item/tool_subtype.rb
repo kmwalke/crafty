@@ -8,10 +8,10 @@ class Item::ToolSubtype < ApplicationRecord
     # secateurs: 'Secateurs',
     # sheers: 'Sheers',
     # gardening_gloves: 'Gardening Gloves',
-    # pickaxe: 'Pickaxe'
-    gathering_tool: 'Gathering Tool',
-    crafting_tool: 'Crafting Tool',
-    weapon: 'Weapon'
+    # pickaxe: 'Pickaxe',
+    # weapon: 'Weapon'
+    gathering_tool: 'Item::Tool::GatheringTool'
+    # crafting_tool: 'Crafting Tool',
   }.freeze
 
   TYPE_NAMES = TYPES.values.freeze

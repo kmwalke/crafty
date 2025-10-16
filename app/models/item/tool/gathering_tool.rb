@@ -3,6 +3,13 @@ class Item::Tool::GatheringTool < Item::Tool
 
   self.inheritance_column = 'subtype'
 
+  def gather(resource)
+    resource.gather.update(
+      inventory: equipped_by.inventory,
+      created_by: equipped_by
+    )
+  end
+
   private
 
   def set_type
