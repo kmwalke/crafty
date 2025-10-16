@@ -10,14 +10,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
+  <%= turbo_frame_tag 'page' do %>
   <body class="<%= controller.controller_name%><%= current_user ? ' admin' : '' %>"
     <%= render partial: 'layouts/game_background' %>
 
-<!--    <div class="notice">-->
-<!--      <div class="notice-popup">-->
-<!--        Test Notice-->
-<!--      </div>-->
-<!--    </div>-->
   <% if notice %>
     <div class="notice">
       <div class="notice-popup">
@@ -30,4 +26,5 @@
       <%= yield %>
     </div>
   </body>
+  <% end %>
 </html>
