@@ -14,8 +14,8 @@ class CheatsController < ApplicationController
   end
 
   def reset_db
-    `./script/reset_db.sh`
+    pid = spawn './script/reset_db.sh &'
 
-    redirect_to logout_path, notice: 'Give it a few minutes'
+    redirect_to logout_path, notice: "Give it a few minutes. PID #{pid}"
   end
 end

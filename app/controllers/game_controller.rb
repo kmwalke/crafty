@@ -2,44 +2,60 @@ class GameController < ApplicationController
   before_action :logged_in
 
   def index
-    @current_location = @current_user.location
-    @local_players    = User.where(location: @current_location).where.not(id: @current_user.id)
-    @local_resources  = Resource.where(location: @current_location)
+    game_action redirect: false do
+      @current_location = @current_user.location
+      @local_players    = User.where(location: @current_location).where.not(id: @current_user.id)
+      @local_resources  = Resource.where(location: @current_location)
+      raise CraftyError, 'thing'
+    end
   end
 
   def equip_item
-    item = Item.find(params[:id])
+    game_action do
+      item = Item.find(params[:id])
 
-    @current_user.equip_item(item) if item.equipable?
+      @current_user.equip_item(item) if item.equipable?
 
-    redirect_to game_path, notice: "#{level_color(item.level, item.name)} equipped"
+      @notice = "#{level_color(item.level, item.name)} equipped"
+    end
   end
 
   def unequip_tool
-    @current_user.unequip_tool
-
-    redirect_to game_path
+    game_action do
+      @current_user.unequip_tool
+    end
   end
 
   def unequip_vehicle
-    @current_user.unequip_vehicle
-
-    redirect_to game_path
+    game_action do
+      @current_user.unequip_vehicle
+    end
   end
 
   def gather
-    resource = Resource.find(params[:id])
-
-    item = @current_user.gather(resource)
-
-    redirect_to game_path, notice: level_color(item.level, item.name)
+    game_action do
+      item    = @current_user.gather(Resource.find(params[:id]))
+      @notice = level_color(item.level, item.name)
+    end
   end
 
   def travel
-    location = Location.find(params[:id])
+    game_action do
+      location = Location.find(params[:id])
 
-    @current_user.travel(location)
+      @current_user.travel(location)
+    end
+  end
 
-    redirect_to game_path
+  private
+
+  def game_action(redirect: true)
+    yield
+  rescue CraftyError => e
+    @notice = e.to_s
+  rescue StandardError
+    @notice = 'An unknown error has occurred.'
+  ensure
+    redirect_to game_path, notice: @notice if redirect
   end
 end

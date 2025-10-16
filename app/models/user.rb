@@ -67,7 +67,7 @@ class User < ApplicationRecord
   end
 
   def valid_travel_locations
-    raise CraftyError, 'You can\'t scan for locations without a vehicle.' if tool.nil?
+    raise CraftyError, 'You can\'t scan for locations without a vehicle.' if vehicle.nil?
     return if vehicle.nil?
 
     Location.all

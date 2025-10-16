@@ -5,9 +5,7 @@ class Item::Tool::GatheringTool < Item::Tool
 
   def gather(resource)
     raise CraftyError, 'You have to equip a tool to use it.' if equipped_by.nil?
-    unless equipped_by&.spend_energy(energy_usage(resource))
-      raise CraftyError, 'You don\'t have enough energy.'
-    end
+    raise CraftyError, 'You don\'t have enough energy.' unless equipped_by&.spend_energy(energy_usage(resource))
 
     item            = resource.gather
     item.created_by = equipped_by
