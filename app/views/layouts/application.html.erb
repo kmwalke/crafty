@@ -13,7 +13,18 @@
   <body class="<%= controller.controller_name%><%= current_user ? ' admin' : '' %>"
     <%= render partial: 'layouts/game_background' %>
 
-    <p id=”notice”><%= notice&.html_safe %></p>
+<!--    <div class="notice">-->
+<!--      <div class="notice-popup">-->
+<!--        Test Notice-->
+<!--      </div>-->
+<!--    </div>-->
+  <% if notice %>
+    <div class="notice">
+      <div class="notice-popup">
+        <%= notice&.html_safe %>
+      </div>
+    </div>
+  <% end %>
 
     <div class="content">
       <%= yield %>
