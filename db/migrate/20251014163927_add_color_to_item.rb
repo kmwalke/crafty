@@ -6,4 +6,8 @@ class AddColorToItem < ActiveRecord::Migration[8.0]
 
     change_column :items, :color, :string, null: false
   end
+
+  def down
+    remove_column :items, :color
+  end
 end

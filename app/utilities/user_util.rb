@@ -9,6 +9,13 @@ class UserUtil
       )
     )
 
+    create_item(
+      user,
+      Item::Tool::GatheringTool.new(
+        name: 'Universal Extractor', description: 'Magical seeming tech.  Can gather from any resource.', level: Level::LEGENDARY, color: 'gold', created_by: user
+      )
+    )
+
     item_data.each do |datum|
       create_item(
         user,
