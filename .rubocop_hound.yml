@@ -25,6 +25,8 @@ Layout/ExtraSpacing:
 
 Layout/LineLength:
   Max: 120
+  Exclude:
+    - 'app/utilities/location_util.rb'
 
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
@@ -118,7 +120,7 @@ Style/CaseLikeIf:
 
 Style/ClassAndModuleChildren:
   Enabled: false
-  
+
 Style/Documentation:
   Enabled: false
 

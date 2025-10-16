@@ -1,6 +1,7 @@
 class UserUtil
   def self.provision_user(name: nil, email: nil, location: nil, password: '123')
     user = User.create(email:, name:, password:, location:)
+
     create_item(
       user,
       Item::Vehicle.new(

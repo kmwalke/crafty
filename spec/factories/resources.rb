@@ -3,5 +3,6 @@ FactoryBot.define do
     sequence(:name) { |n| "Resource_#{n}" }
     location
     type { ResourceType::TYPE_NAMES.sample }
+    level { Level::NUMBERS.sample }
   end
 end
