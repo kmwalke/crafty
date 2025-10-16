@@ -1,11 +1,15 @@
 @import 'variables';
 
 @keyframes notice_fade {
-  from {
+  0% {
+    height: 15em;
+    opacity: 0%;
+  }
+  30% {
     height: 15em;
     opacity: 100%;
   }
-  to {
+  100% {
     height: 15em;
     opacity: 0%;
   }
@@ -36,8 +40,7 @@ html {
       align-items: center;
       vertical-align: center;
       animation-name: notice_fade;
-      animation-duration: 1s;
-      animation-delay: 1.5s;
+      animation-duration: 3.5s;
 
       div.notice-popup {
         background-color: white;
