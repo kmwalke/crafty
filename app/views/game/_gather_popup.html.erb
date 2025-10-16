@@ -1,0 +1,5 @@
+<ul>
+  <% @current_user.valid_gather_resources.each do |resource| %>
+    <li><%= link_to resource.name, gather_path(resource) %></li>
+  <% end %>
+</ul>

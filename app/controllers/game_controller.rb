@@ -27,6 +27,14 @@ class GameController < ApplicationController
     redirect_to game_path
   end
 
+  def gather
+    resource = Resource.find(params[:id])
+
+    @current_user.gather(resource)
+
+    redirect_to game_path
+  end
+
   def travel
     location = Location.find(params[:id])
 

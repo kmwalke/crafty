@@ -18,6 +18,7 @@ class User < ApplicationRecord
   def actions
     actions = []
 
+    actions << tool.actions unless tool.nil?
     actions << vehicle.actions unless vehicle.nil?
 
     actions.flatten
@@ -44,6 +45,8 @@ class User < ApplicationRecord
     update(vehicle: nil)
   end
 
+  def gather(resource); end
+
   def travel(new_location)
     return if vehicle.nil?
 
@@ -51,7 +54,15 @@ class User < ApplicationRecord
   end
 
   def valid_travel_locations
+    return if vehicle.nil?
+
     Location.all
+  end
+
+  def valid_gather_resources
+    return if tool.nil?
+
+    Resource.where(location: location)
   end
 
   private

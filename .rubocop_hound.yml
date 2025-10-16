@@ -27,6 +27,7 @@ Layout/LineLength:
   Max: 120
   Exclude:
     - 'app/utilities/location_util.rb'
+    - 'app/utilities/user_util.rb'
 
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
