@@ -45,7 +45,14 @@ class User < ApplicationRecord
     update(vehicle: nil)
   end
 
-  def gather(resource); end
+  def gather(resource)
+    return if tool.nil?
+
+    resource.gather.update(
+      inventory: inventory,
+      created_by: self
+    )
+  end
 
   def travel(new_location)
     return if vehicle.nil?
