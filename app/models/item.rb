@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  include HasLevels
+
   before_create :set_color
 
   validates :name, presence: true
@@ -9,10 +11,6 @@ class Item < ApplicationRecord
   belongs_to :created_by, class_name: 'User'
 
   DEFAULT_COLOR = '#EEE'.freeze
-
-  def level_name
-    Level.level_name(level)
-  end
 
   def equipable?
     ItemType::TYPE_NAMES.include? type

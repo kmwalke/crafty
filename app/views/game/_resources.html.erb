@@ -2,7 +2,7 @@
   <legend>Resources</legend>
   <ul>
     <% @local_resources.each do |resource| %>
-      <li><%= link_to resource.name, "#resource-#{ resource.id }-popup" %></li>
+      <li><%= resource.level_name %> <%= link_to resource.name, "#resource-#{ resource.id }-popup" %></li>
 <!--      <div id="<%#= action %>-popup" class="popup">-->
 <!--        <div class="popup-content">-->
 <!--          <a href="#" class="button"">X</a>-->

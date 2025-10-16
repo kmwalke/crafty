@@ -11,7 +11,7 @@ RSpec.describe 'Item::Tool' do
   end
 
   it 'equips the tool' do
-    expect(player.reload.tool).to eq(tool)
+    expect(player.reload.tool.id).to eq(tool.id)
   end
 
   it 'displays equipped tool' do

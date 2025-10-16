@@ -45,13 +45,16 @@ class User < ApplicationRecord
     update(vehicle: nil)
   end
 
+  def tool
+    return if super.nil?
+
+    super.becomes super.subtype.constantize
+  end
+
   def gather(resource)
     return if tool.nil?
 
-    resource.gather.update(
-      inventory: inventory,
-      created_by: self
-    )
+    tool.gather(resource)
   end
 
   def travel(new_location)

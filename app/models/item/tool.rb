@@ -7,7 +7,7 @@ class Item::Tool < Item
     %w[gather]
   end
 
-  def gather
+  def gather(_resource)
     raise 'Not Implemented.'
   end
 end
