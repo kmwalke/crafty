@@ -1,4 +1,13 @@
 fieldset.inventory {
+  span.remaining-space {
+    float: right;
+    padding-right: 0.5em;
+
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+  }
+
   ul {
 
   }

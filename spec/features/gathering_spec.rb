@@ -46,14 +46,19 @@ RSpec.describe 'Gathering' do
       expect(player.reload.inventory.items.count).to eq(old_inv_count + 1)
     end
 
-    it 'does not overfill the inventory' do
-      player.inventory.update(size: old_inv_count)
+    describe 'does not overfill the inventory' do
+      before do
+        player.inventory.update(size: old_inv_count)
+        gather_resource
+      end
 
-      gather_resource
+      it 'doesnt add to the inventory' do
+        expect(player.reload.inventory.size).to eq(old_inv_count)
+      end
 
-      expect(player.reload.inventory.size).to eq(old_inv_count)
+      it 'shows the error' do
+      end
     end
-
   end
 end
 

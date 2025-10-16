@@ -14,7 +14,9 @@ RSpec.describe 'Inventory' do
     end
   end
 
-  pending 'shows remaining inventory space'
+  it 'shows remaining inventory space' do
+    expect(page).to have_css('fieldset.inventory span.remaining-space', text: player.inventory.remaining_space)
+  end
 
   describe 'details on click' do
     let(:item) { player.inventory.items.last }
