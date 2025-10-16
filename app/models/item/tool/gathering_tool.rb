@@ -6,10 +6,13 @@ class Item::Tool::GatheringTool < Item::Tool
   def gather(resource)
     return unless equipped_by&.spend_energy(energy_usage(resource))
 
-    resource.gather.update(
+    item = resource.gather
+    item.update!(
       inventory: equipped_by.inventory,
       created_by: equipped_by
     )
+
+    item
   end
 
   private

@@ -5,8 +5,10 @@ RSpec.describe 'TradingHall' do
   # Trading is async.
   # UX: You enter the trading hall. you peruse the listings and once catches your eye.
   #     A Rare vehicle!  It is a little expensive though.  They want 20x gold coins.
-  #     You counter the offer at 15 gold pieces.  The gold pieces are removed from your inventory.  The hall will keep them safe.
-  #     Some time later, the player who listed the trade accepts.  You are notified and the new item is ready for pickup at the hall.
+  #     You counter the offer at 15 gold pieces.
+  #     The gold pieces are removed from your inventory.  The hall will keep them safe.
+  #     Some time later, the player who listed the trade accepts.
+  #     You are notified and the new item is ready for pickup at the hall.
 
   # UX: Same as above, but the price is right.  You accept the trade immediately.
   #     20x Gold Coins removed from your inventory.  Listing player is notified.

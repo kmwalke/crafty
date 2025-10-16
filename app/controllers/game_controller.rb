@@ -12,7 +12,7 @@ class GameController < ApplicationController
 
     @current_user.equip_item(item) if item.equipable?
 
-    redirect_to game_path
+    redirect_to game_path, notice: "#{item.name} equipped"
   end
 
   def unequip_tool
@@ -30,9 +30,9 @@ class GameController < ApplicationController
   def gather
     resource = Resource.find(params[:id])
 
-    @current_user.gather(resource)
+    item = @current_user.gather(resource)
 
-    redirect_to game_path
+    redirect_to game_path, notice: level_color(item.level, item.name)
   end
 
   def travel
