@@ -5,7 +5,7 @@
       <%= item.name %>
     </h4>
     <% if item.equipable? %>
-      <%= link_to 'Equip', equip_item_path(item) %><br />
+      <%= link_to 'Equip', equip_item_path(item), turbo_hash %><br />
     <% end %>
     <%= level_color(item.level, item.level_name) %>
     <span class="created-by">Created by <%= item.created_by.name %></span>
