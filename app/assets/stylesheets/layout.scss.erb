@@ -112,7 +112,12 @@ html {
   }
 
   a, a:visited {
-    color: blue
+    color: black;
+    text-decoration: underline;
+  }
+
+  a:hover {
+    text-decoration: none;
   }
 
   div.content {
@@ -143,14 +148,6 @@ html {
       li {
         list-style: none;
         line-height: 2em;
-
-        a, a:visited {
-          text-decoration: none;
-        }
-
-        a:hover {
-          text-decoration: underline;
-        }
       }
     }
   }
