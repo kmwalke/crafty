@@ -10,13 +10,27 @@ class GameController < ApplicationController
   def equip_item
     item = Item.find(params[:id])
 
-    @current_user.equip_item(item) if item.type == 'Vehicle'
+    @current_user.equip_item(item) if item.equipable?
+
+    redirect_to game_path
+  end
+
+  def unequip_tool
+    @current_user.unequip_tool
 
     redirect_to game_path
   end
 
   def unequip_vehicle
     @current_user.unequip_vehicle
+
+    redirect_to game_path
+  end
+
+  def gather
+    resource = Resource.find(params[:id])
+
+    @current_user.gather(resource)
 
     redirect_to game_path
   end

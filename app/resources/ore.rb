@@ -1,2 +1,0 @@
-class Ore < Resource
-end

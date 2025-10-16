@@ -13,31 +13,33 @@ class LocationUtil
 
   def create_resources
     LocationUtil.resource_data.each do |datum|
-      Resource.create(type: datum[:type], name: datum[:name], location: @location) if datum[:location] == @location.name
+      if datum[:location] == @location.name
+        Resource.create(type: datum[:type], name: datum[:name], location: @location, level: datum[:level])
+      end
     end
   end
 
   def self.resource_data
     [
-      { type: ResourceType::TYPES[:crystal], name: 'Singing Crystal Mound', location: location_data[1][:name] },
-      { type: ResourceType::TYPES[:fish], name: 'Babbling Brook', location: location_data[1][:name] },
-      { type: ResourceType::TYPES[:forest], name: 'Sun Dappled Woods', location: location_data[1][:name] },
-      { type: ResourceType::TYPES[:fruit], name: 'Blackberry Bush', location: location_data[1][:name] },
-      { type: ResourceType::TYPES[:herd], name: 'Grazing Sheep', location: location_data[1][:name] },
-      { type: ResourceType::TYPES[:meadow], name: 'Blooming Field', location: location_data[1][:name] },
-      { type: ResourceType::TYPES[:ore], name: 'Copper Vein', location: location_data[1][:name] },
-      { type: ResourceType::TYPES[:ore], name: 'Iron Vein', location: location_data[1][:name] },
-      { type: ResourceType::TYPES[:crystal], name: 'Cracked Quartz Mound', location: location_data[2][:name] },
-      { type: ResourceType::TYPES[:herd], name: 'Skittering Lizards', location: location_data[2][:name] },
-      { type: ResourceType::TYPES[:meadow], name: 'Sparse Cacti', location: location_data[2][:name] },
-      { type: ResourceType::TYPES[:ore], name: 'Titanium Vein', location: location_data[2][:name] },
-      { type: ResourceType::TYPES[:ore], name: 'Aluminum Vein', location: location_data[2][:name] },
-      { type: ResourceType::TYPES[:crystal], name: 'Roselite Deposit', location: location_data[3][:name] },
-      { type: ResourceType::TYPES[:fish], name: 'Fetid Pool', location: location_data[3][:name] },
-      { type: ResourceType::TYPES[:forest], name: 'Twisted Trees', location: location_data[3][:name] },
-      { type: ResourceType::TYPES[:fruit], name: 'Poison Apples', location: location_data[3][:name] },
-      { type: ResourceType::TYPES[:herd], name: 'Mangy Wolves', location: location_data[3][:name] },
-      { type: ResourceType::TYPES[:meadow], name: 'Briar Patch', location: location_data[3][:name] }
+      { type: ResourceType::TYPES[:crystal], name: 'Singing Crystal Mound', location: location_data[1][:name], level: Level::COMMON },
+      { type: ResourceType::TYPES[:fish], name: 'Babbling Brook', location: location_data[1][:name], level: Level::COMMON },
+      { type: ResourceType::TYPES[:forest], name: 'Sun Dappled Woods', location: location_data[1][:name], level: Level::COMMON },
+      { type: ResourceType::TYPES[:fruit], name: 'Blackberry Bush', location: location_data[1][:name], level: Level::COMMON },
+      { type: ResourceType::TYPES[:herd], name: 'Grazing Sheep', location: location_data[1][:name], level: Level::COMMON },
+      { type: ResourceType::TYPES[:meadow], name: 'Blooming Field', location: location_data[1][:name], level: Level::COMMON },
+      { type: ResourceType::TYPES[:ore], name: 'Copper Vein', location: location_data[1][:name], level: Level::COMMON },
+      { type: ResourceType::TYPES[:ore], name: 'Iron Vein', location: location_data[1][:name], level: Level::COMMON },
+      { type: ResourceType::TYPES[:crystal], name: 'Cracked Quartz Mound', location: location_data[2][:name], level: Level::UNCOMMON },
+      { type: ResourceType::TYPES[:herd], name: 'Skittering Lizards', location: location_data[2][:name], level: Level::UNCOMMON },
+      { type: ResourceType::TYPES[:meadow], name: 'Sparse Cacti', location: location_data[2][:name], level: Level::UNCOMMON },
+      { type: ResourceType::TYPES[:ore], name: 'Titanium Vein', location: location_data[2][:name], level: Level::UNCOMMON },
+      { type: ResourceType::TYPES[:ore], name: 'Aluminum Vein', location: location_data[2][:name], level: Level::UNCOMMON },
+      { type: ResourceType::TYPES[:crystal], name: 'Roselite Deposit', location: location_data[3][:name], level: Level::RARE },
+      { type: ResourceType::TYPES[:fish], name: 'Fetid Pool', location: location_data[3][:name], level: Level::RARE },
+      { type: ResourceType::TYPES[:forest], name: 'Twisted Trees', location: location_data[3][:name], level: Level::RARE },
+      { type: ResourceType::TYPES[:fruit], name: 'Poison Apples', location: location_data[3][:name], level: Level::RARE },
+      { type: ResourceType::TYPES[:herd], name: 'Mangy Wolves', location: location_data[3][:name], level: Level::RARE },
+      { type: ResourceType::TYPES[:meadow], name: 'Briar Patch', location: location_data[3][:name], level: Level::RARE }
     ]
   end
 

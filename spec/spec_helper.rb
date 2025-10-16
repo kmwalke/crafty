@@ -94,8 +94,8 @@ RSpec.configure do |config|
   #   Kernel.srand config.seed
 
   config.before :all do
-    UserStatus.populates_statuses
-    ResourceType.populates_types
+    UserStatus.populate_statuses
+    ResourceType.populate_types
   end
 end
 

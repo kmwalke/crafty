@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Resource do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let!(:resource) { create(:resource) }
+
+  it 'doesnt gather from a generic resource' do
+    expect { resource.gather }.to raise_error(RuntimeError)
+  end
 end

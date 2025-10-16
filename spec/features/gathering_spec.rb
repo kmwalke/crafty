@@ -2,31 +2,28 @@ require 'rails_helper'
 
 RSpec.describe 'Gathering' do
   let!(:player) { login }
-  let!(:local_resource1) { create(:resource, location: player.location) }
-  let!(:local_resource2) { create(:resource, location: player.location) }
-  let!(:distant_resource) { create(:resource) }
+  let!(:gathering_tool) { create(:gathering_tool, inventory: player.inventory) }
+  let!(:local_resource) { create(:resource, location: player.location) }
 
   before do
-    visit game_path
+    player.equip_item(gathering_tool)
   end
 
   it 'displays the location\'s resources' do
-    [local_resource1, local_resource2].each do |resource|
+    local_resource2 = create(:resource, location: player.location)
+    visit game_path
+    [local_resource, local_resource2].each do |resource|
       expect(page).to have_content resource.name
     end
   end
 
-  it 'lists gatherable resources as links' do
-  end
-
-  it 'lists non-gatherable resources as spans' do
-  end
-
   it 'does not display distant resources' do
+    distant_resource = create(:resource)
+    visit game_path
     expect(page).to have_no_content distant_resource.name
   end
 
-  it 'gathers resources' do
+  describe 'gathers resources' do
     # expect(true).to be false
     #   Multiple types of tools
     # Axe gathers lumber from trees
@@ -37,8 +34,20 @@ RSpec.describe 'Gathering' do
     # various tools inherit from Tool class
     # Use subtype, somehow.  Maybe polymorphism, maybe just a method that checks it
     # add equipping tools to equipment spec
-  end
+    # currently using placeholder items.  Just a plain Item with a name of the type
+    # later it will be Item::Ore::Copper or Item::Flower::Dandelion
+    let!(:old_inv_size) { player.inventory.items.count }
 
-  it 'adds resources to inventory' do
+    before do
+      visit game_path
+      within '.actions' do
+        click_link 'Gather'
+        click_link local_resource.name
+      end
+    end
+
+    it 'adds resources to inventory' do
+      expect(player.reload.inventory.items.count).to eq(old_inv_size + 1)
+    end
   end
 end

@@ -7,4 +7,10 @@ class Resource < ApplicationRecord
   def gather
     raise 'Not Implemented.'
   end
+
+  private
+
+  def item_level
+    rand(Level::COMMON..level)
+  end
 end

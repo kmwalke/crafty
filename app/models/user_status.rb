@@ -9,7 +9,7 @@ class UserStatus < ApplicationRecord
 
   STATUS_NAMES = STATUSES.values.freeze
 
-  def self.populates_statuses
+  def self.populate_statuses
     UserStatus::STATUS_NAMES.each do |status|
       UserStatus.find_or_create_by(name: status)
     end

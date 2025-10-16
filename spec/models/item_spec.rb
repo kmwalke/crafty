@@ -7,7 +7,7 @@ RSpec.describe Item do
   pending 'items can stack if marked as stackable'
 
   it 'shows the level name' do
-    expect(item.level_name).to eq(Item::LEVEL_NAMES[item.level])
+    expect(item.level_name).to eq(Level.level_name(item.level))
   end
 
   it 'items are not equipable' do

@@ -1,2 +1,0 @@
-class Herd < Resource
-end
