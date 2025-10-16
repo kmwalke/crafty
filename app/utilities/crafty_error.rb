@@ -1,0 +1,2 @@
+class CraftyError < StandardError
+end

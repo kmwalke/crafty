@@ -8,7 +8,10 @@ class Item::Vehicle < Item
   end
 
   def travel(location)
-    return unless equipped_by&.spend_energy(energy_usage(equipped_by.location, location))
+    raise CraftyError, 'You have to equip a vehicle to travel in it.' if equipped_by.nil?
+    unless equipped_by.spend_energy(energy_usage(equipped_by.location, location))
+      raise CraftyError, 'You don\'t have enough energy.'
+    end
 
     equipped_by.update(location: location)
   end

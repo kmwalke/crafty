@@ -25,13 +25,14 @@ class User < ApplicationRecord
   end
 
   def spend_energy(amount)
-    return unless amount.positive? && amount <= energy
+    raise CraftyError, 'Can only spend positive energy.' unless amount.positive?
+    raise CraftyError, 'You don\'t have enough energy' unless amount <= energy
 
     update(energy: (energy - amount))
   end
 
   def equip_item(item)
-    return unless inventory.items.include?(item)
+    raise CraftyError, 'You can only equip items in your inventory' unless inventory.items.include?(item)
 
     equip_vehicle(item) if item.type == ItemType::TYPES[:vehicle]
     equip_tool(item) if item.type == ItemType::TYPES[:tool]
@@ -45,6 +46,8 @@ class User < ApplicationRecord
     update(vehicle: nil)
   end
 
+  # casting a tool into whatever subtype it is
+  # Also returning nil if no tool equipped
   def tool
     return if super.nil?
 
@@ -52,25 +55,26 @@ class User < ApplicationRecord
   end
 
   def gather(resource)
-    return if tool.nil?
+    raise CraftyError, 'You can\'t gather without a tool.' if tool.nil?
 
     tool.gather(resource)
   end
 
   def travel(new_location)
-    return if vehicle.nil?
+    raise CraftyError, 'You can\'t travel without a vehicle.' if vehicle.nil?
 
     vehicle.travel(new_location)
   end
 
   def valid_travel_locations
+    raise CraftyError, 'You can\'t scan for locations without a vehicle.' if tool.nil?
     return if vehicle.nil?
 
     Location.all
   end
 
   def valid_gather_resources
-    return if tool.nil?
+    raise CraftyError, 'You can\'t scan for resources without a tool.' if tool.nil?
 
     Resource.where(location: location)
   end

@@ -4,7 +4,10 @@ class Item::Tool::GatheringTool < Item::Tool
   self.inheritance_column = 'subtype'
 
   def gather(resource)
-    return unless equipped_by&.spend_energy(energy_usage(resource))
+    raise CraftyError, 'You have to equip a tool to use it.' if equipped_by.nil?
+    unless equipped_by&.spend_energy(energy_usage(resource))
+      raise CraftyError, 'You don\'t have enough energy.'
+    end
 
     item            = resource.gather
     item.created_by = equipped_by
