@@ -1,9 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :logged_in, :level_color
-
-  def level_color(level, text)
-    level_color_html(level, text).html_safe
-  end
+  helper_method :current_user, :logged_in, :level_color, :turbo_hash, :turbo_html
 
   def current_user
     if session[:user_id]
@@ -18,6 +14,18 @@ class ApplicationController < ActionController::Base
 
     session[:orig_destination] = request.path
     redirect_to login_path
+  end
+
+  def level_color(level, text)
+    level_color_html(level, text).html_safe
+  end
+
+  def turbo_hash
+    {turbo: true, turbo_frame: "_top"}
+  end
+
+  def turbo_html
+    "data-turbo=\"true\" data-turbo-frame=\"_top\""
   end
 
   private
