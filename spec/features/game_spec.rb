@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Game' do
+  pending 'seemless loading of page elements: https://github.com/hotwired/turbo-rails'
   pending 'create settings section for each user. Things like email notifications and change PW'
   # pending 'create changelog.  DB entry, version_number and description. build_number?'
   # buildnumber would be auto generated.  Incremented on heroku releases or something
