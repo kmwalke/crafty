@@ -1,5 +1,6 @@
 class Item::Tool::GatheringTool < Item::Tool
   before_create :set_type
+
   self.inheritance_column = 'subtype'
 
   private
