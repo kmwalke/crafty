@@ -20,16 +20,16 @@ RSpec.describe Inventory do
 
   it 'limits contents to inventory size' do
     inventory.add_item(Item.new(name: 'one', description: 'desc', created_by: inventory.user, level: Level::COMMON))
-    inventory.add_item(Item.new(name: 'two', description: 'desc', created_by: inventory.user, level: Level::COMMON))
-
-    expect(inventory.items.count).to eq(1)
+    expect do
+      inventory.add_item(Item.new(name: 'two', description: 'desc', created_by: inventory.user, level: Level::COMMON))
+    end.to raise_error(CraftyError)
   end
 
   it 'wont add saved items' do
-    expect(inventory.add_item(create(:item))).to be false
+    expect { inventory.add_item(create(:item)) }.to raise_error(CraftyError)
   end
 
   it 'only adds unsaved items' do
-    expect(inventory.add_item(build(:item))).to be true
+    expect { inventory.add_item(build(:item)) }.to raise_error(CraftyError)
   end
 end
