@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_15_233027) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_16_184402) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -53,6 +53,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_15_233027) do
     t.datetime "updated_at", null: false
     t.string "bg_color", default: "#000", null: false
     t.index ["name"], name: "index_locations_on_name", unique: true
+    t.index ["pos_x", "pos_y"], name: "index_locations_on_pos_x_and_pos_y", unique: true
   end
 
   create_table "resource_types", primary_key: "name", id: :string, force: :cascade do |t|
