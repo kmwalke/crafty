@@ -1,17 +1,23 @@
 <fieldset class="equipment section">
   <legend>Equipment</legend>
-  <ul>
-    <% if @current_user.tool %>
-      <li>
-        <span>Tool: <%= @current_user.tool.name %></span>
-        <%= link_to 'X', unequip_tool_path, id: 'unequip_tool' %>
-      </li>
-    <% end %>
-    <% if @current_user.vehicle %>
-      <li>
-        <span>Vehicle: <%= @current_user.vehicle.name %></span>
-        <%= link_to 'X', unequip_vehicle_path, id: 'unequip_vehicle' %>
-      </li>
-    <% end %>
-  </ul>
+  <table>
+    <tr>
+      <td>Tool:</td>
+      <td><%= @current_user.tool&.name %></td>
+      <td>
+        <% if @current_user.tool %>
+          <%= link_to 'X', unequip_tool_path, id: 'unequip_tool' %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>Vehicle:</td>
+      <td><%= @current_user.vehicle&.name %></td>
+      <td>
+        <% if @current_user.vehicle %>
+          <%= link_to 'X', unequip_vehicle_path, id: 'unequip_vehicle' %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
 </fieldset>
