@@ -2,6 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Resource::Herd do
   it 'gathers herd' do
-    expect(create(:herd).gather.name.include?('Pelt')).to be true
+    expect(create(:herd).gather).to be_a(Item::Gatherable::Companion)
   end
 end

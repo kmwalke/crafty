@@ -70,7 +70,7 @@ class LocationUtil
         name: 'Starting City',
         pos_x: 0,
         pos_y: 0,
-        description: 'A small metropolis ruled over by Governor Parker.',
+        description: 'A small metropolis ruled over by Mayor Parker.',
         bg_color: '#cce6ff'
       },
       {

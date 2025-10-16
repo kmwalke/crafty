@@ -1,8 +1,8 @@
 class Resource::Fruit < Resource
   def gather
-    Item.new(
+    Item::Gatherable::Fruit.new(
       name: "#{name} Fruit",
-      description: 'A fruit placeholder item. Not good for crafting',
+      description: 'Delicious as it is.  Better in a pie',
       level: item_level
     )
   end
