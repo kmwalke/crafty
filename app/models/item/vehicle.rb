@@ -16,6 +16,6 @@ class Item::Vehicle < Item
   private
 
   def energy_usage(location1, location2)
-    (location1.distance_from(location2) * energy_multiplier).to_i
+    location1.distance_from(location2) * energy_multiplier
   end
 end

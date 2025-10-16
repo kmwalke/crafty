@@ -1,4 +1,6 @@
 class Resource < ApplicationRecord
+  include HasLevels
+
   validates :name, presence: true
   validates :type, presence: true
 
