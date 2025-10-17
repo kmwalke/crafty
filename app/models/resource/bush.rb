@@ -1,4 +1,4 @@
-class Resource::Fruit < Resource
+class Resource::Bush < Resource
   def gather
     Item::Gatherable::Fruit.new(
       name: "#{name} Fruit",

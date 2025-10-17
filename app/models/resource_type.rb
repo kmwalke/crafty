@@ -5,7 +5,7 @@ class ResourceType < ApplicationRecord
     crystal: 'Resource::Crystal',
     fish: 'Resource::Fish',
     forest: 'Resource::Forest',
-    fruit: 'Resource::Fruit',
+    bush: 'Resource::Bush',
     herd: 'Resource::Herd',
     meadow: 'Resource::Meadow',
     ore: 'Resource::Ore'

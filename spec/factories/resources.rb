@@ -17,8 +17,8 @@ FactoryBot.define do
       type { ResourceType::TYPES[:forest] }
     end
 
-    factory :fruit, class: 'Resource::Fruit' do
-      type { ResourceType::TYPES[:fruit] }
+    factory :bush, class: 'Resource::Bush' do
+      type { ResourceType::TYPES[:bush] }
     end
 
     factory :herd, class: 'Resource::Herd' do
