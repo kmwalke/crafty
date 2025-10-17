@@ -1,4 +1,6 @@
 class LocationUtil
+  attr_accessor :location
+
   def self.provision_locations
     location_data.each do |info|
       LocationUtil.new.provision_location(name: info[:name], pos_x: info[:pos_x], pos_y: info[:pos_y],

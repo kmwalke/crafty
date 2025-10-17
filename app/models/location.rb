@@ -7,6 +7,8 @@ class Location < ApplicationRecord
   has_many :users
   has_many :resources
 
+  has_one :inventory
+
   def distance_from(location)
     Math.sqrt(
       (

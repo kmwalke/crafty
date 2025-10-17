@@ -10,15 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_17_150349) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_17_170829) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "buildings", force: :cascade do |t|
+    t.string "name"
+    t.integer "location_id"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "inventories", force: :cascade do |t|
     t.integer "user_id"
     t.integer "size", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "location_id"
   end
 
   create_table "item_tool_subtypes", primary_key: "name", id: :string, force: :cascade do |t|

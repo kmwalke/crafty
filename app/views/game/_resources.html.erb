@@ -4,15 +4,7 @@
     <% @local_resources.each do |resource| %>
       <li>
         <%= level_color(resource.level, resource.name) %>
-        <%#= link_to resource.name, "#resource-#{ resource.id }-popup" %>
-        <!--        <span><%#= resource.name %></span>-->
       </li>
-      <!--      <div id="<%#= action %>-popup" class="popup">-->
-      <!--        <div class="popup-content">-->
-      <!--          <a href="#" class="button"">X</a>-->
-      <%#= render partial: "#{action}_popup" %>
-      <!--        </div>-->
-      <!--      </div>-->
     <% end %>
   </ul>
 </fieldset>

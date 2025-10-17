@@ -1,7 +1,8 @@
 class ItemType < ApplicationRecord
   TYPES      = {
-    vehicle: 'Item::Vehicle',
-    tool: 'Item::Tool'
+    building: 'Item::Building',
+    tool: 'Item::Tool',
+    vehicle: 'Item::Vehicle'
   }.freeze
   TYPE_NAMES = TYPES.values.freeze
 
