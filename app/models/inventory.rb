@@ -22,7 +22,7 @@ class Inventory < ApplicationRecord
   private
 
   def user_xor_location
-    return unless user.nil? && location.nil?
+    return if user.nil? ^ location.nil?
 
     raise CraftyError, 'an Inventory must belong to a user or a location.'
   end

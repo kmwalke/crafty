@@ -14,8 +14,14 @@ RSpec.describe Inventory do
     expect(inventory.remaining_space).to eq(inventory.size - inventory.count)
   end
 
-  it 'must belong to a user' do
-    expect { create(:inventory, user: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+  describe 'must belong to a user or a location' do
+    it 'user || location' do
+      expect { create(:inventory, user: nil, location: nil) }.to raise_error(CraftyError)
+    end
+
+    it 'but not both' do
+      expect { create(:inventory, location: create(:location), user: create(:user)) }.to raise_error(CraftyError)
+    end
   end
 
   it 'limits contents to inventory size' do
