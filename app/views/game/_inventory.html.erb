@@ -4,8 +4,7 @@
   <ul>
     <% @current_user.inventory.items.each do |item| %>
       <li>
-        <%= level_color(item.level, item.level_name) %>
-        <%= link_to item.name, "#item-#{ item.id }-details" %>
+        <%= level_color(item.level, link_to(item.name, "#item-#{ item.id }-details") ) %>
       </li>
       <%= render partial: 'item_popup', locals: { item: } %>
     <% end %>
