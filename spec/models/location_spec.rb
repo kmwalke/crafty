@@ -22,6 +22,11 @@ RSpec.describe Location do
     expect { create(:location, name: location.name) }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
+  it 'creates an inventory' do
+    location = create(:location)
+    expect(location.buildings).to be_a(Inventory)
+  end
+
   it 'calculates distance between locations' do
     loc1 = create(:location)
     loc2 = create(:location)

@@ -38,4 +38,23 @@ RSpec.describe Inventory do
   it 'only adds unsaved items' do
     expect { inventory.add_item(build(:item)) }.to raise_error(CraftyError)
   end
+
+  describe 'restricted inventories' do
+    let(:restricted_inv) { create(:inventory) }
+
+    it 'puts allowed items in' do
+      item = build(:shard, inventory: nil)
+      restricted_inv.add_item(item)
+
+      expect(restricted_inv.items.include?(item)).to be true
+    end
+
+    it 'disallows other items' do
+      item = build(:shard, inventory: nil)
+      restricted_inv.add_item(item)
+
+      expect(restricted_inv.items.include?(item)).to be false
+
+    end
+  end
 end
