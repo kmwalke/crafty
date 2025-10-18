@@ -46,7 +46,7 @@ RSpec.describe Inventory do
       item = build(:gatherable_shard, inventory: nil)
       shard_inv.add_item(item)
 
-      expect(shard_inv.items.include?(item)).to be true
+      expect(shard_inv.include?(item)).to be true
     end
 
     it 'disallows other items' do

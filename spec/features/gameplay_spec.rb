@@ -23,4 +23,5 @@ RSpec.describe 'Gameplay' do
   # Traveiling , what does the screen look like while traveling?
   #        Location you are traveling to would be small, getting bigger in your view
   #        as you approach the location.
+  # https://jsfiddle.net/G7unG/9/ for loom-like UI.  page is full height, not scrollable.  Elements in the menu are
 end

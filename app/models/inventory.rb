@@ -6,6 +6,7 @@ class Inventory < ApplicationRecord
   has_many :items
 
   delegate :count, to: :items
+  delegate :include?, to: :items
 
   def remaining_space
     size - count
@@ -18,6 +19,7 @@ class Inventory < ApplicationRecord
 
     item.inventory = self
     item.save
+    item
   end
 
   private

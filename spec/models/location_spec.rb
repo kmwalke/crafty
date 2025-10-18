@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Location do
+  let!(:location) { create(:location) }
+
   it 'requires a name' do
     expect(described_class.create(name: '').errors).to have_key(:name)
   end
@@ -18,22 +20,31 @@ RSpec.describe Location do
   end
 
   it 'requires name uniqueness' do
-    location = create(:location)
     expect { create(:location, name: location.name) }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
   it 'creates an inventory' do
-    location = create(:location)
     expect(location.buildings).to be_a(Inventory)
   end
 
+  it 'adds a building' do
+    old_count = location.buildings.count
+
+    location.add_building(build(:craftable_building, inventory: nil))
+
+    expect(location.buildings.count).to eq(old_count + 1)
+  end
+
+  it 'does not add other items to buildings' do
+    expect { location.add_building(build(:gatherable_fruit)) }.to raise_error CraftyError
+  end
+
   it 'calculates distance between locations' do
-    loc1 = create(:location)
-    loc2 = create(:location)
+    location2 = create(:location)
 
-    distance = Math.sqrt((((loc2.pos_x - loc1.pos_x)**2) - ((loc2.pos_y - loc1.pos_y)**2)).abs).round
+    distance = Math.sqrt((((location2.pos_x - location.pos_x) ** 2) - ((location2.pos_y - location.pos_y) ** 2)).abs).round
 
-    expect(loc1.distance_from(loc2)).to eq(distance)
-    expect(loc2.distance_from(loc1)).to eq(distance)
+    expect(location.distance_from(location2)).to eq(distance)
+    expect(location2.distance_from(location)).to eq(distance)
   end
 end
