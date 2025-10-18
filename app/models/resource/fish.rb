@@ -1,8 +1,8 @@
 class Resource::Fish < Resource
   def gather
-    Item.new(
+    Item::Gatherable::Fish.new(
       name: "#{name} Fish",
-      description: 'A fish placeholder item. Not good for crafting',
+      description: 'A legless water creature',
       level: item_level
     )
   end

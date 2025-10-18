@@ -1,8 +1,8 @@
 class Resource::Crystal < Resource
   def gather
-    Item.new(
+    Item::Gatherable::Shard.new(
       name: "#{name} Shard",
-      description: 'A crystal placeholder item. Not good for crafting',
+      description: 'A small bit of crystal.',
       level: item_level
     )
   end

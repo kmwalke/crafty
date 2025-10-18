@@ -1,8 +1,8 @@
 class Resource::Meadow < Resource
   def gather
-    Item.new(
+    Item::Gatherable::Flower.new(
       name: "#{name} Flower",
-      description: 'A flower placeholder item. Not good for crafting',
+      description: 'Flowers have many uses.',
       level: item_level
     )
   end

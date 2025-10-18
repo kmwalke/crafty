@@ -1,4 +1,6 @@
 class LocationUtil
+  attr_accessor :location
+
   def self.provision_locations
     location_data.each do |info|
       LocationUtil.new.provision_location(name: info[:name], pos_x: info[:pos_x], pos_y: info[:pos_y],
@@ -24,7 +26,7 @@ class LocationUtil
       { type: ResourceType::TYPES[:crystal], name: 'Singing Crystal Mound', location: location_data[1][:name], level: Level::COMMON },
       { type: ResourceType::TYPES[:fish], name: 'Babbling Brook', location: location_data[1][:name], level: Level::COMMON },
       { type: ResourceType::TYPES[:forest], name: 'Sun Dappled Woods', location: location_data[1][:name], level: Level::COMMON },
-      { type: ResourceType::TYPES[:fruit], name: 'Blackberry Bush', location: location_data[1][:name], level: Level::UNCOMMON },
+      { type: ResourceType::TYPES[:bush], name: 'Blackberry Bush', location: location_data[1][:name], level: Level::UNCOMMON },
       { type: ResourceType::TYPES[:herd], name: 'Grazing Sheep', location: location_data[1][:name], level: Level::COMMON },
       { type: ResourceType::TYPES[:meadow], name: 'Blooming Field', location: location_data[1][:name], level: Level::COMMON },
       { type: ResourceType::TYPES[:ore], name: 'Copper Vein', location: location_data[1][:name], level: Level::COMMON },
@@ -41,12 +43,12 @@ class LocationUtil
       { type: ResourceType::TYPES[:crystal], name: 'Roselite Deposit', location: location_data[3][:name], level: Level::RARE },
       { type: ResourceType::TYPES[:fish], name: 'Fetid Pool', location: location_data[3][:name], level: Level::RARE },
       { type: ResourceType::TYPES[:forest], name: 'Twisted Trees', location: location_data[3][:name], level: Level::UNCOMMON },
-      { type: ResourceType::TYPES[:fruit], name: 'Poison Apples', location: location_data[3][:name], level: Level::RARE },
+      { type: ResourceType::TYPES[:bush], name: 'Poison Apples', location: location_data[3][:name], level: Level::RARE },
       { type: ResourceType::TYPES[:herd], name: 'Mangy Wolves', location: location_data[3][:name], level: Level::RARE },
       { type: ResourceType::TYPES[:meadow], name: 'Briar Patch', location: location_data[3][:name], level: Level::COMMON },
 
       { type: ResourceType::TYPES[:crystal], name: 'Obsidian', location: location_data[4][:name], level: Level::EPIC },
-      { type: ResourceType::TYPES[:fruit], name: 'Habanero', location: location_data[4][:name], level: Level::RARE },
+      { type: ResourceType::TYPES[:bush], name: 'Habanero', location: location_data[4][:name], level: Level::RARE },
       { type: ResourceType::TYPES[:herd], name: 'Lava Frog', location: location_data[4][:name], level: Level::EPIC },
       { type: ResourceType::TYPES[:meadow], name: 'Red Cactus', location: location_data[4][:name], level: Level::EPIC },
       { type: ResourceType::TYPES[:ore], name: 'Copper Vein', location: location_data[4][:name], level: Level::EPIC },
@@ -57,7 +59,7 @@ class LocationUtil
       { type: ResourceType::TYPES[:crystal], name: 'Singing Crystal Mound', location: location_data[5][:name], level: Level::LEGENDARY },
       { type: ResourceType::TYPES[:crystal], name: 'Human-like Bone', location: location_data[5][:name], level: Level::LEGENDARY },
       { type: ResourceType::TYPES[:fish], name: 'Rotting Creek', location: location_data[5][:name], level: Level::LEGENDARY },
-      { type: ResourceType::TYPES[:fruit], name: 'Large Mushroom', location: location_data[5][:name], level: Level::LEGENDARY },
+      { type: ResourceType::TYPES[:bush], name: 'Large Mushroom', location: location_data[5][:name], level: Level::LEGENDARY },
       { type: ResourceType::TYPES[:herd], name: 'Roaming Zombie', location: location_data[5][:name], level: Level::LEGENDARY },
       { type: ResourceType::TYPES[:ore], name: 'Copper Vein', location: location_data[5][:name], level: Level::LEGENDARY },
       { type: ResourceType::TYPES[:ore], name: 'Iron Vein', location: location_data[5][:name], level: Level::LEGENDARY }
@@ -70,7 +72,7 @@ class LocationUtil
         name: 'Starting City',
         pos_x: 0,
         pos_y: 0,
-        description: 'A small metropolis ruled over by Governor Parker.',
+        description: 'A small metropolis ruled over by Mayor Parker.',
         bg_color: '#cce6ff'
       },
       {

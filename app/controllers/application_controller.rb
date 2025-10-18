@@ -24,10 +24,6 @@ class ApplicationController < ActionController::Base
     { turbo: true, turbo_frame: '_top' }
   end
 
-  def turbo_html
-    'data-turbo="true" data-turbo-frame="_top"'
-  end
-
   private
 
   def level_color_html(level, text)

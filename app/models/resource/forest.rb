@@ -1,8 +1,8 @@
 class Resource::Forest < Resource
   def gather
-    Item.new(
+    Item::Gatherable::Wood.new(
       name: "#{name} Wood",
-      description: 'A wood placeholder item. Not good for crafting',
+      description: 'Carpenter\'s Delight.',
       level: item_level
     )
   end

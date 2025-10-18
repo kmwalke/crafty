@@ -95,6 +95,7 @@ RSpec.configure do |config|
 
   config.before :all do
     UserStatus.populate_statuses
+    ItemType.populate_types
     ResourceType.populate_types
   end
 end

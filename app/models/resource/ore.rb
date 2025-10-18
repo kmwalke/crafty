@@ -1,8 +1,8 @@
 class Resource::Ore < Resource
   def gather
-    Item.new(
+    Item::Gatherable::Ore.new(
       name: "#{name} Ore",
-      description: 'An ore placeholder item. Not good for crafting',
+      description: 'Just a paperweight until it is smelted',
       level: item_level
     )
   end

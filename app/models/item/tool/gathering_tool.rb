@@ -6,9 +6,8 @@ class Item::Tool::GatheringTool < Item::Tool
   def gather(resource)
     raise CraftyError, ErrorMessage::ITEM[:must_equip_item] if equipped_by.nil?
 
-    unless equipped_by&.spend_energy(energy_usage(resource))
-      raise CraftyError,
-            ErrorMessage::USER[:build_additional_pylons]
+    unless equipped_by.spend_energy(energy_usage(resource))
+      raise CraftyError, ErrorMessage::USER[:build_additional_pylons]
     end
 
     item            = resource.gather

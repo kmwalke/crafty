@@ -1,5 +1,7 @@
 <ul>
   <% @current_user.valid_gather_resources.each do |resource| %>
-    <li><%= link_to resource.name, gather_path(resource), data: turbo_hash %></li>
+    <li>
+      <%= level_color(resource.level, link_to(resource.name, gather_path(resource), data: turbo_hash)) %>
+    </li>
   <% end %>
 </ul>

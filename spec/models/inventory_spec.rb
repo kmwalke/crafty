@@ -14,8 +14,14 @@ RSpec.describe Inventory do
     expect(inventory.remaining_space).to eq(inventory.size - inventory.count)
   end
 
-  it 'must belong to a user' do
-    expect { create(:inventory, user: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+  describe 'must belong to a user or a location' do
+    it 'user || location' do
+      expect { create(:inventory, user: nil, location: nil) }.to raise_error(CraftyError)
+    end
+
+    it 'but not both' do
+      expect { create(:inventory, location: create(:location), user: create(:user)) }.to raise_error(CraftyError)
+    end
   end
 
   it 'limits contents to inventory size' do
@@ -31,5 +37,22 @@ RSpec.describe Inventory do
 
   it 'only adds unsaved items' do
     expect { inventory.add_item(build(:item)) }.to raise_error(CraftyError)
+  end
+
+  describe 'restricted inventories' do
+    let(:shard_inv) { create(:inventory, type: ItemType::TYPES[:gatherable_shard]) }
+
+    it 'puts allowed items in' do
+      item = build(:gatherable_shard, inventory: nil)
+      shard_inv.add_item(item)
+
+      expect(shard_inv.items.include?(item)).to be true
+    end
+
+    it 'disallows other items' do
+      item = build(:gatherable_fruit, inventory: nil)
+
+      expect { shard_inv.add_item(item) }.to raise_error(CraftyError)
+    end
   end
 end

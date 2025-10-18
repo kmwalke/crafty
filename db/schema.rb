@@ -10,15 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_15_233027) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_17_195256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "buildings", force: :cascade do |t|
+    t.string "name"
+    t.integer "location_id"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "inventories", force: :cascade do |t|
     t.integer "user_id"
     t.integer "size", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "location_id"
+    t.string "type"
   end
 
   create_table "item_tool_subtypes", primary_key: "name", id: :string, force: :cascade do |t|
@@ -38,6 +48,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_15_233027) do
     t.datetime "updated_at", null: false
     t.string "subtype"
     t.string "color", null: false
+    t.integer "stack_amount", default: 1, null: false
   end
 
   create_table "levels", force: :cascade do |t|
@@ -53,6 +64,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_15_233027) do
     t.datetime "updated_at", null: false
     t.string "bg_color", default: "#000", null: false
     t.index ["name"], name: "index_locations_on_name", unique: true
+    t.index ["pos_x", "pos_y"], name: "index_locations_on_pos_x_and_pos_y", unique: true
   end
 
   create_table "resource_types", primary_key: "name", id: :string, force: :cascade do |t|
@@ -84,6 +96,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_15_233027) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "inventories", "item_types", column: "type", primary_key: "name"
+  add_foreign_key "items", "item_types", column: "type", primary_key: "name"
   add_foreign_key "resources", "resource_types", column: "type", primary_key: "name"
   add_foreign_key "users", "user_statuses", column: "status", primary_key: "name"
 end
