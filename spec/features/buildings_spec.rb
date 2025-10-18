@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe 'Buildings' do
   let!(:player) { login }
   let!(:building) { player.location.add_building(build(:craftable_building, name: 'building name', inventory: nil)) }
-  let!(:distant_building) { create(:location).add_building(build(:craftable_building, name: 'distant building', inventory: nil)) }
+  let!(:distant_building) do
+    create(:location).add_building(build(:craftable_building, name: 'distant building', inventory: nil))
+  end
 
   it 'sees buildings' do
     expect(page).to have_css("fieldset li #{building.name}")

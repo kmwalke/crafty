@@ -42,7 +42,7 @@ RSpec.describe Location do
   it 'calculates distance between locations' do
     location2 = create(:location)
 
-    distance = Math.sqrt((((location2.pos_x - location.pos_x) ** 2) - ((location2.pos_y - location.pos_y) ** 2)).abs).round
+    distance = Math.sqrt((((location2.pos_x - location.pos_x)**2) - ((location2.pos_y - location.pos_y)**2)).abs).round
 
     expect(location.distance_from(location2)).to eq(distance)
     expect(location2.distance_from(location)).to eq(distance)
