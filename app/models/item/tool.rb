@@ -1,5 +1,6 @@
 class Item::Tool < Item
   include Equippable
+  include Craftable
 
   has_one :equipped_by, class_name: 'User'
 

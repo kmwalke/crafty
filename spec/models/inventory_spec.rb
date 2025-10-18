@@ -40,21 +40,19 @@ RSpec.describe Inventory do
   end
 
   describe 'restricted inventories' do
-    let(:restricted_inv) { create(:inventory) }
+    let(:shard_inv) { create(:inventory, type: ItemType::TYPES[:gatherable_shard]) }
 
     it 'puts allowed items in' do
-      item = build(:shard, inventory: nil)
-      restricted_inv.add_item(item)
+      item = build(:gatherable_shard, inventory: nil)
+      shard_inv.add_item(item)
 
-      expect(restricted_inv.items.include?(item)).to be true
+      expect(shard_inv.items.include?(item)).to be true
     end
 
     it 'disallows other items' do
-      item = build(:shard, inventory: nil)
-      restricted_inv.add_item(item)
+      item = build(:gatherable_fruit, inventory: nil)
 
-      expect(restricted_inv.items.include?(item)).to be false
-
+      expect { shard_inv.add_item(item) }.to raise_error(CraftyError)
     end
   end
 end

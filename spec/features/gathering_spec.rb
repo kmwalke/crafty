@@ -9,6 +9,8 @@ RSpec.describe 'Gathering' do
     player.equip_item(gathering_tool)
   end
 
+  pending 'BUG: Sometimes clicking gather on the web interface adds multiple items'
+
   it 'displays the location\'s resources' do
     local_resource2 = create(:resource, location: player.location)
     visit game_path
