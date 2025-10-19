@@ -10,6 +10,7 @@ RSpec.describe 'Inventory' do
         :generic_item,
         inventory: nil,
         type: player.inventory.items.last.type,
+        name: player.inventory.items.last.name,
         level: player.inventory.items.last.level
       )
     )
