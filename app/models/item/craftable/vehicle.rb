@@ -8,6 +8,10 @@ class Item::Craftable::Vehicle < Item
     %w[travel]
   end
 
+  def full_name
+    name
+  end
+
   def travel(location)
     raise CraftyError, ErrorMessage::ITEM[:must_equip_item] if equipped_by.nil?
     unless equipped_by.spend_energy(energy_usage(equipped_by.location, location))

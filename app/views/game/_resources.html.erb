@@ -3,7 +3,7 @@
   <ul>
     <% @local_resources.each do |resource| %>
       <li>
-        <%= level_color(resource.level, resource.name) %>
+        <%= level_color(resource.level, resource.full_name) %>
       </li>
     <% end %>
   </ul>
