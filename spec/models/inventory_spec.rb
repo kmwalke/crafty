@@ -26,7 +26,8 @@ RSpec.describe Inventory do
 
   it 'limits contents to inventory size' do
     inventory.add_item(build(:gatherable_fruit, inventory: nil))
-    expect do inventory.add_item(build(:item, inventory: nil))
+    expect do
+      inventory.add_item(build(:item, inventory: nil))
     end.to raise_error(CraftyError)
   end
 

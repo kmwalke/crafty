@@ -8,8 +8,8 @@ class User < ApplicationRecord
   validates :status, presence: true
 
   belongs_to :location, optional: true
-  belongs_to :tool, optional: true, class_name: ItemType::TYPES[:craftable_tool]
-  belongs_to :vehicle, optional: true, class_name: ItemType::TYPES[:craftable_vehicle]
+  belongs_to :tool, optional: true, class_name: 'Item::Craftable::Tool'
+  belongs_to :vehicle, optional: true, class_name: 'Item::Craftable::Vehicle'
   has_one :inventory
 
   MAX_ENERGY             = 1000

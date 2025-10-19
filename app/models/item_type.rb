@@ -11,7 +11,7 @@ class ItemType < ApplicationRecord
     gatherable_fruit: 'Item::Gatherable::Fruit',
     gatherable_ore: 'Item::Gatherable::Ore',
     gatherable_shard: 'Item::Gatherable::Shard',
-    gatherable_wood: 'Item::Gatherable::Wood',
+    gatherable_wood: 'Item::Gatherable::Wood'
   }.freeze
   TYPE_NAMES = TYPES.values.freeze
 
