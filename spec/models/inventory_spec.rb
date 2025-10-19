@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Inventory do
-  let(:inventory) { create(:inventory, size: 1) }
+  let(:inventory) { create(:inventory, size: 10) }
 
   pending 'sorts the inventory'
   pending 'equipping a backpack or something increases the users inventory size'
@@ -25,9 +25,9 @@ RSpec.describe Inventory do
   end
 
   it 'limits contents to inventory size' do
-    inventory.add_item(build(:gatherable_fruit, inventory: nil))
+    inventory.update(size: inventory.count)
     expect do
-      inventory.add_item(build(:item, inventory: nil))
+      inventory.add_item(build(:generic_item, inventory: nil))
     end.to raise_error(CraftyError)
   end
 
@@ -37,6 +37,14 @@ RSpec.describe Inventory do
 
   it 'only adds unsaved items' do
     expect { inventory.add_item(build(:gatherable_fruit)) }.to raise_error(CraftyError)
+  end
+
+  it 'stacks items' do
+    2.times do
+      inventory.add_item(build(:gatherable_fruit, level: Level::COMMON, inventory: nil))
+    end
+
+    expect(inventory.items.last.stack_amount).to eq(2)
   end
 
   describe 'restricted inventories' do
