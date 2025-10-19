@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User do
   let(:user) { create(:user) }
-  let(:vehicle) { create(:vehicle, inventory: user.inventory) }
-  let(:gathering_tool) { create(:gathering_tool, inventory: user.inventory) }
+  let(:vehicle) { create(:craftable_vehicle, inventory: user.inventory) }
+  let(:gathering_tool) { create(:craftable_tool_gathering_tool, inventory: user.inventory) }
 
   describe 'actions' do
     it 'has no actions without equipment' do

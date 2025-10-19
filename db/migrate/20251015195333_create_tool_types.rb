@@ -3,8 +3,5 @@ class CreateToolTypes < ActiveRecord::Migration[8.0]
     create_table :item_tool_subtypes, id: false do |t|
       t.string :name, primary_key: true
     end
-
-    Rails.logger.debug '-- populate Item::ToolSubtypes'
-    Item::ToolSubtype.populate_types
   end
 end

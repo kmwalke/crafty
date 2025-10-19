@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Gathering' do
   let!(:player) { login }
-  let!(:gathering_tool) { create(:gathering_tool, inventory: player.inventory) }
+  let!(:gathering_tool) { create(:craftable_tool_gathering_tool, inventory: player.inventory) }
   let!(:local_resource) { create(:resource, location: player.location) }
 
   before do

@@ -8,6 +8,8 @@ class Level < ApplicationRecord
   LEGENDARY = 5
 
   def self.level_name(level)
+    raise CraftyError, ErrorMessage::GENERIC[:invalid_level] unless NUMBERS.include? level
+
     NAMES[level - 1]
   end
 

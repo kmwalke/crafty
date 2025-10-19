@@ -8,8 +8,8 @@ class User < ApplicationRecord
   validates :status, presence: true
 
   belongs_to :location, optional: true
-  belongs_to :tool, optional: true, class_name: 'Item::Tool'
-  belongs_to :vehicle, optional: true, class_name: 'Item::Vehicle'
+  belongs_to :tool, optional: true, class_name: 'Item::Craftable::Tool'
+  belongs_to :vehicle, optional: true, class_name: 'Item::Craftable::Vehicle'
   has_one :inventory
 
   MAX_ENERGY             = 1000
@@ -34,8 +34,8 @@ class User < ApplicationRecord
   def equip_item(item)
     raise CraftyError, 'You can only equip items in your inventory' unless inventory.include?(item)
 
-    equip_vehicle(item) if item.type == ItemType::TYPES[:vehicle]
-    equip_tool(item) if item.type == ItemType::TYPES[:tool]
+    equip_vehicle(item) if item.type.include? ItemType::TYPES[:craftable_vehicle]
+    equip_tool(item) if item.type.include? ItemType::TYPES[:craftable_tool]
   end
 
   def unequip_tool
@@ -44,14 +44,6 @@ class User < ApplicationRecord
 
   def unequip_vehicle
     update(vehicle: nil)
-  end
-
-  # casting a tool into whatever subtype it is
-  # Also returning nil if no tool equipped
-  def tool
-    return if super.nil?
-
-    super.becomes super.subtype.constantize
   end
 
   def gather(resource)

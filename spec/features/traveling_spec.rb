@@ -7,7 +7,7 @@ RSpec.describe 'Traveling' do
   let!(:location3) { create(:location) }
 
   before do
-    player.equip_item(create(:vehicle, inventory: player.inventory))
+    player.equip_item(create(:craftable_vehicle, inventory: player.inventory))
     visit game_path
   end
 
@@ -26,7 +26,5 @@ RSpec.describe 'Traveling' do
         expect(page).to have_content(location.name)
       end
     end
-
-    pending 'doesnt show distant locations'
   end
 end

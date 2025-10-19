@@ -25,18 +25,18 @@ RSpec.describe Inventory do
   end
 
   it 'limits contents to inventory size' do
-    inventory.add_item(Item.new(name: 'one', description: 'desc', created_by: inventory.user, level: Level::COMMON))
+    inventory.add_item(build(:gatherable_fruit, inventory: nil))
     expect do
-      inventory.add_item(Item.new(name: 'two', description: 'desc', created_by: inventory.user, level: Level::COMMON))
+      inventory.add_item(build(:item, inventory: nil))
     end.to raise_error(CraftyError)
   end
 
   it 'wont add saved items' do
-    expect { inventory.add_item(create(:item)) }.to raise_error(CraftyError)
+    expect { inventory.add_item(create(:gatherable_fruit)) }.to raise_error(CraftyError)
   end
 
   it 'only adds unsaved items' do
-    expect { inventory.add_item(build(:item)) }.to raise_error(CraftyError)
+    expect { inventory.add_item(build(:gatherable_fruit)) }.to raise_error(CraftyError)
   end
 
   describe 'restricted inventories' do

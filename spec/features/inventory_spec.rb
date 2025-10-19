@@ -4,7 +4,7 @@ RSpec.describe 'Inventory' do
   let!(:player) { login }
 
   before do
-    5.times.map { create(:item, inventory: player.inventory) }
+    5.times.map { create(:generic_item, inventory: player.inventory) }
     visit game_path
   end
 

@@ -1,6 +1,7 @@
 class ErrorMessage
   GENERIC = {
-    interface_method: 'Implement in child class'
+    interface_method: 'Implement in child class',
+    invalid_level: 'Invalid level number'
   }.freeze
 
   INVENTORY = {
