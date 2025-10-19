@@ -41,7 +41,7 @@ RSpec.describe Inventory do
 
   it 'stacks items' do
     2.times do
-      inventory.add_item(build(:gatherable_fruit, level: Level::COMMON, inventory: nil))
+      inventory.add_item(build(:gatherable_fruit, level: Level::COMMON, name: 'name', inventory: nil))
     end
 
     expect(inventory.items.last.stack_amount).to eq(2)
