@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Item::Craftable::Vehicle do
-  let(:vehicle) { create(:vehicle) }
+  let(:vehicle) { create(:craftable_vehicle) }
 
   it 'lists actions' do
     expect(vehicle.actions).to eq(%w[travel])
@@ -11,7 +11,7 @@ RSpec.describe Item::Craftable::Vehicle do
     let(:location1) { create(:location) }
     let(:location2) { create(:location) }
     let(:user) { create(:user, location: location1) }
-    let(:vehicle) { create(:vehicle, inventory: user.inventory) }
+    let(:vehicle) { create(:craftable_vehicle, inventory: user.inventory) }
 
     before do
       user.equip_item(vehicle)
@@ -26,7 +26,7 @@ RSpec.describe Item::Craftable::Vehicle do
     end
 
     it 'nil user protection' do
-      expect { create(:vehicle).travel(location2) }.to raise_error(CraftyError)
+      expect { create(:craftable_vehicle).travel(location2) }.to raise_error(CraftyError)
     end
 
     pending 'the below spec sometimes fails with "can only spend positive energy". In specs and in real life'
