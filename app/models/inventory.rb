@@ -5,9 +5,7 @@ class Inventory < ApplicationRecord
   belongs_to :location, optional: true
   has_many :items
 
-  delegate :count, to: :items
-  delegate :include?, to: :items
-  delegate :any?, to: :items
+  delegate :any?, :count, :include?, to: :items
 
   def remaining_space
     size - count
