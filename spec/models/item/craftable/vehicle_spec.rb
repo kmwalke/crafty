@@ -29,7 +29,6 @@ RSpec.describe Item::Craftable::Vehicle do
       expect { create(:craftable_vehicle).travel(location2) }.to raise_error(CraftyError)
     end
 
-    pending 'the below spec sometimes fails with "can only spend positive energy". In specs and in real life'
     it 'updates the users location' do
       vehicle.travel(location2)
 
