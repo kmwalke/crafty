@@ -39,6 +39,17 @@ RSpec.describe Inventory do
     expect { inventory.add_item(build(:gatherable_fruit)) }.to raise_error(CraftyError)
   end
 
+<<<<<<< Updated upstream
+=======
+  it 'stacks items' do
+    inventory.add_item(build(:gatherable_fruit, level: Level::COMMON, name: 'name', inventory: nil))
+    inventory.update(size: inventory.count)
+    inventory.add_item(build(:gatherable_fruit, level: Level::COMMON, name: 'name', inventory: nil))
+
+    expect(inventory.items.last.stack_amount).to eq(2)
+  end
+
+>>>>>>> Stashed changes
   describe 'restricted inventories' do
     let(:shard_inv) { create(:inventory, type: ItemType::TYPES[:gatherable_shard]) }
 
