@@ -4,14 +4,26 @@ RSpec.describe 'Inventory' do
   let!(:player) { login }
 
   before do
-    5.times.map { create(:generic_item, inventory: player.inventory) }
+    5.times.map { player.inventory.add_item(build(:generic_item, inventory: nil)) }
+    player.inventory.add_item(
+      build(
+        :generic_item,
+        inventory: nil,
+        type: player.inventory.items.last.type,
+        level: player.inventory.items.last.level
+      )
+    )
     visit game_path
   end
 
   it 'shows the inventory items' do
     player.inventory.items.each do |item|
-      expect(page).to have_css('fieldset.inventory ul li', text: item.name)
+      expect(page).to have_css('fieldset.inventory li span', text: item.name)
     end
+  end
+
+  it 'shows the inventory items stack amount' do
+    expect(page).to have_css('fieldset.inventory li span.stack-amount', text: 2)
   end
 
   it 'shows remaining inventory space' do
