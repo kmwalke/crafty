@@ -35,7 +35,7 @@ class GameController < ApplicationController
   def gather
     game_action do
       item    = @current_user.gather(Resource.find(params[:id]))
-      @notice = level_color(item.level, item.name)
+      @notice = level_color(item.level, item.full_name)
     end
   end
 
