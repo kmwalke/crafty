@@ -1,14 +1,8 @@
 class ItemUtil
   def self.provision_items
-    location_data.each do |info|
-      LocationUtil.new.provision_location(name: info[:name], pos_x: info[:pos_x], pos_y: info[:pos_y],
-                                          description: info[:description], bg_color: info[:bg_color])
+    building_data.each do |building|
+      Location.first.add_building(building)
     end
-  end
-
-  def provision_item(name: nil, pos_x: nil, pos_y: nil, description: nil, bg_color: nil)
-    @location = Location.find_or_create_by(name:, pos_x:, pos_y:, description:, bg_color:)
-    create_resources
   end
 
   def self.building_data

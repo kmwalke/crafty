@@ -35,4 +35,8 @@ stdout_logger.warn 'PROVISIONING USERS...'
 end
 stdout_logger.warn '...DONE'
 stdout_logger.warn ''
+stdout_logger.warn 'PROVISIONING ITEMS...'
+ItemUtil.provision_items
+stdout_logger.warn '...DONE'
+stdout_logger.warn ''
 stdout_logger.warn '...DATA SEEDING DONE'

@@ -14,6 +14,9 @@ RSpec.describe 'Game' do
     let!(:player) { create(:user) }
 
     before do
+      player.location.add_building(build(:craftable_building, inventory: nil))
+      create(:resource, location: player.location)
+
       login_as player
       visit game_path
     end
@@ -40,6 +43,10 @@ RSpec.describe 'Game' do
       it 'displays status' do
         expect(page).to have_content("Status: #{player.status}")
       end
+    end
+
+    it 'has buildings section' do
+      expect(page).to have_content('Buildings')
     end
 
     it 'has resource section' do
