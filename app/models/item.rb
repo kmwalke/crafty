@@ -12,6 +12,10 @@ class Item < ApplicationRecord
 
   DEFAULT_COLOR = '#EEE'.freeze
 
+  def full_name
+    "#{name} #{type.split('::').last}"
+  end
+
   def equipable?
     false
   end

@@ -19,8 +19,29 @@ RSpec.describe 'TradingHall' do
 
   # all these "notices" imply in game mail.  The flash notice is too ephemeral
   # probably in game email or something.  whew, fun
-  pending 'building section of homepage'
+
+  let!(:player) { create(:user) }
+  let!(:building) { build(:craftable_building, inventory: nil) }
+
+  before do
+    player.location.add_building(building)
+
+    login_as player
+    visit game_path
+    click_link building.name
+  end
+
+  it 'building section of homepage' do
+    expect(page).to have_content(building.description)
+  end
+
   pending 'list a trade in the hall'
   pending 'counter a trade in the hall'
   pending 'accept a trade in the hall'
+
+  describe 'notifications' do
+    pending 'trade was accepted'
+    pending 'trade expired'
+    pending 'trade countered'
+  end
 end

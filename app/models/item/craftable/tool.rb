@@ -8,6 +8,10 @@ class Item::Craftable::Tool < Item
     %w[gather]
   end
 
+  def full_name
+    name
+  end
+
   def gather(_resource)
     raise CraftyError, ErrorMessage::GENERIC[:interface_method]
   end

@@ -6,6 +6,10 @@ class Resource < ApplicationRecord
 
   belongs_to :location
 
+  def full_name
+    "#{name} #{type.split('::').last}"
+  end
+
   def gather
     raise CraftyError, ErrorMessage::GENERIC[:interface_method]
   end
