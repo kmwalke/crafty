@@ -14,6 +14,9 @@ RSpec.describe 'Game' do
     let!(:player) { create(:user) }
 
     before do
+      player.location.add_building(build(:craftable_building, inventory: nil))
+      create(:resource, location: player.location)
+
       login_as player
       visit game_path
     end

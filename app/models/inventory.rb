@@ -7,6 +7,7 @@ class Inventory < ApplicationRecord
 
   delegate :count, to: :items
   delegate :include?, to: :items
+  delegate :any?, to: :items
 
   def remaining_space
     size - count

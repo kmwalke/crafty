@@ -7,8 +7,12 @@ RSpec.describe 'Buildings' do
     create(:location).add_building(build(:craftable_building, name: 'distant building', inventory: nil))
   end
 
+  before do
+    visit game_path
+  end
+
   it 'sees buildings' do
-    expect(page).to have_css("fieldset li #{building.name}")
+    expect(page).to have_css('fieldset.buildings a', text: building.name)
   end
 
   it 'does not see distant buildings' do
@@ -17,6 +21,6 @@ RSpec.describe 'Buildings' do
 
   it 'enters a building' do
     click_link building.name
-    expect(page).to have_css("div.popup-#{building.id} h1", text: building.name)
+    expect(page).to have_css("div#building-#{building.id} h4", text: building.name)
   end
 end

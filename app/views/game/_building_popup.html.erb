@@ -1,0 +1,11 @@
+<div id="building-<%= building.id %>" class="popup">
+  <div class="popup-content building-popup">
+    <a href="#" class="button">X</a>
+    <h4 class="title" style="background-color: <%= building.color %>">
+      <%= building.name %>
+    </h4>
+    <%= level_color(building.level, building.level_name) %>
+    <span class="created-by">Created by <%= building.created_by.name %></span>
+    <p class="description"><%= building.description %></p>
+  </div>
+</div>

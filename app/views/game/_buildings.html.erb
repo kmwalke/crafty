@@ -1,0 +1,11 @@
+<fieldset class="buildings section">
+  <legend>Buildings</legend>
+  <ul>
+    <% @local_buildings.items.each do |building| %>
+      <li>
+        <%= level_color(building.level, link_to(building.name, "#building-#{ building.id }") ) %>
+      </li>
+      <%= render partial: 'building_popup', locals: { building: } %>
+    <% end %>
+  </ul>
+</fieldset>
