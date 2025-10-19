@@ -42,7 +42,7 @@ RSpec.describe User do
     end
 
     it 'lists valid travel locations' do
-      expect(user.valid_travel_locations).to eq(Location.all)
+      expect(user.valid_travel_locations).to eq(Location.where.not(id: user.location_id))
     end
   end
 end

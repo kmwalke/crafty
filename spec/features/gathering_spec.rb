@@ -9,8 +9,6 @@ RSpec.describe 'Gathering' do
     player.equip_item(gathering_tool)
   end
 
-  pending 'BUG: Sometimes clicking gather on the web interface adds multiple items'
-
   it 'displays the location\'s resources' do
     local_resource2 = create(:resource, location: player.location)
     visit game_path
@@ -26,18 +24,6 @@ RSpec.describe 'Gathering' do
   end
 
   describe 'gathers resources' do
-    # expect(true).to be false
-    #   Multiple types of tools
-    # Axe gathers lumber from trees
-    # sheers gather wool
-    # pickaxe gathers ores
-    # secateurs gather herbs/fruits
-    # etc...
-    # various tools inherit from Tool class
-    # Use subtype, somehow.  Maybe polymorphism, maybe just a method that checks it
-    # add equipping tools to equipment spec
-    # currently using placeholder items.  Just a plain Item with a name of the type
-    # later it will be Item::Ore::Copper or Item::Flower::Dandelion
     let!(:old_inv_count) { player.inventory.items.count }
 
     before do

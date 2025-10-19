@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def turbo_hash
-    { turbo: true, turbo_frame: '_top' }
+    { turbo: true, turbo_frame: '_top', turbo_prefetch: 'false' }
   end
 
   private

@@ -62,7 +62,7 @@ class User < ApplicationRecord
     raise CraftyError, 'You can\'t scan for locations without a vehicle.' if vehicle.nil?
     return if vehicle.nil?
 
-    Location.all
+    Location.where.not(id: location_id)
   end
 
   def valid_gather_resources
