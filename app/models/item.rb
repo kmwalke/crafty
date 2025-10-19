@@ -13,7 +13,7 @@ class Item < ApplicationRecord
   DEFAULT_COLOR = '#EEE'.freeze
 
   def equipable?
-    ItemType::TYPE_NAMES.include? type
+    false
   end
 
   private

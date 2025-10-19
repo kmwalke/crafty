@@ -1,7 +1,4 @@
-class Item::Tool::GatheringTool < Item::Tool
-  before_create :set_type
-
-  self.inheritance_column = 'subtype'
+class Item::Craftable::Tool::GatheringTool < Item::Craftable::Tool
 
   def gather(resource)
     raise CraftyError, ErrorMessage::ITEM[:must_equip_item] if equipped_by.nil?
@@ -22,9 +19,5 @@ class Item::Tool::GatheringTool < Item::Tool
 
   def energy_usage(resource)
     resource.level * energy_multiplier
-  end
-
-  def set_type
-    self.type = ItemType::TYPES[:tool]
   end
 end

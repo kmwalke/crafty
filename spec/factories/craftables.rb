@@ -7,5 +7,10 @@ FactoryBot.define do
       sequence(:name) { |n| "Building_#{n}" }
       sequence(:description) { |n| "This is the description for Building_#{n}" }
     end
+
+    factory :vehicle, class: 'Item::Craftable::Vehicle' do
+      sequence(:name) { |n| "Vehicle_#{n}" }
+      sequence(:description) { |n| "This is the description for Vehicle_#{n}" }
+    end
   end
 end
