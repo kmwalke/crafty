@@ -26,7 +26,5 @@ RSpec.describe 'Traveling' do
         expect(page).to have_content(location.name)
       end
     end
-
-    pending 'doesnt show distant locations'
   end
 end
