@@ -58,7 +58,7 @@ RSpec.describe 'Game' do
     end
 
     it 'displays actions' do
-      player.equip_item(create(:vehicle, inventory: player.inventory))
+      player.equip_item(create(:craftable_vehicle, inventory: player.inventory))
 
       visit game_path
 
@@ -76,7 +76,7 @@ RSpec.describe 'Game' do
     end
 
     describe 'displays equipment' do
-      let!(:vehicle) { create(:vehicle, inventory: player.inventory) }
+      let!(:vehicle) { create(:craftable_vehicle, inventory: player.inventory) }
 
       it 'shows the vehicle' do
         player.equip_item(vehicle)
