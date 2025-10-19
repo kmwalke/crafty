@@ -3,16 +3,24 @@
   <table>
     <tr>
       <td>Tool:</td>
-      <td><%= @current_user.tool&.name %></td>
       <td>
         <% if @current_user.tool %>
-        <%= link_to 'X', unequip_tool_path, id: 'unequip_tool', data: turbo_hash %>
+          <%= level_color(@current_user.tool.level, @current_user.tool.name) %>
+        <% end %>
+      </td>
+      <td>
+        <% if @current_user.tool %>
+          <%= link_to 'X', unequip_tool_path, id: 'unequip_tool', data: turbo_hash %>
         <% end %>
       </td>
     </tr>
     <tr>
       <td>Vehicle:</td>
-      <td><%= @current_user.vehicle&.name %></td>
+      <td>
+        <% if @current_user.vehicle %>
+          <%= level_color(@current_user.vehicle.level, @current_user.vehicle.name) %>
+        <% end %>
+      </td>
       <td>
         <% if @current_user.vehicle %>
           <%= link_to 'X', unequip_vehicle_path, id: 'unequip_vehicle', data: turbo_hash %>

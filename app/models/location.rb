@@ -22,6 +22,10 @@ class Location < ApplicationRecord
     ).round
   end
 
+  def add_building(building)
+    buildings.add_item(building)
+  end
+
   private
 
   def create_buildings

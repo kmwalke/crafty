@@ -4,14 +4,14 @@ RSpec.describe User do
   let(:user) { create(:user) }
 
   describe 'vehicles' do
-    let(:vehicle) { create(:vehicle, inventory: user.inventory) }
+    let(:vehicle) { create(:craftable_vehicle, inventory: user.inventory) }
 
     before do
       user.equip_item(vehicle)
     end
 
     it 'cannot equip a vehicle not in inventory' do
-      bad_vehicle = create(:vehicle)
+      bad_vehicle = create(:craftable_vehicle)
 
       expect { user.equip_item(bad_vehicle) }.to raise_error(CraftyError)
     end
@@ -42,7 +42,7 @@ RSpec.describe User do
     end
 
     it 'lists valid travel locations' do
-      expect(user.valid_travel_locations).to eq(Location.all)
+      expect(user.valid_travel_locations).to eq(Location.where.not(id: user.location_id))
     end
   end
 end

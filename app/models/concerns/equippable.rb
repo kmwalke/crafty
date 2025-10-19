@@ -5,6 +5,10 @@ module Equippable
     raise CraftyError, ErrorMessage::GENERIC[:interface_method]
   end
 
+  def equipable?
+    true
+  end
+
   private
 
   def energy_usage(*_args)

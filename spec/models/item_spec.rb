@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Item do
-  let(:item) { create(:item) }
-  let(:vehicle) { create(:vehicle) }
+  let(:item) { create(:generic_item) }
+  let(:vehicle) { create(:craftable_vehicle) }
 
   pending 'items can stack if marked as stackable'
 

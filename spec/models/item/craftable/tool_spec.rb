@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Item::Tool do
+RSpec.describe Item::Craftable::Tool do
   let(:tool) { create(:tool) }
 
   it 'lists actions' do

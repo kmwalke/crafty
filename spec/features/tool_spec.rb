@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Item::Tool' do
+RSpec.describe 'Item::Craftable::Tool' do
   let!(:player) { login }
   let!(:tool) { create(:tool, inventory: player.inventory) }
 

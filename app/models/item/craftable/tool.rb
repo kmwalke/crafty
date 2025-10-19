@@ -1,4 +1,4 @@
-class Item::Tool < Item
+class Item::Craftable::Tool < Item
   include Equippable
   include Craftable
 

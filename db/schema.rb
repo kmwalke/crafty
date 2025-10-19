@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_17_195256) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_19_145619) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -31,9 +31,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_17_195256) do
     t.string "type"
   end
 
-  create_table "item_tool_subtypes", primary_key: "name", id: :string, force: :cascade do |t|
-  end
-
   create_table "item_types", primary_key: "name", id: :string, force: :cascade do |t|
   end
 
@@ -43,10 +40,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_17_195256) do
     t.integer "level", null: false
     t.integer "inventory_id"
     t.integer "created_by_id", null: false
-    t.string "type"
+    t.string "type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "subtype"
     t.string "color", null: false
     t.integer "stack_amount", default: 1, null: false
   end
