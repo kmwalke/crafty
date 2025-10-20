@@ -106,11 +106,11 @@ class LocationUtil
         bg_color: '#cc0000'
       },
       {
-        name: 'Necromancer\'s Killing Field',
+        name: 'Alien Ruins',
         pos_x: -93,
         pos_y: 87,
         description: 'There are bones everywhere.',
-        bg_color: '#000000',
+        bg_color: '#222222',
         highlight_color: 'white'
       }
     ]
