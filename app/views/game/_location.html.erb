@@ -13,14 +13,24 @@
   </span>
 <p class="description"><%= @current_location.description %></p>
 <div class="viewport">
-  <div class="sky" style="
-  background-color: <%= sky_color(@current_location) %>;
-  ">
+  <div class="sky" style="background-color: <%= sky_color(@current_location) %>;">
     &nbsp;
   </div>
-  <div class="ground" style="
-  background-color: <%= @current_location.bg_color %>;
-  ">
+
+  <div class="ground" style="background-color: <%= @current_location.bg_color %>;">
     &nbsp;
+  </div>
+
+  <div class="buildings">
+    <% @local_buildings.each do |building| %>
+      <div class="building" style="background-color: <%= building.color %>">
+        <span class="sign">
+          <%= building.name[0..10] %>
+        </span>
+        <div class="door">
+          &nbsp;
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

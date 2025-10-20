@@ -1,5 +1,9 @@
 @import 'variables';
 
+$ground-height: 40%;
+$sky-height: 100% - $ground-height;
+$building-height: 30%;
+
 div.location {
   height: $location-height;
 
@@ -23,14 +27,45 @@ div.location {
   }
 
   div.viewport {
+    position: relative;
     height: 90%;
 
     div.sky {
-      height: 40%;
+      height: $sky-height;
     }
 
     div.ground {
-      height: 60%;
+      height: $ground-height;
+    }
+
+    div.buildings {
+      position: absolute;
+      left: 0;
+      bottom: $ground-height - 10%;
+      width: 100%;
+      height: $building-height;
+
+      div.building {
+        position: relative;
+        display: inline-block;
+        height: 100%;
+        margin-left: 1em;
+        width: 4em;
+        border-top: 3px solid $tan;
+
+        span.sign {
+          font-size: xx-small;
+          margin-left: 0.5em;
+        }
+
+        div.door {
+          position: absolute;
+          bottom: 0;
+          left: 1em;
+          width: 0.75em;
+          background-color: $tan;
+        }
+      }
     }
   }
 }
