@@ -48,10 +48,10 @@ div.location {
       div.building, div.resource {
         position: relative;
         display: inline-block;
-        margin-left: 1em;
       }
 
       div.building {
+        margin-left: 1em;
         height: 100%;
         width: 4em;
         border-top: 3px solid $tan;
@@ -87,13 +87,37 @@ div.location {
 
       div.resources {
         position: absolute;
-        bottom: 1em;
+        bottom: 1.5em;
         height: 50%;
 
         div.resource {
+          margin-right: -2em;
           height: 100%;
-          vertical-align: bottom;
-          border: 1px solid white;
+          border: 1px solid black;
+          rotate: 90deg;
+
+          span.name {
+            text-shadow: 0 0 3px $black;
+          }
+        }
+        .common span {
+          color: $common-color;
+        }
+
+        .uncommon span {
+          color: $uncommon-color;
+        }
+
+        .rare span {
+          color: $rare-color;
+        }
+
+        .epic span {
+          color: $epic-color;
+        }
+
+        .legendary span {
+          color: $legendary-color;
         }
       }
     }

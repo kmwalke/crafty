@@ -1,6 +1,6 @@
 class Resource::Meadow < Resource
   def default_color
-    '006600'.freeze
+    '#006600'.freeze
   end
 
   def gather
