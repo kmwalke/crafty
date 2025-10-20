@@ -23,15 +23,17 @@ stdout_logger.warn '...DONE'
 
 stdout_logger.warn 'PROVISIONING USERS...'
 [
-  { email: 'kmwalke@gmail.com', name: 'Kent', location: Location.first },
-  { email: 'kfretz2@gmail.com', name: 'Keith', location: Location.first },
-  { email: 'cristin.slaymaker@gmail.com', name: 'Cris', location: Location.first },
-  { email: 'buttforker@gmail.com', name: 'Zack', location: Location.first },
-  { email: 'Aaron.m.lee.al@gmail.com', name: 'Aaron', location: Location.first },
-  { email: 'a@b.com', name: 'Lumber Jack', location: Location.last },
-  { email: 'b@b.com', name: 'Shifty Rogue', location: Location.last }
-].each do |info|
-  UserUtil.provision_user(email: info[:email], name: info[:name], location: info[:location])
+  User.build(email: 'kmwalke@gmail.com', name: 'Kent', location: Location.first,
+             status: UserStatus::STATUSES[:crafting]),
+  User.build(email: 'kfretz2@gmail.com', name: 'Keith', location: Location.first, status: UserStatus::STATUSES[:traveling]),
+  User.build(email: 'cristin.slaymaker@gmail.com', name: 'Cris', location: Location.first),
+  User.build(email: 'buttforker@gmail.com', name: 'Zack', location: Location.first),
+  User.build(email: 'Aaron.m.lee.al@gmail.com', name: 'Aaron', location: Location.first),
+  User.build(email: 'a@b.com', name: 'Lumber Jack', location: Location.last, status: UserStatus::STATUSES[:gathering]),
+  User.build(email: 'b@b.com', name: 'Shifty Rogue', location: Location.last,
+             status: UserStatus::STATUSES[:traveling])
+].each do |user|
+  UserUtil.provision_user(user)
 end
 stdout_logger.warn '...DONE'
 stdout_logger.warn ''

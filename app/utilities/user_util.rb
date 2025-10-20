@@ -1,6 +1,7 @@
 class UserUtil
-  def self.provision_user(name: nil, email: nil, location: nil, password: '123')
-    user = User.create(email:, name:, password:, location:)
+  def self.provision_user(user)
+    user.password = '123'
+    user.save
 
     create_item(
       user,
