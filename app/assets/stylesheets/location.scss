@@ -58,13 +58,15 @@ div.location {
 
         span.sign {
           display: inline-block;
-          font-size: xx-small;
+          position: absolute;
+          top: -1.8em;
+          rotate: -30deg;
+          font-size: small;
           margin-left: 0.5em;
           text-wrap: nowrap;
           overflow: hidden;
-          width: 90%;
-          background-color: $tan;
           color: $grey-dark;
+          background-color: black;
         }
 
         div.door {

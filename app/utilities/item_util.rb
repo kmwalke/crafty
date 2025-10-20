@@ -17,7 +17,21 @@ class ItemUtil
       Item::Craftable::Building.new(
         name: 'Traders Guild Hall',
         description: 'Gathering place for traders. Contains sales listings.',
-        level: Level::COMMON,
+        level: Level::UNCOMMON,
+        created_by: User.first,
+        color: '#663300'
+      ),
+      Item::Craftable::Building.new(
+        name: 'Vehicle Store',
+        description: 'Keith\'s Boat Shop.',
+        level: Level::RARE,
+        created_by: User.first,
+        color: '#663300'
+      ),
+      Item::Craftable::Building.new(
+        name: 'Spawnville Zoo',
+        description: 'Kerry\'s first request.',
+        level: Level::RARE,
         created_by: User.first,
         color: '#663300'
       )
