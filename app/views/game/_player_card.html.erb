@@ -2,7 +2,7 @@
   <legend><%= @current_user.name %></legend>
   <div class="status">
     <span class="title">
-      Status
+      Status_
     </span>
     <span class="value status-<%= @current_user.status.downcase %>">
       <%= @current_user.status %>
@@ -13,24 +13,30 @@
   <tr class="energy">
     <td class="title">E</td>
     <td class="bar">
-      <div class="fill">
-        <%= @current_user.energy %>
+      <div class="fill" style="width: <%= percentage(@current_user.energy, User::MAX_ENERGY) %>;">
+        <span class="value">
+          Energy: <%= @current_user.energy %>
+        </span>&nbsp;
       </div>
     </td>
   </tr>
   <tr class="vitality">
     <td class="title">V</td>
     <td class="bar">
-      <div class="fill">
-        87
+      <div class="fill" style="width: <%= percentage(@current_user.vitality, User::MAX_VITALITY) %>;">
+        <span class="value">
+          Vitality: <%= @current_user.vitality %>
+        </span>&nbsp;
       </div>
     </td>
   </tr>
   <tr class="age">
     <td class="title">A</td>
     <td class="bar">
-      <div class="fill">
-        32
+      <div class="fill" style="width: <%= percentage(@current_user.age, User::MAX_AGE) %>;">
+        <span class="value">
+          Age: <%= @current_user.age %>
+        </span>&nbsp;
       </div>
     </td>
   </tr>

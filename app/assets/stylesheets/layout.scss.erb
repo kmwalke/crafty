@@ -24,16 +24,17 @@ html {
   padding: 0;
   height: 100%;
   width: 100%;
-  overflow: hidden;
+//  overflow: hidden;
   background-color: $game-bg-color;
   color: $game-text-color;
+  font-family: Verdana, Arial, sans-serif;
 
   body {
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
-    overflow: hidden;
+//    overflow: hidden;
 
     div.notice {
       display: flex;
@@ -74,6 +75,10 @@ html {
         display: inline-block;
         vertical-align: top;
 
+        a.button:hover {
+          text-shadow: 0 0 7px $game-text-color;
+        }
+
         a.button {
           text-decoration: none;
 
@@ -102,13 +107,26 @@ html {
             display: block;
             text-transform: uppercase;
           }
+
+          span.title {
+
+          }
+
+          span.value {
+            font-size: larger;
+          }
         }
+      }
+
+      table.bars:hover span.value {
+        color: $game-text-color;
       }
 
       table.bars {
         display: inline-block;
         float: right;
         width: 50%;
+        border-spacing: 0.5em;
 
         tbody {
           width: 100%;
@@ -116,14 +134,20 @@ html {
 
           tr {
             td.title {
-              width: 1.5em;
               float: right;
             }
 
             td.bar {
+              border-radius: 0.6em;
               width: 90%;
 
               div.fill {
+                border-radius: 0.5em;
+
+                span.value {
+                  margin-left: 1em;
+                  text-wrap: nowrap;
+                }
               }
             }
           }
@@ -133,6 +157,11 @@ html {
 
             td.bar {
               border: 1px solid $energy-color;
+              box-shadow: 0 0 5px $energy-color;
+
+              div.fill {
+                background-color: $energy-color;
+              }
             }
           }
 
@@ -141,6 +170,11 @@ html {
 
             td.bar {
               border: 1px solid $vitality-color;
+              box-shadow: 0 0 5px $vitality-color;
+
+              div.fill {
+                background-color: $vitality-color;
+              }
             }
           }
 
@@ -149,6 +183,11 @@ html {
 
             td.bar{
               border: 1px solid $age-color;
+              box-shadow: 0 0 5px $age-color;
+
+              div.fill {
+                background-color: $age-color;
+              }
             }
           }
         }
