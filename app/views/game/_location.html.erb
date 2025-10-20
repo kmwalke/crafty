@@ -21,16 +21,27 @@
     &nbsp;
   </div>
 
-  <div class="buildings">
+  <div class="buildings-and-resources">
     <% @local_buildings.each do |building| %>
       <div class="building" style="background-color: <%= building.color %>">
         <span class="sign">
-          <%= building.name[0..10] %>
+          <%= building.name %>
         </span>
+        <div class="window">
+          &nbsp;
+        </div>
         <div class="door">
           &nbsp;
         </div>
       </div>
     <% end %>
+
+    <div class="resources">
+      <% @local_resources.each do |resource| %>
+        <div class="resource <%= resource.pretty_type.downcase %>" style="background-color: <%= resource.color %>">
+          &nbsp;
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
