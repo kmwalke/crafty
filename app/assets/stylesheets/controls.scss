@@ -1,0 +1,6 @@
+@import 'variables';
+
+div.controls {
+  height: $controls-height;
+  overflow: scroll;
+}

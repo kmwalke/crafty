@@ -1,16 +1,15 @@
-<div class="game-content">
-  <div class="header">
-    <%= render partial: 'game_menu' %>
-    <%= render partial: 'player_card' %>
-  </div>
-  <div class="viewport">
-    <%= render partial: 'location' %>
-  </div>
-  <div class="controls">
-    <%= render partial: 'actions' %>
-    <%= render partial: 'buildings' if @local_buildings.any? %>
-    <%= render partial: 'resources' if @local_resources.any? %>
-    <%= render partial: 'equipment' %>
-    <%= render partial: 'inventory' %>
-  </div>
+<div class="header">
+  <%= render partial: 'game_menu' %>
+  <%= render partial: 'player_card' %>
+</div>
+<div class="location">
+  <%= render partial: 'location' %>
+</div>
+<div class="controls">
+  <%= render partial: 'actions' %>
+  <%= render partial: 'buildings' %>
+  <%= render partial: 'resources' %>
+  <%= render partial: 'lifeforms' %>
+  <%= render partial: 'equipment' %>
+  <%= render partial: 'inventory' %>
 </div>

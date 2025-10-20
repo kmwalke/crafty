@@ -1,0 +1,36 @@
+@import 'variables';
+
+div.location {
+  height: $location-height;
+
+  border: 1px solid $white;
+  box-shadow: inset 0 0 20px $white;
+  border-radius: 0.5em;
+  padding: 1em;
+
+  span.title {
+    display: block;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    span {
+      display: inline;
+    }
+  }
+
+  p.description {
+    display: none;
+  }
+
+  div.viewport {
+    height: 90%;
+
+    div.sky {
+      height: 40%;
+    }
+
+    div.ground {
+      height: 60%;
+    }
+  }
+}

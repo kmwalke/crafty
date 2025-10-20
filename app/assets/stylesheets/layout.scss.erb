@@ -24,7 +24,7 @@ html {
   padding: 0;
   height: 100%;
   width: 100%;
-//  overflow: hidden;
+  overflow: hidden;
   background-color: $game-bg-color;
   color: $game-text-color;
   font-family: Verdana, Arial, sans-serif;
@@ -34,7 +34,7 @@ html {
     padding: 0;
     height: 100%;
     width: 100%;
-//    overflow: hidden;
+    overflow: hidden;
 
     div.notice {
       display: flex;
@@ -68,244 +68,253 @@ html {
       }
     }
 
-    div.header {
-      height: 7em;
+    div.content {
+      margin: 0;
+      padding: 0;
+      padding-left: 2.5%;
+      height: 100%;
+      width: 95%;
+      overflow: hidden;
 
-      div.game-menu {
-        display: inline-block;
-        vertical-align: top;
+      div.header {
+        height: $header-height;
 
-        a.button:hover {
-          text-shadow: 0 0 7px $game-text-color;
-        }
-
-        a.button {
-          text-decoration: none;
-
-          span {
-            color: $menu-icon-color;
-            display: block;
-            font-size: 3em;
-            letter-spacing: 0.1em;
-            line-height: 0.35em;
-          }
-        }
-
-        span.version {
-          display: block;
-        }
-      }
-
-      .player-card {
-        display: inline-block;
-
-        div.status {
+        div.game-menu {
           display: inline-block;
           vertical-align: top;
 
-          span {
+          a.button:hover {
+            text-shadow: 0 0 7px $game-text-color;
+          }
+
+          a.button {
+            text-decoration: none;
+
+            span {
+              color: $menu-icon-color;
+              display: block;
+              font-size: 3em;
+              letter-spacing: 0.1em;
+              line-height: 0.35em;
+            }
+          }
+
+          span.version {
             display: block;
-            text-transform: uppercase;
-          }
-
-          span.title {
-
-          }
-
-          span.value {
-            font-size: larger;
           }
         }
-      }
 
-      table.bars:hover span.value {
-        color: $game-text-color;
-      }
+        .player-card {
+          display: inline-block;
 
-      table.bars {
-        display: inline-block;
-        float: right;
-        width: 50%;
-        border-spacing: 0.5em;
+          div.status {
+            display: inline-block;
+            vertical-align: top;
 
-        tbody {
-          width: 100%;
-          display: table;
-
-          tr {
-            td.title {
-              float: right;
+            span {
+              display: block;
+              text-transform: uppercase;
             }
 
-            td.bar {
-              border-radius: 0.6em;
-              width: 90%;
+            span.title {
 
-              div.fill {
-                border-radius: 0.5em;
+            }
 
-                span.value {
-                  margin-left: 1em;
-                  text-wrap: nowrap;
+            span.value {
+              font-size: larger;
+            }
+          }
+        }
+
+        table.bars:hover span.value {
+          color: $game-text-color;
+        }
+
+        table.bars {
+          display: inline-block;
+          float: right;
+          width: 50%;
+          border-spacing: 0.5em;
+
+          tbody {
+            width: 100%;
+            display: table;
+
+            tr {
+              td.title {
+                float: right;
+              }
+
+              td.bar {
+                border-radius: 0.6em;
+                width: 90%;
+
+                div.fill {
+                  border-radius: 0.5em;
+
+                  span.value {
+                    margin-left: 1em;
+                    text-wrap: nowrap;
+                  }
+                }
+              }
+            }
+
+            tr.energy {
+              color: $energy-color;
+
+              td.bar {
+                border: 1px solid $energy-color;
+                box-shadow: 0 0 5px $energy-color;
+
+                div.fill {
+                  background-color: $energy-color;
+                }
+              }
+            }
+
+            tr.vitality {
+              color: $vitality-color;
+
+              td.bar {
+                border: 1px solid $vitality-color;
+                box-shadow: 0 0 5px $vitality-color;
+
+                div.fill {
+                  background-color: $vitality-color;
+                }
+              }
+            }
+
+            tr.age {
+              color: $age-color;
+
+              td.bar {
+                border: 1px solid $age-color;
+                box-shadow: 0 0 5px $age-color;
+
+                div.fill {
+                  background-color: $age-color;
                 }
               }
             }
           }
+        }
+      }
 
-          tr.energy {
-            color: $energy-color;
+      .level-color {
+        .common, .common a {
+          color: $common-color;
+        }
 
-            td.bar {
-              border: 1px solid $energy-color;
-              box-shadow: 0 0 5px $energy-color;
+        .uncommon, .uncommon a {
+          color: $uncommon-color;
+        }
 
-              div.fill {
-                background-color: $energy-color;
-              }
-            }
-          }
+        .rare, .rare a {
+          color: $rare-color;
+        }
 
-          tr.vitality {
-            color: $vitality-color;
+        .epic, .epic a {
+          color: $epic-color;
+        }
 
-            td.bar {
-              border: 1px solid $vitality-color;
-              box-shadow: 0 0 5px $vitality-color;
+        .legendary, .legendary a {
+          color: $legendary-color;
+        }
+      }
 
-              div.fill {
-                background-color: $vitality-color;
-              }
-            }
-          }
+      .status-mining {
+        color: $red;
+      }
 
-          tr.age {
-            color: $age-color;
+      .status-traveling {
+        color: $blue-light;
+      }
 
-            td.bar{
-              border: 1px solid $age-color;
-              box-shadow: 0 0 5px $age-color;
+      .status-resting {
+        color: $green;
+      }
 
-              div.fill {
-                background-color: $age-color;
-              }
-            }
+
+      a, a:visited {
+        color: $a_color;
+        text-decoration: underline;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+
+      div.content {
+        margin-left: 0.5em;
+      }
+
+      .controls-section {
+
+        legend {
+        }
+
+        ul {
+          li {
+            list-style: none;
+            line-height: 2em;
           }
         }
       }
-    }
 
-    .level-color {
-      .common, .common a {
-        color: $common-color;
+      div.popup:target {
+        display: flex;
       }
 
-      .uncommon, .uncommon a {
-        color: $uncommon-color;
-      }
-
-      .rare, .rare a {
-        color: $rare-color;
-      }
-
-      .epic, .epic a {
-        color: $epic-color;
-      }
-
-      .legendary, .legendary a {
-        color: $legendary-color;
-      }
-    }
-
-    .status-mining {
-      color: $red;
-    }
-
-    .status-traveling {
-      color: $blue-light;
-    }
-
-    .status-resting {
-      color: $green;
-    }
-
-
-    a, a:visited {
-      color: $a_color;
-      text-decoration: underline;
-    }
-
-    a:hover {
-      text-decoration: none;
-    }
-
-    div.content {
-      margin-left: 0.5em;
-    }
-
-    .controls-section {
-
-      legend {
-      }
-
-      ul {
-        li {
-          list-style: none;
-          line-height: 2em;
-        }
-      }
-    }
-
-    div.popup:target {
-      display: flex;
-    }
-
-    div.popup {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      justify-content: center;
-      align-items: center;
-
-      div.popup-content {
-        background: $popup-bg-color;
-        border: 1px solid $popup-border-color;
-        padding: 20px;
-        border-radius: 5px;
-        text-align: center;
+      div.popup {
+        display: none;
         position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
 
-        h4.title {
-          background: $popup-title-bg-color;
-          width: 100%;
-          margin: 0;
-          line-height: 2em;
+        div.popup-content {
+          background: $popup-bg-color;
+          border: 1px solid $popup-border-color;
+          padding: 20px;
+          border-radius: 5px;
+          text-align: center;
+          position: fixed;
 
+          h4.title {
+            background: $popup-title-bg-color;
+            width: 100%;
+            margin: 0;
+            line-height: 2em;
+
+          }
         }
       }
-    }
 
-    a.close-button, a.close-button:visited {
-      position: absolute;
-      top: 0.5em;
-      right: 0.5em;
-      text-decoration: none;
-      background-color: $close-button-bg-color;
-      color: $close-button-text-color;
-      border: 2px outset black;
-      padding: 0.25em 0.5em;
-      margin-right: 1em;
-    }
+      a.close-button, a.close-button:visited {
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+        text-decoration: none;
+        background-color: $close-button-bg-color;
+        color: $close-button-text-color;
+        border: 2px outset black;
+        padding: 0.25em 0.5em;
+        margin-right: 1em;
+      }
 
-    a.close-button:hover {
-      text-decoration: underline;
-    }
+      a.close-button:hover {
+        text-decoration: underline;
+      }
 
-    a.close-button:active {
-      border: 2px inset black;
+      a.close-button:active {
+        border: 2px inset black;
+      }
     }
   }
 }

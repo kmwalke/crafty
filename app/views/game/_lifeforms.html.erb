@@ -1,0 +1,12 @@
+<fieldset class="lifeforms section">
+  <legend>Lifeforms</legend>
+  <% if @local_players.any? %>
+    <span>Local Players:</span>
+    <ul>
+      <% @local_players.each do |player| %>
+        <li><%= link_to player.name, "#player-#{ player.id }-details" %></li>
+        <%= render partial: 'player_popup', locals: { player: } %>
+      <% end %>
+    </ul>
+  <% end %>
+</fieldset>

@@ -4,12 +4,13 @@ class LocationUtil
   def self.provision_locations
     location_data.each do |info|
       LocationUtil.new.provision_location(name: info[:name], pos_x: info[:pos_x], pos_y: info[:pos_y],
-                                          description: info[:description], bg_color: info[:bg_color])
+                                          description: info[:description], bg_color: info[:bg_color],
+                                          highlight_color: info[:highlight_color])
     end
   end
 
-  def provision_location(name: nil, pos_x: nil, pos_y: nil, description: nil, bg_color: nil)
-    @location = Location.find_or_create_by(name:, pos_x:, pos_y:, description:, bg_color:)
+  def provision_location(name: nil, pos_x: nil, pos_y: nil, description: nil, bg_color: nil, highlight_color: nil)
+    @location = Location.find_or_create_by(name:, pos_x:, pos_y:, description:, bg_color:, highlight_color:)
     create_resources
   end
 
@@ -94,7 +95,8 @@ class LocationUtil
         pos_x: -32,
         pos_y: -62,
         description: 'Spooky. Sounds of creatures just out of sight.',
-        bg_color: '#003300'
+        bg_color: '#003300',
+        highlight_color: 'white'
       },
       {
         name: 'Flowing Volcano',
@@ -108,7 +110,8 @@ class LocationUtil
         pos_x: -93,
         pos_y: 87,
         description: 'There are bones everywhere.',
-        bg_color: '#000000'
+        bg_color: '#000000',
+        highlight_color: 'white'
       }
     ]
   end
