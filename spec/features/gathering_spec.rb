@@ -37,7 +37,12 @@ RSpec.describe 'Gathering' do
     describe 'does not overfill the inventory' do
       before do
         player.inventory.update(size: old_inv_count)
-        gather_resource
+        create(:resource, location: player.location)
+        visit game_path
+        within '.actions' do
+          click_link 'Gather'
+          click_link local_resource.name
+        end
       end
 
       it 'doesnt add to the inventory' do
