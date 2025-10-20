@@ -8,7 +8,7 @@ class UserUtil
   end
 
   def provision_user(user)
-    @user = user
+    @user          = user
     @user.password = '123'
     @user.save
 
