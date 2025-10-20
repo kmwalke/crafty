@@ -2,13 +2,13 @@
     <span class="name" style="
     color: <%= @current_location.bg_color %>;
       <% if @current_location.highlight_color %>
-      text-shadow: 0 0 7px <%= @current_location.highlight_color %>;
+      text-shadow: 0 0 4px <%= @current_location.highlight_color %>;
       <% end %>
     ">
       <%= @current_location.name %>
     </span>
     <span class="type">
-      &lt;Wilderness&gt;
+      &lt;<%= @current_location.type %>&gt;
     </span>
   </span>
 <p class="description"><%= @current_location.description %></p>

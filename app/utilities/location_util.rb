@@ -70,7 +70,7 @@ class LocationUtil
   def self.location_data
     [
       {
-        name: 'Starting City',
+        name: 'Spawnville',
         pos_x: 0,
         pos_y: 0,
         description: 'A small metropolis ruled over by Mayor Parker.',

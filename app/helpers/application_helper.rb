@@ -1,9 +1,9 @@
 module ApplicationHelper
   def percentage(numerator, denominator)
-    "#{((numerator.to_f / denominator.to_f)*100).round}%"
+    "#{((numerator.to_f / denominator) * 100).round}%"
   end
 
-  def sky_color(location)
-    "#668cff"
+  def sky_color(_location)
+    '#668cff'
   end
 end
