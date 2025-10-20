@@ -20,6 +20,7 @@
 
 
 html {
+  z-index: 0;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -36,10 +37,31 @@ html {
     width: 100%;
     overflow: hidden;
 
+    .common, .common * {
+      color: $common-color !important;
+    }
+
+    .uncommon, .uncommon * {
+      color: $uncommon-color !important;
+    }
+
+    .rare, .rare * {
+      color: $rare-color !important;
+    }
+
+    .epic, .epic * {
+      color: $epic-color !important;
+    }
+
+    .legendary, .legendary * {
+      color: $legendary-color !important;
+    }
+
     div.notice {
+      z-index: $top-z-layer;
       display: flex;
       position: fixed;
-      top: 0;
+      top: 35%;
       left: 50%;
       width: 20em;
       margin-left: -10em;
@@ -128,7 +150,7 @@ html {
 
         table.bars:hover span.value {
           color: $game-text-color;
-          visibility: visible!important;
+          visibility: visible !important;
         }
 
         table.bars {
@@ -204,27 +226,6 @@ html {
         }
       }
 
-      .level-color {
-        .common, .common a {
-          color: $common-color;
-        }
-
-        .uncommon, .uncommon a {
-          color: $uncommon-color;
-        }
-
-        .rare, .rare a {
-          color: $rare-color;
-        }
-
-        .epic, .epic a {
-          color: $epic-color;
-        }
-
-        .legendary, .legendary a {
-          color: $legendary-color;
-        }
-      }
 
       .status-mining {
         color: $red;
@@ -271,6 +272,7 @@ html {
 
       div.popup {
         display: none;
+        z-index: $top-z-layer;
         position: fixed;
         top: 0;
         left: 0;
