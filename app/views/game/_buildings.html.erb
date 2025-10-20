@@ -1,11 +1,14 @@
-<fieldset class="buildings controls-section">
-  <legend>Buildings</legend>
-  <ul>
-    <% @local_buildings.items.each do |building| %>
-      <li>
-        <%= level_color(building.level, link_to(building.name, "#building-#{ building.id }") ) %>
-      </li>
-      <%= render partial: 'building_popup', locals: { building: } %>
-    <% end %>
-  </ul>
-</fieldset>
+<input type="radio" id="radio-buildings" name="radios" value="buildings"/>
+<div class="section buildings">
+  <label for="radio-buildings">B</label>
+  <div class="section-content">
+    <ul>
+      <% @local_buildings.items.each do |building| %>
+        <li>
+          <%= level_color(building.level, link_to(building.name, "#building-#{ building.id }")) %>
+        </li>
+        <%= render partial: 'building_popup', locals: { building: } %>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -45,6 +45,13 @@ $energy-color: $green;
 $vitality-color: $red;
 $age-color: $orange;
 
+$section-action-color: $red;
+$section-buildings-color: $yellow;
+$section-equipment-color: $orange;
+$section-inventory-color: $white;
+$section-lifeforms-color: $green;
+$section-resources-color: $blue-light;
+
 @mixin rounded-corners($radius) {
   border-radius: $radius;
   -moz-border-radius: $radius;

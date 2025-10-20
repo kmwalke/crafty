@@ -1,31 +1,34 @@
-<fieldset class="equipment controls-section">
-  <legend>Equipment</legend>
-  <table>
-    <tr>
-      <td>Tool:</td>
-      <td>
-        <% if @current_user.tool %>
-          <%= level_color(@current_user.tool.level, @current_user.tool.name) %>
-        <% end %>
-      </td>
-      <td>
-        <% if @current_user.tool %>
-          <%= link_to 'X', unequip_tool_path, id: 'unequip_tool', data: turbo_hash %>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <td>Vehicle:</td>
-      <td>
-        <% if @current_user.vehicle %>
-          <%= level_color(@current_user.vehicle.level, @current_user.vehicle.name) %>
-        <% end %>
-      </td>
-      <td>
-        <% if @current_user.vehicle %>
-          <%= link_to 'X', unequip_vehicle_path, id: 'unequip_vehicle', data: turbo_hash %>
-        <% end %>
-      </td>
-    </tr>
-  </table>
-</fieldset>
+<input type="radio" id="radio-equipment" name="radios" value="equipment"/>
+<div class="section equipment">
+  <label for="radio-equipment">E</label>
+  <div class="section-content">
+    <table>
+      <tr>
+        <td>Tool:</td>
+        <td>
+          <% if @current_user.tool %>
+            <%= level_color(@current_user.tool.level, @current_user.tool.name) %>
+          <% end %>
+        </td>
+        <td>
+          <% if @current_user.tool %>
+            <%= link_to 'X', unequip_tool_path, id: 'unequip_tool', data: turbo_hash %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>Vehicle:</td>
+        <td>
+          <% if @current_user.vehicle %>
+            <%= level_color(@current_user.vehicle.level, @current_user.vehicle.name) %>
+          <% end %>
+        </td>
+        <td>
+          <% if @current_user.vehicle %>
+            <%= link_to 'X', unequip_vehicle_path, id: 'unequip_vehicle', data: turbo_hash %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

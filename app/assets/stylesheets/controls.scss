@@ -3,4 +3,68 @@
 div.controls {
   height: $controls-height;
   overflow: scroll;
+
+  .radio-toolbar {
+    position: relative;
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    div.actions div.section-content {
+      border-top: 2px solid $section-action-color;
+    }
+
+    div.buildings div.section-content {
+      border-top: 2px solid $section-buildings-color;
+    }
+
+    div.equipment div.section-content {
+      border-top: 2px solid $section-equipment-color;
+    }
+
+    div.inventory div.section-content {
+      border-top: 2px solid $section-inventory-color;
+    }
+
+    div.lifeforms div.section-content {
+      border-top: 2px solid $section-lifeforms-color;
+    }
+
+    div.resources div.section-content {
+      border-top: 2px solid $section-resources-color;
+    }
+
+    div.section {
+      display: inline-block;
+
+      label {
+        display: inline-block;
+        //background-color: #ddd;
+        padding: 4px 11px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      div.section-content {
+        display: none;
+        position: absolute;
+        top: 2em;
+        left: 1em;
+        width: 100%;
+      }
+    }
+
+    input[type="radio"]:checked + div.section {
+
+      label {
+        //background-color: #bbb;
+        box-shadow: inset 0 0 20px $white;
+      }
+
+      div.section-content {
+        display: block;
+      }
+    }
+  }
 }

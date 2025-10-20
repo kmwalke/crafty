@@ -1,10 +1,13 @@
-<fieldset class="resources controls-section">
-  <legend>Resources</legend>
-  <ul>
-    <% @local_resources.each do |resource| %>
-      <li>
-        <%= level_color(resource.level, resource.full_name) %>
-      </li>
-    <% end %>
-  </ul>
-</fieldset>
+<input type="radio" id="radio-resources" name="radios" value="resources"/>
+<div class="section resources">
+  <label for="radio-resources">R</label>
+  <div class="section-content">
+    <ul>
+      <% @local_resources.each do |resource| %>
+        <li>
+          <%= level_color(resource.level, resource.full_name) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
