@@ -11,9 +11,7 @@
   </head>
 
   <%= turbo_frame_tag 'page' do %>
-  <body class="<%= controller.controller_name%><%= current_user ? ' admin' : '' %>"
-        data-turbo="false"
-    <%= render partial: 'layouts/game_background' %>
+  <body class="<%= controller.controller_name%><%= current_user ? ' admin' : '' %>" data-turbo="false" >
 
   <% if notice %>
     <div class="notice">
