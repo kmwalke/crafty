@@ -27,10 +27,8 @@ class ApplicationController < ActionController::Base
   private
 
   def level_color_html(level, text)
-    '<span class="level-color">' \
     "  <span class=\"#{Level.level_name(level).downcase}\">" \
     "    #{text}" \
-    '  </span>' \
-    '</span>'
+    '  </span>'
   end
 end

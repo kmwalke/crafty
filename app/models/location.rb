@@ -26,6 +26,14 @@ class Location < ApplicationRecord
     buildings.add_item(building)
   end
 
+  def type
+    return 'City' if buildings.count > 10
+    return 'Town' if buildings.count > 5
+    return 'Village' if buildings.any?
+
+    'Wilderness'
+  end
+
   private
 
   def create_buildings

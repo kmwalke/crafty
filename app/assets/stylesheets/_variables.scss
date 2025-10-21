@@ -1,17 +1,56 @@
+$top-z-layer: 100;
+
+$header-height: 16%;
+$location-height: 40%;
+$controls-height: 42%;
+
 $black: black;
 $blue: #14323f;
+$blue-light: #68d1ee;
 $brown: #8c5a4e;
+$green: green;
+$grey: grey;
+$grey-dark: #333333;
+$grey-light: #BBBBBB;
+$orange: orange;
 $red: red;
 $tan: #f3f1df;
+$yellow: yellow;
 $white: white;
-$grey: grey;
-$grey-light: grey;
 
-$common-color: #000000;
+$common-color: #BBBBBB;
 $uncommon-color: #01ff00;
 $rare-color: #0080ff;
 $epic-color: #8000ff;
 $legendary-color: #ff8000;
+
+$game-bg-color: $black;
+$game-text-color: $white;
+
+$notice-bg-color: $black;
+$notice-border-color: $green;
+
+$menu-icon-color: $green;
+
+$a-color: $white;
+
+$popup-bg-color: $black;
+$popup-border-color: $green;
+$popup-title-bg-color: $grey;
+
+$close-button-bg-color: $grey-dark;
+$close-button-text-color: $white;
+
+$energy-color: $green;
+$vitality-color: $red;
+$age-color: $orange;
+
+$section-action-color: $red;
+$section-buildings-color: $yellow;
+$section-equipment-color: $orange;
+$section-inventory-color: $white;
+$section-lifeforms-color: $brown;
+$section-resources-color: $blue-light;
 
 @mixin rounded-corners($radius) {
   border-radius: $radius;

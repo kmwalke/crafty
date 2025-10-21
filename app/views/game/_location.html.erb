@@ -1,14 +1,51 @@
-<fieldset class="location section">
-  <legend>Location</legend>
-  <h3><%= @current_user.location.name %></h3>
-  <p><%= @current_user.location.description %></p>
-  <% if @local_players.any? %>
-    <span>Local Players:</span>
-    <ul>
-      <% @local_players.each do |player| %>
-        <li><%= link_to player.name, "#player-#{ player.id }-details" %></li>
-        <%= render partial: 'player_popup', locals: { player: } %>
+<span class="title">
+    <span class="name" style="
+    color: <%= @current_location.bg_color %>;
+      <% if @current_location.highlight_color %>
+      text-shadow: 0 0 4px <%= @current_location.highlight_color %>;
       <% end %>
-    </ul>
-  <% end %>
-</fieldset>
+    ">
+      <%= @current_location.name %>
+    </span>
+    <span class="type">
+      &lt;<%= @current_location.type %>&gt;
+    </span>
+  </span>
+<p class="description"><%= @current_location.description %></p>
+<div class="viewport">
+  <div class="sky" style="background-color: <%= sky_color(@current_location) %>;">
+    &nbsp;
+  </div>
+
+  <div class="ground" style="background-color: <%= @current_location.bg_color %>;">
+    &nbsp;
+  </div>
+
+  <div class="buildings-and-resources">
+    <% @local_buildings.each do |building| %>
+      <div class="building <%= Level.level_name(building.level).downcase %>"
+           style="background-color: <%= building.color %>">
+        <span class="sign">
+          <%= building.name %>
+        </span>
+        <div class="window">
+          &nbsp;
+        </div>
+        <div class="door">
+          &nbsp;
+        </div>
+      </div>
+    <% end %>
+
+    <div class="resources">
+      <% @local_resources.each do |resource| %>
+        <div class="resource <%= resource.pretty_type.downcase %> <%= Level.level_name(resource.level).downcase %>"
+             style="background-color: <%= resource.color %>">
+          <span class="name" >
+            <%= resource.full_name %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

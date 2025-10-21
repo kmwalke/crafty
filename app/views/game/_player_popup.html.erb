@@ -1,12 +1,28 @@
 <div id="player-<%= player.id %>-details" class="popup">
   <div class="popup-content player-popup">
-    <a href="#" class="button">X</a>
+    <a href="#" class="close-button">X</a>
     <h4 class="title"><%= player.name %></h4>
-    <span class="status">Status: <%= player.status %></span>
-    <div class="equipment">
-      <% if player.vehicle %>
-        <span class="vehicle">Vehicle: <%= player.vehicle.name %></span>
+    <table>
+
+      <tr class="status">
+        <td>Status:</td>
+        <td class="status status-<%= player.status.downcase %>">
+          <%= player.status %>
+        </td>
+      </tr>
+      <% if player.tool %>
+        <tr class="equipment">
+          <td class="tool">Tool:</td>
+          <td><%= level_color(player.tool.level, player.tool.name) %></td>
+        </tr>
       <% end %>
-    </div>
+      <% if player.vehicle %>
+        <tr class="equipment">
+          <td class="vehicle">Vehicle:</td>
+          <td><%= level_color(player.vehicle.level, player.vehicle.name) %></td>
+        </tr>
+      <% end %>
+      </tr>
+    </table>
   </div>
 </div>

@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_one :inventory
 
   MAX_ENERGY             = 1000
+  MAX_AGE                = 100
+  MAX_VITALITY           = 100
   DEFAULT_INVENTORY_SIZE = 10
 
   def actions

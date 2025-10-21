@@ -1,16 +1,28 @@
 <p id=”alert”><%= alert %></p>
 <h1>Login</h1>
 <%= form_tag sessions_path do |form| %>
-  <div class=”field”>
-    <%= label_tag :email %>
-    <%= text_field_tag :email, '', autofocus: true %>
-  </div>
-  <div class=”field”>
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
-  <div class=”actions”>
-    <%= submit_tag 'Log In' %>
-  </div>
+  <table>
+    <tr>
+      <td>
+        <%= label_tag :email %>
+      </td>
+      <td>
+        <%= text_field_tag :email, '', autofocus: true %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= label_tag :password %>
+      </td>
+      <td>
+        <%= password_field_tag :password %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= submit_tag 'Log In', class: 'button' %>
+      </td>
+    </tr>
+  </table>
 <% end %>
-<br />
+<br/>

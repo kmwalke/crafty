@@ -1,7 +1,7 @@
-fieldset.inventory {
+.inventory {
   span.remaining-space {
-    float: right;
-    padding-right: 0.5em;
+    position: absolute;
+    top: 5px;
   }
 
   ul {

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Gathering' do
   let!(:player) { login }
   let!(:gathering_tool) { create(:craftable_tool_gathering_tool, inventory: player.inventory) }
-  let!(:local_resource) { create(:resource, location: player.location) }
+  let!(:local_resource) { create(:ore, location: player.location) }
 
   before do
     player.equip_item(gathering_tool)
@@ -37,7 +37,12 @@ RSpec.describe 'Gathering' do
     describe 'does not overfill the inventory' do
       before do
         player.inventory.update(size: old_inv_count)
-        gather_resource
+        crystal = create(:crystal, location: player.location)
+        visit game_path
+        within '.actions' do
+          click_link 'Gather'
+          click_link crystal.name
+        end
       end
 
       it 'doesnt add to the inventory' do
