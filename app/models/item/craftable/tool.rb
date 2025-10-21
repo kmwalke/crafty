@@ -1,15 +1,12 @@
 class Item::Craftable::Tool < Item
-  include Equippable
   include Craftable
+  include Equippable
+  include SimpleName
 
   has_one :equipped_by, class_name: 'User'
 
   def actions
     %w[gather]
-  end
-
-  def full_name
-    name
   end
 
   def gather(_resource)

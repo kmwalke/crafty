@@ -14,6 +14,10 @@ div.controls {
     }
 
     div.actions {
+      label {
+        color: $section-action-color;
+      }
+
       div.section-content {
         border-top: 2px solid $section-action-color;
 
@@ -30,6 +34,10 @@ div.controls {
     }
 
     div.buildings {
+      label {
+        color: $section-buildings-color;
+      }
+
       div.section-content {
         border-top: 2px solid $section-buildings-color;
 
@@ -46,6 +54,10 @@ div.controls {
     }
 
     div.equipment {
+      label {
+        color: $section-equipment-color;
+      }
+
       div.section-content {
         border-top: 2px solid $section-equipment-color;
 
@@ -62,6 +74,10 @@ div.controls {
     }
 
     div.inventory {
+      label {
+        color: $section-inventory-color;
+      }
+
       div.section-content {
         border-top: 2px solid $section-inventory-color;
 
@@ -78,6 +94,10 @@ div.controls {
     }
 
     div.lifeforms {
+      label {
+        color: $section-lifeforms-color;
+      }
+
       div.section-content {
         border-top: 2px solid $section-lifeforms-color;
 
@@ -94,6 +114,10 @@ div.controls {
     }
 
     div.resources {
+      label {
+        color: $section-resources-color;
+      }
+
       div.section-content {
         border-top: 2px solid $section-resources-color;
 
