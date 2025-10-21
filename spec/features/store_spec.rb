@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'TradingHall' do
+RSpec.describe 'Store' do
   # Trading hall allows auction house like listings
   # Trading is async.
   # UX: You enter the trading hall. you peruse the listings and once catches your eye.
@@ -35,7 +35,17 @@ RSpec.describe 'TradingHall' do
     expect(page).to have_content(building.description)
   end
 
-  pending 'list a trade in the hall'
+  it 'has an inventory to add items to' do
+    # each building has an inventory.  items can be in inventory without being for sale
+    # this could allow some automated linkage between your supplier and your shop.  ie your mine delivers directly to your shop
+  end
+
+  it 'lists an item in inventory for sale' do
+    # mark an item from inventory as "for sale"
+    # set a price for that item
+    # a "price" is another item.  ie: I list 1 legendary mushroom fruit for sale for 20 common crystal shards
+  end
+
   pending 'counter a trade in the hall'
   pending 'accept a trade in the hall'
 
