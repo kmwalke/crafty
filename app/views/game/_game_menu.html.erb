@@ -13,6 +13,7 @@
         <% if current_user -%>
           <li><a href="#">Settings</a></li>
           <li><a href="#">Change Log</a></li>
+          <li><%= link_to 'Vision Board', vision_board_path %></li>
           <li><%= link_to 'Log Out', logout_path %></li>
         <% end %>
       </ul>
