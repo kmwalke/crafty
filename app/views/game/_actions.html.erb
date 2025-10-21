@@ -2,7 +2,7 @@
 <div class="section actions">
   <label for="radio-actions">A</label>
   <div class="section-content">
-    <h4>Actions</h4>
+    <h4 class="section-title">Actions</h4>
     <ul>
       <li><%= link_to 'Drink a Monster Energy', monster_energy_path, data: turbo_hash %></li>
       <% @current_user.actions.each do |action| %>

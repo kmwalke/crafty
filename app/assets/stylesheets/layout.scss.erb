@@ -37,6 +37,13 @@ html {
     width: 100%;
     overflow: hidden;
 
+    ul {
+      li {
+        list-style: none;
+        line-height: 2em;
+      }
+    }
+
     .common, .common * {
       color: $common-color !important;
     }
@@ -256,18 +263,6 @@ html {
         margin-left: 0.5em;
       }
 
-      .controls-section {
-
-        legend {
-        }
-
-        ul {
-          li {
-            list-style: none;
-            line-height: 2em;
-          }
-        }
-      }
 
       div.popup:target {
         display: flex;
