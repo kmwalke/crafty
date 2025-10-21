@@ -22,17 +22,17 @@ class ItemUtil
         color: '#663300'
       ),
       Item::Craftable::Building.new(
-        name: 'Vehicle Store',
-        description: 'Keith\'s Boat Shop.',
+        name: 'Keith\'s Boat Shop.',
+        description: 'Vehicle Store.  Sells more than just boats!',
         level: Level::RARE,
-        created_by: User.first,
+        created_by: User.find_by(name: 'Keith'),
         color: '#663300'
       ),
       Item::Craftable::Building.new(
         name: 'Spawnville Zoo',
         description: 'Kerry\'s first request.',
         level: Level::RARE,
-        created_by: User.first,
+        created_by: User.find_by(name: 'Kerry'),
         color: '#663300'
       )
     ]
