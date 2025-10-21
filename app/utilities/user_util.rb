@@ -18,7 +18,7 @@ class UserUtil
         name: 'Bicycle',
         level: Level::COMMON,
         color: '#ffcccc',
-        created_by: user
+        created_by: User.first
       )
     )
 
@@ -28,7 +28,7 @@ class UserUtil
         description: 'Magical seeming tech.  Can gather from any resource.',
         level: Level::LEGENDARY,
         color: 'gold',
-        created_by: user
+        created_by: User.first
       )
     )
 
@@ -38,7 +38,8 @@ class UserUtil
         description: 'Slightly Dented',
         level: Level::COMMON,
         color: 'brown',
-        created_by: user
+        created_by: User.first,
+        stack_amount: 100
       )
     )
 
