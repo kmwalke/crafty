@@ -1,10 +1,18 @@
-<div class="game-content">
-  <%= render partial: 'player_card' %>
+<div class="header">
   <%= render partial: 'game_menu' %>
+  <%= render partial: 'player_card' %>
+</div>
+<div class="location">
   <%= render partial: 'location' %>
-  <%= render partial: 'actions' %>
-  <%= render partial: 'buildings' if @local_buildings.any? %>
-  <%= render partial: 'resources' if @local_resources.any? %>
-  <%= render partial: 'equipment' %>
-  <%= render partial: 'inventory' %>
+</div>
+<div class="controls">
+  <div class="radio-toolbar">
+    <%= render partial: 'inventory' %>
+    <%= render partial: 'equipment' %>
+    <%= render partial: 'lifeforms' %>
+    <%= render partial: 'resources' %>
+    <%= render partial: 'buildings' %>
+    <%= render partial: 'actions' %>
+  </div>
+
 </div>

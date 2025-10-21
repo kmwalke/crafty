@@ -41,7 +41,7 @@ RSpec.describe 'Game' do
       end
 
       it 'displays status' do
-        expect(page).to have_content("Status: #{player.status}")
+        expect(page).to have_content(player.status.to_s)
       end
     end
 

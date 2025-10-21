@@ -34,7 +34,7 @@ RSpec.describe 'PlayerInteraction' do
     end
 
     it 'status' do
-      expect(page).to have_css("div.popup#player-#{player2.id}-details span", text: "Status: #{player2.status}")
+      expect(page).to have_css("div.popup#player-#{player2.id}-details td", text: player2.status)
     end
   end
 end

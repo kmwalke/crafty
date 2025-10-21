@@ -12,7 +12,7 @@ RSpec.describe 'Buildings' do
   end
 
   it 'sees buildings' do
-    expect(page).to have_css('fieldset.buildings a', text: building.name)
+    expect(page).to have_css('div.buildings a', text: building.name)
   end
 
   it 'does not see distant buildings' do

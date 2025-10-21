@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_19_145619) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_20_194311) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -59,6 +59,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_19_145619) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "bg_color", default: "#000", null: false
+    t.string "highlight_color"
     t.index ["name"], name: "index_locations_on_name", unique: true
     t.index ["pos_x", "pos_y"], name: "index_locations_on_pos_x_and_pos_y", unique: true
   end
@@ -73,6 +74,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_19_145619) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "level", null: false
+    t.string "color"
   end
 
   create_table "user_statuses", primary_key: "name", id: :string, force: :cascade do |t|
@@ -89,6 +91,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_19_145619) do
     t.integer "location_id"
     t.integer "vehicle_id"
     t.integer "tool_id"
+    t.integer "vitality", default: 100, null: false
+    t.integer "age", default: 16, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

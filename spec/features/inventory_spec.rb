@@ -19,16 +19,16 @@ RSpec.describe 'Inventory' do
 
   it 'shows the inventory items' do
     player.inventory.items.each do |item|
-      expect(page).to have_css('fieldset.inventory li span', text: item.name)
+      expect(page).to have_css('div.inventory li span', text: item.name)
     end
   end
 
   it 'shows the inventory items stack amount' do
-    expect(page).to have_css('fieldset.inventory li span.stack-amount', text: 2)
+    expect(page).to have_css('div.inventory li span.stack-amount', text: 2)
   end
 
   it 'shows remaining inventory space' do
-    expect(page).to have_css('fieldset.inventory span.remaining-space', text: player.inventory.remaining_space)
+    expect(page).to have_css('div.inventory span.remaining-space', text: player.inventory.remaining_space)
   end
 
   describe 'details on click' do

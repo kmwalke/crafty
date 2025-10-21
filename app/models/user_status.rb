@@ -2,7 +2,8 @@ class UserStatus < ApplicationRecord
   validates :name, presence: true
 
   STATUSES = {
-    mining: 'Mining',
+    crafting: 'Crafting',
+    gathering: 'Gathering',
     resting: 'Resting',
     traveling: 'Traveling'
   }.freeze
