@@ -14,13 +14,31 @@ class UserUtil
 
     create_item(
       Item::Craftable::Vehicle.new(
-        description: 'An old bike with a rusty trailer.', name: 'Bicycle', level: Level::COMMON, color: '#ffcccc', created_by: user
+        description: 'An old bike with a rusty trailer.',
+        name: 'Bicycle',
+        level: Level::COMMON,
+        color: '#ffcccc',
+        created_by: user
       )
     )
 
     create_item(
       Item::Craftable::Tool::GatheringTool.new(
-        name: 'Universal Extractor', description: 'Magical seeming tech.  Can gather from any resource.', level: Level::LEGENDARY, color: 'gold', created_by: user
+        name: 'Universal Extractor',
+        description: 'Magical seeming tech.  Can gather from any resource.',
+        level: Level::LEGENDARY,
+        color: 'gold',
+        created_by: user
+      )
+    )
+
+    create_item(
+      Item::Craftable::Coin::Copper.new(
+        name: 'Copper Coin',
+        description: 'Slightly Dented',
+        level: Level::COMMON,
+        color: 'brown',
+        created_by: user
       )
     )
 

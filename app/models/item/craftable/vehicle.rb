@@ -1,15 +1,12 @@
 class Item::Craftable::Vehicle < Item
-  include Equippable
   include Craftable
+  include Equippable
+  include SimpleName
 
   has_one :equipped_by, class_name: 'User'
 
   def actions
     %w[travel]
-  end
-
-  def full_name
-    name
   end
 
   def travel(location)
