@@ -46,6 +46,14 @@ RSpec.describe 'Store' do
     # a "price" is another item.  ie: I list 1 legendary mushroom fruit for sale for 20 common crystal shards
   end
 
+  it 'requires access to list' do
+    # only the owner of the store can list sales
+  end
+
+  it 'is a public trading hall' do
+    # anyone can list sales
+  end
+
   pending 'counter a trade in the hall'
   pending 'accept a trade in the hall'
 
