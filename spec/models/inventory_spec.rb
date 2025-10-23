@@ -40,7 +40,7 @@ RSpec.describe Inventory do
   end
 
   describe 'restricted inventories' do
-    let(:shard_inv) { create(:inventory, type: ItemType::TYPES[:gatherable_shard]) }
+    let(:shard_inv) { create(:inventory, allowed_type: ItemType::TYPES[:gatherable_shard]) }
 
     it 'puts allowed items in' do
       item = build(:gatherable_shard, inventory: nil)

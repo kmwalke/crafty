@@ -37,7 +37,8 @@ RSpec.describe 'Store' do
 
   it 'has an inventory to add items to' do
     # each building has an inventory.  items can be in inventory without being for sale
-    # this could allow some automated linkage between your supplier and your shop.  ie your mine delivers directly to your shop
+    # this could allow some automated linkage between your supplier and your shop.
+    # ie your mine delivers directly to your shop
   end
 
   it 'lists an item in inventory for sale' do

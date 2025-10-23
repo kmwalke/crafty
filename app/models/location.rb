@@ -37,6 +37,6 @@ class Location < ApplicationRecord
   private
 
   def create_buildings
-    Inventory.create(location: self, size: ALLOWABLE_NUM_OF_BUILDINGS)
+    Inventory.create(location: self, size: ALLOWABLE_NUM_OF_BUILDINGS, allowed_type: ItemType::TYPES[:craftable_building])
   end
 end

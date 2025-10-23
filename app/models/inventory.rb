@@ -3,6 +3,7 @@ class Inventory < ApplicationRecord
 
   belongs_to :user, optional: true
   belongs_to :location, optional: true
+  belongs_to :building, optional: true
   has_many :items
 
   delegate :any?, :count, :each, :include?, to: :items
@@ -18,7 +19,7 @@ class Inventory < ApplicationRecord
 
   def add_item(item)
     raise CraftyError, ErrorMessage::INVENTORY[:already_in_inventory] if item.inventory
-    raise CraftyError, ErrorMessage::INVENTORY[:typed_inventory] unless type.nil? || type == item.type
+    raise CraftyError, ErrorMessage::INVENTORY[:typed_inventory] unless allowed_type.nil? || allowed_type == item.type
 
     item_in_inv = items.find_by(type: item.type, level: item.level, name: item.name)
 

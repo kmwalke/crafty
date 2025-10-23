@@ -1,5 +1,3 @@
 class VisionBoardController < ApplicationController
-  def index
-
-  end
+  def index; end
 end

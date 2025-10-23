@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_20_194311) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_23_141031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -28,7 +28,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_194311) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "location_id"
-    t.string "type"
+    t.string "allowed_type"
+    t.integer "building_id"
   end
 
   create_table "item_types", primary_key: "name", id: :string, force: :cascade do |t|
@@ -96,7 +97,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_194311) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "inventories", "item_types", column: "type", primary_key: "name"
+  add_foreign_key "inventories", "item_types", column: "allowed_type", primary_key: "name"
   add_foreign_key "items", "item_types", column: "type", primary_key: "name"
   add_foreign_key "resources", "resource_types", column: "type", primary_key: "name"
   add_foreign_key "users", "user_statuses", column: "status", primary_key: "name"
