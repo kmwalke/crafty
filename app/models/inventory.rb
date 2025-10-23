@@ -1,8 +1,6 @@
 class Inventory < ApplicationRecord
-  before_save :user_xor_location
-
-  belongs_to :user, optional: true
-  belongs_to :location, optional: true
+  has_one :user
+  has_one :location
   has_many :items
 
   delegate :any?, :count, :each, :include?, to: :items
@@ -32,13 +30,5 @@ class Inventory < ApplicationRecord
       item.save
       item
     end
-  end
-
-  private
-
-  def user_xor_location
-    return if user.nil? ^ location.nil?
-
-    raise CraftyError, 'an Inventory must belong to a user or a location.'
   end
 end

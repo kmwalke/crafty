@@ -24,15 +24,15 @@ RSpec.describe Location do
   end
 
   it 'creates an inventory' do
-    expect(location.buildings).to be_a(Inventory)
+    expect(location.property).to be_a(Inventory)
   end
 
   it 'adds a building' do
-    old_count = location.buildings.count
+    old_count = location.property.count
 
     location.add_building(build(:craftable_building, inventory: nil))
 
-    expect(location.buildings.count).to eq(old_count + 1)
+    expect(location.property.count).to eq(old_count + 1)
   end
 
   it 'does not add other items to buildings' do
