@@ -13,7 +13,7 @@
         </td>
         <td>
           <% if @current_user.tool %>
-            <%= link_to 'X', unequip_tool_path, id: 'unequip_tool', data: turbo_hash %>
+            <%= link_to 'X', unequip_tool_path, id: 'unequip_tool' %>
           <% end %>
         </td>
       </tr>
@@ -26,7 +26,7 @@
         </td>
         <td>
           <% if @current_user.vehicle %>
-            <%= link_to 'X', unequip_vehicle_path, id: 'unequip_vehicle', data: turbo_hash %>
+            <%= link_to 'X', unequip_vehicle_path, id: 'unequip_vehicle' %>
           <% end %>
         </td>
       </tr>

@@ -1,6 +1,6 @@
 <div id="building-<%= building.id %>" class="popup">
   <div class="popup-content building-popup">
-    <a href="#" class="close-button">X</a>
+    <a href="#" class="close-button" data-turbo="false">X</a>
     <h4 class="title" style="background-color: <%= building.color %>">
       <%= building.name %>
     </h4>
@@ -9,14 +9,16 @@
     <p class="description"><%= building.description %></p>
     <fieldset>
       <legend>Building Inventory</legend>
-      <%= link_to('Add Item', building_select_item_path(building)) %>
-      <ul>
-        <% building.child_inventory.items.each do |item| %>
-          <li>
-            <%= level_color(item.level, item.full_name) %>
-          </li>
-        <% end %>
-      </ul>
+      <%= turbo_frame_tag 'building-inventory' do %>
+        <%= link_to('Add Item', building_select_item_path(building)) %>
+        <ul>
+          <% building.child_inventory.items.each do |item| %>
+            <li>
+              <%= level_color(item.level, item.full_name) %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
     </fieldset>
   </div>
 </div>

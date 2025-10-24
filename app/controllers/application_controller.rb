@@ -20,10 +20,6 @@ class ApplicationController < ActionController::Base
     level_color_html(level, text).html_safe
   end
 
-  def turbo_hash
-    { turbo: true, turbo_frame: '_top', turbo_prefetch: 'false' }
-  end
-
   private
 
   def level_color_html(level, text)

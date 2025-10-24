@@ -1,11 +1,11 @@
 <input type="radio" id="radio-buildings" name="radios" value="buildings"/>
 <div class="section buildings">
   <label for="radio-buildings">B</label>
-  <div class="section-content">
+  <div class="section-content" >
     <h4 class="section-title">Buildings</h4>
     <ul>
       <% @local_buildings.items.each do |building| %>
-        <li>
+        <li data-turbo="false">
           <%= level_color(building.level, link_to(building.name, "#building-#{ building.id }")) %>
         </li>
         <%= render partial: 'building_popup', locals: { building: } %>

@@ -4,9 +4,9 @@
   <div class="section-content">
     <h4 class="section-title">Actions</h4>
     <ul>
-      <li><%= link_to 'Drink a Monster Energy', monster_energy_path, data: turbo_hash %></li>
+      <li><%= link_to 'Drink a Monster Energy', monster_energy_path%></li>
       <% @current_user.actions.each do |action| %>
-        <li><%= link_to action.capitalize, "##{ action }-popup" %></li>
+        <li data-turbo="false"><%= link_to action.capitalize, "##{ action }-popup" %></li>
         <%= render partial: 'action_popup', locals: { action: action } %>
       <% end %>
     </ul>
