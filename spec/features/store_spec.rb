@@ -22,9 +22,9 @@ RSpec.describe 'Store' do
 
   let!(:player) { create(:user) }
   let!(:building) { build(:craftable_building, inventory: nil) }
+  let!(:item) { player.inventory.add_item(build(:gatherable_fruit, inventory: nil)) }
 
   before do
-    5.times.map { player.inventory.add_item(build(:generic_item, inventory: nil)) }
     player.location.add_building(building)
 
     login_as player
@@ -40,13 +40,17 @@ RSpec.describe 'Store' do
     # each building has an inventory.  items can be in inventory without being for sale
     # this could allow some automated linkage between your supplier and your shop.
     # ie your mine delivers directly to your shop
-    item = player.inventory.items.last
     within "#building-#{building.id}" do
       click_link 'Add Item'
-      click_link item.full_name
     end
+    click_link item.full_name
 
-    expect(building.child_inventory.items.last.id).to eq(item.id)
+    within "#building-#{building.id}" do
+      expect(page).to have_content(item.full_name)
+    end
+  end
+
+  it 'picks up an item' do
   end
 
   it 'lists an item in inventory for sale' do

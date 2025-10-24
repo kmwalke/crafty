@@ -7,5 +7,16 @@
     <%= level_color(building.level, building.level_name) %>
     <span class="created-by">Created by <%= building.created_by.name %></span>
     <p class="description"><%= building.description %></p>
+    <fieldset>
+      <legend>Building Inventory</legend>
+      <%= link_to('Add Item', building_select_item_path(building)) %>
+      <ul>
+        <% building.child_inventory.items.each do |item| %>
+          <li>
+            <%= level_color(item.level, item.full_name) %>
+          </li>
+        <% end %>
+      </ul>
+    </fieldset>
   </div>
 </div>

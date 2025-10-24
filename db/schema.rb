@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_23_152120) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_23_173822) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -43,6 +43,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_23_152120) do
     t.datetime "updated_at", null: false
     t.string "color", null: false
     t.integer "stack_amount", default: 1, null: false
+    t.integer "child_inventory_id"
   end
 
   create_table "levels", force: :cascade do |t|
