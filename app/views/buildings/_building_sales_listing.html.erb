@@ -1,8 +1,8 @@
 <%= link_to('List Sale', building_select_item_path(building)) %>
 <ul>
-  <% building.child_inventory.items.each do |item| %>
+  <% building.listings.each do |listing| %>
     <li>
-      <%= level_color(item.level, item.full_name) %>
+      <%= listing.to_s %>
     </li>
   <% end %>
 </ul>
