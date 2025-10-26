@@ -11,6 +11,8 @@ class BuildingsController < ApplicationController
 
   def inventory; end
 
+  def sales_listings; end
+
   def select_item; end
 
   private

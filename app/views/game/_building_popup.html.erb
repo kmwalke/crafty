@@ -7,10 +7,16 @@
     <%= level_color(building.level, building.level_name) %>
     <span class="created-by">Created by <%= building.created_by.name %></span>
     <p class="description"><%= building.description %></p>
-    <fieldset>
+    <fieldset id="inventory">
       <legend>Building Inventory</legend>
       <%= turbo_frame_tag 'building-inventory', src: building_inventory_path(building) do %>
         <%= render partial: 'buildings/building_inventory', locals: { building: building } %>
+      <% end %>
+    </fieldset>
+    <fieldset id="sales-listings">
+      <legend>Sales Listing</legend>
+      <%= turbo_frame_tag 'building-sales-listing', src: building_sales_listings_path(building) do %>
+        <%= render partial: 'buildings/building_sales_listing', locals: { building: building } %>
       <% end %>
     </fieldset>
   </div>

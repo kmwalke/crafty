@@ -37,10 +37,7 @@ RSpec.describe 'Store' do
   end
 
   it 'adds items to the building inventory' do
-    # each building has an inventory.  items can be in inventory without being for sale
-    # this could allow some automated linkage between your supplier and your shop.
-    # ie your mine delivers directly to your shop
-    within "#building-#{building.id}" do
+    within "#building-#{building.id} #inventory" do
       click_link 'Add Item'
     end
     click_link item.full_name
@@ -48,7 +45,7 @@ RSpec.describe 'Store' do
     visit game_path
     click_link building.name
 
-    within "#building-#{building.id}" do
+    within "#building-#{building.id} #inventory" do
       expect(page).to have_content(item.full_name)
     end
   end
@@ -60,6 +57,27 @@ RSpec.describe 'Store' do
     # mark an item from inventory as "for sale"
     # set a price for that item
     # a "price" is another item.  ie: I list 1 legendary mushroom fruit for sale for 20 common crystal shards
+    item         = create(:gatherable_ore, inventory: building.child_inventory)
+    price_type   = ItemType::TYPE_NAMES.sample
+    price_level  = Level::NAMES.sample
+    price_amount = rand(1..100)
+
+    within "#building-#{building.id} #sales-listings" do
+      click_link 'List Sale'
+    end
+    select item.full_name, from: 'sales-item-dropdown'
+    select price_type, from: 'price-type-dropdown'
+    select price_level, from: 'price-level-dropdown'
+    fill_in 'Amount', with: price_amount
+
+    click_button 'Create Sales Listing'
+
+    visit game_path
+    click_link building.name
+
+    within "#building-#{building.id} #sales-listings" do
+      expect(page).to have_content(item.full_name)
+    end
   end
 
   it 'requires access to list' do
