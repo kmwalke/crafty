@@ -1,5 +1,5 @@
 <%= turbo_frame_tag 'building-inventory' do %>
-  <%= link_to 'Cancel', game_path %>
+  <%= link_to 'Cancel', building_inventory_path(@building) %>
   <ul>
     <% @current_user.inventory.items.each do |item| %>
       <li>

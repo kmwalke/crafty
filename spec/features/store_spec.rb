@@ -45,6 +45,9 @@ RSpec.describe 'Store' do
     end
     click_link item.full_name
 
+    visit game_path
+    click_link building.name
+
     within "#building-#{building.id}" do
       expect(page).to have_content(item.full_name)
     end

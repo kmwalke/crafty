@@ -3,13 +3,15 @@ class BuildingsController < ApplicationController
   before_action :set_building
   before_action :set_item, only: :add_item
 
-  def select_item; end
-
   def add_item
-    game_action do
+    game_action(path: building_inventory_path(@building)) do
       @item.update(inventory: @building.child_inventory)
     end
   end
+
+  def inventory; end
+
+  def select_item; end
 
   private
 

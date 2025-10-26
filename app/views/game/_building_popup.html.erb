@@ -9,15 +9,8 @@
     <p class="description"><%= building.description %></p>
     <fieldset>
       <legend>Building Inventory</legend>
-      <%= turbo_frame_tag 'building-inventory' do %>
-        <%= link_to('Add Item', building_select_item_path(building)) %>
-        <ul>
-          <% building.child_inventory.items.each do |item| %>
-            <li>
-              <%= level_color(item.level, item.full_name) %>
-            </li>
-          <% end %>
-        </ul>
+      <%= turbo_frame_tag 'building-inventory', src: building_inventory_path(building) do %>
+        <%= render partial: 'buildings/building_inventory', locals: { building: building } %>
       <% end %>
     </fieldset>
   </div>

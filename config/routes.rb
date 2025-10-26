@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   get '/building/:id/add_item', to: 'buildings#select_item', as: 'building_select_item'
   get '/building/:id/add_item/:item_id', to: 'buildings#add_item', as: 'building_add_item'
+  get '/building/:id/inventory', to: 'buildings#inventory', as: 'building_inventory'
 
   # Cheats
   get 'monster_energy', to: 'cheats#monster_energy'
