@@ -12,28 +12,33 @@
   <% end %>
 
   <div>
-    <%= form.label :item_id, style: "display: block" %>
-    <%= form.number_field :item_id %>
+    <%= form.label :building_id %>
+    <%= form.number_field :building_id, value: params[:building_id] %>
   </div>
 
   <div>
-    <%= form.label :created_by_id, style: "display: block" %>
-    <%= form.number_field :created_by_id %>
+    <%= form.label :item_id %>
+    <%= form.collection_select :item_id, @valid_items, :id, :full_name %>
   </div>
 
   <div>
-    <%= form.label :price_type, style: "display: block" %>
-    <%= form.text_field :price_type %>
+    <%= form.label :created_by_id %>
+    <%= form.number_field :created_by_id, value: @current_user.id %>
   </div>
 
   <div>
-    <%= form.label :price_amount, style: "display: block" %>
+    <%= form.label :price_type %>
+    <%= form.collection_select :price_type, ItemType::TYPE_NAMES, :to_s, :to_s %>
+  </div>
+
+  <div>
+    <%= form.label :price_amount %>
     <%= form.number_field :price_amount %>
   </div>
 
   <div>
-    <%= form.label :price_level, style: "display: block" %>
-    <%= form.number_field :price_level %>
+    <%= form.label :price_level %>
+    <%= form.collection_select :price_level, Level::NAMES, :to_s, :to_s %>
   </div>
 
   <div>

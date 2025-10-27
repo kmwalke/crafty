@@ -1,9 +1,10 @@
 FactoryBot.define do
   factory :listing do
-    item_id { 1 }
-    created_by_id { 1 }
-    price_type { "MyString" }
-    price_amount { 1 }
-    price_level { 1 }
+    created_by factory: :user
+    building factory: :craftable_building
+    item
+    price_type { ItemType::TYPE_NAMES.sample }
+    price_amount { rand 1..100 }
+    price_level { Level::NUMBERS.sample }
   end
 end
