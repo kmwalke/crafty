@@ -12,6 +12,8 @@ class User < ApplicationRecord
   belongs_to :vehicle, optional: true, class_name: 'Item::Craftable::Vehicle'
   belongs_to :inventory, optional: true
 
+  has_many :listings
+
   MAX_ENERGY             = 1000
   MAX_AGE                = 100
   MAX_VITALITY           = 100

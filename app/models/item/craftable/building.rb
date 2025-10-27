@@ -3,6 +3,8 @@ class Item::Craftable::Building < Item
 
   before_create :provision_inventory
 
+  has_many :listings
+
   DEFAULT_INVENTORY_SIZE = 50
 
   private
