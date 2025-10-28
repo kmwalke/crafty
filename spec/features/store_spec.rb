@@ -4,18 +4,18 @@ RSpec.describe 'Store' do
   # Trading hall allows auction house like listings
   # Trading is async.
   # UX: You enter the trading hall. you peruse the listings and once catches your eye.
-  #     A Rare vehicle!  It is a little expensive though.  They want 20x gold coins.
-  #     You counter the offer at 15 gold pieces.
+  #     A Rare vehicle!  It is a little expensive though.  They want 20x credits
+  #     You counter the offer at 15 credits.
   #     The gold pieces are removed from your inventory.  The hall will keep them safe.
   #     Some time later, the player who listed the trade accepts.
   #     You are notified and the new item is ready for pickup at the hall.
 
   # UX: Same as above, but the price is right.  You accept the trade immediately.
-  #     20x Gold Coins removed from your inventory.  Listing player is notified.
+  #     20x credits removed from your inventory.  Listing player is notified.
   #     Your new vehicle is ready for pickup at the hall right away
 
   # UX: Same as first, but after some time, the listing player declines the counter
-  #     You are notified.  Your gold coins are ready for pickup at the hall
+  #     You are notified.  Your credits are ready for pickup at the hall
 
   # all these "notices" imply in game mail.  The flash notice is too ephemeral
   # probably in game email or something.  whew, fun
@@ -32,11 +32,12 @@ RSpec.describe 'Store' do
     click_link building.name
   end
 
-  it 'requires all purchases to be made with coins!!!!' do
-    # you know, I am just going to force using coins.  It will massively simplify things.
-    # earn coins by selling things
+  it 'requires all purchases to be made with credits!!!!' do
+    # you know, I am just going to force using credits.  It will massively simplify things.
+    # credits is just an int on user
+    # earn creds by selling things
     # Folks can trade directly with each other later
-    # Auction house listings require using coins
+    # Auction house listings require using credits
   end
 
   it 'building section of homepage' do

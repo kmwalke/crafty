@@ -32,17 +32,6 @@ class UserUtil
       )
     )
 
-    create_item(
-      Item::Craftable::Coin::Copper.new(
-        name: 'Copper Coin',
-        description: 'Slightly Dented',
-        level: Level::COMMON,
-        color: 'brown',
-        created_by: User.first,
-        stack_amount: 100
-      )
-    )
-
     @user
   end
 
