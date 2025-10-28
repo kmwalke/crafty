@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_26_210325) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_28_223116) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -54,11 +54,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_26_210325) do
     t.integer "item_id"
     t.integer "created_by_id"
     t.integer "building_id"
-    t.string "price_type"
-    t.integer "price_amount"
-    t.integer "price_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price", default: 1, null: false
   end
 
   create_table "locations", force: :cascade do |t|
@@ -105,6 +103,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_26_210325) do
     t.integer "vitality", default: 100, null: false
     t.integer "age", default: 16, null: false
     t.integer "inventory_id"
+    t.integer "credits", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

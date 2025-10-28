@@ -62,14 +62,10 @@ class User < ApplicationRecord
     vehicle.travel(new_location)
   end
 
-  def purchase(listing, price_item)
-    raise CraftyError, 'You can\'t afford that.' unless can_afford?(listing, price_item)
+  def purchase(listing)
+    raise CraftyError, 'You can\'t afford that.' unless can_afford?(listing)
 
-    if price_item.stack_amount > listing.price_amount
-      price_item.update(stack_amount: price_item.stack_amount - listing.price_amount)
-    else
-      price_item.destroy
-    end
+    update(credits: (credits - listing.price))
 
     listing.item.update(inventory: inventory)
     listing.destroy
@@ -106,12 +102,8 @@ class User < ApplicationRecord
     self.energy = User::MAX_ENERGY
   end
 
-  def can_afford?(listing, price_item)
-    return false if price_item.nil? ||
-                    price_item.inventory != inventory ||
-                    price_item.type != listing.price_type ||
-                    price_item.level < listing.price_level ||
-                    price_item.stack_amount < listing.price_amount
+  def can_afford?(listing)
+    return false if listing.price > credits
 
     true
   end

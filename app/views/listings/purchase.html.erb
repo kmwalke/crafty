@@ -1,20 +1,9 @@
 <%= turbo_frame_tag 'building-sales-listing' do %>
   <span>
     Really purchase <%= @listing.item.stack_amount %>x <%= @listing.item.full_name %>
-    for <%= @listing.price_amount %>x
-  <span class="<%= Level.level_name @listing.price_level %>">
-    <%= @listing.price_type %>
-  </span>
-  ?
+    for <%= @listing.price %><%= credit_symbol %>?
   </span>
 
-  <span class="choose">Pay with an item:</span>
-  <ul>
-    <% @current_user.inventory.items.each do |item| %>
-      <li class="<%= Level.level_name(item.level).downcase %>">
-        <%= link_to item.full_name, confirm_purchase_listing_path(@building, @listing, params: { item_id: item.id }) %>
-      </li>
-    <% end %>
-  </ul>
+  <%= link_to "Pay #{@listing.price}#{credit_symbol}", confirm_purchase_listing_path(@building, @listing) %>
   <%= link_to 'Cancel', building_sales_listings_path(@building) %>
 <% end %>

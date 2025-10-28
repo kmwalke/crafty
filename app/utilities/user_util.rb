@@ -10,6 +10,7 @@ class UserUtil
   def provision_user(user)
     @user          = user
     @user.password = '123'
+    @user.credits  = 1000
     @user.save
 
     create_item(
@@ -32,17 +33,6 @@ class UserUtil
       )
     )
 
-    create_item(
-      Item::Craftable::Coin::Copper.new(
-        name: 'Copper Coin',
-        description: 'Slightly Dented',
-        level: Level::COMMON,
-        color: 'brown',
-        created_by: User.first,
-        stack_amount: 100
-      )
-    )
-
     @user
   end
 
@@ -59,6 +49,7 @@ class UserUtil
       User.build(email: 'kerryslaymaker@gmail.com', name: 'Kerry', location: Location.first),
       User.build(email: 'buttforker@gmail.com', name: 'Zack', location: Location.first),
       User.build(email: 'Aaron.m.lee.al@gmail.com', name: 'Aaron', location: Location.first),
+      User.build(email: 'polymangler@gmail.com', name: 'Bruce', location: Location.first),
       User.build(email: 'a@b.com', name: 'Lumber Jack', location: Location.last, status: UserStatus::STATUSES[:gathering]),
       User.build(email: 'b@b.com', name: 'Shifty Rogue', location: Location.last, status: UserStatus::STATUSES[:traveling])
     ]
