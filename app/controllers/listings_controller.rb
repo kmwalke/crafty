@@ -14,7 +14,7 @@ class ListingsController < ApplicationController
   # GET /listings/new
   def new
     @listing     = Listing.new
-    @valid_items = @current_user.inventory.items + @building.child_inventory.items
+    @valid_items = @current_user.inventory.items
   end
 
   # GET /listings/1/edit
@@ -26,6 +26,7 @@ class ListingsController < ApplicationController
 
     respond_to do |format|
       if @listing.save
+        @listing.item.update(inventory: @building.child_inventory)
         format.html { redirect_to building_sales_listings_path(@building), notice: 'Listing was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
