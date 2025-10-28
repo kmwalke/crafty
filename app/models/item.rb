@@ -15,7 +15,7 @@ class Item < ApplicationRecord
   DEFAULT_COLOR = '#EEE'.freeze
 
   def full_name
-    " #{name} #{pretty_type}"
+    "#{name} #{pretty_type}"
   end
 
   def full_name_level
