@@ -1,6 +1,6 @@
 <input type="radio" id="radio-equipment" name="radios" value="equipment"/>
 <div class="section equipment">
-  <label for="radio-equipment">E</label>
+  <label for="radio-equipment" class="radio">E</label>
   <div class="section-content">
     <h4 class="section-title">Equipment</h4>
     <table>
@@ -13,7 +13,7 @@
         </td>
         <td>
           <% if @current_user.tool %>
-            <%= link_to 'X', unequip_tool_path, id: 'unequip_tool', data: turbo_hash %>
+            <%= link_to 'X', unequip_tool_path, id: 'unequip_tool' %>
           <% end %>
         </td>
       </tr>
@@ -26,7 +26,7 @@
         </td>
         <td>
           <% if @current_user.vehicle %>
-            <%= link_to 'X', unequip_vehicle_path, id: 'unequip_vehicle', data: turbo_hash %>
+            <%= link_to 'X', unequip_vehicle_path, id: 'unequip_vehicle' %>
           <% end %>
         </td>
       </tr>

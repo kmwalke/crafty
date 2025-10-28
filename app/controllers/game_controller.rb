@@ -46,14 +46,4 @@ class GameController < ApplicationController
       @current_user.travel(location)
     end
   end
-
-  private
-
-  def game_action(redirect: true)
-    yield
-  rescue CraftyError => e
-    @notice = e.to_s
-  ensure
-    redirect_to game_path, notice: @notice if redirect
-  end
 end
