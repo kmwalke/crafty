@@ -10,6 +10,7 @@ class UserUtil
   def provision_user(user)
     @user          = user
     @user.password = '123'
+    @user.credits = 1000
     @user.save
 
     create_item(
