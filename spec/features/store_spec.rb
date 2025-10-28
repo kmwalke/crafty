@@ -62,19 +62,14 @@ RSpec.describe 'Store' do
   end
 
   it 'lists an item in inventory for sale' do
-    item         = player.inventory.items.last
-    price_type   = ItemType::TYPE_NAMES.sample
-    price_level  = Level::NAMES.sample
-    price_amount = rand(1..100)
+    item  = player.inventory.items.last
+    price = rand(1..100)
 
     within "#building-#{building.id} #sales-listings" do
       click_link 'List Sale'
     end
 
-    select item.full_name_level, from: 'listing_item_id'
-    select price_type, from: 'listing_price_type'
-    select price_level, from: 'listing_price_level'
-    fill_in 'listing_price_amount', with: price_amount
+    fill_in 'listing_price', with: price
 
     click_button 'Create Listing'
 
@@ -97,14 +92,7 @@ RSpec.describe 'Store' do
   pending 'counter a trade in the hall'
 
   it 'accepts a trade in the hall' do
-    item        = player.inventory.items.last
-    listing     = create(
-      :listing,
-      building: building,
-      price_amount: item.stack_amount,
-      price_type: item.type,
-      price_level: item.level
-    )
+    listing     = create(:listing, building: building, price: 1)
     listed_item = listing.item
 
     visit game_path
@@ -114,20 +102,17 @@ RSpec.describe 'Store' do
       click_link listing.item.full_name
     end
     visit purchase_listing_path(building, listing)
-    click_link item.full_name
+    click_link "Pay #{listing.price}¤"
 
-    expect(player.reload.inventory.reload.include?(listed_item)).to be true
+    visit game_path
+
+    within '.inventory' do
+      expect(page).to have_content(listed_item.full_name)
+    end
   end
 
   it 'requires proper payment' do
-    item    = player.inventory.items.last
-    listing = create(
-      :listing,
-      building: building,
-      price_amount: item.stack_amount + 1,
-      price_type: item.type,
-      price_level: item.level
-    )
+    listing = create(:listing, building: building, price: player.credits + 1)
 
     visit game_path
     click_link building.name
@@ -135,7 +120,7 @@ RSpec.describe 'Store' do
     within "#building-#{building.id} #sales-listings" do
       click_link listing.item.full_name
     end
-    click_link item.full_name
+    click_link "Pay #{listing.price}¤"
 
     expect(page).to have_content('You can\'t afford that.')
   end

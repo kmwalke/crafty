@@ -5,7 +5,7 @@
     <h4 class="section-title">Inventory</h4>
     <span class="remaining-space"><%= @current_user.inventory.remaining_space %></span>
     <ul>
-      <li class="credits">Credits: <%= @current_user.credits %></li>
+      <li class="credits">Credits: <%= @current_user.credits %><%= credit_symbol %></li>
       <% @current_user.inventory.items.each do |item| %>
         <li data-turbo="false">
           <span class="stack-amount"><%= item.stack_amount if item.stack_amount > 1 %></span>

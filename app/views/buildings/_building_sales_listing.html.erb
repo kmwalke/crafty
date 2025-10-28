@@ -16,10 +16,7 @@
           <%= link_to listing.item.full_name, purchase_listing_path(building, listing) %>
         </span>
       <td>
-        <%= listing.price_amount %>x
-        <span class="<%= Level.level_name(listing.price_level).downcase %>">
-          <%= listing.price_type %>
-        </span>
+        <%= listing.price%><%= credit_symbol %>
       </td>
     </tr>
   <% end %>

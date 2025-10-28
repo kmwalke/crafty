@@ -25,18 +25,8 @@
   </div>
 
   <div>
-    <%= form.label :price_type %>
-    <%= form.collection_select :price_type, ItemType::TYPE_NAMES, :to_s, :to_s %>
-  </div>
-
-  <div>
-    <%= form.label :price_amount %>
-    <%= form.number_field :price_amount %>
-  </div>
-
-  <div>
-    <%= form.label :price_level %>
-    <%= form.collection_select :price_level, Level.all, :id, :name %>
+    <%= form.label :price, "Credits#{credit_symbol}" %>
+    <%= form.number_field :price %>
   </div>
 
   <div>
