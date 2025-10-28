@@ -10,6 +10,7 @@ class UserUtil
   def provision_user(user)
     @user          = user
     @user.password = '123'
+    @user.credits  = 1000
     @user.save
 
     create_item(
@@ -29,17 +30,6 @@ class UserUtil
         level: Level::LEGENDARY,
         color: 'gold',
         created_by: User.first
-      )
-    )
-
-    create_item(
-      Item::Craftable::Coin::Copper.new(
-        name: 'Copper Coin',
-        description: 'Slightly Dented',
-        level: Level::COMMON,
-        color: 'brown',
-        created_by: User.first,
-        stack_amount: 100
       )
     )
 

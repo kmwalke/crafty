@@ -2,7 +2,6 @@ class ItemType < ApplicationRecord
   TYPES      = {
     item: 'Item',
     craftable_building: 'Item::Craftable::Building',
-    craftable_coin_copper: 'Item::Craftable::Coin::Copper',
     craftable_tool: 'Item::Craftable::Tool',
     craftable_tool_gathering_tool: 'Item::Craftable::Tool::GatheringTool',
     craftable_vehicle: 'Item::Craftable::Vehicle',

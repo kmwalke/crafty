@@ -59,7 +59,7 @@ class ListingsController < ApplicationController
 
   def confirm_purchase
     game_action do
-      @current_user.purchase(@listing, Item.find_by(id: params[:item_id]))
+      @current_user.purchase(@listing)
     end
   end
 
@@ -76,6 +76,6 @@ class ListingsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def listing_params
-    params.expect(listing: [:building_id, :item_id, :created_by_id, :price_type, :price_amount, :price_level])
+    params.expect(listing: [:building_id, :item_id, :created_by_id, :price])
   end
 end

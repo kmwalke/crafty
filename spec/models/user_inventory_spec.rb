@@ -1,42 +1,38 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, credits: 1000) }
 
   describe 'inventory' do
     let(:item) { create(:gatherable_fish, inventory: user.inventory) }
 
     describe 'stores' do
-      let!(:listing) do
-        create(
-          :listing,
-          price_amount: item.stack_amount,
-          price_type: item.type,
-          price_level: item.level
-        )
-      end
+      let!(:listing) { create(:listing, price: 1) }
       let(:listed_item) { listing.item }
 
       it 'purchases a listing' do
-        user.purchase(listing, item)
+        user.purchase(listing)
         expect(user.inventory.include?(listed_item)).to be true
+      end
+
+      it 'pays for the listing' do
+        old_creds = user.credits
+        price     = listing.price
+
+        user.purchase(listing)
+        expect(user.credits).to eq(old_creds - price)
       end
 
       it 'removes the listing' do
         listing_id = listing.id
-        user.purchase(listing, item)
+        user.purchase(listing)
         expect { Listing.find(listing_id) }.to raise_error ActiveRecord::RecordNotFound
       end
 
       it 'requires proper payment' do
-        listing.update(price_amount: listing.price_amount + 1)
-        expect { user.purchase(listing, item) }.to raise_error CraftyError
-      end
+        listing.update(price: user.credits + 1)
 
-      it 'splits stack if overpaid' do
-        item.update(stack_amount: item.stack_amount + 1)
-        user.purchase(listing, item)
-        expect(item.reload.stack_amount).to eq(1)
+        expect { user.purchase(listing) }.to raise_error CraftyError
       end
     end
 
