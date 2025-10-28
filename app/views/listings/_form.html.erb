@@ -12,8 +12,7 @@
   <% end %>
 
   <div>
-    <%= form.label :building_id %>
-    <%= form.number_field :building_id, value: params[:building_id] %>
+    <%= form.hidden_field :building_id, value: params[:building_id] %>
   </div>
 
   <div>
@@ -22,8 +21,7 @@
   </div>
 
   <div>
-    <%= form.label :created_by_id %>
-    <%= form.number_field :created_by_id, value: @current_user.id %>
+    <%= form.hidden_field :created_by_id, value: @current_user.id %>
   </div>
 
   <div>
@@ -38,7 +36,7 @@
 
   <div>
     <%= form.label :price_level %>
-    <%= form.collection_select :price_level, Level::NAMES, :to_s, :to_s %>
+    <%= form.collection_select :price_level, Level.all, :id, :name %>
   </div>
 
   <div>

@@ -2,11 +2,12 @@
 <table>
   <thead>
   <tr>
-    <th>Item for Sale</th>
+    <th>&nbsp;</th>
     <th colspan="3">Price</th>
   </tr>
   <tr>
-    <th>&nbsp;</th>
+    <th>Listed By</th>
+    <th>Item for Sale</th>
     <th>Amount</th>
     <th>Level</th>
     <th>Type</th>
@@ -14,9 +15,10 @@
   </thead>
   <% building.listings.each do |listing| %>
     <tr>
+      <td><%= listing.created_by.name %></td>
       <td><%= listing.item.full_name %></td>
       <td><%= listing.price_amount %></td>
-      <td><%= listing.price_level %></td>
+      <td><%= Level.level_name listing.price_level %></td>
       <td><%= listing.price_type %></td>
     </tr>
   <% end %>
