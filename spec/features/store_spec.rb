@@ -87,7 +87,50 @@ RSpec.describe 'Store' do
   end
 
   pending 'counter a trade in the hall'
-  pending 'accept a trade in the hall'
+
+  it 'accepts a trade in the hall' do
+    item        = player.inventory.items.last
+    listing     = create(
+      :listing,
+      building: building,
+      price_amount: item.stack_amount,
+      price_type: item.type,
+      price_level: item.level
+    )
+    listed_item = listing.item
+
+    visit game_path
+    click_link building.name
+
+    within "#building-#{building.id} #sales-listings" do
+      click_link listing.item.full_name
+    end
+    visit purchase_listing_path(building, listing)
+    click_link item.full_name
+
+    expect(player.reload.inventory.reload.include?(listed_item)).to be true
+  end
+
+  it 'requires proper payment' do
+    item    = player.inventory.items.last
+    listing = create(
+      :listing,
+      building: building,
+      price_amount: item.stack_amount + 1,
+      price_type: item.type,
+      price_level: item.level
+    )
+
+    visit game_path
+    click_link building.name
+
+    within "#building-#{building.id} #sales-listings" do
+      click_link listing.item.full_name
+    end
+    click_link item.full_name
+
+    expect(page).to have_content('You can\'t afford that.')
+  end
 
   describe 'notifications' do
     pending 'trade was accepted'

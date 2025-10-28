@@ -29,7 +29,12 @@ Rails.application.routes.draw do
 
   resources :buildings, param: :building_id, only: [] do
     member do
-      resources :listings
+      resources :listings do
+        member do
+          get '/purchase', to: 'listings#purchase'
+          get '/confirm_purchase', to: 'listings#confirm_purchase'
+        end
+      end
     end
   end
 

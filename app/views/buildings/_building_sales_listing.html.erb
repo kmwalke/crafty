@@ -13,7 +13,7 @@
       <td>
         <%= listing.item.stack_amount %>x
         <span class="<%= Level.level_name(listing.item.level).downcase %>">
-          <%= listing.item.full_name %>
+          <%= link_to listing.item.full_name, purchase_listing_path(building, listing) %>
         </span>
       <td>
         <%= listing.price_amount %>x

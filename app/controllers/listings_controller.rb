@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_action :logged_in
-  before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :set_listing, except: [:index, :new, :create]
   before_action :set_building
 
   # GET /listings or /listings.json
@@ -22,15 +22,10 @@ class ListingsController < ApplicationController
 
   # POST /listings or /listings.json
   def create
-    @listing = Listing.new(listing_params)
+    game_action do
+      @listing = Listing.new(listing_params)
 
-    respond_to do |format|
-      if @listing.save
-        @listing.item.update(inventory: @building.child_inventory)
-        format.html { redirect_to building_sales_listings_path(@building), notice: 'Listing was successfully created.' }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+      @listing.item.update(inventory: @building.child_inventory) if @listing.save
     end
   end
 
@@ -57,6 +52,14 @@ class ListingsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to listings_path, notice: 'Listing was successfully destroyed.', status: :see_other }
       format.json { head :no_content }
+    end
+  end
+
+  def purchase; end
+
+  def confirm_purchase
+    game_action do
+      @current_user.purchase(@listing, Item.find_by(id: params[:item_id]))
     end
   end
 

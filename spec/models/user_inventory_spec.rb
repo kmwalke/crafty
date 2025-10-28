@@ -4,7 +4,41 @@ RSpec.describe User do
   let(:user) { create(:user) }
 
   describe 'inventory' do
-    let(:item) { create(:item) }
+    let(:item) { create(:gatherable_fish, inventory: user.inventory) }
+
+    describe 'stores' do
+      let!(:listing) do
+        create(
+          :listing,
+          price_amount: item.stack_amount,
+          price_type: item.type,
+          price_level: item.level
+        )
+      end
+      let(:listed_item) { listing.item }
+
+      it 'purchases a listing' do
+        user.purchase(listing, item)
+        expect(user.inventory.include?(listed_item)).to be true
+      end
+
+      it 'removes the listing' do
+        listing_id = listing.id
+        user.purchase(listing, item)
+        expect { Listing.find(listing_id) }.to raise_error ActiveRecord::RecordNotFound
+      end
+
+      it 'requires proper payment' do
+        listing.update(price_amount: listing.price_amount + 1)
+        expect { user.purchase(listing, item) }.to raise_error CraftyError
+      end
+
+      it 'splits stack if overpaid' do
+        item.update(stack_amount: item.stack_amount + 1)
+        user.purchase(listing, item)
+        expect(item.reload.stack_amount).to eq(1)
+      end
+    end
 
     pending 'user trading'
     # describe 'trading', skip: 'not built' do
