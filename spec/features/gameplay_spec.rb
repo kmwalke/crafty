@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Gameplay' do
   pending 'make game items clickable in the viewport'
+  pending 'split routes into their own controllers'
+  pending 'organize partial views'
   pending 'all the stuff in here'
   # pending 'WHat is Endgame? Perhaps maxing out all skills?'
   # pending 'after winning, start new game+ with your child character'

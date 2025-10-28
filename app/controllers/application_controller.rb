@@ -20,15 +20,19 @@ class ApplicationController < ActionController::Base
     level_color_html(level, text).html_safe
   end
 
-  def turbo_hash
-    { turbo: true, turbo_frame: '_top', turbo_prefetch: 'false' }
-  end
-
   private
 
   def level_color_html(level, text)
     "  <span class=\"#{Level.level_name(level).downcase}\">" \
     "    #{text}" \
     '  </span>'
+  end
+
+  def game_action(redirect: true, path: game_path)
+    yield
+  rescue CraftyError => e
+    @notice = e.to_s
+  ensure
+    redirect_to path, notice: @notice if redirect
   end
 end

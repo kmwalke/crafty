@@ -14,16 +14,6 @@ RSpec.describe Inventory do
     expect(inventory.remaining_space).to eq(inventory.size - inventory.count)
   end
 
-  describe 'must belong to a user or a location' do
-    it 'user || location' do
-      expect { create(:inventory, user: nil, location: nil) }.to raise_error(CraftyError)
-    end
-
-    it 'but not both' do
-      expect { create(:inventory, location: create(:location), user: create(:user)) }.to raise_error(CraftyError)
-    end
-  end
-
   it 'limits contents to inventory size' do
     inventory.add_item(build(:gatherable_fruit, inventory: nil))
     expect do

@@ -10,7 +10,9 @@ class User < ApplicationRecord
   belongs_to :location, optional: true
   belongs_to :tool, optional: true, class_name: 'Item::Craftable::Tool'
   belongs_to :vehicle, optional: true, class_name: 'Item::Craftable::Vehicle'
-  has_one :inventory
+  belongs_to :inventory, optional: true
+
+  has_many :listings
 
   MAX_ENERGY             = 1000
   MAX_AGE                = 100

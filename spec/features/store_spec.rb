@@ -22,6 +22,7 @@ RSpec.describe 'Store' do
 
   let!(:player) { create(:user) }
   let!(:building) { build(:craftable_building, inventory: nil) }
+  let!(:item) { player.inventory.add_item(build(:gatherable_fruit, inventory: nil)) }
 
   before do
     player.location.add_building(building)
@@ -35,15 +36,46 @@ RSpec.describe 'Store' do
     expect(page).to have_content(building.description)
   end
 
-  it 'has an inventory to add items to' do
-    # each building has an inventory.  items can be in inventory without being for sale
-    # this could allow some automated linkage between your supplier and your shop.  ie your mine delivers directly to your shop
+  it 'adds items to the building inventory', skip: 'disabled for now' do
+    within "#building-#{building.id} #inventory" do
+      click_link 'Add Item'
+    end
+    click_link item.full_name
+
+    visit game_path
+    click_link building.name
+
+    within "#building-#{building.id} #inventory" do
+      expect(page).to have_content(item.full_name)
+    end
+  end
+
+  it 'picks up an item' do
   end
 
   it 'lists an item in inventory for sale' do
-    # mark an item from inventory as "for sale"
-    # set a price for that item
-    # a "price" is another item.  ie: I list 1 legendary mushroom fruit for sale for 20 common crystal shards
+    item         = player.inventory.items.last
+    price_type   = ItemType::TYPE_NAMES.sample
+    price_level  = Level::NAMES.sample
+    price_amount = rand(1..100)
+
+    within "#building-#{building.id} #sales-listings" do
+      click_link 'List Sale'
+    end
+
+    select item.full_name_level, from: 'listing_item_id'
+    select price_type, from: 'listing_price_type'
+    select price_level, from: 'listing_price_level'
+    fill_in 'listing_price_amount', with: price_amount
+
+    click_button 'Create Listing'
+
+    visit game_path
+    click_link building.name
+
+    within "#building-#{building.id} #sales-listings" do
+      expect(page).to have_content(item.full_name)
+    end
   end
 
   it 'requires access to list' do

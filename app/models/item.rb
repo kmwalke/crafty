@@ -7,13 +7,19 @@ class Item < ApplicationRecord
   validates :description, presence: true
   validates :level, presence: true
 
-  belongs_to :inventory
   belongs_to :created_by, class_name: 'User'
+
+  belongs_to :child_inventory, class_name: 'Inventory', optional: true
+  belongs_to :inventory
 
   DEFAULT_COLOR = '#EEE'.freeze
 
   def full_name
     "#{name} #{pretty_type}"
+  end
+
+  def full_name_level
+    "#{Level.level_name level} #{full_name}"
   end
 
   def pretty_type

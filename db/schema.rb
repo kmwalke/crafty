@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_20_194311) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_26_210325) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -23,11 +23,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_194311) do
   end
 
   create_table "inventories", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "size", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "location_id"
     t.string "type"
   end
 
@@ -45,10 +43,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_194311) do
     t.datetime "updated_at", null: false
     t.string "color", null: false
     t.integer "stack_amount", default: 1, null: false
+    t.integer "child_inventory_id"
   end
 
   create_table "levels", force: :cascade do |t|
     t.string "name", null: false
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "created_by_id"
+    t.integer "building_id"
+    t.string "price_type"
+    t.integer "price_amount"
+    t.integer "price_level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "locations", force: :cascade do |t|
@@ -60,6 +70,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_194311) do
     t.datetime "updated_at", null: false
     t.string "bg_color", default: "#000", null: false
     t.string "highlight_color"
+    t.integer "property_id"
     t.index ["name"], name: "index_locations_on_name", unique: true
     t.index ["pos_x", "pos_y"], name: "index_locations_on_pos_x_and_pos_y", unique: true
   end
@@ -93,6 +104,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_194311) do
     t.integer "tool_id"
     t.integer "vitality", default: 100, null: false
     t.integer "age", default: 16, null: false
+    t.integer "inventory_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -6,7 +6,7 @@ class GameController < ApplicationController
       @current_location = @current_user.location
       @local_players    = User.where(location: @current_location).where.not(id: @current_user.id)
       @local_resources  = Resource.where(location: @current_location)
-      @local_buildings  = @current_location.buildings
+      @local_buildings  = @current_location.property
     end
   end
 
@@ -45,15 +45,5 @@ class GameController < ApplicationController
 
       @current_user.travel(location)
     end
-  end
-
-  private
-
-  def game_action(redirect: true)
-    yield
-  rescue CraftyError => e
-    @notice = e.to_s
-  ensure
-    redirect_to game_path, notice: @notice if redirect
   end
 end
