@@ -132,6 +132,16 @@ RSpec.describe 'Store' do
     expect(page).to have_content('You can\'t afford that.')
   end
 
+  it 'picks up payment for successful listing' do
+    # everything from above happens
+    # then the lister returns to pick up their payment
+  end
+
+  it 'access control for listings' do
+    # there is like no control right now
+    # much of this should be at the model level
+  end
+
   describe 'notifications' do
     pending 'trade was accepted'
     pending 'trade expired'
