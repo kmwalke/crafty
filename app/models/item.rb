@@ -18,6 +18,10 @@ class Item < ApplicationRecord
     " #{name} #{pretty_type}"
   end
 
+  def full_name_level
+    "#{Level.level_name level} #{full_name}"
+  end
+
   def pretty_type
     type.split('::').last
   end
