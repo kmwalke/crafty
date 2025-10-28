@@ -32,6 +32,13 @@ RSpec.describe 'Store' do
     click_link building.name
   end
 
+  it 'requires all purchases to be made with coins!!!!' do
+    # you know, I am just going to force using coins.  It will massively simplify things.
+    # earn coins by selling things
+    # Folks can trade directly with each other later
+    # Auction house listings require using coins
+  end
+
   it 'building section of homepage' do
     expect(page).to have_content(building.description)
   end
