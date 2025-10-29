@@ -1,8 +1,8 @@
 <%= turbo_frame_tag 'building-sales-listing' do %>
-  <span>
+  <p>
     Really purchase <%= @listing.item.stack_amount %>x <%= @listing.item.full_name %>
     for <%= @listing.price %><%= credit_symbol %>?
-  </span>
+  </p>
 
   <%= link_to "Pay #{@listing.price}#{credit_symbol}", confirm_purchase_listing_path(@building, @listing) %>
   <%= link_to 'Cancel', building_sales_listings_path(@building) %>
