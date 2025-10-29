@@ -58,7 +58,7 @@ RSpec.describe 'Store' do
 
   describe 'sales listings' do
     it 'lists an item in inventory for sale' do
-      item = player.inventory.items.last
+      item  = player.inventory.items.last
       price = rand(1..100)
 
       within "#building-#{building.id} #sales-listings" do
@@ -88,7 +88,7 @@ RSpec.describe 'Store' do
     pending 'counter a trade in the hall'
 
     it 'accepts a trade in the hall' do
-      listing = create(:listing, building: building, price: 1)
+      listing     = create(:listing, building: building, price: 1)
       listed_item = listing.item
 
       visit game_path
