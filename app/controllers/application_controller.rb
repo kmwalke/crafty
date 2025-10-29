@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :logged_in, :level_color, :turbo_hash, :turbo_html
+  helper_method :current_user, :logged_in, :level_color, :level_name
 
   def current_user
     if session[:user_id]
@@ -20,10 +20,14 @@ class ApplicationController < ActionController::Base
     level_color_html(level, text).html_safe
   end
 
+  def level_name(level)
+    Level.level_name(level).downcase
+  end
+
   private
 
   def level_color_html(level, text)
-    "  <span class=\"#{Level.level_name(level).downcase}\">" \
+    "  <span class=\"#{level_name(level)}\">" \
     "    #{text}" \
     '  </span>'
   end
