@@ -28,8 +28,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def level_color_html(level, text); end
-
   def game_action(redirect: true, path: game_path)
     yield
   rescue CraftyError => e
