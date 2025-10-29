@@ -1,4 +1,4 @@
-<%= link_to('Add Item', building_select_item_path(building)) %>
+<%= link_to('Add Item', select_item_buildings_path(building)) %>
 <ul>
   <% building.child_inventory.items.each do |item| %>
     <li>

@@ -3,7 +3,7 @@
   <ul>
     <% @current_user.inventory.items.each do |item| %>
       <li>
-        <%= level_color(item.level, link_to(item.full_name, building_add_item_path(@building, item))) %>
+        <%= level_color(item.level, link_to(item.full_name, add_item_buildings_path(@building, item))) %>
       </li>
     <% end %>
   </ul>

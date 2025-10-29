@@ -22,7 +22,7 @@ class ListingsController < ApplicationController
 
   # POST /listings or /listings.json
   def create
-    game_action path: building_sales_listings_path(@building) do
+    game_action path: listings_path(@building) do
       @listing = Listing.new(listing_params)
 
       @listing.item.update(inventory: @building.child_inventory) if @listing.save
@@ -58,7 +58,7 @@ class ListingsController < ApplicationController
   def purchase; end
 
   def confirm_purchase
-    game_action path: building_sales_listings_path(@building) do
+    game_action path: listings_path(@building) do
       @current_user.purchase(@listing)
     end
   end
