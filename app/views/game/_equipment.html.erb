@@ -8,7 +8,7 @@
         <td>Tool:</td>
         <td>
           <% if @current_user.tool %>
-            <%= level_color(@current_user.tool.level, @current_user.tool.name) %>
+            <%= level_color_span(@current_user.tool.level, @current_user.tool.name) %>
           <% end %>
         </td>
         <td>
@@ -21,7 +21,7 @@
         <td>Vehicle:</td>
         <td>
           <% if @current_user.vehicle %>
-            <%= level_color(@current_user.vehicle.level, @current_user.vehicle.name) %>
+            <%= level_color_span(@current_user.vehicle.level, @current_user.vehicle.name) %>
           <% end %>
         </td>
         <td>

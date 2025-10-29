@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
 
       @current_user.equip_item(item) if item.equipable?
 
-      @notice = "#{level_color(item.level, item.name)} equipped"
+      @notice = "#{level_color_span(item.level, item.name)} equipped"
     end
   end
 

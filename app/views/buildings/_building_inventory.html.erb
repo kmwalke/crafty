@@ -2,7 +2,7 @@
 <ul>
   <% building.child_inventory.items.each do |item| %>
     <li>
-      <%= level_color(item.level, item.full_name) %>
+      <%= level_color_span(item.level, item.full_name) %>
     </li>
   <% end %>
 </ul>

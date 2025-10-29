@@ -9,7 +9,7 @@
       <% @current_user.inventory.items.each do |item| %>
         <li data-turbo="false">
           <span class="stack-amount"><%= item.stack_amount if item.stack_amount > 1 %></span>
-          <%= level_color(item.level, link_to(item.full_name, "#item-#{ item.id }-details")) %>
+          <%= level_color_span(item.level, link_to(item.full_name, "#item-#{ item.id }-details")) %>
         </li>
         <%= render partial: 'item_popup', locals: { item: } %>
       <% end %>
