@@ -65,10 +65,7 @@ class User < ApplicationRecord
   def purchase(listing)
     raise CraftyError, 'You can\'t afford that.' unless can_afford?(listing)
 
-    update(credits: (credits - listing.price))
-
-    listing.item.update(inventory: inventory)
-    listing.destroy
+    listing.purchase(self)
   end
 
   def valid_travel_locations
