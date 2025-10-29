@@ -33,107 +33,103 @@ RSpec.describe 'Store' do
     click_link building.name
   end
 
-  it 'requires all purchases to be made with credits!!!!' do
-    # you know, I am just going to force using credits.  It will massively simplify things.
-    # credits is just an int on user
-    # earn creds by selling things
-    # Folks can trade directly with each other later
-    # Auction house listings require using credits
-  end
-
   it 'building section of homepage' do
     expect(page).to have_content(building.description)
   end
 
-  it 'adds items to the building inventory', skip: 'disabled for now' do
-    within "#building-#{building.id} #inventory" do
-      click_link 'Add Item'
-    end
-    click_link item.full_name
+  describe 'building inventory' do
+    it 'adds items to the building inventory', skip: 'disabled for now' do
+      within "#building-#{building.id} #inventory" do
+        click_link 'Add Item'
+      end
+      click_link item.full_name
 
-    visit game_path
-    click_link building.name
+      visit game_path
+      click_link building.name
 
-    within "#building-#{building.id} #inventory" do
-      expect(page).to have_content(item.full_name)
-    end
-  end
-
-  it 'picks up an item' do
-  end
-
-  it 'lists an item in inventory for sale' do
-    item  = player.inventory.items.last
-    price = rand(1..100)
-
-    within "#building-#{building.id} #sales-listings" do
-      click_link 'List Sale'
+      within "#building-#{building.id} #inventory" do
+        expect(page).to have_content(item.full_name)
+      end
     end
 
-    fill_in 'listing_price', with: price
-
-    click_button 'Create Listing'
-
-    visit game_path
-    click_link building.name
-
-    within "#building-#{building.id} #sales-listings" do
-      expect(page).to have_content(item.full_name)
+    it 'picks up an item' do
     end
   end
 
-  it 'requires access to list' do
-    # only the owner of the store can list sales
-  end
+  describe 'sales listings' do
+    it 'lists an item in inventory for sale' do
+      item = player.inventory.items.last
+      price = rand(1..100)
 
-  it 'is a public trading hall' do
-    # anyone can list sales
-  end
+      within "#building-#{building.id} #sales-listings" do
+        click_link 'List Sale'
+      end
 
-  pending 'counter a trade in the hall'
+      fill_in 'listing_price', with: price
 
-  it 'accepts a trade in the hall' do
-    listing     = create(:listing, building: building, price: 1)
-    listed_item = listing.item
+      click_button 'Create Listing'
 
-    visit game_path
-    click_link building.name
+      visit game_path
+      click_link building.name
 
-    within "#building-#{building.id} #sales-listings" do
-      click_link listing.item.full_name
+      within "#building-#{building.id} #sales-listings" do
+        expect(page).to have_content(item.full_name)
+      end
     end
-    visit purchase_listing_path(building, listing)
-    click_link "Pay #{listing.price}¤"
 
-    visit game_path
-
-    within '.inventory' do
-      expect(page).to have_content(listed_item.full_name)
+    it 'requires access to list' do
+      # only the owner of the store can list sales
     end
-  end
 
-  it 'requires proper payment' do
-    listing = create(:listing, building: building, price: player.credits + 1)
-
-    visit game_path
-    click_link building.name
-
-    within "#building-#{building.id} #sales-listings" do
-      click_link listing.item.full_name
+    it 'is a public trading hall' do
+      # anyone can list sales
     end
-    click_link "Pay #{listing.price}¤"
 
-    expect(page).to have_content('You can\'t afford that.')
-  end
+    pending 'counter a trade in the hall'
 
-  it 'picks up payment for successful listing' do
-    # everything from above happens
-    # then the lister returns to pick up their payment
-  end
+    it 'accepts a trade in the hall' do
+      listing = create(:listing, building: building, price: 1)
+      listed_item = listing.item
 
-  it 'access control for listings' do
-    # there is like no control right now
-    # much of this should be at the model level
+      visit game_path
+      click_link building.name
+
+      within "#building-#{building.id} #sales-listings" do
+        click_link listing.item.full_name
+      end
+      visit purchase_listing_path(building, listing)
+      click_link "Pay #{listing.price}¤"
+
+      visit game_path
+
+      within '.inventory' do
+        expect(page).to have_content(listed_item.full_name)
+      end
+    end
+
+    it 'requires proper payment' do
+      listing = create(:listing, building: building, price: player.credits + 1)
+
+      visit game_path
+      click_link building.name
+
+      within "#building-#{building.id} #sales-listings" do
+        click_link listing.item.full_name
+      end
+      click_link "Pay #{listing.price}¤"
+
+      expect(page).to have_content('You can\'t afford that.')
+    end
+
+    it 'picks up payment for successful listing' do
+      # everything from above happens
+      # then the lister returns to pick up their payment
+    end
+
+    it 'access control for listings' do
+      # there is like no control right now
+      # much of this should be at the model level
+    end
   end
 
   describe 'notifications' do
