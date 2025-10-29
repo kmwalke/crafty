@@ -3,24 +3,19 @@ class ListingsController < ApplicationController
   before_action :set_listing, except: [:index, :new, :create]
   before_action :set_building
 
-  # GET /listings or /listings.json
   def index
     @listings = Listing.all
   end
 
-  # GET /listings/1 or /listings/1.json
   def show; end
 
-  # GET /listings/new
   def new
     @listing     = Listing.new
     @valid_items = @current_user.inventory.items
   end
 
-  # GET /listings/1/edit
   def edit; end
 
-  # POST /listings or /listings.json
   def create
     game_action path: listings_path(@building) do
       @listing = Listing.new(listing_params)
@@ -29,7 +24,6 @@ class ListingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /listings/1 or /listings/1.json
   def update
     respond_to do |format|
       if @listing.update(listing_params)
@@ -45,7 +39,6 @@ class ListingsController < ApplicationController
     end
   end
 
-  # DELETE /listings/1 or /listings/1.json
   def destroy
     @listing.destroy!
 
@@ -65,7 +58,6 @@ class ListingsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_listing
     @listing = Listing.find(params.expect(:id))
   end
@@ -74,7 +66,6 @@ class ListingsController < ApplicationController
     @building = Item::Craftable::Building.find(params.expect(:building_id))
   end
 
-  # Only allow a list of trusted parameters through.
   def listing_params
     params.expect(listing: [:building_id, :item_id, :created_by_id, :price])
   end

@@ -10,28 +10,6 @@ class GameController < ApplicationController
     end
   end
 
-  def equip_item
-    game_action do
-      item = Item.find(params[:id])
-
-      @current_user.equip_item(item) if item.equipable?
-
-      @notice = "#{level_color(item.level, item.name)} equipped"
-    end
-  end
-
-  def unequip_tool
-    game_action do
-      @current_user.unequip_tool
-    end
-  end
-
-  def unequip_vehicle
-    game_action do
-      @current_user.unequip_vehicle
-    end
-  end
-
   def gather
     game_action do
       item    = @current_user.gather(Resource.find(params[:id]))

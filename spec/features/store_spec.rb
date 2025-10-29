@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Store' do
+  pending 'listing a sale/purchasing an item does not update inventory until refresh'
   # Trading hall allows auction house like listings
   # Trading is async.
   # UX: You enter the trading hall. you peruse the listings and once catches your eye.
