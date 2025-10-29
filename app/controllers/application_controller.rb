@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :logged_in, :level_color, :turbo_hash, :turbo_html
+  helper_method :current_user, :logged_in, :level_color_span, :level_name
 
   def current_user
     if session[:user_id]
@@ -16,17 +16,17 @@ class ApplicationController < ActionController::Base
     redirect_to login_path
   end
 
-  def level_color(level, text)
-    level_color_html(level, text).html_safe
+  def level_color_span(level, text)
+    "  <span class=\"#{level_name(level)}\">" \
+      "    #{text}" \
+      '  </span>'.html_safe
+  end
+
+  def level_name(level)
+    Level.level_name(level).downcase
   end
 
   private
-
-  def level_color_html(level, text)
-    "  <span class=\"#{Level.level_name(level).downcase}\">" \
-    "    #{text}" \
-    '  </span>'
-  end
 
   def game_action(redirect: true, path: game_path)
     yield

@@ -6,7 +6,8 @@ class Inventory < ApplicationRecord
   delegate :any?, :count, :each, :include?, to: :items
 
   def owner
-    raise CraftyError, 'user || location || item || sale. some generic function to get the owner if unknown. maybe return a classname?' \
+    raise CraftyError, 'user || location || item || sale.' \
+      'some generic function to get the owner if unknown. maybe return a classname?' \
       'should probably reverse all the ids in inventory?'
   end
 

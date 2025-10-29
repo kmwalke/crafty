@@ -4,9 +4,6 @@ RSpec.describe 'Gameplay' do
   pending 'make game items clickable in the viewport'
   pending 'split routes into their own controllers'
   pending 'organize partial views'
-  pending 'switch level to text instead of int?'
-  pending 'there are some latency issues(current gamestate not showing up until refresh).' \
-            'Every controller game_action needs to refresh the whole UI'
   pending 'all the stuff in here'
   # pending 'WHat is Endgame? Perhaps maxing out all skills?'
   # pending 'after winning, start new game+ with your child character'

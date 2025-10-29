@@ -7,7 +7,7 @@
     <% if item.equipable? %>
       <%= link_to 'Equip', equip_item_path(item) %><br />
     <% end %>
-    <%= level_color(item.level, item.level_name) %>
+    <%= level_color_span(item.level, item.level_name) %>
     <span class="created-by">Created by <%= item.created_by.name %></span>
     <p class="description"><%= item.description %></p>
   </div>
