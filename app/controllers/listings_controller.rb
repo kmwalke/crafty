@@ -4,14 +4,16 @@ class ListingsController < ApplicationController
   before_action :set_building
 
   def index
-    @listings = Listing.all
+    game_action redirect: false do
+      @listings = Listing.all
+    end
   end
 
-  def show; end
-
   def new
-    @listing     = Listing.new
-    @valid_items = @current_user.inventory.items
+    game_action redirect: false do
+      @listing     = Listing.new
+      @valid_items = @current_user.inventory.items
+    end
   end
 
   def edit; end
@@ -25,26 +27,18 @@ class ListingsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
+    game_action path: listings_path(@building) do
       if @listing.update(listing_params)
         item              = @listing.item
         item.inventory_id = @building.child_inventory_id
         item.save
-        format.html { redirect_to @listing, notice: 'Listing was successfully updated.', status: :see_other }
-        format.json { render :show, status: :ok, location: @listing }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @listing.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @listing.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to listings_path, notice: 'Listing was successfully destroyed.', status: :see_other }
-      format.json { head :no_content }
+    game_action path: listings_path(@building) do
+      @listing.destroy!
     end
   end
 

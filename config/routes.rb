@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       get '/add_item/:item_id', to: 'buildings#add_item', as: 'add_item'
       get '/select_item', to: 'buildings#select_item', as: 'select_item'
 
-      resources :listings do
+      resources :listings, except: :show do
         member do
           get '/purchase', to: 'listings#purchase'
           get '/confirm_purchase', to: 'listings#confirm_purchase'
