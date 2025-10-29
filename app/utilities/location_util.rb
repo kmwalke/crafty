@@ -70,7 +70,7 @@ class LocationUtil
         name: 'Crystalgard',
         pos_x: 0,
         pos_y: 0,
-        description: 'A small metropolis ruled over by Mayor Parker. Home of the glassmakere',
+        description: 'A small metropolis ruled over by Mayor Parker. Home of the glassmakers.',
         bg_color: '#cce6ff'
       ),
       Location.build(
