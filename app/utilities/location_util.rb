@@ -67,14 +67,14 @@ class LocationUtil
   def self.location_data
     [
       Location.build(
-        name: 'Spawnville',
+        name: 'Crystalgard',
         pos_x: 0,
         pos_y: 0,
-        description: 'A small metropolis ruled over by Mayor Parker.',
+        description: 'A small metropolis ruled over by Mayor Parker. Home of the glassmakere',
         bg_color: '#cce6ff'
       ),
       Location.build(
-        name: 'Rolling Hills',
+        name: 'The Fold',
         pos_x: 10,
         pos_y: 21,
         description: 'Gentle hills.  Known for beginner ores and flowers.',
@@ -99,7 +99,7 @@ class LocationUtil
         name: 'Flowing Volcano',
         pos_x: 89,
         pos_y: -62,
-        description: 'Tall and steep. It is hard to breathe through the noxious air',
+        description: 'Tall and steep. It is hard to breathe through the noxious air.',
         bg_color: '#cc0000'
       ),
       Location.build(
