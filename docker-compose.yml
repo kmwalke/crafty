@@ -17,6 +17,7 @@ x-crafty-common:
     DB_HOST: db
     DB_TEST: crafty-test
     DB_USERNAME: postgres
+    HEROKU_RELEASE_VERSION: "buildnumber"
 
 
 services:
