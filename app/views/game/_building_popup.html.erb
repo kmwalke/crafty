@@ -4,7 +4,7 @@
     <h4 class="title" style="background-color: <%= building.color %>">
       <%= building.name %>
     </h4>
-    <%= level_color(building.level, building.level_name) %>
+    <%= level_color_span(building.level, building.level_name) %>
     <span class="created-by">Created by <%= building.created_by.name %></span>
     <p class="description"><%= building.description %></p>
 <!--    <fieldset id="inventory">-->
@@ -15,7 +15,7 @@
 <!--    </fieldset>-->
     <fieldset id="sales-listings">
       <legend>Sales Listing</legend>
-      <%= turbo_frame_tag 'building-sales-listing', src: building_sales_listings_path(building) do %>
+      <%= turbo_frame_tag 'building-sales-listing', src: listings_path(building) do %>
         <%= render partial: 'buildings/building_sales_listing', locals: { building: building } %>
       <% end %>
     </fieldset>

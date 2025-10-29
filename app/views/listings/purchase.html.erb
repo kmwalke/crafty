@@ -5,5 +5,5 @@
   </p>
 
   <%= link_to "Pay #{@listing.price}#{credit_symbol}", confirm_purchase_listing_path(@building, @listing) %>
-  <%= link_to 'Cancel', building_sales_listings_path(@building) %>
+  <%= link_to 'Cancel', listings_path(@building) %>
 <% end %>

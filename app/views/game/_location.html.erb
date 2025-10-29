@@ -23,7 +23,7 @@
 
   <div class="buildings-and-resources">
     <% @local_buildings.each do |building| %>
-      <div class="building <%= Level.level_name(building.level).downcase %>"
+      <div class="building <%= level_name(building.level)%>"
            style="background-color: <%= building.color %>">
         <span class="sign">
           <%= building.name %>
@@ -39,7 +39,7 @@
 
     <div class="resources">
       <% @local_resources.each do |resource| %>
-        <div class="resource <%= resource.pretty_type.downcase %> <%= Level.level_name(resource.level).downcase %>"
+        <div class="resource <%= resource.pretty_type.downcase %> <%= level_name(resource.level)%>"
              style="background-color: <%= resource.color %>">
           <span class="name" >
             <%= resource.full_name %>

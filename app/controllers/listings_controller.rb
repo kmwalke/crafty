@@ -3,69 +3,55 @@ class ListingsController < ApplicationController
   before_action :set_listing, except: [:index, :new, :create]
   before_action :set_building
 
-  # GET /listings or /listings.json
   def index
-    @listings = Listing.all
+    game_action redirect: false do
+      @listings = Listing.all
+    end
   end
 
-  # GET /listings/1 or /listings/1.json
-  def show; end
-
-  # GET /listings/new
   def new
-    @listing     = Listing.new
-    @valid_items = @current_user.inventory.items
+    game_action redirect: false do
+      @listing     = Listing.new
+      @valid_items = @current_user.inventory.items
+    end
   end
 
-  # GET /listings/1/edit
   def edit; end
 
-  # POST /listings or /listings.json
   def create
-    game_action path: building_sales_listings_path(@building) do
+    game_action path: listings_path(@building) do
       @listing = Listing.new(listing_params)
 
       @listing.item.update(inventory: @building.child_inventory) if @listing.save
     end
   end
 
-  # PATCH/PUT /listings/1 or /listings/1.json
   def update
-    respond_to do |format|
+    game_action path: listings_path(@building) do
       if @listing.update(listing_params)
         item              = @listing.item
         item.inventory_id = @building.child_inventory_id
         item.save
-        format.html { redirect_to @listing, notice: 'Listing was successfully updated.', status: :see_other }
-        format.json { render :show, status: :ok, location: @listing }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @listing.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /listings/1 or /listings/1.json
   def destroy
-    @listing.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to listings_path, notice: 'Listing was successfully destroyed.', status: :see_other }
-      format.json { head :no_content }
+    game_action path: listings_path(@building) do
+      @listing.destroy!
     end
   end
 
   def purchase; end
 
   def confirm_purchase
-    game_action path: building_sales_listings_path(@building) do
+    game_action path: listings_path(@building) do
       @current_user.purchase(@listing)
     end
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_listing
     @listing = Listing.find(params.expect(:id))
   end
@@ -74,7 +60,6 @@ class ListingsController < ApplicationController
     @building = Item::Craftable::Building.find(params.expect(:building_id))
   end
 
-  # Only allow a list of trusted parameters through.
   def listing_params
     params.expect(listing: [:building_id, :item_id, :created_by_id, :price])
   end

@@ -6,7 +6,7 @@
     <ul>
       <% @local_buildings.items.each do |building| %>
         <li data-turbo="false">
-          <%= level_color(building.level, link_to(building.name, "#building-#{ building.id }")) %>
+          <%= level_color_span(building.level, link_to(building.name, "#building-#{ building.id }")) %>
         </li>
         <%= render partial: 'building_popup', locals: { building: } %>
       <% end %>
