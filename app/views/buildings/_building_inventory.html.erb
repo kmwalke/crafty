@@ -1,7 +1,8 @@
-<%= link_to('Add Item', select_item_buildings_path(building)) %>
+<%= link_to('Add Item', select_item_building_path(building)) %>
 <ul>
   <% building.child_inventory.items.each do |item| %>
     <li>
+      <%= item.stack_amount %>x
       <%= level_color_span(item.level, item.full_name) %>
     </li>
   <% end %>

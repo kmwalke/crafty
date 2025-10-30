@@ -38,7 +38,7 @@ RSpec.describe 'Store' do
   end
 
   describe 'building inventory' do
-    it 'adds items to the building inventory', skip: 'disabled for now' do
+    it 'adds items to the building inventory' do
       within "#building-#{building.id} #inventory" do
         click_link 'Add Item'
       end

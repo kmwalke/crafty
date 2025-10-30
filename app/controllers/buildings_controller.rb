@@ -4,7 +4,7 @@ class BuildingsController < ApplicationController
   before_action :set_item, only: :add_item
 
   def add_item
-    game_action(path: building_inventory_path(@building)) do
+    game_action(path: inventory_building_path(@building)) do
       @item.update(inventory: @building.child_inventory)
     end
   end
@@ -22,6 +22,6 @@ class BuildingsController < ApplicationController
   end
 
   def set_building
-    @building = Item::Craftable::Building.find(params[:id])
+    @building = Item::Craftable::Building.find(params[:building_id])
   end
 end
