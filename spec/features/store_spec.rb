@@ -35,10 +35,26 @@ RSpec.describe 'Store' do
       end
     end
 
-    it 'check privacy on actual requests, not just listing the link' do
+    it 'allows inventory on my private buildings' do
+      building.update(created_by: player)
+      make_building_private
+      within("#building-#{building.id} #inventory") do
+        expect(page).to have_content 'Add Item'
+      end
     end
 
-    it 'picks up an item' do
+    it 'check privacy on actual requests, not just listing the link. prevent link spoofing' do
+    end
+
+    pending 'picks up an item' do
+      item.update(inventory: building.child_inventory)
+      visit game_path
+      click_link building.name
+      within("#building-#{building.id} #inventory") { find_by_id("pickup-#{item.id}").click }
+      expect(player.inventory.items.include?(item)).to be true
+    end
+
+    it 'doesnt pick up an item from private' do
     end
   end
 
@@ -76,6 +92,14 @@ RSpec.describe 'Store' do
       make_building_private
       within("#building-#{building.id} #sales-listings") do
         expect(page).to have_no_content 'List Sale'
+      end
+    end
+
+    it 'allows sales on my private store' do
+      building.update(created_by: player)
+      make_building_private
+      within("#building-#{building.id} #sales-listings") do
+        expect(page).to have_content 'List Sale'
       end
     end
 

@@ -11,4 +11,12 @@ RSpec.describe Item do
   it 'items are not equipable' do
     expect(item.equipable?).to be false
   end
+
+  it 'shows the full name' do
+
+  end
+
+  it 'is private' do
+
+  end
 end

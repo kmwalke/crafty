@@ -1,7 +1,7 @@
-<% if building.is_private %>
-  <span>Private Building</span>
-<% else %>
+<% if building.permitted_user(@current_user) %>
   <%= link_to('List Sale', new_listing_path(building)) %>
+<% else %>
+  <span>Private Building</span>
 <% end %>
 <table>
   <thead>

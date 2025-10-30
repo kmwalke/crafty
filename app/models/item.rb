@@ -14,6 +14,10 @@ class Item < ApplicationRecord
 
   DEFAULT_COLOR = '#EEE'.freeze
 
+  def permitted_user(user)
+    created_by == user || !is_private
+  end
+
   def full_name
     "#{name} #{pretty_type}"
   end
