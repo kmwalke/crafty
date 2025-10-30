@@ -44,10 +44,12 @@ class User < ApplicationRecord
   end
 
   def unequip_tool
+    tool.update(inventory: inventory)
     update(tool: nil)
   end
 
   def unequip_vehicle
+    vehicle.update(inventory: inventory)
     update(vehicle: nil)
   end
 
@@ -84,10 +86,12 @@ class User < ApplicationRecord
 
   def equip_tool(tool)
     update(tool: tool)
+    tool.update(inventory: nil)
   end
 
   def equip_vehicle(vehicle)
     update(vehicle: vehicle)
+    vehicle.update(inventory: nil)
   end
 
   def set_energy

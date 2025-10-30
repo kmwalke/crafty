@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   belongs_to :created_by, class_name: 'User'
 
   belongs_to :child_inventory, class_name: 'Inventory', optional: true
-  belongs_to :inventory
+  belongs_to :inventory, optional: true
 
   DEFAULT_COLOR = '#EEE'.freeze
 
