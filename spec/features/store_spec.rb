@@ -43,8 +43,7 @@ RSpec.describe 'Store' do
       end
     end
 
-    it 'check privacy on actual requests, not just listing the link. prevent link spoofing' do
-    end
+    pending 'check privacy on actual requests, not just listing the link. prevent link spoofing'
 
     it 'picks up an item' do
       item.update(inventory: building.child_inventory)
@@ -106,8 +105,7 @@ RSpec.describe 'Store' do
       end
     end
 
-    it 'check privacy on actual requests, not just listing the link' do
-    end
+    pending 'check privacy on actual requests, not just listing the link'
   end
 
   pending 'counter a trade in the hall'
