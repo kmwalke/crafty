@@ -1,4 +1,8 @@
-<%= link_to('Add Item', select_item_building_path(building)) %>
+<% if building.is_private %>
+  <span>Private Building</span>
+<% else %>
+  <%= link_to('Add Item', select_item_building_path(building)) %>
+<% end %>
 <ul>
   <% building.child_inventory.items.each do |item| %>
     <li>
