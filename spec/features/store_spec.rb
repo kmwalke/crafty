@@ -55,6 +55,9 @@ RSpec.describe 'Store' do
     end
 
     it 'doesnt pick up an item from private' do
+      item.update(inventory: building.child_inventory)
+      make_building_private
+      within("#building-#{building.id} #inventory") { expect(page).to have_no_content('pickup') }
     end
   end
 
