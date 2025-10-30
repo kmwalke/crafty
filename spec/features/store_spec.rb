@@ -29,12 +29,13 @@ RSpec.describe 'Store' do
     end
 
     it 'limits inventory on private buildings' do
-      building.update(is_private: true)
-      visit game_path
-      click_link building.name
+      make_building_private
       within("#building-#{building.id} #inventory") do
         expect(page).to have_no_content 'Add Item'
       end
+    end
+
+    it 'check privacy on actual requests, not just listing the link' do
     end
 
     it 'picks up an item' do
@@ -72,11 +73,13 @@ RSpec.describe 'Store' do
     end
 
     it 'limits sales on a private store' do
-      # only the owner of the store can list sales
+      make_building_private
+      within("#building-#{building.id} #sales-listings") do
+        expect(page).to have_no_content 'List Sale'
+      end
     end
 
-    it 'is a public trading hall' do
-      # anyone can list sales
+    it 'check privacy on actual requests, not just listing the link' do
     end
   end
 
@@ -97,16 +100,6 @@ RSpec.describe 'Store' do
     accept_a_sale(listing)
 
     expect(page).to have_content('You can\'t afford that.')
-  end
-
-  it 'picks up payment for successful listing' do
-    # everything from above happens
-    # then the lister returns to pick up their payment
-  end
-
-  it 'access control for listings' do
-    # there is like no control right now
-    # much of this should be at the model level
   end
 
   describe 'notifications' do
@@ -140,4 +133,10 @@ def accept_a_sale(listing)
     click_link listing.item.full_name
   end
   click_link "Pay #{listing.price}¤"
+end
+
+def make_building_private
+  building.update(is_private: true)
+  visit game_path
+  click_link building.name
 end
