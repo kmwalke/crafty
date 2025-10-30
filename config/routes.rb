@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     member do
       get '/add_item/:item_id', to: 'buildings#add_item', as: 'add_item'
       get '/select_item', to: 'buildings#select_item', as: 'select_item'
+      get '/pickup_item/:item_id', to: 'buildings#pickup_item', as: 'pickup_item'
       get '/inventory', to: 'buildings#inventory', as: 'inventory'
 
       resources :listings, except: :show do

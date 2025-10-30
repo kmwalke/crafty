@@ -16,5 +16,11 @@ RSpec.describe User do
 
       expect(user.actions).to eq(%w[gather travel])
     end
+
+    it 'removes equipped tool from inventory' do
+    end
+
+    it 'removes equipped vehicle from inventory' do
+    end
   end
 end

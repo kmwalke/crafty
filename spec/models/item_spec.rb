@@ -13,10 +13,8 @@ RSpec.describe Item do
   end
 
   it 'shows the full name' do
-
   end
 
   it 'is private' do
-
   end
 end

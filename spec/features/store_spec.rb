@@ -46,7 +46,7 @@ RSpec.describe 'Store' do
     it 'check privacy on actual requests, not just listing the link. prevent link spoofing' do
     end
 
-    pending 'picks up an item' do
+    it 'picks up an item' do
       item.update(inventory: building.child_inventory)
       visit game_path
       click_link building.name

@@ -1,7 +1,7 @@
 class BuildingsController < ApplicationController
   before_action :logged_in
   before_action :set_building
-  before_action :set_item, only: :add_item
+  before_action :set_item, only: [:add_item, :pickup_item]
 
   def add_item
     game_action(path: inventory_building_path(@building)) do
@@ -10,6 +10,12 @@ class BuildingsController < ApplicationController
   end
 
   def inventory; end
+
+  def pickup_item
+    game_action(path: inventory_building_path(@building)) do
+      @item.update(inventory: @current_user.inventory)
+    end
+  end
 
   def sales_listings; end
 
