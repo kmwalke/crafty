@@ -56,6 +56,10 @@ Lint/RaiseException:
 Lint/StructNewOverride:
   Enabled: true
 
+Lint/SuppressedException:
+  Exclude:
+    - 'spec/**/*'
+
 Metrics/AbcSize:
   Max: 25
   Exclude:

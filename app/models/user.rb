@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
   validates :status, presence: true
-  validates :credits, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :credits, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :location, optional: true
   belongs_to :tool, optional: true, class_name: 'Item::Craftable::Tool'

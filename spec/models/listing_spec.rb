@@ -37,6 +37,7 @@ RSpec.describe Listing do
         begin
           listing.purchase(buyer)
         rescue CraftyError
+          nil
         end
       end
 
@@ -55,7 +56,6 @@ RSpec.describe Listing do
       it 'doesnt delete the listing' do
         expect(described_class.find_by(id: listing.id)).to eq(listing)
       end
-
     end
   end
 end

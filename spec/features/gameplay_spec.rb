@@ -4,7 +4,7 @@ RSpec.describe 'Gameplay' do
   pending 'make game items clickable in the viewport'
   pending 'split routes into their own controllers'
   pending 'organize partial views'
-  pending 'use streams to solve latency effects.  Entire page needs to use turbo frames and streams'
+  pending 'use streams to solve latency effects. Entire page needs to use turbo frames and streams'
   # Inventory doesn't update when you buy/sell something
   # notice popups are lost when created in turbo frames
   # https://hivekind.com/blog/exploring-flash-messages-with-turbo-streams-in-rails-7
