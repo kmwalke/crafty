@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
   def new
     game_action redirect: false do
       @listing     = Listing.new
-      @valid_items = @current_user.inventory.items
+      @valid_items = @current_user.inventory.items + @building.child_inventory.items - building_listing_items
     end
   end
 
@@ -58,6 +58,10 @@ class ListingsController < ApplicationController
 
   def set_building
     @building = Item::Craftable::Building.find(params.expect(:building_id))
+  end
+
+  def building_listing_items
+    @building.listings.map(&:item)
   end
 
   def listing_params
