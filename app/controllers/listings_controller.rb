@@ -46,7 +46,7 @@ class ListingsController < ApplicationController
 
   def confirm_purchase
     game_action path: listings_path(@building) do
-      @current_user.purchase(@listing)
+      @listing.purchase(@current_user)
     end
   end
 

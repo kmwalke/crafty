@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
   validates :status, presence: true
+  validates :credits, :numericality => { :greater_than_or_equal_to => 0 }
 
   belongs_to :location, optional: true
   belongs_to :tool, optional: true, class_name: 'Item::Craftable::Tool'
@@ -62,12 +63,6 @@ class User < ApplicationRecord
     vehicle.travel(new_location)
   end
 
-  def purchase(listing)
-    raise CraftyError, 'You can\'t afford that.' unless can_afford?(listing)
-
-    listing.purchase(self)
-  end
-
   def valid_travel_locations
     raise CraftyError, 'You can\'t scan for locations without a vehicle.' if vehicle.nil?
     return if vehicle.nil?
@@ -97,11 +92,5 @@ class User < ApplicationRecord
 
   def set_energy
     self.energy = User::MAX_ENERGY
-  end
-
-  def can_afford?(listing)
-    return false if listing.price > credits
-
-    true
   end
 end

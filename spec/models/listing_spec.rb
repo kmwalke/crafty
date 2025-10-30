@@ -27,5 +27,35 @@ RSpec.describe Listing do
       listing.purchase(buyer)
       expect(described_class.find_by(id: listing.id)).to be_nil
     end
+
+    describe 'blocks sale if cannot afford' do
+      let!(:new_buyer_creds) { buyer.credits }
+      let!(:new_seller_creds) { seller.credits }
+
+      before do
+        listing.update(price: buyer.credits + 1)
+        begin
+          listing.purchase(buyer)
+        rescue CraftyError
+        end
+      end
+
+      it 'doesnt deduct credits from buyer' do
+        expect(buyer.credits).to eq(new_buyer_creds)
+      end
+
+      it 'doesnt deliver item to buyer' do
+        expect(buyer.inventory.items.include?(listing.item)).to be false
+      end
+
+      it 'doesnt pay the seller' do
+        expect(seller.credits).to eq(new_seller_creds)
+      end
+
+      it 'doesnt delete the listing' do
+        expect(described_class.find_by(id: listing.id)).to eq(listing)
+      end
+
+    end
   end
 end
