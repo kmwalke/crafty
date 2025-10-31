@@ -2,11 +2,14 @@ class ItemType < ApplicationRecord
   ITEM       = 'Item'.freeze
   CRAFTABLE  = {
     building: 'Item::Craftable::Building',
+    metal: 'Item::Craftable::Metal',
+    salad: 'Item::Craftable::Salad',
     tool: 'Item::Craftable::Tool',
     vehicle: 'Item::Craftable::Vehicle'
   }.freeze
   TOOLS      = {
-    gathering_tool: 'Item::Craftable::Tool::GatheringTool'
+    gathering_tool: 'Item::Craftable::Tool::GatheringTool',
+    crafting_tool: 'Item::Craftable::Tool::CraftingTool'
   }.freeze
   GATHERABLE = {
     companion: 'Item::Gatherable::Companion',
