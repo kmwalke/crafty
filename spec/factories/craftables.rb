@@ -3,12 +3,12 @@ FactoryBot.define do
     sequence(:name) { |n| "Craftable_#{n}" }
     sequence(:description) { |n| "This is the description for Craftable_#{n}" }
 
-    factory :craftable_building, class: ItemType::TYPES[:craftable_building] do
+    factory :craftable_building, class: ItemType::CRAFTABLE[:building] do
       sequence(:name) { |n| "Building_#{n}" }
       sequence(:description) { |n| "This is the description for Building_#{n}" }
     end
 
-    factory :craftable_vehicle, class: ItemType::TYPES[:craftable_vehicle] do
+    factory :craftable_vehicle, class: ItemType::CRAFTABLE[:vehicle] do
       sequence(:name) { |n| "Vehicle_#{n}" }
       sequence(:description) { |n| "This is the description for Vehicle_#{n}" }
     end
