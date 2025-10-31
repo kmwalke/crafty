@@ -3,8 +3,10 @@ class ItemType < ApplicationRecord
   CRAFTABLE  = {
     building: 'Item::Craftable::Building',
     tool: 'Item::Craftable::Tool',
-    tool_gathering_tool: 'Item::Craftable::Tool::GatheringTool',
     vehicle: 'Item::Craftable::Vehicle'
+  }.freeze
+  TOOLS      = {
+    gathering_tool: 'Item::Craftable::Tool::GatheringTool'
   }.freeze
   GATHERABLE = {
     companion: 'Item::Gatherable::Companion',
@@ -15,7 +17,7 @@ class ItemType < ApplicationRecord
     shard: 'Item::Gatherable::Shard',
     wood: 'Item::Gatherable::Wood'
   }.freeze
-  TYPE_NAMES = [ITEM, CRAFTABLE.values, GATHERABLE.values].flatten
+  TYPE_NAMES = [ITEM, CRAFTABLE.values, GATHERABLE.values, TOOLS.values].flatten
 
   def self.populate_types
     ItemType::TYPE_NAMES.each do |type|
