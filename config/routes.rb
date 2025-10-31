@@ -41,5 +41,4 @@ Rails.application.routes.draw do
 
   # Cheats
   get 'monster_energy', to: 'cheats#monster_energy'
-  get 'reset_db__no_really_reset_the_db___i_mean_it', to: 'cheats#reset_db'
 end
