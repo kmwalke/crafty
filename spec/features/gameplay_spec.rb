@@ -8,7 +8,7 @@ RSpec.describe 'Gameplay' do
   pending 'all the stuff in here'
   # notice popups are lost when created in turbo frames
   #         https://hivekind.com/blog/exploring-flash-messages-with-turbo-streams-in-rails-7
-  # pending 'WHat is Endgame? Perhaps maxing out all skills?'
+  # pending 'What is Endgame? Perhaps maxing out all skills?'
   # pending 'after winning, start new game+ with your child character'
   # pending 'what is the narrative?  Devs create a big quest,
   #          like "deliver 1 million pounds of food to the war refugees".
@@ -29,5 +29,6 @@ RSpec.describe 'Gameplay' do
   # Traveling , what does the screen look like while traveling?
   #        Location you are traveling to would be small, getting bigger in your view
   #        as you approach the location.
+  #        Map can show your progress.  Solar system map, too.  Real-ish Holman Transfers.
   # https://jsfiddle.net/G7unG/9/ for loom-like UI.  page is full height, not scrollable.  Elements in the menu are
 end
