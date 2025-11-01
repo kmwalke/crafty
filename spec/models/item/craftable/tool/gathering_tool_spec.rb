@@ -5,6 +5,10 @@ RSpec.describe Item::Craftable::Tool::GatheringTool do
   let(:gathering_tool) { create(:craftable_tool_gathering_tool, inventory: user.inventory) }
   let(:resource) { create(:crystal) }
 
+  it 'lists actions' do
+    expect(gathering_tool.actions).to eq(%w[gather])
+  end
+
   it 'doesn\'t update if user has low energy' do
     user.update(energy: 0)
 

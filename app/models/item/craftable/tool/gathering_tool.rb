@@ -1,4 +1,8 @@
 class Item::Craftable::Tool::GatheringTool < Item::Craftable::Tool
+  def actions
+    %w[gather]
+  end
+
   def gather(resource)
     raise CraftyError, ErrorMessage::ITEM[:must_equip_item] if equipped_by.nil?
 
