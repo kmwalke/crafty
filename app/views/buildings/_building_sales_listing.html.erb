@@ -1,4 +1,8 @@
-<%= link_to('List Sale', new_listing_path(building)) %>
+<% if building.permitted_user?(@current_user) %>
+  <%= link_to('List Sale', new_listing_path(building)) %>
+<% else %>
+  <span>Private Building</span>
+<% end %>
 <table>
   <thead>
   <tr>
@@ -16,7 +20,7 @@
           <%= link_to listing.item.full_name, purchase_listing_path(building, listing) %>
         </span>
       <td>
-        <%= listing.price%><%= credit_symbol %>
+        <%= listing.price %><%= credit_symbol %>
       </td>
     </tr>
   <% end %>

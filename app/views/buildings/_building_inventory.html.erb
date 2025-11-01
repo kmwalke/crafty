@@ -1,8 +1,16 @@
-<%= link_to('Add Item', select_item_buildings_path(building)) %>
+<% if building.permitted_user?(@current_user) %>
+  <%= link_to('Add Item', select_item_building_path(building)) %>
+<% else %>
+  <span>Private Building</span>
+<% end %>
 <ul>
   <% building.child_inventory.items.each do |item| %>
     <li>
+      <%= item.stack_amount %>x
       <%= level_color_span(item.level, item.full_name) %>
+      <% if building.permitted_user?(@current_user) %>
+        <%= link_to 'pickup', pickup_item_building_path(building, item), id: "pickup-#{item.id}" %>
+      <% end %>
     </li>
   <% end %>
 </ul>

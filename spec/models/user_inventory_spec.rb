@@ -4,38 +4,6 @@ RSpec.describe User do
   let(:user) { create(:user, credits: 1000) }
 
   describe 'inventory' do
-    let(:item) { create(:gatherable_fish, inventory: user.inventory) }
-
-    describe 'stores' do
-      let!(:listing) { create(:listing, price: 1) }
-      let(:listed_item) { listing.item }
-
-      it 'purchases a listing' do
-        user.purchase(listing)
-        expect(user.inventory.include?(listed_item)).to be true
-      end
-
-      it 'pays for the listing' do
-        old_creds = user.credits
-        price     = listing.price
-
-        user.purchase(listing)
-        expect(user.credits).to eq(old_creds - price)
-      end
-
-      it 'removes the listing' do
-        listing_id = listing.id
-        user.purchase(listing)
-        expect { Listing.find(listing_id) }.to raise_error ActiveRecord::RecordNotFound
-      end
-
-      it 'requires proper payment' do
-        listing.update(price: user.credits + 1)
-
-        expect { user.purchase(listing) }.to raise_error CraftyError
-      end
-    end
-
     pending 'user trading'
     # describe 'trading', skip: 'not built' do
     #   describe 'gifts item to another user' do

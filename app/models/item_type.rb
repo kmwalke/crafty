@@ -1,19 +1,26 @@
 class ItemType < ApplicationRecord
-  TYPES      = {
-    item: 'Item',
-    craftable_building: 'Item::Craftable::Building',
-    craftable_tool: 'Item::Craftable::Tool',
-    craftable_tool_gathering_tool: 'Item::Craftable::Tool::GatheringTool',
-    craftable_vehicle: 'Item::Craftable::Vehicle',
-    gatherable_companion: 'Item::Gatherable::Companion',
-    gatherable_fish: 'Item::Gatherable::Fish',
-    gatherable_flower: 'Item::Gatherable::Flower',
-    gatherable_fruit: 'Item::Gatherable::Fruit',
-    gatherable_ore: 'Item::Gatherable::Ore',
-    gatherable_shard: 'Item::Gatherable::Shard',
-    gatherable_wood: 'Item::Gatherable::Wood'
+  ITEM       = 'Item'.freeze
+  CRAFTABLE  = {
+    building: 'Item::Craftable::Building',
+    metal: 'Item::Craftable::Metal',
+    salad: 'Item::Craftable::Salad',
+    tool: 'Item::Craftable::Tool',
+    vehicle: 'Item::Craftable::Vehicle'
   }.freeze
-  TYPE_NAMES = TYPES.values.freeze
+  TOOLS      = {
+    gathering_tool: 'Item::Craftable::Tool::GatheringTool',
+    crafting_tool: 'Item::Craftable::Tool::CraftingTool'
+  }.freeze
+  GATHERABLE = {
+    companion: 'Item::Gatherable::Companion',
+    fish: 'Item::Gatherable::Fish',
+    flower: 'Item::Gatherable::Flower',
+    fruit: 'Item::Gatherable::Fruit',
+    ore: 'Item::Gatherable::Ore',
+    shard: 'Item::Gatherable::Shard',
+    wood: 'Item::Gatherable::Wood'
+  }.freeze
+  TYPE_NAMES = [ITEM, CRAFTABLE.values, GATHERABLE.values, TOOLS.values].flatten
 
   def self.populate_types
     ItemType::TYPE_NAMES.each do |type|

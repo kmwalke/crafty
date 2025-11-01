@@ -3,11 +3,22 @@ require 'rails_helper'
 RSpec.describe Item::Craftable::Tool::GatheringTool do
   let(:user) { create(:user) }
   let(:gathering_tool) { create(:craftable_tool_gathering_tool, inventory: user.inventory) }
-  let(:resource) { create(:resource) }
+  let(:resource) { create(:crystal) }
+
+  it 'lists actions' do
+    expect(gathering_tool.actions).to eq(%w[gather])
+  end
 
   it 'doesn\'t update if user has low energy' do
     user.update(energy: 0)
 
-    expect { gathering_tool.reload.gather(resource) }.to raise_error(CraftyError)
+    expect { gathering_tool.gather(resource) }.to raise_error(CraftyError)
+  end
+
+  it 'gathers' do
+    user.equip_item(gathering_tool)
+    item_count = user.inventory.items.count
+    gathering_tool.gather(resource)
+    expect(user.inventory.items.count == item_count + 1).to be true
   end
 end

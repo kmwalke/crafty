@@ -9,6 +9,7 @@ class ItemUtil
     [
       Item::Craftable::Building.new(
         name: 'New Player Welcome Center',
+        is_private: true,
         description: 'Gathering place for new players. Contains sales listings.',
         level: Level::COMMON,
         created_by: User.first,
@@ -23,6 +24,7 @@ class ItemUtil
       ),
       Item::Craftable::Building.new(
         name: 'Keith\'s Boat Shop.',
+        is_private: true,
         description: 'Vehicle Store.  Sells more than just boats!',
         level: Level::RARE,
         created_by: User.find_by(name: 'Keith'),
@@ -30,6 +32,7 @@ class ItemUtil
       ),
       Item::Craftable::Building.new(
         name: 'Spawnville Zoo',
+        is_private: true,
         description: 'Kerry\'s first request.',
         level: Level::RARE,
         created_by: User.find_by(name: 'Kerry'),

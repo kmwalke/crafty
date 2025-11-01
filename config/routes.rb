@@ -21,11 +21,14 @@ Rails.application.routes.draw do
   # Pick a single one before too long
   # there should be one API for gameplay actions
   # could the whole game be CRUD?  gathering is creating, I guess.  traveling is updating the players location?
+  # Lots of logic in models & controllers.  Need to pick an approach
 
   resources :buildings, param: :building_id, only: [] do
     member do
       get '/add_item/:item_id', to: 'buildings#add_item', as: 'add_item'
       get '/select_item', to: 'buildings#select_item', as: 'select_item'
+      get '/pickup_item/:item_id', to: 'buildings#pickup_item', as: 'pickup_item'
+      get '/inventory', to: 'buildings#inventory', as: 'inventory'
 
       resources :listings, except: :show do
         member do
@@ -38,5 +41,4 @@ Rails.application.routes.draw do
 
   # Cheats
   get 'monster_energy', to: 'cheats#monster_energy'
-  get 'reset_db__no_really_reset_the_db___i_mean_it', to: 'cheats#reset_db'
 end

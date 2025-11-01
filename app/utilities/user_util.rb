@@ -33,6 +33,16 @@ class UserUtil
       )
     )
 
+    create_item(
+      Item::Craftable::Tool::CraftingTool.new(
+        name: 'Universal Assembler',
+        description: 'Magical seeming tech.  Can craft any item.',
+        level: Level::LEGENDARY,
+        color: 'gold',
+        created_by: User.first
+      )
+    )
+
     @user
   end
 

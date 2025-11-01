@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
   validates :status, presence: true
+  validates :credits, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :location, optional: true
   belongs_to :tool, optional: true, class_name: 'Item::Craftable::Tool'
@@ -38,15 +39,17 @@ class User < ApplicationRecord
   def equip_item(item)
     raise CraftyError, 'You can only equip items in your inventory' unless inventory.include?(item)
 
-    equip_vehicle(item) if item.type.include? ItemType::TYPES[:craftable_vehicle]
-    equip_tool(item) if item.type.include? ItemType::TYPES[:craftable_tool]
+    equip_vehicle(item) if item.type.include? ItemType::CRAFTABLE[:vehicle]
+    equip_tool(item) if item.type.include? ItemType::CRAFTABLE[:tool]
   end
 
   def unequip_tool
+    tool.update(inventory: inventory)
     update(tool: nil)
   end
 
   def unequip_vehicle
+    vehicle.update(inventory: inventory)
     update(vehicle: nil)
   end
 
@@ -60,15 +63,6 @@ class User < ApplicationRecord
     raise CraftyError, 'You can\'t travel without a vehicle.' if vehicle.nil?
 
     vehicle.travel(new_location)
-  end
-
-  def purchase(listing)
-    raise CraftyError, 'You can\'t afford that.' unless can_afford?(listing)
-
-    update(credits: (credits - listing.price))
-
-    listing.item.update(inventory: inventory)
-    listing.destroy
   end
 
   def valid_travel_locations
@@ -92,19 +86,15 @@ class User < ApplicationRecord
 
   def equip_tool(tool)
     update(tool: tool)
+    tool.update(inventory: nil)
   end
 
   def equip_vehicle(vehicle)
     update(vehicle: vehicle)
+    vehicle.update(inventory: nil)
   end
 
   def set_energy
     self.energy = User::MAX_ENERGY
-  end
-
-  def can_afford?(listing)
-    return false if listing.price > credits
-
-    true
   end
 end
