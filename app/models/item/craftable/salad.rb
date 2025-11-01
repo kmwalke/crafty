@@ -1,4 +1,6 @@
 class Item::Craftable::Salad < Item
+  include Craftable
+
   def recipe
     [
       ItemType::GATHERABLE[:fruit],

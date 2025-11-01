@@ -1,4 +1,6 @@
 class Item::Craftable::Metal < Item
+  include Craftable
+
   def recipe
     [
       ItemType::GATHERABLE[:ore],
