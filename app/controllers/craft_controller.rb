@@ -12,6 +12,6 @@ class CraftController < ApplicationController
   end
 
   def craft_params
-    params.expect(recipe: [:item_type, { ingredients: [] }])
+    params.expect(recipe: [:item_type, { item_ids: [] }])
   end
 end

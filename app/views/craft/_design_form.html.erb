@@ -8,7 +8,7 @@
     <% @current_user.inventory.items.each do |item| %>
       <li>
         <%= check_box('recipe', 'item_ids', { multiple: true }, item.id, nil) %>
-        <%= label 'recipe_item_ids', item.full_name_level.downcase.gsub(' ', '_') %>
+        <%= label 'recipe_item_ids', item.id, item.full_name_level %>
       </li>
     <% end %>
   </ul>

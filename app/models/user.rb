@@ -9,10 +9,10 @@ class User < ApplicationRecord
   validates :credits, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :location, optional: true
-  belongs_to :gathering_tool, optional: true, class_name: ItemType::TOOLS[:gathering_tool], foreign_key: 'tool_id'
-  belongs_to :crafting_tool, optional: true, class_name: ItemType::TOOLS[:crafting_tool], foreign_key: 'tool_id'
-  belongs_to :vehicle, optional: true, class_name: ItemType::CRAFTABLE[:vehicle]
   belongs_to :inventory, optional: true
+  belongs_to :crafting_tool, optional: true, class_name: ItemType::TOOLS[:crafting_tool], foreign_key: 'tool_id'
+  belongs_to :gathering_tool, optional: true, class_name: ItemType::TOOLS[:gathering_tool], foreign_key: 'tool_id'
+  belongs_to :vehicle, optional: true, class_name: ItemType::CRAFTABLE[:vehicle]
 
   has_many :listings
 
