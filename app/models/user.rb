@@ -9,8 +9,9 @@ class User < ApplicationRecord
   validates :credits, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :location, optional: true
-  belongs_to :tool, optional: true, class_name: 'Item::Craftable::Tool'
-  belongs_to :vehicle, optional: true, class_name: 'Item::Craftable::Vehicle'
+  belongs_to :gathering_tool, optional: true, class_name: ItemType::TOOLS[:gathering_tool], foreign_key: 'tool_id'
+  belongs_to :crafting_tool, optional: true, class_name: ItemType::TOOLS[:crafting_tool], foreign_key: 'tool_id'
+  belongs_to :vehicle, optional: true, class_name: ItemType::CRAFTABLE[:vehicle]
   belongs_to :inventory, optional: true
 
   has_many :listings
@@ -36,6 +37,10 @@ class User < ApplicationRecord
     update(energy: (energy - amount))
   end
 
+  def tool
+    gathering_tool || crafting_tool
+  end
+
   def equip_item(item)
     raise CraftyError, 'You can only equip items in your inventory' unless inventory.include?(item)
 
@@ -45,7 +50,8 @@ class User < ApplicationRecord
 
   def unequip_tool
     tool.update(inventory: inventory)
-    update(tool: nil)
+    update(gathering_tool: nil)
+    update(crafting_tool: nil)
   end
 
   def unequip_vehicle
@@ -89,7 +95,8 @@ class User < ApplicationRecord
   end
 
   def equip_tool(tool)
-    update(tool: tool)
+    update(gathering_tool: tool) if tool.type.include? ItemType::TOOLS[:gathering_tool]
+    update(crafting_tool: tool) if tool.type.include? ItemType::TOOLS[:crafting_tool]
     tool.update(inventory: nil)
   end
 
