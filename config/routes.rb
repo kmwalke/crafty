@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   # could the whole game be CRUD?  gathering is creating, I guess.  traveling is updating the players location?
   # Lots of logic in models & controllers.  Need to pick an approach
 
+  get 'craft/design', to: 'craft#design', as: 'craft_design'
+  get 'craft/confirm', to: 'craft#confirm', as: 'craft_confirm'
+
   resources :buildings, param: :building_id, only: [] do
     member do
       get '/add_item/:item_id', to: 'buildings#add_item', as: 'add_item'

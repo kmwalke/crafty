@@ -10,14 +10,14 @@ RSpec.describe 'Crafting' do
   end
 
   describe 'crafts an item' do
-    let!(:fruit_4) { build(:gatherable_fruit, inventory: nil, stack_amount: 4) }
+    let!(:fruit_4stack) { build(:gatherable_fruit, inventory: nil, stack_amount: 4) }
 
     pending 'select the color of the item'
     # select the color of the item, if level high enough
     # <input type="color" id="favcolor" name="favcolor">
 
     it 'creates the item from a stack' do
-      player.inventory.add_item(fruit_4)
+      player.inventory.add_item(fruit_4stack)
       old_inv_count = player.inventory.items.count
 
       within 'div.actions' do
@@ -37,8 +37,8 @@ RSpec.describe 'Crafting' do
     end
 
     it 'creates the item from multiple items' do
-      ore1 = build(:gatherable_ore, inventory: nil)
-      ore2 = build(:gatherable_ore, inventory: nil)
+      ore1          = build(:gatherable_ore, inventory: nil)
+      ore2          = build(:gatherable_ore, inventory: nil)
       player.inventory.add_item(ore1)
       player.inventory.add_item(ore2)
       old_inv_count = player.inventory.items.count

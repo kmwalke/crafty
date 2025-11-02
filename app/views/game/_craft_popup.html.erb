@@ -1,5 +1,6 @@
-<ul>
-  <li>item 1</li>
-  <li>item 2</li>
-  <li>item 3</li>
-</ul>
+<fieldset id="craft">
+  <legend>Craft an Item</legend>
+  <%= turbo_frame_tag 'craft', src: craft_design_path do %>
+    <%= render partial: 'craft/design_form' %>
+  <% end %>
+</fieldset>
