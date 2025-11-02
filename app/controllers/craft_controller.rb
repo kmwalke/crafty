@@ -6,8 +6,8 @@ class CraftController < ApplicationController
   end
 
   def confirm
-    game_action(path: craft_design_path) do
-      puts craft_params
+    game_action do
+      @notice = 'Item Created' if @current_user.craft(craft_params)
     end
   end
 

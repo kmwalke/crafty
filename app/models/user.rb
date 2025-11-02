@@ -53,6 +53,10 @@ class User < ApplicationRecord
     update(vehicle: nil)
   end
 
+  def craft(craft_params)
+    raise CraftyError, craft_params.to_s
+  end
+
   def gather(resource)
     raise CraftyError, 'You can\'t gather without a tool.' if tool.nil?
 
