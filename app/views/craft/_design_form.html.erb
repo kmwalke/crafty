@@ -1,1 +1,17 @@
-<h1>Design Form</h1>
+<%= form_with scope: :recipe, url: craft_confirm_path do |f| %>
+  <div>
+    <%= f.label :item_type %>
+    <%= f.collection_select :item_type, ItemType::CRAFTABLE.values, :to_s, :to_s %>
+  </div>
+
+  <ul>
+    <% @current_user.inventory.items.each do |item| %>
+      <li>
+        <%= check_box('recipe', 'ingredients', { multiple: true }, item.full_name_level, nil) %>
+        <%= label 'recipe_ingredients', item.full_name_level.downcase.gsub(' ', '_') %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= f.submit 'Craft Item' %>
+<% end %>

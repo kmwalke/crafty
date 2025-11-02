@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   # Lots of logic in models & controllers.  Need to pick an approach
 
   get 'craft/design', to: 'craft#design', as: 'craft_design'
-  get 'craft/confirm', to: 'craft#confirm', as: 'craft_confirm'
+  post 'craft/confirm', to: 'craft#confirm', as: 'craft_confirm'
 
   resources :buildings, param: :building_id, only: [] do
     member do
