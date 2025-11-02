@@ -1,4 +1,4 @@
-class Item::Craftable::Metal < Item
+class Item::Craftable::Ingot < Item
   include Craftable
 
   def recipe

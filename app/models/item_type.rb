@@ -2,7 +2,7 @@ class ItemType < ApplicationRecord
   ITEM       = 'Item'.freeze
   CRAFTABLE  = {
     building: 'Item::Craftable::Building',
-    metal: 'Item::Craftable::Metal',
+    ingot: 'Item::Craftable::Ingot',
     salad: 'Item::Craftable::Salad',
     tool: 'Item::Craftable::Tool',
     vehicle: 'Item::Craftable::Vehicle'
