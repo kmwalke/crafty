@@ -5,6 +5,10 @@ RSpec.describe Item::Craftable::Tool::GatheringTool do
   let(:gathering_tool) { create(:gathering_tool, inventory: user.inventory) }
   let(:resource) { create(:crystal) }
 
+  before do
+    user.equip_item(gathering_tool)
+  end
+
   it 'lists actions' do
     expect(gathering_tool.actions).to eq(%w[gather])
   end
@@ -16,7 +20,6 @@ RSpec.describe Item::Craftable::Tool::GatheringTool do
   end
 
   it 'gathers' do
-    user.equip_item(gathering_tool)
     item_count = user.inventory.items.count
     gathering_tool.gather(resource)
     expect(user.inventory.items.count == item_count + 1).to be true
