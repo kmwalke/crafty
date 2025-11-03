@@ -48,7 +48,9 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
   it 'crafts' do
     old_inv = user.inventory.items.count
     crafting_tool.craft(crafting_params)
-    expect(user.inventory.items.last).to be_a ItemType::Craftable[:ingot].constantize
+    expect(user.inventory.items.last).to be_a ItemType::CRAFTABLE[:ingot].constantize
+    expect(user.inventory.items.last.name).to eq('some combination of ore names')
+    expect(user.inventory.items.last.name).to eq('combine the names. craft copper and iron, you just made a "copper iron ingot".  combine apple and pear, you just made "apple Pear salad" combine copper and copper, just "copper ingot"')
     expect(user.inventory.items.count).to eq(old_inv - 1)
     crafting_params[:item_ids].each do |id|
       expect(Item.find_by(id:)).to be_nil

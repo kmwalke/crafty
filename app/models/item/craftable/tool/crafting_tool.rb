@@ -10,13 +10,16 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
       raise CraftyError, ErrorMessage::USER[:build_additional_pylons]
     end
 
-    raise CraftyError, craft_params.to_s
-    # item = craft_the_item
+    item = craft_params[:item_type].constantize.new
+    
+    # check if item_ids matches recipe
+
     item.created_by = equipped_by
 
     equipped_by.inventory.add_item(item)
 
     item
+    raise CraftyError, craft_params.to_s
   end
 
   private
