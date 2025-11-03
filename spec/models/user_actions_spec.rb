@@ -6,6 +6,14 @@ RSpec.describe User do
   let(:gathering_tool) { create(:gathering_tool, inventory: user.inventory) }
 
   describe 'actions' do
+    # instead of user.gather or user.travel
+    # something like
+    # user.do(action = 'gather', arg = resource)
+    # def user.do(action, arg)
+    #  tool.send(action, arg)  # tool.send('gather', resource) or tool.send('craft', craft_params)
+    # end
+    pending 'replace various user action methods with send'
+
     it 'has no actions without equipment' do
       expect(user.actions).to eq([])
     end
