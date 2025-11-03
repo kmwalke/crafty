@@ -10,9 +10,15 @@ class User < ApplicationRecord
 
   belongs_to :location, optional: true
   belongs_to :inventory, optional: true
-  belongs_to :crafting_tool, optional: true, class_name: ItemType::TOOLS[:crafting_tool], foreign_key: 'tool_id'
-  belongs_to :gathering_tool, optional: true, class_name: ItemType::TOOLS[:gathering_tool], foreign_key: 'tool_id'
-  belongs_to :vehicle, optional: true, class_name: ItemType::CRAFTABLE[:vehicle]
+  belongs_to :crafting_tool, optional: true,
+                             class_name: 'Item::Craftable::Tool::CraftingTool',
+                             foreign_key: 'tool_id',
+                             inverse_of: :equipped_by
+  belongs_to :gathering_tool, optional: true,
+                              class_name: 'Item::Craftable::Tool::GatheringTool',
+                              foreign_key: 'tool_id',
+                              inverse_of: :equipped_by
+  belongs_to :vehicle, optional: true, class_name: 'Item::Craftable::Vehicle'
 
   has_many :listings
 
@@ -60,13 +66,15 @@ class User < ApplicationRecord
   end
 
   def craft(craft_params)
-    raise CraftyError, craft_params.to_s
+    raise CraftyError, 'You can\'t craft without a tool.' if crafting_tool.nil?
+
+    crafting_tool.craft(craft_params)
   end
 
   def gather(resource)
-    raise CraftyError, 'You can\'t gather without a tool.' if tool.nil?
+    raise CraftyError, 'You can\'t gather without a tool.' if gathering_tool.nil?
 
-    tool.gather(resource)
+    gathering_tool.gather(resource)
   end
 
   def travel(new_location)
