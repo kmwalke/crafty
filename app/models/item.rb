@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   include HasLevels
 
-  before_create :set_color, :set_desc
+  before_create :set_defaults
 
   validates :name, presence: true
   validates :level, presence: true
@@ -36,11 +36,8 @@ class Item < ApplicationRecord
 
   private
 
-  def set_color
-    self.color ||= DEFAULT_COLOR
-  end
-
-  def set_desc
+  def set_defaults
+    self.color       ||= DEFAULT_COLOR
     self.description ||= DEFAULT_DESC
   end
 end
