@@ -1,4 +1,6 @@
 class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
+  attr_accessor :crafted_item, :ingredients
+
   def actions
     %w[craft]
   end
@@ -10,19 +12,50 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
       raise CraftyError, ErrorMessage::USER[:build_additional_pylons]
     end
 
-    item = craft_params[:item_type].constantize.new
-    
-    # check if item_ids matches recipe
+    @crafted_item = craft_params[:item_type].constantize.new
+    @ingredients  = craft_params[:item_ids].map do |id|
+      Item.find_by(id:)
+    end
 
-    item.created_by = equipped_by
+    raise CraftyError, ErrorMessage::CRAFTING[:failed] unless can_craft?
 
-    equipped_by.inventory.add_item(item)
+    craft_the_item
+    consume_ingredients
+    equipped_by.inventory.add_item(@crafted_item)
 
-    item
-    raise CraftyError, craft_params.to_s
+    @crafted_item
   end
 
   private
+
+  def can_craft?
+    # this doesnt work for stacked items
+    @ingredients.pluck(:type) == @crafted_item.recipe
+  end
+
+  def craft_the_item
+    @crafted_item.created_by  = equipped_by
+    @crafted_item.name        = crafted_item_name
+    @crafted_item.description = crafted_item_description
+    @crafted_item.level       = crafted_item_level
+  end
+
+  def consume_ingredients
+    # this doesnt work for stacked items
+    @ingredients.each(&:destroy)
+  end
+
+  def crafted_item_name
+    @ingredients.first.name
+  end
+
+  def crafted_item_description
+    'desc'
+  end
+
+  def crafted_item_level
+    @ingredients.first.level
+  end
 
   def energy_usage(craft_params)
     craft_params[:item_ids].count * energy_multiplier

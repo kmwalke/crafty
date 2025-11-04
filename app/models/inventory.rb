@@ -28,7 +28,6 @@ class Inventory < ApplicationRecord
       raise CraftyError, ErrorMessage::INVENTORY[:no_space] unless remaining_space.positive?
 
       item.inventory = self
-      item.save
       item
     end
   end
