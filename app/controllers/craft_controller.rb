@@ -8,7 +8,7 @@ class CraftController < ApplicationController
     game_action do
       raise CraftyError, ErrorMessage::CRAFTING[:failed] unless @craftable_items.include? craft_params[:item_type]
 
-      if crafted_item = @current_user.craft(craft_params)
+      if (crafted_item = @current_user.craft(craft_params))
         @notice = "Created #{level_color_span crafted_item.level, crafted_item.name}"
       end
     end

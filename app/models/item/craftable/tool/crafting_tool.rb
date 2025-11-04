@@ -20,8 +20,7 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
     raise CraftyError, ErrorMessage::CRAFTING[:failed] unless can_craft?
 
     craft_the_item
-    consume_ingredients
-    equipped_by.inventory.add_item(@crafted_item)
+    consume_ingredients if equipped_by.inventory.add_item(@crafted_item)
 
     @crafted_item
   end
@@ -36,7 +35,6 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
   def craft_the_item
     @crafted_item.created_by  = equipped_by
     @crafted_item.name        = crafted_item_name
-    @crafted_item.description = crafted_item_description
     @crafted_item.level       = crafted_item_level
   end
 
@@ -46,11 +44,7 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
   end
 
   def crafted_item_name
-    @ingredients.first.name
-  end
-
-  def crafted_item_description
-    'desc'
+    @ingredients.map(&:name).join(' ')
   end
 
   def crafted_item_level
