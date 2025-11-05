@@ -55,14 +55,18 @@ class User < ApplicationRecord
   end
 
   def unequip_tool
-    tool.update(inventory: inventory)
-    update(gathering_tool: nil)
-    update(crafting_tool: nil)
+    ActiveRecord::Base.transaction do
+      tool.update(inventory: inventory)
+      update(gathering_tool: nil)
+      update(crafting_tool: nil)
+    end
   end
 
   def unequip_vehicle
-    vehicle.update(inventory: inventory)
-    update(vehicle: nil)
+    ActiveRecord::Base.transaction do
+      vehicle.update(inventory: inventory)
+      update(vehicle: nil)
+    end
   end
 
   def craft(craft_params)
