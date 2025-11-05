@@ -1,4 +1,4 @@
-module Craftable
+class Craftable
   extend ActiveSupport::Concern
 
   def recipe

@@ -4,7 +4,7 @@
     <h4 class="title" style="background-color: <%= item.color %>">
       <%= item.name %>
     </h4>
-    <% if item.equipable? %>
+    <% if item.equippable? %>
       <%= link_to 'Equip', equip_item_path(item) %><br />
     <% end %>
     <%= level_color_span(item.level, item.level_name) %>

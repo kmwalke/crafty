@@ -21,8 +21,8 @@ RSpec.describe Item::Craftable::Vehicle do
     pending 'takes time to travel. high level vehicles are faster'
     pending 'sets status to resting on arrival'
 
-    it 'vehicles are equipable' do
-      expect(vehicle.equipable?).to be true
+    it 'vehicles are equippable' do
+      expect(vehicle.equippable?).to be true
     end
 
     it 'nil user protection' do

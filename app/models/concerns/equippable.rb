@@ -5,7 +5,7 @@ module Equippable
     raise CraftyError, ErrorMessage::GENERIC[:interface_method]
   end
 
-  def equipable?
+  def equippable?
     true
   end
 

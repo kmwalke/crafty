@@ -8,7 +8,7 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
   end
 
   it 'lists actions' do
-    expect(user.crafting_tool.actions).to eq(%w[craft])
+    expect(user.crafting_tool.actions).to eq(%w[craft recipes])
   end
 
   it 'doesn\'t update if user has low energy' do
@@ -121,5 +121,9 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
         }
       )
     end.to raise_error CraftyError
+  end
+
+  it 'lists recipes' do
+    expect(true).to be false
   end
 end

@@ -27,6 +27,12 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
     end
   end
 
+  def recipes
+    ItemType::CRAFTABLE.map do |name, recipe|
+      { name:, recipe: recipe.constantize.new.recipe }
+    end
+  end
+
   private
 
   def can_craft?
