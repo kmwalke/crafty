@@ -2,7 +2,7 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
   attr_accessor :crafted_item, :ingredients
 
   def actions
-    %w[craft]
+    %w[craft recipes]
   end
 
   def craft(craft_params)
