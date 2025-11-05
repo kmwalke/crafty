@@ -48,10 +48,13 @@ class User < ApplicationRecord
   end
 
   def equip_item(item)
-    raise CraftyError, 'You can only equip items in your inventory' unless inventory.include?(item)
+    ActiveRecord::Base.transaction do
+      raise CraftyError, 'You can only equip items in your inventory' unless inventory.include?(item)
 
-    equip_vehicle(item) if item.type.include? ItemType::CRAFTABLE[:vehicle]
-    equip_tool(item) if item.type.include? ItemType::CRAFTABLE[:tool]
+      tool&.update(inventory:)
+      equip_vehicle(item) if item.type.include? ItemType::CRAFTABLE[:vehicle]
+      equip_tool(item) if item.type.include? ItemType::CRAFTABLE[:tool]
+    end
   end
 
   def unequip_tool

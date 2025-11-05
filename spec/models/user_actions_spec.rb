@@ -39,7 +39,6 @@ RSpec.describe User do
       end
 
       it 'replaces a tool with another' do
-        pending 'bugfix'
         gathering_tool2 = create(:gathering_tool, inventory: user.inventory)
         user.equip_item gathering_tool2
         expect(user.inventory.items.include?(gathering_tool)).to be true
