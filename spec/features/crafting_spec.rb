@@ -14,7 +14,7 @@ RSpec.describe 'Crafting' do
 
     pending 'select the color of the item'
     # select the color of the item, if level high enough
-    # <input type="color" id="favcolor" name="favcolor">
+    # <input type="color" />
 
     it 'creates the item from a stack' do
       player.inventory.add_item(fruit_4stack)
@@ -34,7 +34,7 @@ RSpec.describe 'Crafting' do
 
       expect(fruit_4stack.stack_amount).to eq(1)
       expect(player.inventory.items.count).to eq(old_inv_count + 1)
-      expect(player.inventory.items.last).to be_a Item::Craftable::Salad
+      expect(player.inventory.items.where(type: ItemType::CRAFTABLE[:salad]).count).to eq(1)
     end
 
     it 'creates the item from multiple items' do

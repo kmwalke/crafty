@@ -47,10 +47,11 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
 
   it 'crafts' do
     old_inv = user.inventory.items.count
+    name    = crafted_ore_name
     crafting_tool.craft(crafting_params)
     expect(user.inventory.items.count).to eq(old_inv - 1)
-    expect(user.reload.inventory.items.last).to be_a ItemType::CRAFTABLE[:ingot].constantize
-    # expect(user.inventory.items.last.name).to eq('some combination of ore names')
+    expect(user.inventory.items.last).to be_a ItemType::CRAFTABLE[:ingot].constantize
+    expect(user.inventory.items.last.name).to eq(name)
     crafting_params[:item_ids].each do |id|
       expect(Item.find_by(id:)).to be_nil
     end
@@ -64,4 +65,10 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
   it 'doesnt craft with bad recipe' do
     expect { crafting_tool.craft(bad_crafting_params) }.to raise_error CraftyError
   end
+end
+
+def crafted_ore_name
+  crafting_params[:item_ids].map do |id|
+    Item.find(id).name
+  end.join(' ')
 end
