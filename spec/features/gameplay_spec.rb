@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Gameplay' do
+  pending 'v0.2 add starter items to new user welcome hall'
+  pending 'v0.2 make items in welcome hall free and infinite'
+  pending 'v0.2 make seeds find_or_create everything'
+  pending 'v0.2 stop resetting db every release'
   pending 'make game items clickable in the viewport'
   pending 'organize partial views'
   pending 'use streams to solve latency effects. Entire page needs to use turbo frames and streams'
