@@ -1,7 +1,7 @@
-module Craftable
+module Useable
   extend ActiveSupport::Concern
 
-  def recipe
+  def use
     raise CraftyError, ErrorMessage::GENERIC[:interface_method]
   end
 end

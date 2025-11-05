@@ -8,6 +8,11 @@ FactoryBot.define do
       sequence(:description) { |n| "This is the description for Building_#{n}" }
     end
 
+    factory :craftable_salad, class: ItemType::CRAFTABLE[:salad] do
+      sequence(:name) { |n| "Salad_#{n}" }
+      sequence(:description) { |n| "This is the description for Salad_#{n}" }
+    end
+
     factory :craftable_vehicle, class: ItemType::CRAFTABLE[:vehicle] do
       sequence(:name) { |n| "Vehicle_#{n}" }
       sequence(:description) { |n| "This is the description for Vehicle_#{n}" }
