@@ -57,7 +57,7 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
   def crafted_item_name
     # don't join if names are same.
     # dont want Copper Copper Ingot
-    @ingredients.map(&:name).join(' ')
+    @ingredients.map(&:name).uniq.join(' ')
   end
 
   def crafted_item_level

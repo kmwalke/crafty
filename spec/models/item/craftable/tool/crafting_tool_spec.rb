@@ -22,13 +22,12 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
       {
         item_type: ItemType::CRAFTABLE[:ingot],
         item_ids: [
-          create(:gatherable_ore, inventory: user.inventory).id,
-          create(:gatherable_ore, inventory: user.inventory).id
+          create(:gatherable_ore, inventory: user.inventory, name: 'Copper').id,
+          create(:gatherable_ore, inventory: user.inventory, name: 'Iron').id
         ]
       }
     end
     let!(:old_inv) { user.inventory.items.count }
-    let!(:name) { crafted_ore_name }
     let!(:level) { Item.find(crafting_params[:item_ids][0]).level }
 
     before do
@@ -44,7 +43,7 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
     end
 
     it 'names the new item' do
-      expect(user.inventory.items.last.name).to eq(name)
+      expect(user.inventory.items.last.name).to eq('Copper Iron')
     end
 
     it 'gives the new item a level' do
@@ -87,8 +86,8 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
       {
         item_type: ItemType::CRAFTABLE[:salad],
         item_ids: [
-          create(:gatherable_fruit, inventory: user.inventory, stack_amount: 2).id,
-          create(:gatherable_fruit, inventory: user.inventory, stack_amount: 1).id
+          create(:gatherable_fruit, inventory: user.inventory, stack_amount: 2, name: 'Apple').id,
+          create(:gatherable_fruit, inventory: user.inventory, stack_amount: 1, name: 'Apple').id
         ]
       }
     end
@@ -99,6 +98,10 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
 
     it 'creates the new item' do
       expect(user.inventory.items.last).to be_a ItemType::CRAFTABLE[:salad].constantize
+    end
+
+    it 'names the new item' do
+      expect(user.inventory.items.last.name).to eq('Apple')
     end
 
     it 'consumes the ingredients' do
