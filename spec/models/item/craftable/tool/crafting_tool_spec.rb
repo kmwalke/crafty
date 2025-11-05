@@ -124,9 +124,3 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
     end.to raise_error CraftyError
   end
 end
-
-def crafted_ore_name
-  crafting_params[:item_ids].map do |id|
-    Item.find(id).name
-  end.join(' ')
-end
