@@ -124,6 +124,6 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
   end
 
   it 'lists recipes' do
-    expect(true).to be false
+    expect(user.crafting_tool.recipes).to be_a(Array)
   end
 end

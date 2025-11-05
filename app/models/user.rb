@@ -53,7 +53,7 @@ class User < ApplicationRecord
 
       tool&.update(inventory:)
       equip_vehicle(item) if item.type.include? ItemType::CRAFTABLE[:vehicle]
-      equip_tool(item) if item.type.include? ItemType::CRAFTABLE[:tool]
+      equip_tool(item) if item.type.include? ItemType::TOOL
     end
   end
 

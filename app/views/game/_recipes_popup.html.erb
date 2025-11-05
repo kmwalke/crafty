@@ -1,8 +1,21 @@
 <fieldset id="recipes">
   <legend><%= @current_user.tool.name %> Recipes</legend>
-  <ul>
+  <table>
+    <thead>
+    <tr>
+      <th>Item</th>
+      <th>Recipe</th>
+    </tr>
+    </thead>
     <% @current_user.tool.recipes.each do |recipe| %>
-
+      <tr>
+        <td><%= recipe[:name] %></td>
+        <td>
+          <% recipe[:recipe].each do |ingredient| %>
+          <span><%= pretty_type(ingredient) %></span>
+          <% end %>
+        </td>
+      </tr>
     <% end %>
-  </ul>
+  </table>
 </fieldset>

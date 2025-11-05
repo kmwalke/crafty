@@ -7,16 +7,16 @@ RSpec.describe 'Recipes' do
   before do
     player.equip_item(crafting_tool)
     visit game_path
-    # within 'div.actions' do
-    #   click_link 'Recipes'
-    # end
+    within 'div.actions' do
+      click_link 'Recipes'
+    end
   end
 
   it 'shows the recipes' do
-    # within '.craft-popup' do
-    ItemType::CRAFTABLE.each_value do |item|
-      expect(page).to have_content(item.constantize.new.recipe)
+    within '.recipes-popup' do
+      ItemType::CRAFTABLE.each_value do |item|
+        item.constantize.new.recipe.each { |ingredient| expect(page).to have_content(pretty_type(ingredient)) }
+      end
     end
-    # end
   end
 end

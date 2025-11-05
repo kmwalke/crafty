@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :tool, class: ItemType::CRAFTABLE[:tool], parent: :item do
+  factory :tool, class: 'ItemType::TOOL', parent: :item do
     sequence(:name) { |n| "Tool_#{n}" }
     sequence(:description) { |n| "This is the description for Tool_#{n}" }
 

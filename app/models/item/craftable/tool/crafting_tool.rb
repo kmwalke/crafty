@@ -29,7 +29,7 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
 
   def recipes
     ItemType::CRAFTABLE.map do |name, recipe|
-      { name:, recipe: recipe.constantize.new.recipe }
+      { name: name.to_s.gsub('_', ' ').capitalize, recipe: recipe.constantize.new.recipe }
     end
   end
 
