@@ -22,13 +22,12 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
       {
         item_type: ItemType::CRAFTABLE[:ingot],
         item_ids: [
-          create(:gatherable_ore, inventory: user.inventory, name: 'Copper').id,
-          create(:gatherable_ore, inventory: user.inventory, name: 'Iron').id
+          create(:gatherable_ore, inventory: user.inventory, name: 'Copper', level: Level::LEGENDARY).id,
+          create(:gatherable_ore, inventory: user.inventory, name: 'Iron', level: Level::COMMON).id
         ]
       }
     end
     let!(:old_inv) { user.inventory.items.count }
-    let!(:level) { Item.find(crafting_params[:item_ids][0]).level }
 
     before do
       user.crafting_tool.craft(crafting_params)
@@ -47,7 +46,7 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
     end
 
     it 'gives the new item a level' do
-      expect(user.inventory.items.last.level).to eq(level)
+      expect(user.inventory.items.last.level).to eq(Level::COMMON)
     end
 
     it 'consumes the ingredients' do

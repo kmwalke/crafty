@@ -59,9 +59,7 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
   end
 
   def crafted_item_level
-    # Use the lowest item or crafting tool level.  Whichever lower
-    # Later, high skill can boost level
-    @ingredients.first.level
+    @ingredients.pluck(:level).min
   end
 
   def energy_usage(craft_params)
