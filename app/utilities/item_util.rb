@@ -23,6 +23,14 @@ class ItemUtil
         color: '#663300'
       ),
       Item::Craftable::Building.new(
+        name: 'Sea Turtle Skates',
+        is_private: true,
+        description: 'A good o\' skate shop.',
+        level: Level::EPIC,
+        created_by: User.find_by(name: 'Cris'),
+        color: '#438D80'
+      ),
+      Item::Craftable::Building.new(
         name: 'Keith\'s Boat Shop.',
         is_private: true,
         description: 'Vehicle Store.  Sells more than just boats!',

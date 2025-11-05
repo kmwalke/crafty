@@ -1,10 +1,9 @@
 class Item < ApplicationRecord
   include HasLevels
 
-  before_create :set_color
+  before_create :set_defaults
 
   validates :name, presence: true
-  validates :description, presence: true
   validates :level, presence: true
 
   belongs_to :created_by, class_name: 'User'
@@ -13,6 +12,7 @@ class Item < ApplicationRecord
   belongs_to :inventory, optional: true
 
   DEFAULT_COLOR = '#EEE'.freeze
+  DEFAULT_DESC  = 'This is the item description.'.freeze
 
   def permitted_user?(user)
     created_by == user || !is_private
@@ -36,7 +36,8 @@ class Item < ApplicationRecord
 
   private
 
-  def set_color
-    self.color ||= DEFAULT_COLOR
+  def set_defaults
+    self.color       ||= DEFAULT_COLOR
+    self.description ||= DEFAULT_DESC
   end
 end

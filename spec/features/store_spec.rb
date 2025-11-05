@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Store' do
+  pending 'BUG: i can just pickup items for sale at a public building.'
+  # being on sale should remove them from inventory. Like equipping'
   let!(:player) { create(:user) }
   let!(:building) { build(:craftable_building, inventory: nil) }
   let!(:item) { player.inventory.add_item(build(:gatherable_fruit, inventory: nil)) }

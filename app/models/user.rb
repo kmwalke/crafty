@@ -9,9 +9,16 @@ class User < ApplicationRecord
   validates :credits, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :location, optional: true
-  belongs_to :tool, optional: true, class_name: 'Item::Craftable::Tool'
-  belongs_to :vehicle, optional: true, class_name: 'Item::Craftable::Vehicle'
   belongs_to :inventory, optional: true
+  belongs_to :crafting_tool, optional: true,
+                             class_name: 'Item::Craftable::Tool::CraftingTool',
+                             foreign_key: 'tool_id',
+                             inverse_of: :equipped_by
+  belongs_to :gathering_tool, optional: true,
+                              class_name: 'Item::Craftable::Tool::GatheringTool',
+                              foreign_key: 'tool_id',
+                              inverse_of: :equipped_by
+  belongs_to :vehicle, optional: true, class_name: 'Item::Craftable::Vehicle'
 
   has_many :listings
 
@@ -36,27 +43,45 @@ class User < ApplicationRecord
     update(energy: (energy - amount))
   end
 
-  def equip_item(item)
-    raise CraftyError, 'You can only equip items in your inventory' unless inventory.include?(item)
+  def tool
+    gathering_tool || crafting_tool
+  end
 
-    equip_vehicle(item) if item.type.include? ItemType::CRAFTABLE[:vehicle]
-    equip_tool(item) if item.type.include? ItemType::CRAFTABLE[:tool]
+  def equip_item(item)
+    ActiveRecord::Base.transaction do
+      raise CraftyError, 'You can only equip items in your inventory' unless inventory.include?(item)
+
+      tool&.update(inventory:)
+      equip_vehicle(item) if item.type.include? ItemType::CRAFTABLE[:vehicle]
+      equip_tool(item) if item.type.include? ItemType::CRAFTABLE[:tool]
+    end
   end
 
   def unequip_tool
-    tool.update(inventory: inventory)
-    update(tool: nil)
+    ActiveRecord::Base.transaction do
+      tool.update(inventory: inventory)
+      update(gathering_tool: nil)
+      update(crafting_tool: nil)
+    end
   end
 
   def unequip_vehicle
-    vehicle.update(inventory: inventory)
-    update(vehicle: nil)
+    ActiveRecord::Base.transaction do
+      vehicle.update(inventory: inventory)
+      update(vehicle: nil)
+    end
+  end
+
+  def craft(craft_params)
+    raise CraftyError, 'You can\'t craft without a tool.' if crafting_tool.nil?
+
+    crafting_tool.craft(craft_params)
   end
 
   def gather(resource)
-    raise CraftyError, 'You can\'t gather without a tool.' if tool.nil?
+    raise CraftyError, 'You can\'t gather without a tool.' if gathering_tool.nil?
 
-    tool.gather(resource)
+    gathering_tool.gather(resource)
   end
 
   def travel(new_location)
@@ -85,7 +110,8 @@ class User < ApplicationRecord
   end
 
   def equip_tool(tool)
-    update(tool: tool)
+    update(gathering_tool: tool) if tool.type.include? ItemType::TOOLS[:gathering_tool]
+    update(crafting_tool: tool) if tool.type.include? ItemType::TOOLS[:crafting_tool]
     tool.update(inventory: nil)
   end
 
