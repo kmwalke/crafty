@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Traveling' do
+  pending 'list distance and energy usage to travel locations'
   let!(:player) { login }
   let!(:location1) { player.location }
   let!(:location2) { create(:location) }
