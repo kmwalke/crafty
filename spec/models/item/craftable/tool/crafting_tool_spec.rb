@@ -7,7 +7,6 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
     {
       item_type: ItemType::CRAFTABLE[:ingot],
       item_ids: [
-        create(:gatherable_ore, inventory: user.inventory).id,
         create(:gatherable_fruit, inventory: user.inventory).id,
         create(:gatherable_ore, inventory: user.inventory).id
       ]
@@ -48,10 +47,12 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
   it 'crafts' do
     old_inv = user.inventory.items.count
     name    = crafted_ore_name
+    level   = Item.find(crafting_params[:item_ids][0]).level
     crafting_tool.craft(crafting_params)
     expect(user.inventory.items.count).to eq(old_inv - 1)
     expect(user.inventory.items.last).to be_a ItemType::CRAFTABLE[:ingot].constantize
     expect(user.inventory.items.last.name).to eq(name)
+    expect(user.inventory.items.last.level).to eq(level)
     crafting_params[:item_ids].each do |id|
       expect(Item.find_by(id:)).to be_nil
     end
@@ -59,8 +60,10 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
 
   it 'crafts with stacked items' do
     crafting_tool.craft(stacked_crafting_params)
-    expect(Item.find_by(id: stacked_crafting_params).stack_amount).to eq(1)
-    expect(user.inventory.items.last.name).to eq(Item.find(stacked_crafting_params[:item_ids][0]).name)
+
+    ingredient = Item.find(stacked_crafting_params[:item_ids][0])
+    expect(ingredient.stack_amount).to eq(1)
+    expect(user.inventory.items.last.name).to eq(ingredient.name)
   end
 
   it 'doesnt craft with bad recipe' do

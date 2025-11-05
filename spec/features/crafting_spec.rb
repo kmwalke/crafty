@@ -32,7 +32,7 @@ RSpec.describe 'Crafting' do
         click_button 'Craft Item'
       end
 
-      expect(fruit_4stack.stack_amount).to eq(1)
+      expect(fruit_4stack.reload.stack_amount).to eq(1)
       expect(player.inventory.items.count).to eq(old_inv_count + 1)
       expect(player.inventory.items.where(type: ItemType::CRAFTABLE[:salad]).count).to eq(1)
     end
