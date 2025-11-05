@@ -3,6 +3,16 @@ class ItemUtil
     building_data.each do |building|
       Location.first.add_building(building)
     end
+
+    welcome_center = Item::Craftable::Building.first
+    welcome_center_inventory.each do |item|
+      Listing.create(
+        building: welcome_center,
+        item: item,
+        created_by: User.first,
+        price: 10
+      )
+    end
   end
 
   def self.building_data
@@ -45,6 +55,32 @@ class ItemUtil
         level: Level::RARE,
         created_by: User.find_by(name: 'Kerry'),
         color: '#663300'
+      )
+    ]
+  end
+
+  def self.welcome_center_inventory
+    [
+      Item::Craftable::Vehicle.new(
+        description: 'An old bike with a rusty trailer.',
+        name: 'Bicycle',
+        level: Level::COMMON,
+        color: '#ffcccc',
+        created_by: User.first
+      ),
+      Item::Craftable::Tool::GatheringTool.new(
+        name: 'Universal Extractor',
+        description: 'Magical seeming tech.  Can gather from any resource.',
+        level: Level::LEGENDARY,
+        color: 'gold',
+        created_by: User.first
+      ),
+      Item::Craftable::Tool::CraftingTool.new(
+        name: 'Universal Assembler',
+        description: 'Magical seeming tech.  Can craft any item.',
+        level: Level::LEGENDARY,
+        color: 'gold',
+        created_by: User.first
       )
     ]
   end

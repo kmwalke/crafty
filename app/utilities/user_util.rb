@@ -13,41 +13,7 @@ class UserUtil
     @user.credits  = 1000
     @user.save
 
-    create_item(
-      Item::Craftable::Vehicle.new(
-        description: 'An old bike with a rusty trailer.',
-        name: 'Bicycle',
-        level: Level::COMMON,
-        color: '#ffcccc',
-        created_by: User.first
-      )
-    )
-
-    create_item(
-      Item::Craftable::Tool::GatheringTool.new(
-        name: 'Universal Extractor',
-        description: 'Magical seeming tech.  Can gather from any resource.',
-        level: Level::LEGENDARY,
-        color: 'gold',
-        created_by: User.first
-      )
-    )
-
-    create_item(
-      Item::Craftable::Tool::CraftingTool.new(
-        name: 'Universal Assembler',
-        description: 'Magical seeming tech.  Can craft any item.',
-        level: Level::LEGENDARY,
-        color: 'gold',
-        created_by: User.first
-      )
-    )
-
     @user
-  end
-
-  def create_item(item)
-    @user.inventory.add_item(item)
   end
 
   def self.user_data
