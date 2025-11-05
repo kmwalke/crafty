@@ -1,5 +1,8 @@
 class ErrorMessage
-  GENERIC = {
+  CRAFTING = {
+    failed: 'Crafting failed!'
+  }.freeze
+  GENERIC  = {
     interface_method: 'Implement in child class',
     invalid_level: 'Invalid level number'
   }.freeze

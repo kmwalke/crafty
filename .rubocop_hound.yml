@@ -110,6 +110,9 @@ Rails/SkipsModelValidations:
   Exclude:
     - 'db/migrate/*'
 
+RSpec/ExampleLength:
+  CountAsOne: [array, hash, heredoc, method_call]
+
 RSpec/MessageSpies:
   Enabled: false
 

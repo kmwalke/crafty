@@ -3,9 +3,17 @@ require 'rails_helper'
 RSpec.describe User do
   let(:user) { create(:user) }
   let(:vehicle) { create(:craftable_vehicle, inventory: user.inventory) }
-  let(:gathering_tool) { create(:craftable_tool_gathering_tool, inventory: user.inventory) }
+  let(:gathering_tool) { create(:gathering_tool, inventory: user.inventory) }
 
   describe 'actions' do
+    # instead of user.gather or user.travel
+    # something like
+    # user.do(action = 'gather', arg = resource)
+    # def user.do(action, arg)
+    #  tool.send(action, arg)  # tool.send('gather', resource) or tool.send('craft', craft_params)
+    # end
+    pending 'replace various user action methods with send'
+
     it 'has no actions without equipment' do
       expect(user.actions).to eq([])
     end
@@ -28,6 +36,13 @@ RSpec.describe User do
 
       it 'equips the tool' do
         expect(user.actions).to eq(%w[gather])
+      end
+
+      it 'replaces a tool with another' do
+        pending 'bugfix'
+        gathering_tool2 = create(:gathering_tool, inventory: user.inventory)
+        user.equip_item gathering_tool2
+        expect(user.inventory.items.include?(gathering_tool)).to be true
       end
 
       describe 'unequips tool' do

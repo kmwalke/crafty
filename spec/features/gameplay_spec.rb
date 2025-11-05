@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Gameplay' do
+  pending 'BUG: scrolling seems broken'
   pending 'make game items clickable in the viewport'
   pending 'organize partial views'
   pending 'use streams to solve latency effects. Entire page needs to use turbo frames and streams'

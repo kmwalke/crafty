@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'Game' do
   pending 'create settings section for each user. Things like email notifications and change PW'
+  pending 'show recipes to user somewhere'
+  pending 'document how crafting works for user, levels and such'
+  pending 'perhaps a help/tutorial section in the menu'
 
   describe 'logged out' do
     it 'redirects to login page' do

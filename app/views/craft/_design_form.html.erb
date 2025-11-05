@@ -1,0 +1,17 @@
+<%= form_with scope: :recipe, url: craft_confirm_path do |f| %>
+  <div>
+    <%= f.label :item_type %>
+    <%= f.collection_select :item_type, ItemType::CRAFTABLE.values, :to_s, :to_s %>
+  </div>
+
+  <ul>
+    <% @current_user.inventory.items.each do |item| %>
+      <li>
+        <%= check_box('recipe', 'item_ids', { multiple: true }, item.id, nil) %>
+        <%= label 'recipe_item_ids', item.id, item.full_name_level %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= f.submit 'Craft Item', data: {turbo: false} %>
+<% end %>
