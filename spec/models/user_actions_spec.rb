@@ -12,7 +12,7 @@ RSpec.describe User do
     # def user.do(action, arg)
     #  tool.send(action, arg)  # tool.send('gather', resource) or tool.send('craft', craft_params)
     # end
-    pending 'replace various user action methods with send'
+    pending 'v0.2 replace various user action methods with send'
 
     it 'has no actions without equipment' do
       expect(user.actions).to eq([])
