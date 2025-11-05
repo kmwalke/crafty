@@ -18,6 +18,7 @@ RSpec.describe 'Crafting' do
 
     it 'creates the item from a stack' do
       player.inventory.add_item(fruit_4stack)
+      visit game_path
       old_inv_count = player.inventory.items.count
 
       within 'div.actions' do
@@ -25,13 +26,13 @@ RSpec.describe 'Crafting' do
       end
 
       within '.craft-popup' do
-        select ItemType::CRAFTABLE[:salad], from: 'craft-dropdown'
-        check fruit_4.full_name
+        select ItemType::CRAFTABLE[:salad], from: 'recipe_item_type'
+        check fruit_4stack.full_name
 
         click_button 'Craft Item'
       end
 
-      expect(fruit.stack_amount).to eq(1)
+      expect(fruit_4stack.stack_amount).to eq(1)
       expect(player.inventory.items.count).to eq(old_inv_count + 1)
       expect(player.inventory.items.last).to be_a Item::Craftable::Salad
     end
@@ -41,6 +42,7 @@ RSpec.describe 'Crafting' do
       ore2          = build(:gatherable_ore, inventory: nil)
       player.inventory.add_item(ore1)
       player.inventory.add_item(ore2)
+      visit game_path
       old_inv_count = player.inventory.items.count
 
       within 'div.actions' do
@@ -48,16 +50,15 @@ RSpec.describe 'Crafting' do
       end
 
       within '.craft-popup' do
-        select ItemType::CRAFTABLE[:ore], from: 'craft-dropdown'
+        select ItemType::CRAFTABLE[:ingot], from: 'recipe_item_type'
         check ore1.full_name
         check ore2.full_name
 
         click_button 'Craft Item'
       end
 
-      expect(fruit.stack_amount).to eq(1)
-      expect(player.inventory.items.count).to eq(old_inv_count + 1)
-      expect(player.inventory.items.last).to be_a Item::Craftable::Salad
+      expect(player.inventory.items.count).to eq(old_inv_count - 1)
+      expect(player.inventory.items.where(type: ItemType::CRAFTABLE[:ingot]).count).to eq(1)
     end
   end
 end
