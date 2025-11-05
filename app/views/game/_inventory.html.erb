@@ -8,7 +8,7 @@
       <li class="credits">Credits: <%= @current_user.credits %><%= credit_symbol %></li>
       <% @current_user.inventory.items.each do |item| %>
         <li data-turbo="false">
-          <span class="stack-amount"><%= item.stack_amount if item.stack_amount > 1 %></span>
+          <span class="stack-amount"><%= stack_amount(item) %></span>
           <%= level_color_span(item.level, link_to(item.full_name, "#item-#{ item.id }-details")) %>
         </li>
         <%= render partial: 'item_popup', locals: { item: } %>
