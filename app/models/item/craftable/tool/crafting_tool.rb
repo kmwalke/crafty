@@ -2,7 +2,7 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
   attr_accessor :crafted_item, :ingredients
 
   def actions
-    %w[craft]
+    %w[craft recipes]
   end
 
   def craft(craft_params)
@@ -24,6 +24,12 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
       consume_ingredients if equipped_by.inventory.add_item(@crafted_item)
 
       @crafted_item
+    end
+  end
+
+  def recipes
+    ItemType::CRAFTABLE.map do |name, recipe|
+      { name: name.to_s.gsub('_', ' ').capitalize, recipe: recipe.constantize.new.recipe }
     end
   end
 

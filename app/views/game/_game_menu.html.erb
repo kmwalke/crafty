@@ -8,11 +8,11 @@
     <div class="popup-content game-menu-popup">
       <a href="#" class="close-button" data-turbo="false">X</a>
       <h4 class="title">Game Menu</h4>
-      <span class="version">Version 0.1.0.<%= ENV['HEROKU_RELEASE_VERSION'] %></span>
+      <span class="version">Version 0.1.0.build_<%= ENV['HEROKU_RELEASE_VERSION'] %></span>
       <ul class="links">
         <% if current_user -%>
           <li><a href="#">Settings</a></li>
-          <li><a href="#">Change Log</a></li>
+          <li><%= link_to 'Upcoming Changes', project_management_path %></li>
           <li><%= link_to 'Vision Board', vision_board_path %></li>
           <li><%= link_to 'Log Out', logout_path %></li>
         <% end %>

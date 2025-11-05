@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Inventory do
   let(:inventory) { create(:inventory, size: 1) }
 
-  pending 'sorts the inventory'
-  pending 'equipping a backpack or something increases the users inventory size'
+  pending 'version_0.2 sorts the inventory'
+  pending 'version_0.2 equipping a backpack or something increases the users inventory size'
 
   it 'gets a count of current items' do
     expect(inventory.count).to eq(inventory.items.count)

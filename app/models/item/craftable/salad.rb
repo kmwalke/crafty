@@ -1,5 +1,8 @@
 class Item::Craftable::Salad < Item
   include Craftable
+  include Useable
+
+  ENERGY = 200
 
   def recipe
     [
@@ -7,5 +10,12 @@ class Item::Craftable::Salad < Item
       ItemType::GATHERABLE[:fruit],
       ItemType::GATHERABLE[:fruit]
     ]
+  end
+
+  def use
+    ActiveRecord::Base.transaction do
+      inventory.user.add_energy(ENERGY)
+      destroy
+    end
   end
 end

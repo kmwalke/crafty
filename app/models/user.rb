@@ -43,6 +43,14 @@ class User < ApplicationRecord
     update(energy: (energy - amount))
   end
 
+  def add_energy(amount)
+    raise CraftyError, 'Can only spend positive energy.' unless amount.positive?
+
+    new_energy = energy + amount
+    new_energy = MAX_ENERGY if new_energy > MAX_ENERGY
+    update(energy: new_energy)
+  end
+
   def tool
     gathering_tool || crafting_tool
   end
@@ -53,7 +61,7 @@ class User < ApplicationRecord
 
       tool&.update(inventory:)
       equip_vehicle(item) if item.type.include? ItemType::CRAFTABLE[:vehicle]
-      equip_tool(item) if item.type.include? ItemType::CRAFTABLE[:tool]
+      equip_tool(item) if item.type.include? ItemType::TOOL
     end
   end
 

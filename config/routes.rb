@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'game', to: 'game#index'
 
   get 'vision_board', to: 'vision_board#index'
+  get 'project_management', to: 'project_management#index'
 
   get '/item/:id/equip', to: 'items#equip_item', as: 'equip_item'
   get '/unequip_tool', to: 'items#unequip_tool', as: 'unequip_tool'

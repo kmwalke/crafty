@@ -118,3 +118,7 @@ def logout
   visit root_path
   click_link 'Log Out'
 end
+
+def pretty_type(type)
+  type.split('::').last
+end

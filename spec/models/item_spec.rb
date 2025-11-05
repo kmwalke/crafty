@@ -8,8 +8,8 @@ RSpec.describe Item do
     expect(item.level_name).to eq(Level.level_name(item.level))
   end
 
-  it 'items are not equipable' do
-    expect(item.equipable?).to be false
+  it 'items are not equippable' do
+    expect(item.equippable?).to be false
   end
 
   it 'shows the full name' do

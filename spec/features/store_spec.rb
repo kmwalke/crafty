@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Store' do
-  pending 'BUG: i can just pickup items for sale at a public building.'
-  # being on sale should remove them from inventory. Like equipping'
   let!(:player) { create(:user) }
   let!(:building) { build(:craftable_building, inventory: nil) }
   let!(:item) { player.inventory.add_item(build(:gatherable_fruit, inventory: nil)) }
@@ -45,7 +43,7 @@ RSpec.describe 'Store' do
       end
     end
 
-    pending 'check privacy on actual requests, not just listing the link. prevent link spoofing'
+    pending 'version_0.3 check privacy on actual requests, not just listing the link. prevent link spoofing'
 
     it 'picks up an item' do
       item.update(inventory: building.child_inventory)
@@ -63,13 +61,21 @@ RSpec.describe 'Store' do
   end
 
   describe 'sales listings' do
-    it 'lists an item in inventory for sale' do
-      item = player.inventory.items.last
+    describe 'lists an item in inventory for sale' do
+      before do
+        item = player.inventory.items.last
 
-      list_a_sale(item)
+        list_a_sale(item)
+      end
 
-      within "#building-#{building.id} #sales-listings" do
-        expect(page).to have_content(item.full_name)
+      it 'lists the sale' do
+        within "#building-#{building.id} #sales-listings" do
+          expect(page).to have_content(item.full_name)
+        end
+      end
+
+      it 'removes item from inventory' do
+        within("#building-#{building.id} #inventory") { expect(page).to have_no_content(item.full_name) }
       end
     end
 
@@ -107,7 +113,7 @@ RSpec.describe 'Store' do
       end
     end
 
-    pending 'check privacy on actual requests, not just listing the link'
+    pending 'version_0.3 check privacy on actual requests, not just listing the link'
   end
 
   pending 'counter a trade in the hall'

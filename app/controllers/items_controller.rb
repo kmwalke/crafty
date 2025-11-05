@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
     game_action do
       item = Item.find(params[:id])
 
-      @current_user.equip_item(item) if item.equipable?
+      @current_user.equip_item(item) if item.equippable?
 
       @notice = "#{level_color_span(item.level, item.name)} equipped"
     end

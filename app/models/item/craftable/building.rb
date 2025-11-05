@@ -7,12 +7,6 @@ class Item::Craftable::Building < Item
 
   DEFAULT_INVENTORY_SIZE = 50
 
-  def recipe
-    [
-      'much components'
-    ]
-  end
-
   private
 
   def provision_inventory

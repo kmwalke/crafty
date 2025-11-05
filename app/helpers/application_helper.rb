@@ -7,6 +7,10 @@ module ApplicationHelper
     "#{((numerator.to_f / denominator) * 100).round}%"
   end
 
+  def pretty_type(type)
+    type.split('::').last
+  end
+
   def sky_color(_location)
     '#668cff'
   end
