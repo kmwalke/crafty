@@ -60,6 +60,7 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
   it 'crafts with stacked items' do
     crafting_tool.craft(stacked_crafting_params)
     expect(Item.find_by(id: stacked_crafting_params).stack_amount).to eq(1)
+    expect(user.inventory.items.last.name).to eq(Item.find(stacked_crafting_params[:item_ids][0]).name)
   end
 
   it 'doesnt craft with bad recipe' do
