@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Gameplay' do
-  pending 'version_0.2 add starter items to new user welcome hall'
-  pending 'version_0.2 make items in welcome hall cheap and infinite'
   pending 'version_0.2 make seeds find_or_create everything'
   pending 'version_0.2 stop resetting db every release'
   pending 'version__after_ui_update make game items clickable in the viewport'
