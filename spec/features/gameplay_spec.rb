@@ -22,6 +22,7 @@ RSpec.describe 'Gameplay' do
   pending 'version_0.8 new game + after your character dies'
   pending 'version_0.7 in game notifications/mail from players'
   pending 'version_0.7 push notifications to players'
+  pending 'version_1.0 ios/android app and desktop wrapper'
   # pending 'What is Endgame? Perhaps maxing out all skills?'
   # pending 'after winning, start new game+ with your child character'
   # pending 'what is the narrative?  Devs create a big quest,
