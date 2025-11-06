@@ -4,8 +4,8 @@ RSpec.describe User do
   let(:user) { create(:user) }
 
   describe 'energy' do
-    pending 'recharge energy over time'
-    pending 'recharge energy faster in certain locations (restful ones)'
+    pending 'version_0.7 recharge energy over time'
+    pending 'version_0.7 recharge energy faster in certain locations (restful ones)'
 
     describe 'spends energy' do
       let!(:old_energy) { user.energy }

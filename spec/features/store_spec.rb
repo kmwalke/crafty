@@ -116,7 +116,7 @@ RSpec.describe 'Store' do
     pending 'version_0.3 check privacy on actual requests, not just listing the link'
   end
 
-  pending 'counter a trade in the hall'
+  pending 'version_0.5 counter a trade in the hall'
 
   it 'accepts a trade in the hall' do
     listing = create(:listing, building: building, price: 1)
@@ -136,9 +136,9 @@ RSpec.describe 'Store' do
   end
 
   describe 'notifications' do
-    pending 'trade was accepted'
-    pending 'trade expired'
-    pending 'trade countered'
+    pending 'version_0.7 trade was accepted'
+    pending 'version_0.7 trade expired'
+    pending 'version_0.7 trade countered'
   end
 end
 
