@@ -1,14 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe 'Gameplay' do
-  pending 'version__after_ui_update make game items clickable in the viewport'
-  pending 'version__after_ui_update organize partial views'
-  pending 'version__after_ui_update use streams to solve latency effects.'
-  #        Entire page needs to use turbo frames and streams'
-  # Inventory doesn't update when you buy/sell something
-  pending 'all the stuff in here'
+  pending 'version_0.4 add many more locations'
+  pending 'version_0.9 balance locations'
+  pending 'version_0.9 balance crafting'
+  pending 'version__ui_update make game items clickable in the viewport'
+  pending 'version__ui_update organize partial views'
+  pending 'version__ui_update pixel graphics'
+  pending 'version__ui_update desktop interface'
+  #         Loom/Fate of Atlantis/Full Throttle style interface
+  pending 'version_0.9 performance refactor'
+  #         Entire page needs to use turbo frames and streams'
+  #         Inventory doesn't update when you buy/sell something
+  #         Entire backend needs cleanup.  Memory usage and DB calls
   # notice popups are lost when created in turbo frames
   #         https://hivekind.com/blog/exploring-flash-messages-with-turbo-streams-in-rails-7
+  pending 'version_0.5 Add in skill progression and trades'
+  pending 'version_0.7 async gameplay. Actions take real world time to accomplish'
+  pending 'version_0.7 character aging'
+  pending 'version_0.8 dangers in the world. Pirates while traveling'
+  pending 'version_0.8 new game + after your character dies'
+  pending 'version_0.7 in game notifications/mail from players'
+  pending 'version_0.7 push notifications to players'
   # pending 'What is Endgame? Perhaps maxing out all skills?'
   # pending 'after winning, start new game+ with your child character'
   # pending 'what is the narrative?  Devs create a big quest,
@@ -31,5 +44,4 @@ RSpec.describe 'Gameplay' do
   #        Location you are traveling to would be small, getting bigger in your view
   #        as you approach the location.
   #        Map can show your progress.  Solar system map, too.  Real-ish Holman Transfers.
-  # https://jsfiddle.net/G7unG/9/ for loom-like UI.  page is full height, not scrollable.  Elements in the menu are
 end

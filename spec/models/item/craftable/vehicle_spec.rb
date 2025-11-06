@@ -17,9 +17,9 @@ RSpec.describe Item::Craftable::Vehicle do
       user.equip_item(vehicle)
     end
 
-    pending 'updates status to traveling'
-    pending 'takes time to travel. high level vehicles are faster'
-    pending 'sets status to resting on arrival'
+    pending 'version_0.7 updates status to traveling'
+    pending 'version_0.7 takes time to travel. high level vehicles are faster'
+    pending 'version_0.7 sets status to resting on arrival'
 
     it 'vehicles are equippable' do
       expect(vehicle.equippable?).to be true

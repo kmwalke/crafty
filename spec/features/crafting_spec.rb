@@ -12,7 +12,8 @@ RSpec.describe 'Crafting' do
   describe 'crafts an item' do
     let!(:fruit_4stack) { build(:gatherable_fruit, inventory: nil, stack_amount: 4) }
 
-    pending 'select the color of the item'
+    pending 'version_0.2 add many more craftable items'
+    pending 'version_0.3 select the color of the item'
     # select the color of the item, if level high enough
     # <input type="color" />
 
