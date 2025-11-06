@@ -10,14 +10,12 @@ class Item::Craftable::Vehicle < Item
   end
 
   def travel(location)
-    ActiveRecord::Base.transaction do
-      raise CraftyError, ErrorMessage::ITEM[:must_equip_item] if equipped_by.nil?
-      unless equipped_by.spend_energy(energy_usage(equipped_by.location, location))
-        raise CraftyError, ErrorMessage::USER[:build_additional_pylons]
-      end
-
-      equipped_by.update(location: location)
+    raise CraftyError, ErrorMessage::ITEM[:must_equip_item] if equipped_by.nil?
+    unless equipped_by.spend_energy(energy_usage(equipped_by.location, location))
+      raise CraftyError, ErrorMessage::USER[:build_additional_pylons]
     end
+
+    equipped_by.update(location: location)
   end
 
   private

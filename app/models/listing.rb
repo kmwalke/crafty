@@ -7,9 +7,16 @@ class Listing < ApplicationRecord
     raise CraftyError, 'You can\'t afford that.' unless can_afford?(buyer)
 
     buyer.update(credits: (buyer.credits - price))
-    created_by.update(credits: (created_by.credits + price))
-    item.update(inventory: buyer.inventory)
-    destroy
+
+    if infinite
+      new_item           = item.dup
+      new_item.inventory = buyer.inventory
+      new_item.save
+    else
+      created_by.update(credits: (created_by.credits + price))
+      item.update(inventory: buyer.inventory)
+      destroy
+    end
   end
 
   private

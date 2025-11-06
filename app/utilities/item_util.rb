@@ -10,7 +10,8 @@ class ItemUtil
         building: welcome_center,
         item: item,
         created_by: User.first,
-        price: 10
+        price: 10,
+        infinite: true
       )
     end
   end
