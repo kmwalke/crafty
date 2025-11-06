@@ -1,13 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Gameplay' do
-  pending 'version_0.2 add starter items to new user welcome hall'
-  pending 'version_0.2 make items in welcome hall free and infinite'
-  pending 'version_0.2 make seeds find_or_create everything'
-  pending 'version_0.2 stop resetting db every release'
-  pending 'version_after_ui_update make game items clickable in the viewport'
-  pending 'version_after_ui_update organize partial views'
-  pending 'version_after_ui_update use streams to solve latency effects. Entire page needs to use turbo frames and streams'
+  pending 'version__after_ui_update make game items clickable in the viewport'
+  pending 'version__after_ui_update organize partial views'
+  pending 'version__after_ui_update use streams to solve latency effects.'
+  #        Entire page needs to use turbo frames and streams'
   # Inventory doesn't update when you buy/sell something
   pending 'all the stuff in here'
   # notice popups are lost when created in turbo frames

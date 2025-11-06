@@ -13,9 +13,7 @@ class Item::Craftable::Salad < Item
   end
 
   def use
-    ActiveRecord::Base.transaction do
-      inventory.user.add_energy(ENERGY)
-      destroy
-    end
+    inventory.user.add_energy(ENERGY)
+    destroy
   end
 end

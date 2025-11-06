@@ -2,66 +2,26 @@ class UserUtil
   attr_accessor :user
 
   def self.provision_users
-    user_data.each do |user|
-      UserUtil.new.provision_user(user)
+    user_data.each do |user_params|
+      user_params[:credits]       = 1000
+      user_params[:location_id] ||= Location.first.id
+      user                        = User.find_or_create_by(user_params)
+      user.password               = '123'
+      user.save
     end
-  end
-
-  def provision_user(user)
-    @user          = user
-    @user.password = '123'
-    @user.credits  = 1000
-    @user.save
-
-    create_item(
-      Item::Craftable::Vehicle.new(
-        description: 'An old bike with a rusty trailer.',
-        name: 'Bicycle',
-        level: Level::COMMON,
-        color: '#ffcccc',
-        created_by: User.first
-      )
-    )
-
-    create_item(
-      Item::Craftable::Tool::GatheringTool.new(
-        name: 'Universal Extractor',
-        description: 'Magical seeming tech.  Can gather from any resource.',
-        level: Level::LEGENDARY,
-        color: 'gold',
-        created_by: User.first
-      )
-    )
-
-    create_item(
-      Item::Craftable::Tool::CraftingTool.new(
-        name: 'Universal Assembler',
-        description: 'Magical seeming tech.  Can craft any item.',
-        level: Level::LEGENDARY,
-        color: 'gold',
-        created_by: User.first
-      )
-    )
-
-    @user
-  end
-
-  def create_item(item)
-    @user.inventory.add_item(item)
   end
 
   def self.user_data
     [
-      User.build(email: 'kmwalke@gmail.com', name: 'Kent', location: Location.first,
-                 status: UserStatus::STATUSES[:crafting]),
-      User.build(email: 'kfretz2@gmail.com', name: 'Keith', location: Location.first, status: UserStatus::STATUSES[:traveling]),
-      User.build(email: 'cristin.slaymaker@gmail.com', name: 'Cris', location: Location.first),
-      User.build(email: 'kerryslaymaker@gmail.com', name: 'Kerry', location: Location.first),
-      User.build(email: 'buttforker@gmail.com', name: 'Zack', location: Location.first),
-      User.build(email: 'Aaron.m.lee.al@gmail.com', name: 'Aaron', location: Location.first),
-      User.build(email: 'polymangler@gmail.com', name: 'Bruce', location: Location.first),
-      User.build(email: 'a@b.com', name: 'Lumber Jack', location: Location.last, status: UserStatus::STATUSES[:gathering]),
-      User.build(email: 'b@b.com', name: 'Shifty Rogue', location: Location.last, status: UserStatus::STATUSES[:traveling])
+      { email: 'kmwalke@gmail.com', name: 'Kent', status: UserStatus::STATUSES[:crafting] },
+      { email: 'kfretz2@gmail.com', name: 'Keith', status: UserStatus::STATUSES[:traveling] },
+      { email: 'cristin.slaymaker@gmail.com', name: 'Cris' },
+      { email: 'kerryslaymaker@gmail.com', name: 'Kerry' },
+      { email: 'buttforker@gmail.com', name: 'Zack' },
+      { email: 'Aaron.m.lee.al@gmail.com', name: 'Aaron' },
+      { email: 'polymangler@gmail.com', name: 'Bruce' },
+      { email: 'a@b.com', name: 'Lumber Jack', location_id: Location.last.id, status: UserStatus::STATUSES[:gathering] },
+      { email: 'b@b.com', name: 'Shifty Rogue', location_id: Location.last.id, status: UserStatus::STATUSES[:traveling] }
     ]
   end
 end

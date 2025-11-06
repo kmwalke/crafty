@@ -29,10 +29,12 @@ class ApplicationController < ActionController::Base
   private
 
   def game_action(redirect: true, path: game_path)
-    yield
-  rescue CraftyError => e
-    @notice = e.to_s
-  ensure
-    redirect_to path, notice: @notice if redirect
+    ActiveRecord::Base.transaction do
+      yield
+    rescue CraftyError => e
+      @notice = e.to_s
+    ensure
+      redirect_to path, notice: @notice if redirect
+    end
   end
 end
