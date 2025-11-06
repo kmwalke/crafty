@@ -3,10 +3,10 @@ class UserUtil
 
   def self.provision_users
     user_data.each do |user_params|
-      user_params[:credits]     = 1000
-      user_params[:location_id] = Location.first.id
-      user                      = User.find_or_create_by(user_params)
-      user.password             = '123'
+      user_params[:credits]       = 1000
+      user_params[:location_id] ||= Location.first.id
+      user                        = User.find_or_create_by(user_params)
+      user.password               = '123'
       user.save
     end
   end
@@ -20,8 +20,8 @@ class UserUtil
       { email: 'buttforker@gmail.com', name: 'Zack' },
       { email: 'Aaron.m.lee.al@gmail.com', name: 'Aaron' },
       { email: 'polymangler@gmail.com', name: 'Bruce' },
-      { email: 'a@b.com', name: 'Lumber Jack', status: UserStatus::STATUSES[:gathering] },
-      { email: 'b@b.com', name: 'Shifty Rogue', status: UserStatus::STATUSES[:traveling] }
+      { email: 'a@b.com', name: 'Lumber Jack', location_id: Location.last.id, status: UserStatus::STATUSES[:gathering] },
+      { email: 'b@b.com', name: 'Shifty Rogue', location_id: Location.last.id, status: UserStatus::STATUSES[:traveling] }
     ]
   end
 end

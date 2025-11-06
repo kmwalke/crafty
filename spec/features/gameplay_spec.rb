@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Gameplay' do
-  pending 'version_0.2 stop resetting db every release'
   pending 'version__after_ui_update make game items clickable in the viewport'
   pending 'version__after_ui_update organize partial views'
   pending 'version__after_ui_update use streams to solve latency effects.'
