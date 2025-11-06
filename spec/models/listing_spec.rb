@@ -28,6 +28,21 @@ RSpec.describe Listing do
       expect(described_class.find_by(id: listing.id)).to be_nil
     end
 
+    describe 'purchases an infinite item' do
+      let(:infinite_listing) { create(:listing, created_by: seller, infinite: true) }
+
+      it 'doesnt pay the seller' do
+        new_seller_creds = seller.credits
+        infinite_listing.purchase(buyer)
+        expect(seller.credits).to eq(new_seller_creds)
+      end
+
+      it 'doesnt delete the listing' do
+        infinite_listing.purchase(buyer)
+        expect(described_class.find_by(id: infinite_listing.id)).to be_a described_class
+      end
+    end
+
     describe 'blocks sale if cannot afford' do
       let!(:new_buyer_creds) { buyer.credits }
       let!(:new_seller_creds) { seller.credits }
