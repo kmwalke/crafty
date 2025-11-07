@@ -6,8 +6,9 @@ RSpec.describe Item::Craftable::Salad do
 
   it 'uses' do
     user.update(energy: 0)
+    level = salad.level
     salad.use
 
-    expect(user.energy).to eq(Item::Craftable::Salad::ENERGY)
+    expect(user.energy).to eq(Item::Craftable::Salad::ENERGY * level)
   end
 end
