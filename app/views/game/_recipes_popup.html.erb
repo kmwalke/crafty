@@ -1,5 +1,5 @@
 <fieldset id="recipes">
-  <legend><%= @current_user.tool.name %> Recipes</legend>
+  <legend><%= current_user.tool.name %> Recipes</legend>
   <table>
     <thead>
     <tr>
@@ -7,7 +7,7 @@
       <th>Recipe</th>
     </tr>
     </thead>
-    <% @current_user.tool.recipes.each do |recipe| %>
+    <% current_user.tool.recipes.each do |recipe| %>
       <tr>
         <td><%= recipe[:name] %></td>
         <td>

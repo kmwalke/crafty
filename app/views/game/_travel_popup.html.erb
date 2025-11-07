@@ -1,5 +1,5 @@
 <ul>
-  <% @current_user.valid_travel_locations.each do |location| %>
+  <% current_user.valid_travel_locations.each do |location| %>
     <li><%= link_to location.name, travel_path(location) %></li>
   <% end %>
 </ul>

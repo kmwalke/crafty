@@ -1,11 +1,11 @@
 <fieldset class="player-card">
-  <legend><%= @current_user.name %></legend>
+  <legend><%= current_user.name %></legend>
   <div class="status">
     <span class="title">
       Status_
     </span>
-    <span class="value status-<%= @current_user.status.downcase %>">
-      <%= @current_user.status %>
+    <span class="value status-<%= current_user.status.downcase %>">
+      <%= current_user.status %>
     </span>
   </div>
 </fieldset>
@@ -13,9 +13,9 @@
   <tr class="energy">
     <td class="title">E</td>
     <td class="bar">
-      <div class="fill" style="width: <%= percentage(@current_user.energy, User::MAX_ENERGY) %>;">
+      <div class="fill" style="width: <%= percentage(current_user.energy, User::MAX_ENERGY) %>;">
         <span class="value">
-          Energy: <%= @current_user.energy %>
+          Energy: <%= current_user.energy %>
         </span>&nbsp;
       </div>
     </td>
@@ -23,9 +23,9 @@
   <tr class="vitality">
     <td class="title">V</td>
     <td class="bar">
-      <div class="fill" style="width: <%= percentage(@current_user.vitality, User::MAX_VITALITY) %>;">
+      <div class="fill" style="width: <%= percentage(current_user.vitality, User::MAX_VITALITY) %>;">
         <span class="value">
-          Vitality: <%= @current_user.vitality %>
+          Vitality: <%= current_user.vitality %>
         </span>&nbsp;
       </div>
     </td>
@@ -33,9 +33,9 @@
   <tr class="age">
     <td class="title">A</td>
     <td class="bar">
-      <div class="fill" style="width: <%= percentage(@current_user.age, User::MAX_AGE) %>;">
+      <div class="fill" style="width: <%= percentage(current_user.age, User::MAX_AGE) %>;">
         <span class="value">
-          Age: <%= @current_user.age %>
+          Age: <%= current_user.age %>
         </span>&nbsp;
       </div>
     </td>
