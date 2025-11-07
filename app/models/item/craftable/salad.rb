@@ -2,7 +2,7 @@ class Item::Craftable::Salad < Item
   include Craftable
   include Useable
 
-  ENERGY = 500
+  ENERGY = 100
 
   def recipe
     [
@@ -13,7 +13,7 @@ class Item::Craftable::Salad < Item
   end
 
   def use
-    inventory.user.add_energy(ENERGY)
+    inventory.user.add_energy(ENERGY * level)
     destroy
   end
 end
