@@ -1,16 +1,16 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :logged_in, :level_color_span, :level_name
+  helper_method :player, :logged_in, :level_color_span, :level_name
 
-  def current_user
+  def player
     if session[:user_id]
-      @current_user ||= User.find(session[:user_id])
+      @player ||= User.find(session[:user_id])
     else
-      @current_user = nil
+      @player = nil
     end
   end
 
   def logged_in
-    return unless current_user.nil?
+    return unless player.nil?
 
     session[:orig_destination] = request.path
     redirect_to login_path

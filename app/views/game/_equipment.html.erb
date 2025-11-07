@@ -7,12 +7,12 @@
       <tr>
         <td>Tool:</td>
         <td>
-          <% if current_user.tool %>
-            <%= level_color_span(current_user.tool.level, current_user.tool.name) %>
+          <% if player.tool %>
+            <%= level_color_span(player.tool.level, player.tool.name) %>
           <% end %>
         </td>
         <td>
-          <% if current_user.tool %>
+          <% if player.tool %>
             <%= link_to 'X', unequip_tool_path, id: 'unequip_tool' %>
           <% end %>
         </td>
@@ -20,12 +20,12 @@
       <tr>
         <td>Vehicle:</td>
         <td>
-          <% if current_user.vehicle %>
-            <%= level_color_span(current_user.vehicle.level, current_user.vehicle.name) %>
+          <% if player.vehicle %>
+            <%= level_color_span(player.vehicle.level, player.vehicle.name) %>
           <% end %>
         </td>
         <td>
-          <% if current_user.vehicle %>
+          <% if player.vehicle %>
             <%= link_to 'X', unequip_vehicle_path, id: 'unequip_vehicle' %>
           <% end %>
         </td>

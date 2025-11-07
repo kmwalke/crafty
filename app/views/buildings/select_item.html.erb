@@ -1,7 +1,7 @@
 <%= turbo_frame_tag 'building-inventory' do %>
   <%= link_to 'Cancel', inventory_building_path(@building) %>
   <ul>
-    <% current_user.inventory.items.each do |item| %>
+    <% player.inventory.items.each do |item| %>
       <li>
         <%= item.stack_amount %>x
         <%= level_color_span(item.level, link_to(item.full_name, add_item_building_path(@building, item))) %>

@@ -5,7 +5,7 @@
   </div>
 
   <ul>
-    <% current_user.inventory.items.each do |item| %>
+    <% player.inventory.items.each do |item| %>
       <li class="<%= level_name(item.level) %>">
         <%= check_box('recipe', 'item_ids', { multiple: true }, item.id, nil) %>
         <%= label 'recipe_item_ids', item.id, "#{stack_amount(item)} #{item.full_name_level}" %>

@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
     game_action do
       item = Item.find(params[:id])
 
-      current_user.equip_item(item) if item.equippable?
+      player.equip_item(item) if item.equippable?
 
       @notice = "#{level_color_span(item.level, item.name)} equipped"
     end
@@ -15,19 +15,19 @@ class ItemsController < ApplicationController
     game_action do
       item = Item.find(params[:id])
 
-      current_user.use_item(item) if item.useable?
+      player.use_item(item) if item.useable?
     end
   end
 
   def unequip_tool
     game_action do
-      current_user.unequip_tool
+      player.unequip_tool
     end
   end
 
   def unequip_vehicle
     game_action do
-      current_user.unequip_vehicle
+      player.unequip_vehicle
     end
   end
 end
