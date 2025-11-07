@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
   def new
     game_action redirect: false do
       @listing     = Listing.new
-      @valid_items = @current_user.inventory.items + @building.child_inventory.items - building_listing_items
+      @valid_items = player.inventory.items + @building.child_inventory.items - building_listing_items
     end
   end
 
@@ -46,7 +46,7 @@ class ListingsController < ApplicationController
 
   def confirm_purchase
     game_action path: listings_path(@building) do
-      @listing.purchase(@current_user)
+      @listing.purchase(player)
     end
   end
 

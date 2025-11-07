@@ -1,4 +1,4 @@
-<% if building.permitted_user?(@current_user) %>
+<% if building.permitted_user?(player) %>
   <%= link_to('List Sale', new_listing_path(building)) %>
 <% else %>
   <span>Private Building</span>

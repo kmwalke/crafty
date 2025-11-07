@@ -10,7 +10,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="<%= controller.controller_name%><%= current_user ? ' admin' : '' %>" data-turbo-prefetch="false" >
+  <body class="<%= controller.controller_name%><%= player ? ' admin' : '' %>" data-turbo-prefetch="false" >
 
   <% if notice %>
     <div class="notice">

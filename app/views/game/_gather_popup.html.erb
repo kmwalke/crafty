@@ -1,5 +1,5 @@
 <ul>
-  <% @current_user.valid_gather_resources.each do |resource| %>
+  <% player.valid_gather_resources.each do |resource| %>
     <li data-turbo="false">
       <%= level_color_span(resource.level, link_to(resource.full_name, gather_path(resource))) %>
     </li>

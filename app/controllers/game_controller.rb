@@ -3,8 +3,8 @@ class GameController < ApplicationController
 
   def index
     game_action redirect: false do
-      @current_location = @current_user.location
-      @local_players    = User.where(location: @current_location).where.not(id: @current_user.id)
+      @current_location = player.location
+      @local_players    = User.where(location: @current_location).where.not(id: player.id)
       @local_resources  = Resource.where(location: @current_location)
       @local_buildings  = @current_location.property
     end
@@ -12,7 +12,7 @@ class GameController < ApplicationController
 
   def gather
     game_action do
-      item    = @current_user.gather(Resource.find(params[:id]))
+      item    = player.gather(Resource.find(params[:id]))
       @notice = level_color_span(item.level, item.full_name)
     end
   end
@@ -21,7 +21,7 @@ class GameController < ApplicationController
     game_action do
       location = Location.find(params[:id])
 
-      @current_user.travel(location)
+      player.travel(location)
     end
   end
 end
