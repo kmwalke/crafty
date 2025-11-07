@@ -11,6 +11,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def use_item
+    game_action do
+      item = Item.find(params[:id])
+
+      @current_user.use_item(item) if item.useable?
+    end
+  end
+
   def unequip_tool
     game_action do
       @current_user.unequip_tool

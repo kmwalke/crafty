@@ -2,7 +2,7 @@ class Item::Craftable::Salad < Item
   include Craftable
   include Useable
 
-  ENERGY = 200
+  ENERGY = 500
 
   def recipe
     [
