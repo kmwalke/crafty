@@ -1,6 +1,6 @@
 <div id="item-<%= item.id %>-details" class="popup">
   <div class="popup-content inventory-popup">
-    <a href="#" class="close-button" data-turbo="false">X</a>
+    <%= link_to 'X', game_path, class: 'close-button', data: { turbo_target: '_top' } %>
     <h4 class="title" style="background-color: <%= item.color %>">
       <%= item.name %>
     </h4>

@@ -6,7 +6,7 @@
   </a>
   <div id="game-menu-popup" class="popup">
     <div class="popup-content game-menu-popup">
-      <a href="#" class="close-button" data-turbo="false">X</a>
+      <%= link_to 'X', game_path, class: 'close-button', data: { turbo_target: '_top' } %>
       <h4 class="title">Game Menu</h4>
       <span class="version">Version 0.1</span><span>build_<%= ENV['HEROKU_RELEASE_VERSION'] %></span>
       <ul class="links">

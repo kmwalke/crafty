@@ -10,8 +10,7 @@ RSpec.describe 'Gameplay' do
   pending 'version__ui_update desktop interface'
   #         Loom/Fate of Atlantis/Full Throttle style interface
   pending 'version_0.9 performance refactor'
-  #         Entire page needs to use turbo frames and streams'
-  #         Inventory doesn't update when you buy/sell something
+  #         Entire page needs to use turbo frames and streams
   #         Entire backend needs cleanup.  Memory usage and DB calls
   # notice popups are lost when created in turbo frames
   #         https://hivekind.com/blog/exploring-flash-messages-with-turbo-streams-in-rails-7
