@@ -13,7 +13,7 @@ class BuildingsController < ApplicationController
 
   def pickup_item
     game_action(path: inventory_building_path(@building)) do
-      @item.update(inventory: @current_user.inventory)
+      @item.update(inventory: current_user.inventory)
     end
   end
 
