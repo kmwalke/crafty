@@ -63,6 +63,12 @@ class User < ApplicationRecord
     equip_tool(item) if item.type.include? ItemType::TOOL
   end
 
+  def use_item(item)
+    raise CraftyError, 'You can only use items in your inventory' unless inventory.include?(item)
+
+    item.use
+  end
+
   def unequip_tool
     tool.update(inventory: inventory)
     update(gathering_tool: nil)

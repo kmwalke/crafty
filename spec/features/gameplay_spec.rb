@@ -10,8 +10,7 @@ RSpec.describe 'Gameplay' do
   pending 'version__ui_update desktop interface'
   #         Loom/Fate of Atlantis/Full Throttle style interface
   pending 'version_0.9 performance refactor'
-  #         Entire page needs to use turbo frames and streams'
-  #         Inventory doesn't update when you buy/sell something
+  #         Entire page needs to use turbo frames and streams
   #         Entire backend needs cleanup.  Memory usage and DB calls
   # notice popups are lost when created in turbo frames
   #         https://hivekind.com/blog/exploring-flash-messages-with-turbo-streams-in-rails-7
@@ -22,6 +21,7 @@ RSpec.describe 'Gameplay' do
   pending 'version_0.8 new game + after your character dies'
   pending 'version_0.7 in game notifications/mail from players'
   pending 'version_0.7 push notifications to players'
+  pending 'version_1.0 ios/android app and desktop wrapper'
   # pending 'What is Endgame? Perhaps maxing out all skills?'
   # pending 'after winning, start new game+ with your child character'
   # pending 'what is the narrative?  Devs create a big quest,

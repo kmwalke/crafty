@@ -65,6 +65,17 @@ class ItemUtil
   def self.welcome_center_inventory
     [
       {
+        type: 'Item::Craftable::Book',
+        description: 'Welcome to Crafty! Grab your starting items from the Welcome Center. ' \
+          'Equip a vehicle to travel, a crafting tool to craft, etc... ' \
+          'Gather or craft some items, sell them to other players in a building. ' \
+          'Items come in levels. Higher level items are better. ',
+        name: 'Gameplay Guide',
+        level: Level::COMMON,
+        color: '#800000',
+        created_by: User.first
+      },
+      {
         type: 'Item::Craftable::Vehicle',
         description: 'An old bike with a rusty trailer.',
         name: 'Bicycle',

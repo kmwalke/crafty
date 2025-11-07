@@ -40,6 +40,10 @@ class Item < ApplicationRecord
     false
   end
 
+  def useable?
+    false
+  end
+
   private
 
   def set_defaults
