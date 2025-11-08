@@ -1,10 +1,14 @@
-<input type="radio" id="radio-actions" name="radios" value="actions" checked/>
+<input type="radio" id="radio-actions" name="radios" value="actions"
+       <% if @active_control == 'actions' %>
+       checked="checked"
+       <% end %>
+         />
 <div class="section actions">
   <label for="radio-actions" class="radio">A</label>
   <div class="section-content">
     <h4 class="section-title">Actions</h4>
     <ul>
-      <li><%= link_to 'Drink a Monster Energy', monster_energy_path%></li>
+      <li><%= link_to 'Drink a Monster Energy', monster_energy_path %></li>
       <% player.actions.each do |action| %>
         <li data-turbo="false"><%= link_to action.capitalize, "##{ action }-popup" %></li>
         <%= render partial: 'action_popup', locals: { action: action } %>

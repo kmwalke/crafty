@@ -1,7 +1,11 @@
-<input type="radio" id="radio-buildings" name="radios" value="buildings"/>
+<input type="radio" id="radio-buildings" name="radios" value="buildings"
+       <% if @active_control == 'buildings' %>
+       checked="checked"
+       <% end %>
+         />
 <div class="section buildings">
   <label for="radio-buildings" class="radio">B</label>
-  <div class="section-content" >
+  <div class="section-content">
     <h4 class="section-title">Buildings</h4>
     <ul>
       <% @local_buildings.items.each do |building| %>

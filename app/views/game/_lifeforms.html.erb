@@ -1,4 +1,8 @@
-<input type="radio" id="radio-lifeforms" name="radios" value="lifeforms"/>
+<input type="radio" id="radio-lifeforms" name="radios" value="lifeforms"
+       <% if @active_control == 'lifeforms' %>
+       checked="checked"
+       <% end %>
+         />
 <div class="section lifeforms">
   <label for="radio-lifeforms" class="radio">L</label>
   <div class="section-content">

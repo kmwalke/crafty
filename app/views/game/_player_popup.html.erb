@@ -1,6 +1,6 @@
 <div id="player-<%= player.id %>-details" class="popup">
   <div class="popup-content player-popup">
-    <%= link_to 'X', game_path, class: 'close-button', data: { turbo_target: '_top' } %>
+    <%= link_to 'X', game_path(active_control: 'lifeforms'), class: 'close-button', data: { turbo_target: '_top' } %>
     <h4 class="title"><%= player.name %></h4>
     <table>
 
