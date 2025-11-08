@@ -11,14 +11,14 @@ class User < ApplicationRecord
   belongs_to :location, optional: true
   belongs_to :inventory, optional: true
   belongs_to :crafting_tool, optional: true,
-                             class_name: 'Item::Craftable::Tool::CraftingTool',
+                             class_name: 'Item::Crafted::Tool::CraftingTool',
                              foreign_key: 'tool_id',
                              inverse_of: :equipped_by
   belongs_to :gathering_tool, optional: true,
-                              class_name: 'Item::Craftable::Tool::GatheringTool',
+                              class_name: 'Item::Crafted::Tool::GatheringTool',
                               foreign_key: 'tool_id',
                               inverse_of: :equipped_by
-  belongs_to :vehicle, optional: true, class_name: 'Item::Craftable::Vehicle'
+  belongs_to :vehicle, optional: true, class_name: 'Item::Crafted::Vehicle'
 
   has_many :listings
 
@@ -59,7 +59,7 @@ class User < ApplicationRecord
     raise CraftyError, 'You can only equip items in your inventory' unless inventory.include?(item)
 
     tool&.update(parent_inventory: inventory)
-    equip_vehicle(item) if item.type.include? ItemType::CRAFTABLE[:vehicle]
+    equip_vehicle(item) if item.type.include? ItemType::CRAFTED[:vehicle]
     equip_tool(item) if item.type.include? ItemType::TOOL
   end
 

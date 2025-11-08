@@ -51,7 +51,7 @@ RSpec.describe 'Inventory' do
     end
 
     describe 'edible items' do
-      let!(:salad) { create(:craftable_salad, parent_inventory: player.inventory) }
+      let!(:salad) { create(:crafted_salad, parent_inventory: player.inventory) }
 
       before do
         player.update(energy: 0)

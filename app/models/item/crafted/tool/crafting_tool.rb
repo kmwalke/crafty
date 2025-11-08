@@ -1,4 +1,4 @@
-class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
+class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
   attr_accessor :crafted_item, :ingredients
 
   def actions
@@ -26,7 +26,7 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
   end
 
   def recipes
-    ItemType::CRAFTABLE.map do |name, recipe|
+    ItemType::CRAFTED.map do |name, recipe|
       { name: name.to_s.gsub('_', ' ').capitalize, recipe: recipe.constantize.new.recipe }
     end
   end

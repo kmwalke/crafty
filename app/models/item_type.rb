@@ -1,18 +1,19 @@
 class ItemType < ApplicationRecord
   ITEM       = 'Item'.freeze
-  CRAFTABLE  = {
-    book: 'Item::Craftable::Book',
-    building: 'Item::Craftable::Building',
-    ingot: 'Item::Craftable::Ingot',
-    salad: 'Item::Craftable::Salad',
-    vehicle: 'Item::Craftable::Vehicle',
-    gathering_tool: 'Item::Craftable::Tool::GatheringTool',
-    crafting_tool: 'Item::Craftable::Tool::CraftingTool'
+  CRAFT      = 'Item::Crafted'.freeze
+  CRAFTED    = {
+    book: 'Item::Crafted::Book',
+    building: 'Item::Crafted::Building',
+    ingot: 'Item::Crafted::Ingot',
+    salad: 'Item::Crafted::Salad',
+    vehicle: 'Item::Crafted::Vehicle',
+    gathering_tool: 'Item::Crafted::Tool::GatheringTool',
+    crafting_tool: 'Item::Crafted::Tool::CraftingTool'
   }.freeze
-  TOOL       = 'Item::Craftable::Tool'.freeze
+  TOOL       = 'Item::Crafted::Tool'.freeze
   TOOLS      = {
-    gathering_tool: ItemType::CRAFTABLE[:gathering_tool],
-    crafting_tool: ItemType::CRAFTABLE[:crafting_tool]
+    gathering_tool: ItemType::CRAFTED[:gathering_tool],
+    crafting_tool: ItemType::CRAFTED[:crafting_tool]
   }.freeze
   GATHERABLE = {
     companion: 'Item::Gatherable::Companion',
@@ -23,7 +24,14 @@ class ItemType < ApplicationRecord
     shard: 'Item::Gatherable::Shard',
     wood: 'Item::Gatherable::Wood'
   }.freeze
-  TYPE_NAMES = [ITEM, CRAFTABLE.values, GATHERABLE.values, TOOL, TOOLS.values].flatten
+  TYPE_NAMES = [
+    ITEM,
+    CRAFT,
+    CRAFTED.values,
+    GATHERABLE.values,
+    TOOL,
+    TOOLS.values
+  ].flatten
 
   def self.populate_types
     ItemType::TYPE_NAMES.each do |type|

@@ -7,7 +7,7 @@ FactoryBot.define do
     parent_inventory factory: :inventory
 
     factory :generic_item do
-      type { ItemType::TYPE_NAMES.sample }
+      type { ItemType::CRAFTED.values.sample }
     end
   end
 end

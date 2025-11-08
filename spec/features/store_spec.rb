@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Store' do
   let!(:player) { create(:user) }
-  let!(:building) { build(:craftable_building, parent_inventory: nil) }
+  let!(:building) { build(:crafted_building, parent_inventory: nil) }
   let!(:item) { player.inventory.add_item(build(:gatherable_fruit, parent_inventory: nil)) }
 
   before do

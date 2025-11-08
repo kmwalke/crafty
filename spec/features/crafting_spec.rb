@@ -12,7 +12,7 @@ RSpec.describe 'Crafting' do
   describe 'crafts an item' do
     let!(:fruit_4stack) { build(:gatherable_fruit, parent_inventory: nil, stack_amount: 4) }
 
-    pending 'version_0.2 add many more craftable items'
+    pending 'version_0.2 add many more crafted items'
     pending 'version_0.3 select the color of the item'
     # select the color of the item, if level high enough
     # <input type="color" />
@@ -27,7 +27,7 @@ RSpec.describe 'Crafting' do
         end
 
         within '.craft-popup' do
-          select ItemType::CRAFTABLE[:salad], from: 'recipe_item_type'
+          select ItemType::CRAFTED[:salad], from: 'recipe_item_type'
           check fruit_4stack.full_name
 
           click_button 'Craft Item'
@@ -37,7 +37,7 @@ RSpec.describe 'Crafting' do
       it 'creates the item' do
         expect(page).to have_css(
           'div.inventory li span',
-          text: player.inventory.items.find_by(type: ItemType::CRAFTABLE[:salad]).name
+          text: player.inventory.items.find_by(type: ItemType::CRAFTED[:salad]).name
         )
       end
     end
@@ -56,7 +56,7 @@ RSpec.describe 'Crafting' do
         end
 
         within '.craft-popup' do
-          select ItemType::CRAFTABLE[:ingot], from: 'recipe_item_type'
+          select ItemType::CRAFTED[:ingot], from: 'recipe_item_type'
           check ore1.full_name
           check ore2.full_name
 
@@ -67,7 +67,7 @@ RSpec.describe 'Crafting' do
       it 'creates the item' do
         expect(page).to have_css(
           'div.inventory li span',
-          text: player.inventory.items.find_by(type: ItemType::CRAFTABLE[:ingot]).name
+          text: player.inventory.items.find_by(type: ItemType::CRAFTED[:ingot]).name
         )
       end
     end

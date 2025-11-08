@@ -4,14 +4,14 @@ RSpec.describe User do
   let(:user) { create(:user) }
 
   describe 'vehicles' do
-    let(:vehicle) { create(:craftable_vehicle, parent_inventory: user.inventory) }
+    let(:vehicle) { create(:crafted_vehicle, parent_inventory: user.inventory) }
 
     before do
       user.equip_item(vehicle)
     end
 
     it 'cannot equip a vehicle not in inventory' do
-      bad_vehicle = create(:craftable_vehicle)
+      bad_vehicle = create(:crafted_vehicle)
 
       expect { user.equip_item(bad_vehicle) }.to raise_error(CraftyError)
     end

@@ -1,4 +1,4 @@
-class Item::Craftable::Tool < Item
+class Item::Crafted::Tool < Item
   include Makeable
   include Equippable
   include SimpleName

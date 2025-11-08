@@ -1,4 +1,4 @@
-class Item::Craftable::Vehicle < Item
+class Item::Crafted::Vehicle < Item
   include Makeable
   include Equippable
   include SimpleName

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Item::Craftable::Salad do
+RSpec.describe Item::Crafted::Salad do
   let(:user) { create(:user) }
-  let(:salad) { create(:craftable_salad, parent_inventory: user.inventory) }
+  let(:salad) { create(:crafted_salad, parent_inventory: user.inventory) }
 
   it 'uses' do
     user.update(energy: 0)
@@ -24,6 +24,6 @@ RSpec.describe Item::Craftable::Salad do
   end
 
   it 'gets the energy' do
-    expect(salad.energy).to eq(Item::Craftable::Salad::ENERGY * salad.level)
+    expect(salad.energy).to eq(Item::Crafted::Salad::ENERGY * salad.level)
   end
 end

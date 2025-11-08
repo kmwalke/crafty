@@ -14,7 +14,7 @@ RSpec.describe 'Recipes' do
 
   it 'shows the recipes' do
     within '.recipes-popup' do
-      ItemType::CRAFTABLE.each_value do |item|
+      ItemType::CRAFTED.each_value do |item|
         item.constantize.new.recipe.each { |ingredient| expect(page).to have_content(pretty_type(ingredient)) }
       end
     end

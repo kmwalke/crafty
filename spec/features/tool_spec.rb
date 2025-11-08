@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Item::Craftable::Tool' do
+RSpec.describe 'Item::Crafted::Tool' do
   let!(:player) { login }
   let!(:tool) { create(:gathering_tool, parent_inventory: player.inventory) }
 
