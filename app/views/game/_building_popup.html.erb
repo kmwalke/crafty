@@ -1,6 +1,6 @@
 <div id="building-<%= building.id %>" class="popup">
   <div class="popup-content building-popup">
-    <%= link_to 'X', game_path, class: 'close-button', data: { turbo_target: '_top' } %>
+    <%= link_to 'X', game_path(active_control: 'buildings'), class: 'close-button', data: { turbo_target: '_top' } %>
     <h4 class="title" style="background-color: <%= building.color %>">
       <%= building.name %>
     </h4>

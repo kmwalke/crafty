@@ -1,6 +1,6 @@
 <div id="<%= action %>-popup" class="popup">
   <div class="popup-content <%= action %>-popup">
-    <%= link_to 'X', game_path, class: 'close-button', data: { turbo_target: '_top' } %>
+    <%= link_to 'X', game_path(active_control: 'actions'), class: 'close-button', data: { turbo_target: '_top' } %>
     <h4 class="title"><%= action.capitalize %></h4>
     <%= render partial: "#{action}_popup" %>
   </div>
