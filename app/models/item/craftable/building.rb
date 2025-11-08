@@ -1,5 +1,5 @@
 class Item::Craftable::Building < Item
-  include Craftable
+  include Makeable
 
   before_create :provision_inventory
 

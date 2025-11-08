@@ -1,3 +1,3 @@
 class Item::Craftable::Book < Item
-  include Craftable
+  include Makeable
 end

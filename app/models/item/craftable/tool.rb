@@ -1,5 +1,5 @@
 class Item::Craftable::Tool < Item
-  include Craftable
+  include Makeable
   include Equippable
   include SimpleName
 

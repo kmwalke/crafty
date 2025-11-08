@@ -1,5 +1,5 @@
 class Item::Craftable::Vehicle < Item
-  include Craftable
+  include Makeable
   include Equippable
   include SimpleName
 

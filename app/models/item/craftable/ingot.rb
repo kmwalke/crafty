@@ -1,5 +1,5 @@
 class Item::Craftable::Ingot < Item
-  include Craftable
+  include Makeable
 
   def recipe
     [
