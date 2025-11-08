@@ -50,7 +50,7 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
 
   def craft_the_item
     @crafted_item.created_by = equipped_by
-    @crafted_item.name       = crafted_item_name
+    @crafted_item.name       = @crafted_item.build_name(@ingredients)
     @crafted_item.level      = crafted_item_level
   end
 
@@ -58,10 +58,6 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
     @ingredients.each do |i|
       i.destroy if i.stack_amount.zero?
     end
-  end
-
-  def crafted_item_name
-    @ingredients.map(&:name).uniq.join(' ')
   end
 
   def crafted_item_level

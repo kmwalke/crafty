@@ -20,6 +20,10 @@ class Item < ApplicationRecord
     ]
   end
 
+  def build_name(ingredients)
+    ingredients.map(&:name).uniq.join(' ')
+  end
+
   def permitted_user?(user)
     created_by == user || !is_private
   end
