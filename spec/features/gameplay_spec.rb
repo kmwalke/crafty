@@ -15,7 +15,7 @@ RSpec.describe 'Gameplay' do
   # notice popups are lost when created in turbo frames
   #         https://hivekind.com/blog/exploring-flash-messages-with-turbo-streams-in-rails-7
   pending 'version_0.5 Add in skill progression and trades'
-  pending 'version_0.7 async gameplay. Actions take real world time to accomplish'
+  pending 'version_0.6 async gameplay. Actions take real world time to accomplish'
   pending 'version_0.7 character aging'
   pending 'version_0.8 dangers in the world. Pirates while traveling'
   pending 'version_0.8 new game + after your character dies'
