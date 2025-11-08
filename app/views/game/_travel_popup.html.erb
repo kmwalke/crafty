@@ -1,5 +1,16 @@
-<ul>
+<table class="locations">
+  <thead>
+  <tr>
+    <th>Location</th>
+    <th>Distance</th>
+    <th>Energy</th>
+  </tr>
+  </thead>
   <% player.valid_travel_locations.each do |location| %>
-    <li><%= link_to location.name, travel_path(location) %></li>
+    <tr>
+      <td><%= link_to location.name, travel_path(location) %></td>
+      <td><%= @current_location.distance_from(location) %> km</td>
+      <td><%= player.vehicle.energy_usage(@current_location, location) %> <%= credit_symbol %></td>
+    </tr>
   <% end %>
-</ul>
+</table>
