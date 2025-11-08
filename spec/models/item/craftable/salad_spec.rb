@@ -6,9 +6,24 @@ RSpec.describe Item::Craftable::Salad do
 
   it 'uses' do
     user.update(energy: 0)
-    level = salad.level
+    energy = salad.energy
     salad.use
 
-    expect(user.energy).to eq(Item::Craftable::Salad::ENERGY * level)
+    expect(user.energy).to eq(energy)
+  end
+
+  it 'uses in a stack' do
+    salad.update(stack_amount: 3)
+    salad.use
+
+    expect(salad.reload.stack_amount).to eq(2)
+  end
+
+  it 'gets the recipe' do
+    expect(salad.recipe.count).to eq(3)
+  end
+
+  it 'gets the energy' do
+    expect(salad.energy).to eq(Item::Craftable::Salad::ENERGY * salad.level)
   end
 end

@@ -49,5 +49,29 @@ RSpec.describe 'Inventory' do
     it 'shows created by' do
       expect(page).to have_css("div.popup#item-#{item.id}-details span", text: item.created_by.name)
     end
+
+    describe 'edible items' do
+      let!(:salad) { create(:craftable_salad, inventory: player.inventory) }
+
+      before do
+        player.update(energy: 0)
+        visit game_path
+        click_link salad.name
+      end
+
+      it 'shows the energy recovered by an item' do
+        within "div.popup#item-#{salad.id}-details" do
+          expect(page).to have_content(salad.energy)
+        end
+      end
+
+      it 'recovers energy' do
+        within "div.popup#item-#{salad.id}-details" do
+          click_link 'Use'
+        end
+
+        expect(player.reload.energy).to be > 0
+      end
+    end
   end
 end
