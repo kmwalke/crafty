@@ -4,7 +4,7 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
   let(:user) { create(:user) }
 
   before do
-    user.equip_item(create(:crafting_tool, inventory: user.inventory))
+    user.equip_item(create(:crafting_tool, parent_inventory: user.inventory))
   end
 
   it 'lists actions' do
@@ -22,8 +22,8 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
       {
         item_type: ItemType::CRAFTABLE[:ingot],
         item_ids: [
-          create(:gatherable_ore, inventory: user.inventory, name: 'Copper', level: Level::LEGENDARY).id,
-          create(:gatherable_ore, inventory: user.inventory, name: 'Iron', level: Level::COMMON).id
+          create(:gatherable_ore, parent_inventory: user.inventory, name: 'Copper', level: Level::LEGENDARY).id,
+          create(:gatherable_ore, parent_inventory: user.inventory, name: 'Iron', level: Level::COMMON).id
         ]
       }
     end
@@ -61,7 +61,7 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
       {
         item_type: ItemType::CRAFTABLE[:ingot],
         item_ids: [
-          create(:gatherable_ore, inventory: user.inventory, stack_amount: 3).id
+          create(:gatherable_ore, parent_inventory: user.inventory, stack_amount: 3).id
         ]
       }
     end
@@ -85,8 +85,8 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
       {
         item_type: ItemType::CRAFTABLE[:salad],
         item_ids: [
-          create(:gatherable_fruit, inventory: user.inventory, stack_amount: 2, name: 'Apple').id,
-          create(:gatherable_fruit, inventory: user.inventory, stack_amount: 1, name: 'Apple').id
+          create(:gatherable_fruit, parent_inventory: user.inventory, stack_amount: 2, name: 'Apple').id,
+          create(:gatherable_fruit, parent_inventory: user.inventory, stack_amount: 1, name: 'Apple').id
         ]
       }
     end
@@ -115,8 +115,8 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
       user.crafting_tool.craft(
         {
           item_type: ItemType::CRAFTABLE[:ingot], item_ids: [
-            create(:gatherable_fruit, inventory: user.inventory).id,
-            create(:gatherable_ore, inventory: user.inventory).id
+            create(:gatherable_fruit, parent_inventory: user.inventory).id,
+            create(:gatherable_ore, parent_inventory: user.inventory).id
           ]
         }
       )

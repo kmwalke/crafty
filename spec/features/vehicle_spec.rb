@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Vehicle' do
   let!(:player) { login }
-  let!(:vehicle) { create(:craftable_vehicle, inventory: player.inventory) }
+  let!(:vehicle) { create(:craftable_vehicle, parent_inventory: player.inventory) }
 
   before do
     visit game_path

@@ -12,40 +12,24 @@
     </span>
   </span>
 <p class="description"><%= @current_location.description %></p>
-<div class="viewport">
-  <div class="sky" style="background-color: <%= sky_color(@current_location) %>;">
-    &nbsp;
-  </div>
-
-  <div class="ground" style="background-color: <%= @current_location.bg_color %>;">
-    &nbsp;
-  </div>
-
-  <div class="buildings-and-resources">
-    <% @local_buildings.each do |building| %>
-      <div class="building <%= level_name(building.level)%>"
-           style="background-color: <%= building.color %>">
-        <span class="sign">
-          <%= building.name %>
-        </span>
-        <div class="window">
-          &nbsp;
-        </div>
-        <div class="door">
-          &nbsp;
-        </div>
+<div class="viewport"
+     style="
+     background-image: linear-gradient(to top, <%= @current_location.bg_color %>, #668cff);
+       /*'#668cff'*/
+     ">
+  <% if @current_location.type == 'Wilderness' %>
+    <%= image_tag 'earth_clear.png', class: 'background' %>
+  <% else %>
+    <%= image_tag 'house.png', class: 'background' %>
+  <% end %>
+  <div class="resources">
+    <% @local_resources.each do |resource| %>
+      <div class="resource <%= resource.pretty_type.downcase %> <%= level_name(resource.level) %>"
+           style="background-color: <%= resource.color %>">
+          <span class="name">
+            <%#= resource.full_name %>
+          </span>
       </div>
     <% end %>
-
-    <div class="resources">
-      <% @local_resources.each do |resource| %>
-        <div class="resource <%= resource.pretty_type.downcase %> <%= level_name(resource.level)%>"
-             style="background-color: <%= resource.color %>">
-          <span class="name" >
-            <%= resource.full_name %>
-          </span>
-        </div>
-      <% end %>
-    </div>
   </div>
 </div>

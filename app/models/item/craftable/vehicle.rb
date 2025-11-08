@@ -18,9 +18,7 @@ class Item::Craftable::Vehicle < Item
     equipped_by.update(location: location)
   end
 
-  private
-
   def energy_usage(location1, location2)
-    location1.distance_from(location2) * energy_multiplier
+    (location1.distance_from(location2) * energy_multiplier).to_i
   end
 end

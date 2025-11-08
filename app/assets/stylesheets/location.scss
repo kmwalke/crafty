@@ -29,78 +29,29 @@ div.location {
   div.viewport {
     position: relative;
     height: 90%;
+    overflow: hidden;
 
-    div.sky {
-      height: $sky-height;
-    }
-
-    div.ground {
-      height: $ground-height;
-    }
-
-    div.buildings-and-resources {
+    img.background {
       position: absolute;
+      bottom: 0;
       left: 0;
-      bottom: $ground-height - 10%;
-      width: 100%;
-      height: $building-height;
+      height: 100%;
+    }
 
-      div.building, div.resource {
+    div.building, div.resource {
+    }
+
+    div.resources {
+      position: absolute;
+      bottom: 0.5em;
+
+      div.resource {
         position: relative;
         display: inline-block;
-      }
+        border: 1px solid black;
 
-      div.building {
-        margin-left: 1em;
-        height: 100%;
-        width: 4em;
-        border-top: 3px solid $tan;
-
-        span.sign {
-          display: inline-block;
-          position: absolute;
-          top: -1.8em;
-          rotate: -30deg;
-          font-size: small;
-          margin-left: 0.5em;
-          text-wrap: nowrap;
-          overflow: hidden;
-          color: $grey-dark;
-          background-color: black;
-        }
-
-        div.door {
-          position: absolute;
-          background-color: $tan;
-          bottom: 0;
-          left: 1em;
-          width: 0.75em;
-        }
-
-        div.window {
-          position: absolute;
-          background-color: $white;
-          top: 2em;
-          right: 0.7em;
-          width: 0.6em;
-          height: 0.6em;
-        }
-      }
-
-      div.resources {
-        position: absolute;
-        bottom: 1.5em;
-        height: 50%;
-
-        div.resource {
-          margin-right: -2em;
-          height: 100%;
-          border: 1px solid black;
-          rotate: 90deg;
-
-          span.name {
-            text-shadow: 0 0 3px $black;
-          }
+        span.name {
+          text-shadow: 0 0 3px $black;
         }
       }
     }

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item::Craftable::Tool::GatheringTool do
   let(:user) { create(:user) }
-  let(:gathering_tool) { create(:gathering_tool, inventory: user.inventory) }
+  let(:gathering_tool) { create(:gathering_tool, parent_inventory: user.inventory) }
   let(:resource) { create(:crystal) }
 
   before do

@@ -4,6 +4,10 @@ class Item::Craftable::Salad < Item
 
   ENERGY = 100
 
+  def energy
+    ENERGY * level
+  end
+
   def recipe
     [
       ItemType::GATHERABLE[:fruit],
@@ -13,7 +17,11 @@ class Item::Craftable::Salad < Item
   end
 
   def use
-    inventory.user.add_energy(ENERGY * level)
-    destroy
+    parent_inventory.user.add_energy(energy)
+    if stack_amount > 1
+      update(stack_amount: (stack_amount - 1))
+    else
+      destroy
+    end
   end
 end

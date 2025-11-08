@@ -4,7 +4,7 @@ FactoryBot.define do
     sequence(:description) { |n| "This is the description for Item_#{n}" }
     level { Level::NUMBERS.sample }
     created_by factory: :user
-    inventory
+    parent_inventory factory: :inventory
 
     factory :generic_item do
       type { ItemType::TYPE_NAMES.sample }

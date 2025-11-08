@@ -2,7 +2,7 @@ class ItemUtil
   def self.provision_items
     building_data.each do |building_params|
       building = Item::Craftable::Building.find_or_create_by(building_params)
-      Location.first.add_building(building) if building.inventory.nil?
+      Location.first.add_building(building) if building.parent_inventory.nil?
     end
 
     welcome_center = Item::Craftable::Building.first

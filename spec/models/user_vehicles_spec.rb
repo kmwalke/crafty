@@ -4,7 +4,7 @@ RSpec.describe User do
   let(:user) { create(:user) }
 
   describe 'vehicles' do
-    let(:vehicle) { create(:craftable_vehicle, inventory: user.inventory) }
+    let(:vehicle) { create(:craftable_vehicle, parent_inventory: user.inventory) }
 
     before do
       user.equip_item(vehicle)

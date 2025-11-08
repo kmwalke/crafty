@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Inventory do
   let(:inventory) { create(:inventory, size: 1) }
 
-  pending 'version_0.2 sorts the inventory'
   pending 'version_0.2 equipping a backpack or something increases the users inventory size'
 
   it 'gets a count of current items' do
@@ -15,9 +14,9 @@ RSpec.describe Inventory do
   end
 
   it 'limits contents to inventory size' do
-    inventory.add_item(build(:gatherable_fruit, inventory: nil))
+    inventory.add_item(build(:gatherable_fruit, parent_inventory: nil))
     expect do
-      inventory.add_item(build(:item, inventory: nil))
+      inventory.add_item(build(:item, parent_inventory: nil))
     end.to raise_error(CraftyError)
   end
 
@@ -33,14 +32,14 @@ RSpec.describe Inventory do
     let(:shard_inv) { create(:inventory, type: ItemType::GATHERABLE[:shard]) }
 
     it 'puts allowed items in' do
-      item = build(:gatherable_shard, inventory: nil)
+      item = build(:gatherable_shard, parent_inventory: nil)
       shard_inv.add_item(item)
 
       expect(shard_inv.include?(item)).to be true
     end
 
     it 'disallows other items' do
-      item = build(:gatherable_fruit, inventory: nil)
+      item = build(:gatherable_fruit, parent_inventory: nil)
 
       expect { shard_inv.add_item(item) }.to raise_error(CraftyError)
     end

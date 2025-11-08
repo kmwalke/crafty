@@ -2,8 +2,8 @@ class CheatsController < ApplicationController
   before_action :logged_in
 
   def monster_energy
-    player.update(energy: User::MAX_ENERGY)
-
-    redirect_to game_path
+    game_action do
+      player.update(energy: User::MAX_ENERGY)
+    end
   end
 end

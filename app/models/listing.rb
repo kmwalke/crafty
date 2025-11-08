@@ -9,12 +9,12 @@ class Listing < ApplicationRecord
     buyer.update(credits: (buyer.credits - price))
 
     if infinite
-      new_item           = item.dup
-      new_item.inventory = buyer.inventory
+      new_item                  = item.dup
+      new_item.parent_inventory = buyer.inventory
       new_item.save
     else
       created_by.update(credits: (created_by.credits + price))
-      item.update(inventory: buyer.inventory)
+      item.update(parent_inventory: buyer.inventory)
       destroy
     end
   end
