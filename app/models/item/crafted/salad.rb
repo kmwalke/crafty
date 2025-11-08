@@ -1,4 +1,4 @@
-class Item::Crafted::Salad < Item
+class Item::Crafted::Salad < Item::Crafted
   include Makeable
   include Useable
 

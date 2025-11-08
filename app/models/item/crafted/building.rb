@@ -1,4 +1,4 @@
-class Item::Crafted::Building < Item
+class Item::Crafted::Building < Item::Crafted
   include Makeable
 
   before_create :provision_inventory
