@@ -1,4 +1,5 @@
 class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
+  has_one :equipped_by, class_name: 'User', as: :tool
   attr_accessor :crafted_item, :ingredients
 
   def actions

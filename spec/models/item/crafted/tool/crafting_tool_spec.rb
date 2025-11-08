@@ -8,13 +8,13 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
   end
 
   it 'lists actions' do
-    expect(user.crafting_tool.actions).to eq(%w[craft recipes])
+    expect(user.tool.actions).to eq(%w[craft recipes])
   end
 
   it 'doesn\'t update if user has low energy' do
     user.update(energy: 0)
 
-    expect { user.crafting_tool.craft({ item_ids: [] }) }.to raise_error(CraftyError)
+    expect { user.tool.craft({ item_ids: [] }) }.to raise_error(CraftyError)
   end
 
   describe 'crafts' do
@@ -30,7 +30,7 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
     let!(:old_inv) { user.inventory.items.count }
 
     before do
-      user.crafting_tool.craft(crafting_params)
+      user.tool.craft(crafting_params)
     end
 
     it 'adjusts the inventory' do
@@ -67,7 +67,7 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
     end
 
     before do
-      user.crafting_tool.craft(stacked_crafting_params)
+      user.tool.craft(stacked_crafting_params)
     end
 
     it 'creates the new item' do
@@ -92,7 +92,7 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
     end
 
     before do
-      user.crafting_tool.craft(mixed_crafting_params)
+      user.tool.craft(mixed_crafting_params)
     end
 
     it 'creates the new item' do
@@ -112,7 +112,7 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
 
   it 'doesnt craft with bad recipe' do
     expect do
-      user.crafting_tool.craft(
+      user.tool.craft(
         {
           item_type: ItemType::CRAFTED[:ingot], item_ids: [
             create(:gatherable_fruit, parent_inventory: user.inventory).id,
@@ -124,6 +124,6 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
   end
 
   it 'lists recipes' do
-    expect(user.crafting_tool.recipes).to be_a(Array)
+    expect(user.tool.recipes).to be_a(Array)
   end
 end
