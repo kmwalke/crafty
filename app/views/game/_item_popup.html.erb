@@ -1,8 +1,11 @@
 <div id="item-<%= item.id %>-details" class="popup">
   <div class="popup-content inventory-popup">
     <%= link_to 'X', game_path(active_control: 'inventory'), class: 'close-button', data: { turbo_target: '_top' } %>
-    <h4 class="title" style="background-color: <%= item.color %>">
-      <%= item.name %>
+    <h4 class="title <%= level_name item.level %>" style="
+    border: 1px solid <%= item.color %>;
+      box-shadow: inset 0 0 20px <%= item.color %>;
+    ">
+      <%= item.full_name %>
     </h4>
     <% if item.equippable? %>
       <%= link_to 'Equip', equip_item_path(item) %><br />
