@@ -6,7 +6,7 @@
     <span class="remaining-space"><%= player.inventory.remaining_space %></span>
     <ul>
       <li class="credits">Credits: <%= player.credits %><%= credit_symbol %></li>
-      <% player.inventory.items.each do |item| %>
+      <% player.inventory.items.order(:type).each do |item| %>
         <li data-turbo="false">
           <span class="stack-amount"><%= stack_amount(item) %></span>
           <%= level_color_span(item.level, link_to(item.full_name, "#item-#{ item.id }-details")) %>
