@@ -8,7 +8,9 @@ class LocationUtil
   end
 
   def provision_location(location_data)
-    @location = Location.find_or_create_by(location_data)
+    @location = Location.find_or_create_by(name: location_data[:name])
+    @location.update location_data
+    @location.save
     create_resources
   end
 
@@ -81,15 +83,15 @@ class LocationUtil
       },
       {
         name: 'Harsh Desert',
-        pos_x: 20,
-        pos_y: 78,
+        pos_x: -32,
+        pos_y: 52,
         description: 'Sun blasted plains.  Odd Cacti grow occasionally.',
         bg_color: '#ffe699'
       },
       {
         name: 'Dark Forest',
-        pos_x: -32,
-        pos_y: -62,
+        pos_x: 20,
+        pos_y: 78,
         description: 'Spooky. Sounds of creatures just out of sight.',
         bg_color: '#003300',
         highlight_color: 'white'
@@ -97,14 +99,14 @@ class LocationUtil
       {
         name: 'Flowing Volcano',
         pos_x: 89,
-        pos_y: -62,
+        pos_y: -122,
         description: 'Tall and steep. It is hard to breathe through the noxious air.',
         bg_color: '#cc0000'
       },
       {
         name: 'Alien Ruins',
-        pos_x: -93,
-        pos_y: 87,
+        pos_x: -193,
+        pos_y: 287,
         description: 'There are bones everywhere.',
         bg_color: '#222222',
         highlight_color: 'white'
