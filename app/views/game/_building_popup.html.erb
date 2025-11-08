@@ -1,7 +1,10 @@
 <div id="building-<%= building.id %>" class="popup">
   <div class="popup-content building-popup">
     <%= link_to 'X', game_path(active_control: 'buildings'), class: 'close-button', data: { turbo_target: '_top' } %>
-    <h4 class="title" style="background-color: <%= building.color %>">
+      <h4 class="title <%= level_name building.level %>" style="
+      border: 1px solid <%= building.color %>;
+        box-shadow: inset 0 0 20px <%= building.color %>;
+      ">
       <%= building.name %>
     </h4>
     <%= level_color_span(building.level, building.level_name) %>
