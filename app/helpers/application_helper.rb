@@ -11,10 +11,6 @@ module ApplicationHelper
     type.split('::').last
   end
 
-  def sky_color(_location)
-    '#668cff'
-  end
-
   def stack_amount(item)
     item.stack_amount if item.stack_amount > 1
   end
