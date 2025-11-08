@@ -4,11 +4,11 @@ RSpec.describe 'Inventory' do
   let!(:player) { login }
 
   before do
-    5.times.map { player.inventory.add_item(build(:generic_item, inventory: nil)) }
+    5.times.map { player.inventory.add_item(build(:generic_item, parent_inventory: nil)) }
     player.inventory.add_item(
       build(
         :generic_item,
-        inventory: nil,
+        parent_inventory: nil,
         type: player.inventory.items.last.type,
         name: player.inventory.items.last.name,
         level: player.inventory.items.last.level
@@ -51,7 +51,7 @@ RSpec.describe 'Inventory' do
     end
 
     describe 'edible items' do
-      let!(:salad) { create(:craftable_salad, inventory: player.inventory) }
+      let!(:salad) { create(:craftable_salad, parent_inventory: player.inventory) }
 
       before do
         player.update(energy: 0)

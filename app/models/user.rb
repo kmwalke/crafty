@@ -58,7 +58,7 @@ class User < ApplicationRecord
   def equip_item(item)
     raise CraftyError, 'You can only equip items in your inventory' unless inventory.include?(item)
 
-    tool&.update(inventory:)
+    tool&.update(parent_inventory: inventory)
     equip_vehicle(item) if item.type.include? ItemType::CRAFTABLE[:vehicle]
     equip_tool(item) if item.type.include? ItemType::TOOL
   end
@@ -70,13 +70,13 @@ class User < ApplicationRecord
   end
 
   def unequip_tool
-    tool.update(inventory: inventory)
+    tool.update(parent_inventory: inventory)
     update(gathering_tool: nil)
     update(crafting_tool: nil)
   end
 
   def unequip_vehicle
-    vehicle.update(inventory: inventory)
+    vehicle.update(parent_inventory: inventory)
     update(vehicle: nil)
   end
 
@@ -120,12 +120,12 @@ class User < ApplicationRecord
   def equip_tool(tool)
     update(gathering_tool: tool) if tool.type.include? ItemType::TOOLS[:gathering_tool]
     update(crafting_tool: tool) if tool.type.include? ItemType::TOOLS[:crafting_tool]
-    tool.update(inventory: nil)
+    tool.update(parent_inventory: nil)
   end
 
   def equip_vehicle(vehicle)
     update(vehicle: vehicle)
-    vehicle.update(inventory: nil)
+    vehicle.update(parent_inventory: nil)
   end
 
   def set_energy

@@ -5,7 +5,7 @@ class BuildingsController < ApplicationController
 
   def add_item
     game_action(path: inventory_building_path(@building)) do
-      @item.update(inventory: @building.child_inventory)
+      @item.update(parent_inventory: @building.child_inventory)
     end
   end
 
@@ -13,7 +13,7 @@ class BuildingsController < ApplicationController
 
   def pickup_item
     game_action(path: inventory_building_path(@building)) do
-      @item.update(inventory: player.inventory)
+      @item.update(parent_inventory: player.inventory)
     end
   end
 

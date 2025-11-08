@@ -22,15 +22,15 @@ class ListingsController < ApplicationController
     game_action path: listings_path(@building) do
       @listing = Listing.new(listing_params)
 
-      @listing.item.update(inventory: nil) if @listing.save
+      @listing.item.update(parent_inventory: nil) if @listing.save
     end
   end
 
   def update
     game_action path: listings_path(@building) do
       if @listing.update(listing_params)
-        item              = @listing.item
-        item.inventory_id = @building.child_inventory_id
+        item                     = @listing.item
+        item.parent_inventory_id = @building.child_inventory_id
         item.save
       end
     end

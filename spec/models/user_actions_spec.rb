@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User do
   let(:user) { create(:user) }
-  let(:vehicle) { create(:craftable_vehicle, inventory: user.inventory) }
-  let(:gathering_tool) { create(:gathering_tool, inventory: user.inventory) }
+  let(:vehicle) { create(:craftable_vehicle, parent_inventory: user.inventory) }
+  let(:gathering_tool) { create(:gathering_tool, parent_inventory: user.inventory) }
 
   describe 'actions' do
     # instead of user.gather or user.travel
@@ -39,7 +39,7 @@ RSpec.describe User do
       end
 
       it 'replaces a tool with another' do
-        gathering_tool2 = create(:gathering_tool, inventory: user.inventory)
+        gathering_tool2 = create(:gathering_tool, parent_inventory: user.inventory)
         user.equip_item gathering_tool2
         expect(user.inventory.items.include?(gathering_tool)).to be true
       end

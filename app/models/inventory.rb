@@ -1,7 +1,7 @@
 class Inventory < ApplicationRecord
   has_one :user
   has_one :location
-  has_many :items
+  has_many :items, inverse_of: :parent_inventory
 
   delegate :any?, :count, :each, :include?, to: :items
 
@@ -16,7 +16,7 @@ class Inventory < ApplicationRecord
   end
 
   def add_item(item)
-    raise CraftyError, ErrorMessage::INVENTORY[:already_in_inventory] if item.inventory
+    raise CraftyError, ErrorMessage::INVENTORY[:already_in_inventory] if item.parent_inventory
     raise CraftyError, ErrorMessage::INVENTORY[:typed_inventory] unless type.nil? || type == item.type
 
     item_in_inv = items.find_by(type: item.type, level: item.level, name: item.name)
@@ -27,7 +27,7 @@ class Inventory < ApplicationRecord
     else
       raise CraftyError, ErrorMessage::INVENTORY[:no_space] unless remaining_space.positive?
 
-      item.inventory = self
+      item.parent_inventory = self
       if item.save
         item
       else

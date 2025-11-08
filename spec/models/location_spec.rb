@@ -30,7 +30,7 @@ RSpec.describe Location do
   it 'adds a building' do
     old_count = location.property.count
 
-    location.add_building(build(:craftable_building, inventory: nil))
+    location.add_building(build(:craftable_building, parent_inventory: nil))
 
     expect(location.property.count).to eq(old_count + 1)
   end

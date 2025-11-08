@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe 'Store' do
   let!(:player) { create(:user) }
-  let!(:building) { build(:craftable_building, inventory: nil) }
-  let!(:item) { player.inventory.add_item(build(:gatherable_fruit, inventory: nil)) }
+  let!(:building) { build(:craftable_building, parent_inventory: nil) }
+  let!(:item) { player.inventory.add_item(build(:gatherable_fruit, parent_inventory: nil)) }
 
   before do
     player.location.add_building(building)
-    building.child_inventory.add_item(build(:gatherable_ore, inventory: nil))
+    building.child_inventory.add_item(build(:gatherable_ore, parent_inventory: nil))
 
     login_as player
     visit game_path
@@ -46,7 +46,7 @@ RSpec.describe 'Store' do
     pending 'version_0.3 check privacy on actual requests, not just listing the link. prevent link spoofing'
 
     it 'picks up an item' do
-      item.update(inventory: building.child_inventory)
+      item.update(parent_inventory: building.child_inventory)
       visit game_path
       click_link building.name
       within("#building-#{building.id} #inventory") { find_by_id("pickup-#{item.id}").click }
@@ -54,7 +54,7 @@ RSpec.describe 'Store' do
     end
 
     it 'doesnt pick up an item from private' do
-      item.update(inventory: building.child_inventory)
+      item.update(parent_inventory: building.child_inventory)
       make_building_private
       within("#building-#{building.id} #inventory") { expect(page).to have_no_content('pickup') }
     end

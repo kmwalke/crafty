@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Crafting' do
   let!(:player) { login }
-  let!(:crafting_tool) { create(:crafting_tool, inventory: player.inventory) }
+  let!(:crafting_tool) { create(:crafting_tool, parent_inventory: player.inventory) }
 
   before do
     player.equip_item(crafting_tool)
@@ -10,7 +10,7 @@ RSpec.describe 'Crafting' do
   end
 
   describe 'crafts an item' do
-    let!(:fruit_4stack) { build(:gatherable_fruit, inventory: nil, stack_amount: 4) }
+    let!(:fruit_4stack) { build(:gatherable_fruit, parent_inventory: nil, stack_amount: 4) }
 
     pending 'version_0.2 add many more craftable items'
     pending 'version_0.3 select the color of the item'
@@ -43,8 +43,8 @@ RSpec.describe 'Crafting' do
     end
 
     describe 'creates the item from multiple items' do
-      let(:ore1) { build(:gatherable_ore, inventory: nil) }
-      let(:ore2) { build(:gatherable_ore, inventory: nil) }
+      let(:ore1) { build(:gatherable_ore, parent_inventory: nil) }
+      let(:ore2) { build(:gatherable_ore, parent_inventory: nil) }
 
       before do
         player.inventory.add_item(ore1)

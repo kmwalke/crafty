@@ -6,7 +6,7 @@ RSpec.describe 'Traveling' do
   let!(:location3) { create(:location) }
 
   before do
-    player.equip_item(create(:craftable_vehicle, inventory: player.inventory))
+    player.equip_item(create(:craftable_vehicle, parent_inventory: player.inventory))
     visit game_path
   end
 

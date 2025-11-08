@@ -17,7 +17,7 @@ class Item::Craftable::Salad < Item
   end
 
   def use
-    inventory.user.add_energy(energy)
+    parent_inventory.user.add_energy(energy)
     if stack_amount > 1
       update(stack_amount: (stack_amount - 1))
     else

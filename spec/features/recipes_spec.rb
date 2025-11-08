@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Recipes' do
   let!(:player) { login }
-  let!(:crafting_tool) { create(:crafting_tool, inventory: player.inventory) }
+  let!(:crafting_tool) { create(:crafting_tool, parent_inventory: player.inventory) }
 
   before do
     player.equip_item(crafting_tool)
