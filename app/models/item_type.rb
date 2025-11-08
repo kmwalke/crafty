@@ -1,6 +1,5 @@
 class ItemType < ApplicationRecord
   ITEM       = 'Item'.freeze
-  CRAFT      = 'Item::Crafted'.freeze
   CRAFTED    = {
     book: 'Item::Crafted::Book',
     building: 'Item::Crafted::Building',
@@ -26,7 +25,6 @@ class ItemType < ApplicationRecord
   }.freeze
   TYPE_NAMES = [
     ITEM,
-    CRAFT,
     CRAFTED.values,
     GATHERABLE.values,
     TOOL,

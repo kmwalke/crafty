@@ -1,5 +1,4 @@
 class Item::Crafted::Salad < Item::Crafted
-  include Makeable
   include Useable
 
   ENERGY = 100

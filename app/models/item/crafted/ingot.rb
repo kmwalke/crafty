@@ -1,6 +1,4 @@
 class Item::Crafted::Ingot < Item::Crafted
-  include Makeable
-
   def recipe
     [
       ItemType::GATHERABLE[:ore],
