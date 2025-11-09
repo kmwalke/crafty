@@ -5,9 +5,9 @@ class ItemType < ApplicationRecord
     building: 'Item::Crafted::Building',
     ingot: 'Item::Crafted::Ingot',
     salad: 'Item::Crafted::Salad',
-    vehicle: 'Item::Crafted::Vehicle',
     gathering_tool: 'Item::Crafted::Tool::GatheringTool',
-    crafting_tool: 'Item::Crafted::Tool::CraftingTool'
+    crafting_tool: 'Item::Crafted::Tool::CraftingTool',
+    bicycle: 'Item::Crafted::Vehicle::Bicycle'
   }.freeze
   TOOL       = 'Item::Crafted::Tool'.freeze
   TOOLS      = {
@@ -23,12 +23,14 @@ class ItemType < ApplicationRecord
     shard: 'Item::Gatherable::Shard',
     wood: 'Item::Gatherable::Wood'
   }.freeze
+  VEHICLE    = 'Item::Crafted::Vehicle'.freeze
   TYPE_NAMES = [
     ITEM,
     CRAFTED.values,
     GATHERABLE.values,
     TOOL,
-    TOOLS.values
+    TOOLS.values,
+    VEHICLE
   ].flatten
 
   def self.populate_types

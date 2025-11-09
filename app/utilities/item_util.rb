@@ -76,7 +76,7 @@ class ItemUtil
         created_by: User.first
       },
       {
-        type: 'Item::Crafted::Vehicle',
+        type: 'Item::Crafted::Vehicle::Bicycle',
         description: 'An old bike with a rusty trailer.',
         name: 'Bicycle',
         level: Level::COMMON,

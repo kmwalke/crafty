@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Item::Crafted::Vehicle do
-  let(:vehicle) { create(:crafted_vehicle) }
+RSpec.describe Item::Crafted::Vehicle::Bicycle do
+  let(:vehicle) { create(:crafted_bicycle) }
 
   it 'lists actions' do
     expect(vehicle.actions).to eq(%w[travel])
@@ -11,7 +11,7 @@ RSpec.describe Item::Crafted::Vehicle do
     let(:location1) { create(:location) }
     let(:location2) { create(:location) }
     let(:user) { create(:user, location: location1) }
-    let(:vehicle) { create(:crafted_vehicle, parent_inventory: user.inventory) }
+    let(:vehicle) { create(:crafted_bicycle, parent_inventory: user.inventory) }
 
     before do
       user.equip_item(vehicle)
@@ -26,7 +26,7 @@ RSpec.describe Item::Crafted::Vehicle do
     end
 
     it 'nil user protection' do
-      expect { create(:crafted_vehicle).travel(location2) }.to raise_error(CraftyError)
+      expect { create(:crafted_bicycle).travel(location2) }.to raise_error(CraftyError)
     end
 
     it 'updates the users location' do
