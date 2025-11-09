@@ -11,7 +11,7 @@ class User < ApplicationRecord
   belongs_to :location, optional: true
   belongs_to :inventory, optional: true
   belongs_to :tool, polymorphic: true, optional: true
-  belongs_to :vehicle, optional: true, class_name: 'Item::Crafted::Vehicle'
+  belongs_to :vehicle, polymorphic: true, optional: true
 
   has_many :listings
 
@@ -47,7 +47,6 @@ class User < ApplicationRecord
   def equip_item(item)
     raise CraftyError, 'You can only equip items in your inventory' unless inventory.include?(item)
 
-    tool&.update(parent_inventory: inventory)
     equip_vehicle(item) if item.type.include? ItemType::CRAFTED[:vehicle]
     equip_tool(item) if item.type.include? ItemType::TOOL
   end
@@ -106,6 +105,7 @@ class User < ApplicationRecord
   end
 
   def equip_tool(tool)
+    self.tool&.update(parent_inventory: inventory)
     update(tool: tool)
     tool.update(parent_inventory: nil)
   end

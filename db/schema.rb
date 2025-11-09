@@ -107,6 +107,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_08_223914) do
     t.integer "inventory_id"
     t.integer "credits", default: 0, null: false
     t.string "tool_type"
+    t.string "vehicle_type"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
