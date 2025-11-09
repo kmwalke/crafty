@@ -49,9 +49,10 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
   end
 
   def craft_the_item
-    @crafted_item.created_by = equipped_by
-    @crafted_item.name       = @crafted_item.build_name(@ingredients)
-    @crafted_item.level      = crafted_item_level
+    @crafted_item.created_by   = equipped_by
+    @crafted_item.name         = @crafted_item.build_name(@ingredients)
+    @crafted_item.level        = crafted_item_level
+    @crafted_item.stack_amount = @crafted_item.crafting_yield
   end
 
   def consume_ingredients
