@@ -1,10 +1,13 @@
 class ItemType < ApplicationRecord
   ITEM       = 'Item'.freeze
   CRAFTED    = {
+    beam: 'Item::Crafted::Beam',
     book: 'Item::Crafted::Book',
     building: 'Item::Crafted::Building',
     ingot: 'Item::Crafted::Ingot',
+    plank: 'Item::Crafted::Plank',
     salad: 'Item::Crafted::Salad',
+    screw: 'Item::Crafted::Screw',
     gathering_tool: 'Item::Crafted::Tool::GatheringTool',
     crafting_tool: 'Item::Crafted::Tool::CraftingTool',
     hover_bike: 'Item::Crafted::Vehicle::HoverBike'
