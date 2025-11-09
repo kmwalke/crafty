@@ -5,6 +5,14 @@ class Item::Crafted::Building < Item::Crafted
 
   DEFAULT_INVENTORY_SIZE = 50
 
+  def recipe
+    {
+      ItemType::CRAFTED[:plank] => 10,
+      ItemType::CRAFTED[:beam] => 3,
+      ItemType::CRAFTED[:screw] => 400,
+    }
+  end
+
   private
 
   def provision_inventory
