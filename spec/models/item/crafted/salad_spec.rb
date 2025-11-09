@@ -4,6 +4,11 @@ RSpec.describe Item::Crafted::Salad do
   let(:user) { create(:user) }
   let(:salad) { create(:crafted_salad, parent_inventory: user.inventory) }
 
+  pending 'crafts' do
+    # craft a salad
+    # also add this spec for each item
+  end
+
   it 'uses' do
     user.update(energy: 0)
     energy = salad.energy
