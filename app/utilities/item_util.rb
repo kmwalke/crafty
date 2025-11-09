@@ -76,9 +76,9 @@ class ItemUtil
         created_by: User.first
       },
       {
-        type: 'Item::Crafted::Vehicle::Bicycle',
+        type: 'Item::Crafted::Vehicle::HoverBike',
         description: 'An old bike with a rusty trailer.',
-        name: 'Bicycle',
+        name: 'Hover Bike',
         level: Level::COMMON,
         color: '#ffcccc',
         created_by: User.first

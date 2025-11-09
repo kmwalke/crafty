@@ -7,7 +7,7 @@ class ItemType < ApplicationRecord
     salad: 'Item::Crafted::Salad',
     gathering_tool: 'Item::Crafted::Tool::GatheringTool',
     crafting_tool: 'Item::Crafted::Tool::CraftingTool',
-    bicycle: 'Item::Crafted::Vehicle::Bicycle'
+    hover_bike: 'Item::Crafted::Vehicle::HoverBike'
   }.freeze
   TOOL       = 'Item::Crafted::Tool'.freeze
   TOOLS      = {

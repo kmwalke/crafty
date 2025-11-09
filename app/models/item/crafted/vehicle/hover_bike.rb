@@ -1,4 +1,4 @@
-class Item::Crafted::Vehicle::Bicycle < Item::Crafted::Vehicle
+class Item::Crafted::Vehicle::HoverBike < Item::Crafted::Vehicle
   def actions
     %w[travel]
   end

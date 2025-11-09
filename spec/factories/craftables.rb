@@ -13,9 +13,9 @@ FactoryBot.define do
       sequence(:description) { |n| "This is the description for Salad_#{n}" }
     end
 
-    factory :crafted_bicycle, class: ItemType::CRAFTED[:bicycle] do
-      sequence(:name) { |n| "Bicycle_#{n}" }
-      sequence(:description) { |n| "This is the description for Bicycle_#{n}" }
+    factory :crafted_hover_bike, class: ItemType::CRAFTED[:hover_bike] do
+      sequence(:name) { |n| "HoverBike_#{n}" }
+      sequence(:description) { |n| "This is the description for HoverBike_#{n}" }
     end
   end
 end
