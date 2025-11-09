@@ -4,13 +4,18 @@ class ItemType < ApplicationRecord
     beam: 'Item::Crafted::Beam',
     book: 'Item::Crafted::Book',
     building: 'Item::Crafted::Building',
+    harness: 'Item::Crafted::Harness',
     ingot: 'Item::Crafted::Ingot',
+    leather: 'Item::Crafted::Leather',
+    orb: 'Item::Crafted::Orb',
+    pelt: 'Item::Crafted::Pelt',
     plank: 'Item::Crafted::Plank',
     salad: 'Item::Crafted::Salad',
     screw: 'Item::Crafted::Screw',
-    gathering_tool: 'Item::Crafted::Tool::GatheringTool',
     crafting_tool: 'Item::Crafted::Tool::CraftingTool',
-    hover_bike: 'Item::Crafted::Vehicle::HoverBike'
+    gathering_tool: 'Item::Crafted::Tool::GatheringTool',
+    hover_bike: 'Item::Crafted::Vehicle::HoverBike'#,
+    # mount: 'Item::Crafted::Vehicle::Mount'
   }.freeze
   TOOL       = 'Item::Crafted::Tool'.freeze
   TOOLS      = {
