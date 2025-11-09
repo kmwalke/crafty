@@ -20,4 +20,8 @@ class Item::Crafted::Vehicle < Item::Crafted
   def energy_usage(location1, location2)
     (location1.distance_from(location2) * energy_multiplier).to_i
   end
+
+  def valid_travel_locations
+    Location.where.not(id: equipped_by.location_id).order(:id)
+  end
 end

@@ -1,5 +1,4 @@
 class Item::Crafted::Tool::GatheringTool < Item::Crafted::Tool
-  has_one :equipped_by, class_name: 'User', as: :tool
   def actions
     %w[gather]
   end
