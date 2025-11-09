@@ -112,6 +112,8 @@ Rails/SkipsModelValidations:
 
 RSpec/ExampleLength:
   CountAsOne: [array, hash, heredoc, method_call]
+  Exclude:
+    - 'spec/features/recipes_spec.rb'
 
 RSpec/MessageSpies:
   Enabled: false

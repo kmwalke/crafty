@@ -13,9 +13,11 @@ RSpec.describe 'Recipes' do
   end
 
   it 'shows the recipes' do
-    within '.recipes-popup' do
-      ItemType::CRAFTED.each_value do |item|
-        item.constantize.new.recipe.each { |ingredient| expect(page).to have_content(pretty_type(ingredient)) }
+    ItemType::CRAFTED.each_value do |item|
+      within '.recipes-popup' do
+        item.constantize.new.recipe.each do |ingredient, amount|
+          expect(page).to have_content("#{amount}x #{pretty_type(ingredient)}")
+        end
       end
     end
   end

@@ -20,7 +20,7 @@ RSpec.describe Item::Crafted::Salad do
   end
 
   it 'gets the recipe' do
-    expect(salad.recipe.count).to eq(3)
+    expect(salad.recipe[ItemType::GATHERABLE[:fruit]]).to eq(3)
   end
 
   it 'gets the energy' do

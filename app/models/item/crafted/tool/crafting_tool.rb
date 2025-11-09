@@ -40,8 +40,9 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
 
       stack_amount = i.stack_amount
       while recipe_list.any? && stack_amount.positive?
-        recipe_list.delete_at(recipe_list.index(i.type) || recipe_list.length)
-        stack_amount -= 1
+        stack_amount        -= 1
+        recipe_list[i.type] -= 1
+        recipe_list.except! i.type if recipe_list[i.type].zero?
       end
       i.update(stack_amount:)
     end

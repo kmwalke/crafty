@@ -8,11 +8,9 @@ class Item::Crafted::Salad < Item::Crafted
   end
 
   def recipe
-    [
-      ItemType::GATHERABLE[:fruit],
-      ItemType::GATHERABLE[:fruit],
-      ItemType::GATHERABLE[:fruit]
-    ]
+    {
+      ItemType::GATHERABLE[:fruit] => 3
+    }
   end
 
   def use
