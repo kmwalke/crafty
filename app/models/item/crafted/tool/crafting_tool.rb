@@ -1,4 +1,4 @@
-class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
+class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
   attr_accessor :crafted_item, :ingredients
 
   def actions
@@ -26,7 +26,7 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
   end
 
   def recipes
-    ItemType::CRAFTABLE.map do |name, recipe|
+    ItemType::CRAFTED.map do |name, recipe|
       { name: name.to_s.gsub('_', ' ').capitalize, recipe: recipe.constantize.new.recipe }
     end
   end
@@ -40,8 +40,9 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
 
       stack_amount = i.stack_amount
       while recipe_list.any? && stack_amount.positive?
-        recipe_list.delete_at(recipe_list.index(i.type) || recipe_list.length)
-        stack_amount -= 1
+        stack_amount        -= 1
+        recipe_list[i.type] -= 1
+        recipe_list.except! i.type if recipe_list[i.type].zero?
       end
       i.update(stack_amount:)
     end
@@ -49,19 +50,16 @@ class Item::Craftable::Tool::CraftingTool < Item::Craftable::Tool
   end
 
   def craft_the_item
-    @crafted_item.created_by = equipped_by
-    @crafted_item.name       = crafted_item_name
-    @crafted_item.level      = crafted_item_level
+    @crafted_item.created_by   = equipped_by
+    @crafted_item.name         = @crafted_item.build_name(@ingredients)
+    @crafted_item.level        = crafted_item_level
+    @crafted_item.stack_amount = @crafted_item.crafting_yield
   end
 
   def consume_ingredients
     @ingredients.each do |i|
       i.destroy if i.stack_amount.zero?
     end
-  end
-
-  def crafted_item_name
-    @ingredients.map(&:name).uniq.join(' ')
   end
 
   def crafted_item_level

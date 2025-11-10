@@ -1,0 +1,10 @@
+class Item::Crafted::Tool < Item::Crafted
+  include Equippable
+  include SimpleName
+
+  has_one :equipped_by, class_name: 'User', as: :tool
+
+  def actions
+    []
+  end
+end

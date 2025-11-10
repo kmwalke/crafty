@@ -1,11 +1,11 @@
 class ItemUtil
   def self.provision_items
     building_data.each do |building_params|
-      building = Item::Craftable::Building.find_or_create_by(building_params)
+      building = Item::Crafted::Building.find_or_create_by(building_params)
       Location.first.add_building(building) if building.parent_inventory.nil?
     end
 
-    welcome_center = Item::Craftable::Building.first
+    welcome_center = Item::Crafted::Building.first
     welcome_center_inventory.each do |item_params|
       item = Item.find_or_create_by(item_params)
       Listing.find_or_create_by(
@@ -65,7 +65,7 @@ class ItemUtil
   def self.welcome_center_inventory
     [
       {
-        type: 'Item::Craftable::Book',
+        type: 'Item::Crafted::Book',
         description: 'Welcome to Crafty! Grab your starting items from the Welcome Center. ' \
           'Equip a vehicle to travel, a crafting tool to craft, etc... ' \
           'Gather or craft some items, sell them to other players in a building. ' \
@@ -76,15 +76,15 @@ class ItemUtil
         created_by: User.first
       },
       {
-        type: 'Item::Craftable::Vehicle',
+        type: 'Item::Crafted::Vehicle::HoverBike',
         description: 'An old bike with a rusty trailer.',
-        name: 'Bicycle',
+        name: 'Hover Bike',
         level: Level::COMMON,
         color: '#ffcccc',
         created_by: User.first
       },
       {
-        type: 'Item::Craftable::Tool::GatheringTool',
+        type: 'Item::Crafted::Tool::GatheringTool',
         name: 'Universal Extractor',
         description: 'Magical seeming tech.  Can gather from any resource.',
         level: Level::LEGENDARY,
@@ -92,7 +92,7 @@ class ItemUtil
         created_by: User.first
       },
       {
-        type: 'Item::Craftable::Tool::CraftingTool',
+        type: 'Item::Crafted::Tool::CraftingTool',
         name: 'Universal Assembler',
         description: 'Magical seeming tech.  Can craft any item.',
         level: Level::LEGENDARY,

@@ -1,5 +1,4 @@
-class Item::Craftable::Salad < Item
-  include Craftable
+class Item::Crafted::Salad < Item::Crafted
   include Useable
 
   ENERGY = 100
@@ -9,11 +8,9 @@ class Item::Craftable::Salad < Item
   end
 
   def recipe
-    [
-      ItemType::GATHERABLE[:fruit],
-      ItemType::GATHERABLE[:fruit],
-      ItemType::GATHERABLE[:fruit]
-    ]
+    {
+      ItemType::GATHERABLE[:fruit] => 3
+    }
   end
 
   def use

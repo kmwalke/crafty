@@ -9,10 +9,15 @@
     </thead>
     <% player.tool.recipes.each do |recipe| %>
       <tr>
-        <td><%= recipe[:name] %></td>
         <td>
-          <% recipe[:recipe].each do |ingredient| %>
-          <span><%= pretty_type(ingredient) %></span>
+          <%= recipe[:name] %>
+        </td>
+        <td>
+          <% recipe[:recipe].each do |ingredient, amount| %>
+          <span>
+            <%= amount %>x
+            <%= pretty_type(ingredient) %>
+          </span>
           <% end %>
         </td>
       </tr>

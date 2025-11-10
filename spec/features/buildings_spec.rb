@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe 'Buildings' do
   let!(:player) { login }
   let!(:building) do
-    player.location.add_building(build(:craftable_building, name: 'building name', parent_inventory: nil))
+    player.location.add_building(build(:crafted_building, name: 'building name', parent_inventory: nil))
   end
   let!(:distant_building) do
-    create(:location).add_building(build(:craftable_building, name: 'distant building', parent_inventory: nil))
+    create(:location).add_building(build(:crafted_building, name: 'distant building', parent_inventory: nil))
   end
 
   before do

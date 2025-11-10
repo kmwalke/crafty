@@ -57,7 +57,7 @@ class ListingsController < ApplicationController
   end
 
   def set_building
-    @building = Item::Craftable::Building.find(params.expect(:building_id))
+    @building = Item::Crafted::Building.find(params.expect(:building_id))
   end
 
   def building_listing_items

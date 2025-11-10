@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User do
   let(:user) { create(:user) }
-  let(:vehicle) { create(:craftable_vehicle, parent_inventory: user.inventory) }
+  let(:vehicle) { create(:crafted_hover_bike, parent_inventory: user.inventory) }
   let(:gathering_tool) { create(:gathering_tool, parent_inventory: user.inventory) }
 
   describe 'actions' do

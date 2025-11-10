@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Item::Craftable::Tool::CraftingTool do
+RSpec.describe Item::Crafted::Tool::CraftingTool do
   let(:user) { create(:user) }
 
   before do
@@ -8,19 +8,19 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
   end
 
   it 'lists actions' do
-    expect(user.crafting_tool.actions).to eq(%w[craft recipes])
+    expect(user.tool.actions).to eq(%w[craft recipes])
   end
 
   it 'doesn\'t update if user has low energy' do
     user.update(energy: 0)
 
-    expect { user.crafting_tool.craft({ item_ids: [] }) }.to raise_error(CraftyError)
+    expect { user.tool.craft({ item_ids: [] }) }.to raise_error(CraftyError)
   end
 
   describe 'crafts' do
     let!(:crafting_params) do
       {
-        item_type: ItemType::CRAFTABLE[:ingot],
+        item_type: ItemType::CRAFTED[:ingot],
         item_ids: [
           create(:gatherable_ore, parent_inventory: user.inventory, name: 'Copper', level: Level::LEGENDARY).id,
           create(:gatherable_ore, parent_inventory: user.inventory, name: 'Iron', level: Level::COMMON).id
@@ -30,7 +30,7 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
     let!(:old_inv) { user.inventory.items.count }
 
     before do
-      user.crafting_tool.craft(crafting_params)
+      user.tool.craft(crafting_params)
     end
 
     it 'adjusts the inventory' do
@@ -38,7 +38,7 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
     end
 
     it 'creates the new item' do
-      expect(user.inventory.items.last).to be_a ItemType::CRAFTABLE[:ingot].constantize
+      expect(user.inventory.items.last).to be_a ItemType::CRAFTED[:ingot].constantize
     end
 
     it 'names the new item' do
@@ -59,7 +59,7 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
   describe 'crafts with stacked items' do
     let!(:stacked_crafting_params) do
       {
-        item_type: ItemType::CRAFTABLE[:ingot],
+        item_type: ItemType::CRAFTED[:ingot],
         item_ids: [
           create(:gatherable_ore, parent_inventory: user.inventory, stack_amount: 3).id
         ]
@@ -67,11 +67,11 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
     end
 
     before do
-      user.crafting_tool.craft(stacked_crafting_params)
+      user.tool.craft(stacked_crafting_params)
     end
 
     it 'creates the new item' do
-      expect(user.inventory.items.last).to be_a ItemType::CRAFTABLE[:ingot].constantize
+      expect(user.inventory.items.last).to be_a ItemType::CRAFTED[:ingot].constantize
     end
 
     it 'consumes the stack' do
@@ -83,7 +83,7 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
   describe 'crafts with a mix of stacked and unstacked items' do
     let!(:mixed_crafting_params) do
       {
-        item_type: ItemType::CRAFTABLE[:salad],
+        item_type: ItemType::CRAFTED[:salad],
         item_ids: [
           create(:gatherable_fruit, parent_inventory: user.inventory, stack_amount: 2, name: 'Apple').id,
           create(:gatherable_fruit, parent_inventory: user.inventory, stack_amount: 1, name: 'Apple').id
@@ -92,11 +92,11 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
     end
 
     before do
-      user.crafting_tool.craft(mixed_crafting_params)
+      user.tool.craft(mixed_crafting_params)
     end
 
     it 'creates the new item' do
-      expect(user.inventory.items.last).to be_a ItemType::CRAFTABLE[:salad].constantize
+      expect(user.inventory.items.last).to be_a ItemType::CRAFTED[:salad].constantize
     end
 
     it 'names the new item' do
@@ -112,9 +112,9 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
 
   it 'doesnt craft with bad recipe' do
     expect do
-      user.crafting_tool.craft(
+      user.tool.craft(
         {
-          item_type: ItemType::CRAFTABLE[:ingot], item_ids: [
+          item_type: ItemType::CRAFTED[:ingot], item_ids: [
             create(:gatherable_fruit, parent_inventory: user.inventory).id,
             create(:gatherable_ore, parent_inventory: user.inventory).id
           ]
@@ -124,6 +124,6 @@ RSpec.describe Item::Craftable::Tool::CraftingTool do
   end
 
   it 'lists recipes' do
-    expect(user.crafting_tool.recipes).to be_a(Array)
+    expect(user.tool.recipes).to be_a(Array)
   end
 end

@@ -1,4 +1,4 @@
-class Item::Craftable::Tool::GatheringTool < Item::Craftable::Tool
+class Item::Crafted::Tool::GatheringTool < Item::Crafted::Tool
   def actions
     %w[gather]
   end

@@ -10,15 +10,8 @@ class User < ApplicationRecord
 
   belongs_to :location, optional: true
   belongs_to :inventory, optional: true
-  belongs_to :crafting_tool, optional: true,
-                             class_name: 'Item::Craftable::Tool::CraftingTool',
-                             foreign_key: 'tool_id',
-                             inverse_of: :equipped_by
-  belongs_to :gathering_tool, optional: true,
-                              class_name: 'Item::Craftable::Tool::GatheringTool',
-                              foreign_key: 'tool_id',
-                              inverse_of: :equipped_by
-  belongs_to :vehicle, optional: true, class_name: 'Item::Craftable::Vehicle'
+  belongs_to :tool, polymorphic: true, optional: true
+  belongs_to :vehicle, polymorphic: true, optional: true
 
   has_many :listings
 
@@ -51,15 +44,10 @@ class User < ApplicationRecord
     update(energy: new_energy)
   end
 
-  def tool
-    gathering_tool || crafting_tool
-  end
-
   def equip_item(item)
     raise CraftyError, 'You can only equip items in your inventory' unless inventory.include?(item)
 
-    tool&.update(parent_inventory: inventory)
-    equip_vehicle(item) if item.type.include? ItemType::CRAFTABLE[:vehicle]
+    equip_vehicle(item) if item.type.include? ItemType::VEHICLE
     equip_tool(item) if item.type.include? ItemType::TOOL
   end
 
@@ -71,8 +59,7 @@ class User < ApplicationRecord
 
   def unequip_tool
     tool.update(parent_inventory: inventory)
-    update(gathering_tool: nil)
-    update(crafting_tool: nil)
+    update(tool: nil)
   end
 
   def unequip_vehicle
@@ -81,15 +68,15 @@ class User < ApplicationRecord
   end
 
   def craft(craft_params)
-    raise CraftyError, 'You can\'t craft without a tool.' if crafting_tool.nil?
+    raise CraftyError, 'You can\'t craft without a tool.' if tool.nil?
 
-    crafting_tool.craft(craft_params)
+    tool.craft(craft_params)
   end
 
   def gather(resource)
-    raise CraftyError, 'You can\'t gather without a tool.' if gathering_tool.nil?
+    raise CraftyError, 'You can\'t gather without a tool.' if tool.nil?
 
-    gathering_tool.gather(resource)
+    tool.gather(resource)
   end
 
   def travel(new_location)
@@ -102,7 +89,7 @@ class User < ApplicationRecord
     raise CraftyError, 'You can\'t scan for locations without a vehicle.' if vehicle.nil?
     return if vehicle.nil?
 
-    Location.where.not(id: location_id).order(:id)
+    vehicle.valid_travel_locations
   end
 
   def valid_gather_resources
@@ -118,8 +105,8 @@ class User < ApplicationRecord
   end
 
   def equip_tool(tool)
-    update(gathering_tool: tool) if tool.type.include? ItemType::TOOLS[:gathering_tool]
-    update(crafting_tool: tool) if tool.type.include? ItemType::TOOLS[:crafting_tool]
+    self.tool&.update(parent_inventory: inventory)
+    update(tool: tool)
     tool.update(parent_inventory: nil)
   end
 

@@ -1,18 +1,30 @@
 class ItemType < ApplicationRecord
   ITEM       = 'Item'.freeze
-  CRAFTABLE  = {
-    book: 'Item::Craftable::Book',
-    building: 'Item::Craftable::Building',
-    ingot: 'Item::Craftable::Ingot',
-    salad: 'Item::Craftable::Salad',
-    vehicle: 'Item::Craftable::Vehicle',
-    gathering_tool: 'Item::Craftable::Tool::GatheringTool',
-    crafting_tool: 'Item::Craftable::Tool::CraftingTool'
+  CRAFTED    = {
+    beam: 'Item::Crafted::Beam',
+    book: 'Item::Crafted::Book',
+    building: 'Item::Crafted::Building',
+    component: 'Item::Crafted::Component',
+    frame: 'Item::Crafted::Frame',
+    harness: 'Item::Crafted::Harness',
+    ingot: 'Item::Crafted::Ingot',
+    leather: 'Item::Crafted::Leather',
+    orb: 'Item::Crafted::Orb',
+    paper: 'Item::Crafted::Paper',
+    pelt: 'Item::Crafted::Pelt',
+    plank: 'Item::Crafted::Plank',
+    plastic: 'Item::Crafted::Plastic',
+    salad: 'Item::Crafted::Salad',
+    screw: 'Item::Crafted::Screw',
+    crafting_tool: 'Item::Crafted::Tool::CraftingTool',
+    gathering_tool: 'Item::Crafted::Tool::GatheringTool',
+    hover_bike: 'Item::Crafted::Vehicle::HoverBike',
+    mount: 'Item::Crafted::Vehicle::Mount'
   }.freeze
-  TOOL       = 'Item::Craftable::Tool'.freeze
+  TOOL       = 'Item::Crafted::Tool'.freeze
   TOOLS      = {
-    gathering_tool: ItemType::CRAFTABLE[:gathering_tool],
-    crafting_tool: ItemType::CRAFTABLE[:crafting_tool]
+    gathering_tool: ItemType::CRAFTED[:gathering_tool],
+    crafting_tool: ItemType::CRAFTED[:crafting_tool]
   }.freeze
   GATHERABLE = {
     companion: 'Item::Gatherable::Companion',
@@ -23,7 +35,15 @@ class ItemType < ApplicationRecord
     shard: 'Item::Gatherable::Shard',
     wood: 'Item::Gatherable::Wood'
   }.freeze
-  TYPE_NAMES = [ITEM, CRAFTABLE.values, GATHERABLE.values, TOOL, TOOLS.values].flatten
+  VEHICLE    = 'Item::Crafted::Vehicle'.freeze
+  TYPE_NAMES = [
+    ITEM,
+    CRAFTED.values,
+    GATHERABLE.values,
+    TOOL,
+    TOOLS.values,
+    VEHICLE
+  ].flatten
 
   def self.populate_types
     ItemType::TYPE_NAMES.each do |type|

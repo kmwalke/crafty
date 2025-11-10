@@ -28,6 +28,6 @@ class BuildingsController < ApplicationController
   end
 
   def set_building
-    @building = Item::Craftable::Building.find(params[:building_id])
+    @building = Item::Crafted::Building.find(params[:building_id])
   end
 end

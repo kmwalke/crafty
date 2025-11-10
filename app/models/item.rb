@@ -14,12 +14,6 @@ class Item < ApplicationRecord
   DEFAULT_COLOR = '#EEE'.freeze
   DEFAULT_DESC  = 'This is the item description.'.freeze
 
-  def recipe
-    [
-      'Coming Soon'
-    ]
-  end
-
   def permitted_user?(user)
     created_by == user || !is_private
   end
