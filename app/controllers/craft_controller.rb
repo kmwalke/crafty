@@ -8,7 +8,7 @@ class CraftController < ApplicationController
     game_action do
       raise CraftyError, ErrorMessage::CRAFTING[:failed] unless @craftable_items.include? craft_params[:item_type]
 
-      crafted_item = craft_params[:item_type].constantize.new
+      crafted_item = craft_params[:item_type].constantize
       ingredients  = craft_params[:item_ids].map do |id|
         Item.find_by(id:)
       end

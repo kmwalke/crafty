@@ -115,6 +115,10 @@ RSpec/ExampleLength:
   Exclude:
     - 'spec/features/recipes_spec.rb'
 
+RSpec/InstanceVariable:
+  Exclude:
+    - 'spec/models/item/crafted/**/*'
+
 RSpec/MessageSpies:
   Enabled: false
 

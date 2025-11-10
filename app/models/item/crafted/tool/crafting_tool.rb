@@ -5,8 +5,8 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
     %w[craft recipes]
   end
 
-  def craft(crafted_item, ingredients)
-    @crafted_item = crafted_item
+  def craft(crafted_item_class, ingredients)
+    @crafted_item = crafted_item_class.new
     @ingredients  = ingredients
 
     can_craft?
@@ -38,6 +38,8 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
   def matches_recipe?
     match = true
     @crafted_item.recipe.each do |recipe_type, recipe_amount|
+      raise CraftyError, ErrorMessage::CRAFTING[:wrong_ingredients] unless proposed_recipe[recipe_type]
+
       match &&= proposed_recipe[recipe_type] >= recipe_amount
     end
     raise CraftyError, ErrorMessage::CRAFTING[:wrong_ingredients] unless match

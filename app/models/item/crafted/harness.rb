@@ -6,4 +6,8 @@ class Item::Crafted::Harness < Item::Crafted
       ItemType::CRAFTED[:orb] => 1
     }
   end
+
+  def build_name(ingredients)
+    ingredients.select { |i| i.type == ItemType::CRAFTED[:orb] }.first.name
+  end
 end

@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Gameplay' do
+  pending 'ItemType could be deleted if some automated listing exists'
+  # something like Item.subclasses / Item::Crafted.subclasses / Item::Crafted.subclasses[:leather]
+  # then the whole thing could be automated.  Including putting the types into the DB for FKs
+  # must be just as performant as current solution
   pending 'version_0.4 add many more locations'
   pending 'version_0.9 balance locations'
   pending 'version_0.9 balance crafting'
