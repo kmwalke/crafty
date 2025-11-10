@@ -13,6 +13,10 @@ RSpec.describe 'Crafting' do
     let!(:fruit_4stack) { build(:gatherable_fruit, parent_inventory: nil, stack_amount: 4) }
 
     pending 'version_0.2 add many more crafted items'
+    pending 'version_0.2 better names for crafted items'
+    pending 'version_0.2 testing of crafting each item'
+    # test that crafting and recipe works
+    # test name generation
     pending 'version_0.3 select the color of the item'
     # select the color of the item, if level high enough
     # <input type="color" />
