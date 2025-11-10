@@ -34,6 +34,7 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
   private
 
   def can_craft?
+    return false if equipped_by.inventory.remaining_space.zero?
     recipe_list = @crafted_item.recipe
     @ingredients.each do |i|
       next unless recipe_list.include? i.type
