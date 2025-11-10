@@ -14,8 +14,8 @@ class ItemType < ApplicationRecord
     screw: 'Item::Crafted::Screw',
     crafting_tool: 'Item::Crafted::Tool::CraftingTool',
     gathering_tool: 'Item::Crafted::Tool::GatheringTool',
-    hover_bike: 'Item::Crafted::Vehicle::HoverBike'#,
-    # mount: 'Item::Crafted::Vehicle::Mount'
+    hover_bike: 'Item::Crafted::Vehicle::HoverBike',
+    mount: 'Item::Crafted::Vehicle::Mount'
   }.freeze
   TOOL       = 'Item::Crafted::Tool'.freeze
   TOOLS      = {

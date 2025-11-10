@@ -9,7 +9,7 @@ class Item::Crafted::Building < Item::Crafted
     {
       ItemType::CRAFTED[:plank] => 10,
       ItemType::CRAFTED[:beam] => 3,
-      ItemType::CRAFTED[:screw] => 400,
+      ItemType::CRAFTED[:screw] => 400
     }
   end
 
