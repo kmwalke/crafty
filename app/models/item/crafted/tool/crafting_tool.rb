@@ -5,16 +5,12 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
     %w[craft recipes]
   end
 
-  def craft(craft_params)
-    raise CraftyError, ErrorMessage::ITEM[:must_equip_item] if equipped_by.nil?
+  def craft(crafted_item, ingredients)
+    @crafted_item = crafted_item
+    @ingredients  = ingredients
 
-    unless equipped_by.spend_energy(energy_usage(craft_params))
+    unless equipped_by.spend_energy(energy_usage(crafted_item, ingredients))
       raise CraftyError, ErrorMessage::USER[:build_additional_pylons]
-    end
-
-    @crafted_item = craft_params[:item_type].constantize.new
-    @ingredients  = craft_params[:item_ids].map do |id|
-      Item.find_by(id:)
     end
 
     can_craft?
@@ -68,7 +64,7 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
     @ingredients.pluck(:level).min
   end
 
-  def energy_usage(craft_params)
-    craft_params[:item_ids].count * energy_multiplier
+  def energy_usage(_item, ingredients)
+    ingredients.count * energy_multiplier
   end
 end
