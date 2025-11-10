@@ -1,11 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe Item::Crafted::Book do
-  pending 'crafts'
-  # craft a salad
-  # also add this spec for each item
+  let(:user) { create(:user) }
 
-  pending 'sets the description'
-  # the description is the whole point of a book.  The player writes what they want in it
-  # Need to rework description.  Each item has its own default description
+  it 'crafts' do
+    crafting_tool = create(:crafting_tool, parent_inventory: user.inventory)
+    user.equip_item(crafting_tool)
+    new_item      = crafting_tool.craft(
+      described_class,
+      [
+        create(:crafted_paper, stack_amount: 100, parent_inventory: user.inventory),
+        create(:crafted_leather, stack_amount: 2, parent_inventory: user.inventory)
+      ]
+    )
+
+    expect(new_item.id).not_to be_nil
+  end
 end

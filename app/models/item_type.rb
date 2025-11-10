@@ -15,16 +15,7 @@ class ItemType < ApplicationRecord
     plank: 'Item::Crafted::Plank',
     plastic: 'Item::Crafted::Plastic',
     salad: 'Item::Crafted::Salad',
-    screw: 'Item::Crafted::Screw',
-    crafting_tool: 'Item::Crafted::Tool::CraftingTool',
-    gathering_tool: 'Item::Crafted::Tool::GatheringTool',
-    hover_bike: 'Item::Crafted::Vehicle::HoverBike',
-    mount: 'Item::Crafted::Vehicle::Mount'
-  }.freeze
-  TOOL       = 'Item::Crafted::Tool'.freeze
-  TOOLS      = {
-    gathering_tool: ItemType::CRAFTED[:gathering_tool],
-    crafting_tool: ItemType::CRAFTED[:crafting_tool]
+    screw: 'Item::Crafted::Screw'
   }.freeze
   GATHERABLE = {
     companion: 'Item::Gatherable::Companion',
@@ -35,15 +26,25 @@ class ItemType < ApplicationRecord
     shard: 'Item::Gatherable::Shard',
     wood: 'Item::Gatherable::Wood'
   }.freeze
+  TOOL       = 'Item::Crafted::Tool'.freeze
+  TOOLS      = {
+    crafting_tool: 'Item::Crafted::Tool::CraftingTool',
+    gathering_tool: 'Item::Crafted::Tool::GatheringTool'
+  }.freeze
   VEHICLE    = 'Item::Crafted::Vehicle'.freeze
+  VEHICLES   = {
+    hover_bike: 'Item::Crafted::Vehicle::HoverBike',
+    mount: 'Item::Crafted::Vehicle::Mount'
+  }.freeze
   TYPE_NAMES = [
     ITEM,
     CRAFTED.values,
     GATHERABLE.values,
     TOOL,
     TOOLS.values,
-    VEHICLE
-  ].flatten
+    VEHICLE,
+    VEHICLES.values
+  ].uniq.flatten
 
   def self.populate_types
     ItemType::TYPE_NAMES.each do |type|

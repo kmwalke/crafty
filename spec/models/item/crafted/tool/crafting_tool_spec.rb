@@ -27,7 +27,7 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
     let!(:old_inv) { user.inventory.items.count }
 
     before do
-      user.tool.craft(Item::Crafted::Ingot.new, ingredients)
+      user.tool.craft(Item::Crafted::Ingot, ingredients)
     end
 
     it 'adjusts the inventory' do
@@ -61,7 +61,7 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
     end
 
     before do
-      user.tool.craft(Item::Crafted::Ingot.new, ingredients)
+      user.tool.craft(Item::Crafted::Ingot, ingredients)
     end
 
     it 'creates the new item' do
@@ -82,7 +82,7 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
     end
 
     before do
-      user.tool.craft(Item::Crafted::Salad.new, ingredients)
+      user.tool.craft(Item::Crafted::Salad, ingredients)
     end
 
     it 'creates the new item' do
@@ -103,7 +103,7 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
   it 'doesnt craft with bad recipe' do
     expect do
       user.tool.craft(
-        Item::Crafted::Ingot.new,
+        Item::Crafted::Ingot,
         [
           create(:gatherable_fruit, parent_inventory: user.inventory),
           create(:gatherable_ore, parent_inventory: user.inventory)
