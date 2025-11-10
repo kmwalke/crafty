@@ -47,6 +47,6 @@ class Item < ApplicationRecord
   end
 
   def destroy_if_stack_zero
-    destroy if stack_amount.zero?
+    destroy if stack_amount <= 0
   end
 end
