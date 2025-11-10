@@ -1,4 +1,4 @@
-class Item::Crafted::Rubber < Item::Crafted
+class Item::Crafted::Plastic < Item::Crafted
   def recipe
     {
       ItemType::GATHERABLE[:wood] => 1,

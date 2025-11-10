@@ -13,7 +13,7 @@ class ItemType < ApplicationRecord
     paper: 'Item::Crafted::Paper',
     pelt: 'Item::Crafted::Pelt',
     plank: 'Item::Crafted::Plank',
-    rubber: 'Item::Crafted::Rubber',
+    plastic: 'Item::Crafted::Plastic',
     salad: 'Item::Crafted::Salad',
     screw: 'Item::Crafted::Screw',
     crafting_tool: 'Item::Crafted::Tool::CraftingTool',
