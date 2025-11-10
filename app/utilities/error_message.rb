@@ -1,7 +1,7 @@
 class ErrorMessage
   CRAFTING = {
     failed: 'Crafting failed!',
-    no_ingredients: 'You don\'t have enough ingredients'
+    wrong_ingredients: 'You don\'t have enough ingredients'
   }.freeze
   GENERIC  = {
     interface_method: 'Implement in child class',

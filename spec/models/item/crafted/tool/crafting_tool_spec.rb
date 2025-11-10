@@ -7,10 +7,6 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
     user.equip_item(create(:crafting_tool, parent_inventory: user.inventory))
   end
 
-  pending 'can_craft? consumes ingredients, it shouldnt do that. Cant have a info check method reducing stack amount'
-  # the upshot is that a crafting attempt will consume ingredients if you dont have enough, instead of not trying
-  # Could be good to consume ingredients if you fail because it is too hard, but shouldn't consume if you dont have enough or the right ones
-
   it 'lists actions' do
     expect(user.tool.actions).to eq(%w[craft recipes])
   end

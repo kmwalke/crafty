@@ -9,10 +9,6 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
     @crafted_item = crafted_item
     @ingredients  = ingredients
 
-    unless equipped_by.spend_energy(energy_usage(crafted_item, ingredients))
-      raise CraftyError, ErrorMessage::USER[:build_additional_pylons]
-    end
-
     can_craft?
 
     craft_the_item
@@ -30,21 +26,28 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
   private
 
   def can_craft?
+    unless equipped_by.spend_energy(energy_usage(@crafted_item, @ingredients))
+      raise CraftyError, ErrorMessage::USER[:build_additional_pylons]
+    end
+
     raise CraftyError, ErrorMessage::INVENTORY[:no_space] if equipped_by.inventory.remaining_space.zero?
 
-    recipe_list = @crafted_item.recipe
-    @ingredients.each do |i|
-      next unless recipe_list.include? i.type
+    matches_recipe?
+  end
 
-      stack_amount = i.stack_amount
-      while recipe_list.any? && stack_amount.positive?
-        stack_amount        -= 1
-        recipe_list[i.type] -= 1
-        recipe_list.except! i.type if recipe_list[i.type].zero?
-      end
-      i.update(stack_amount:)
+  def matches_recipe?
+    match = true
+    @crafted_item.recipe.each do |recipe_type, recipe_amount|
+      match &&= proposed_recipe[recipe_type] >= recipe_amount
     end
-    raise CraftyError, ErrorMessage::CRAFTING[:no_ingredients] unless recipe_list.empty?
+    raise CraftyError, ErrorMessage::CRAFTING[:wrong_ingredients] unless match
+  end
+
+  def proposed_recipe
+    @proposed_recipe ||= @ingredients.each_with_object({}) do |i, hash|
+      hash[i.type] ||= 0
+      hash[i.type]  += i.stack_amount
+    end
   end
 
   def craft_the_item
@@ -55,9 +58,23 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
   end
 
   def consume_ingredients
-    @ingredients.each do |i|
-      i.destroy if i.stack_amount.zero?
+    @crafted_item.recipe.each do |recipe_type, recipe_amount|
+      typed_ingredients(recipe_type).each do |ingredient|
+        consume_item_stack(ingredient, recipe_amount)
+      end
     end
+  end
+
+  def consume_item_stack(item, amount)
+    while item.stack_amount.positive? && amount.positive?
+      item.stack_amount -= 1
+      amount            -= 1
+    end
+    item.save
+  end
+
+  def typed_ingredients(type)
+    @ingredients.select { |i| i.type == type }
   end
 
   def crafted_item_level
