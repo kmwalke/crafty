@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Item::Crafted::Book do
+RSpec.describe Item::Crafted::Building do
   let(:user) { create(:user) }
 
   describe 'crafts' do
@@ -10,13 +10,14 @@ RSpec.describe Item::Crafted::Book do
       @new_item     = crafting_tool.craft(
         described_class,
         [
-          create(:crafted_paper, stack_amount: 100, parent_inventory: user.inventory),
-          create(:crafted_leather, stack_amount: 2, parent_inventory: user.inventory)
+          create(:crafted_plank, stack_amount: 10, parent_inventory: user.inventory),
+          create(:crafted_beam, stack_amount: 3, parent_inventory: user.inventory),
+          create(:crafted_screw, stack_amount: 400, parent_inventory: user.inventory)
         ]
       )
     end
 
-    it 'creates the item' do
+    it 'crafts the item' do
       expect(@new_item.id).not_to be_nil
     end
   end

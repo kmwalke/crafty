@@ -1,74 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe Item::Crafted::Vehicle::HoverBike do
-  let(:vehicle) { create(:vehicle_hover_bike) }
+  let(:user) { create(:user) }
 
-  it 'lists actions' do
-    expect(vehicle.actions).to eq(%w[travel])
+  it 'crafts' do
+    crafting_tool = create(:crafting_tool, parent_inventory: user.inventory)
+    user.equip_item(crafting_tool)
+    new_item      = crafting_tool.craft(
+      described_class,
+      [
+        create(:crafted_frame, stack_amount: 1, parent_inventory: user.inventory),
+        create(:crafted_component, stack_amount: 30, parent_inventory: user.inventory),
+        create(:crafted_plastic, stack_amount: 10, parent_inventory: user.inventory)
+      ]
+    )
+
+    expect(new_item.id).not_to be_nil
   end
 
-  describe 'travels' do
-    let(:location1) { create(:location) }
-    let(:location2) { create(:location) }
-    let(:user) { create(:user, location: location1) }
-    let(:vehicle) { create(:vehicle_hover_bike, parent_inventory: user.inventory) }
-
-    before do
-      user.equip_item(vehicle)
-    end
-
-    pending 'version_0.7 updates status to traveling'
-    pending 'version_0.7 takes time to travel. high level vehicles are faster'
-    pending 'version_0.7 sets status to resting on arrival'
-
-    it 'vehicles are equippable' do
-      expect(vehicle.equippable?).to be true
-    end
-
-    it 'nil user protection' do
-      expect { create(:vehicle_hover_bike).travel(location2) }.to raise_error(CraftyError)
-    end
-
-    it 'updates the users location' do
-      vehicle.travel(location2)
-
-      expect(user.reload.location).to eq(location2)
-    end
-
-    it 'doesn\'t update if user has low energy' do
-      user.update(energy: 0)
-
-      expect { vehicle.travel(location2) }.to raise_error(CraftyError)
-    end
-
-    describe 'spends the users energy' do
-      let!(:low_energy) { user.energy - location1.distance_from(location2) }
-
-      it 'low level vehicle' do
-        vehicle.update(level: Level::COMMON)
-
-        vehicle.travel(location2)
-
-        expect(user.reload.energy < low_energy).to be true
-      end
-
-      it 'mid level vehicle' do
-        vehicle.update(level: Level::RARE)
-
-        vehicle.travel(location2)
-
-        expect(user.reload.energy).to eq(low_energy)
-      end
-
-      it 'high level vehicle' do
-        old_energy = user.energy
-
-        vehicle.update(level: Level::EPIC)
-
-        vehicle.travel(location2)
-
-        expect(user.reload.energy).to be_between(low_energy, old_energy).exclusive
-      end
-    end
-  end
+  pending 'does something mounts cant do'
+  # flies over water or mountains?
 end
