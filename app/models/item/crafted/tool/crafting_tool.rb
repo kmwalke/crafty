@@ -17,7 +17,7 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
       Item.find_by(id:)
     end
 
-    raise CraftyError, ErrorMessage::CRAFTING[:failed] unless can_craft?
+    can_craft?
 
     craft_the_item
     consume_ingredients if equipped_by.inventory.add_item(@crafted_item)
@@ -34,7 +34,7 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
   private
 
   def can_craft?
-    return false if equipped_by.inventory.remaining_space.zero?
+    raise CraftyError, ErrorMessage::INVENTORY[:no_space] if equipped_by.inventory.remaining_space.zero?
 
     recipe_list = @crafted_item.recipe
     @ingredients.each do |i|
@@ -48,7 +48,7 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
       end
       i.update(stack_amount:)
     end
-    recipe_list.empty?
+    raise CraftyError, ErrorMessage::CRAFTING[:no_ingredients] unless recipe_list.empty?
   end
 
   def craft_the_item
