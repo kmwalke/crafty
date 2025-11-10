@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Item::Crafted::Book do
-
   pending 'crafts'
   # craft a salad
   # also add this spec for each item

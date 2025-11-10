@@ -9,5 +9,4 @@ class Item::Crafted::Plastic < Item::Crafted
   def crafting_yield
     2
   end
-
 end

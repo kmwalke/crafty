@@ -8,5 +8,4 @@ class Item::Crafted::Paper < Item::Crafted
   def crafting_yield
     10
   end
-
 end
