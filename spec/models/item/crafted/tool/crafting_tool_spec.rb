@@ -7,6 +7,10 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
     user.equip_item(create(:crafting_tool, parent_inventory: user.inventory))
   end
 
+  pending 'can_craft? consumes ingredients, it shouldnt do that. Cant have a info check method reducing stack amount'
+  # the upshot is that a crafting attempt will consume ingredients if you dont have enough, instead of not trying
+  # Could be good to consume ingredients if you fail because it is too hard, but shouldn't consume if you dont have enough or the right ones
+
   it 'lists actions' do
     expect(user.tool.actions).to eq(%w[craft recipes])
   end
@@ -14,23 +18,20 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
   it 'doesn\'t update if user has low energy' do
     user.update(energy: 0)
 
-    expect { user.tool.craft({ item_ids: [] }) }.to raise_error(CraftyError)
+    expect { user.tool.craft(Item::Crafted::Ingot, ingredients: [create(:gatherable_ore)]) }.to raise_error(CraftyError)
   end
 
   describe 'crafts' do
-    let!(:crafting_params) do
-      {
-        item_type: ItemType::CRAFTED[:ingot],
-        item_ids: [
-          create(:gatherable_ore, parent_inventory: user.inventory, name: 'Copper', level: Level::LEGENDARY).id,
-          create(:gatherable_ore, parent_inventory: user.inventory, name: 'Iron', level: Level::COMMON).id
-        ]
-      }
+    let!(:ingredients) do
+      [
+        create(:gatherable_ore, parent_inventory: user.inventory, name: 'Copper', level: Level::LEGENDARY),
+        create(:gatherable_ore, parent_inventory: user.inventory, name: 'Iron', level: Level::COMMON)
+      ]
     end
     let!(:old_inv) { user.inventory.items.count }
 
     before do
-      user.tool.craft(crafting_params)
+      user.tool.craft(Item::Crafted::Ingot.new, ingredients)
     end
 
     it 'adjusts the inventory' do
@@ -50,24 +51,21 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
     end
 
     it 'consumes the ingredients' do
-      crafting_params[:item_ids].each do |id|
-        expect(Item.find_by(id:)).to be_nil
+      ingredients.each do |ingredient|
+        expect(Item.find_by(id: ingredient.id)).to be_nil
       end
     end
   end
 
   describe 'crafts with stacked items' do
-    let!(:stacked_crafting_params) do
-      {
-        item_type: ItemType::CRAFTED[:ingot],
-        item_ids: [
-          create(:gatherable_ore, parent_inventory: user.inventory, stack_amount: 3).id
-        ]
-      }
+    let!(:ingredients) do
+      [
+        create(:gatherable_ore, parent_inventory: user.inventory, stack_amount: 3)
+      ]
     end
 
     before do
-      user.tool.craft(stacked_crafting_params)
+      user.tool.craft(Item::Crafted::Ingot.new, ingredients)
     end
 
     it 'creates the new item' do
@@ -75,24 +73,20 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
     end
 
     it 'consumes the stack' do
-      ingredient = Item.find(stacked_crafting_params[:item_ids][0])
-      expect(ingredient.stack_amount).to eq(1)
+      expect(ingredients[0].stack_amount).to eq(1)
     end
   end
 
   describe 'crafts with a mix of stacked and unstacked items' do
-    let!(:mixed_crafting_params) do
-      {
-        item_type: ItemType::CRAFTED[:salad],
-        item_ids: [
-          create(:gatherable_fruit, parent_inventory: user.inventory, stack_amount: 2, name: 'Apple').id,
-          create(:gatherable_fruit, parent_inventory: user.inventory, stack_amount: 1, name: 'Apple').id
-        ]
-      }
+    let!(:ingredients) do
+      [
+        create(:gatherable_fruit, parent_inventory: user.inventory, stack_amount: 2, name: 'Apple'),
+        create(:gatherable_fruit, parent_inventory: user.inventory, stack_amount: 1, name: 'Apple')
+      ]
     end
 
     before do
-      user.tool.craft(mixed_crafting_params)
+      user.tool.craft(Item::Crafted::Salad.new, ingredients)
     end
 
     it 'creates the new item' do
@@ -104,8 +98,8 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
     end
 
     it 'consumes the ingredients' do
-      mixed_crafting_params[:item_ids].each do |id|
-        expect(Item.find_by(id:)).to be_nil
+      ingredients.each do |ingredient|
+        expect(Item.find_by(id: ingredient.id)).to be_nil
       end
     end
   end
@@ -113,12 +107,11 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
   it 'doesnt craft with bad recipe' do
     expect do
       user.tool.craft(
-        {
-          item_type: ItemType::CRAFTED[:ingot], item_ids: [
-            create(:gatherable_fruit, parent_inventory: user.inventory).id,
-            create(:gatherable_ore, parent_inventory: user.inventory).id
-          ]
-        }
+        Item::Crafted::Ingot.new,
+        [
+          create(:gatherable_fruit, parent_inventory: user.inventory),
+          create(:gatherable_ore, parent_inventory: user.inventory)
+        ]
       )
     end.to raise_error CraftyError
   end

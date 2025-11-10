@@ -6,9 +6,14 @@ class CraftController < ApplicationController
 
   def confirm
     game_action do
-      raise CraftyError, ErrorMessage::CRAFTING[:failed] unless @crafted_items.include? craft_params[:item_type]
+      raise CraftyError, ErrorMessage::CRAFTING[:failed] unless @craftable_items.include? craft_params[:item_type]
 
-      if (crafted_item = player.craft(craft_params))
+      crafted_item = craft_params[:item_type].constantize.new
+      ingredients  = craft_params[:item_ids].map do |id|
+        Item.find_by(id:)
+      end
+
+      if (crafted_item = player.craft(crafted_item, ingredients))
         @notice = "Created #{level_color_span crafted_item.level, crafted_item.full_name}"
       end
     end
@@ -21,6 +26,6 @@ class CraftController < ApplicationController
   private
 
   def set_crafted_items
-    @crafted_items = ItemType::CRAFTED.values
+    @craftable_items = ItemType::CRAFTED.values
   end
 end
