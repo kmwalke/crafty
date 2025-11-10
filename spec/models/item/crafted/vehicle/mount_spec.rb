@@ -23,7 +23,7 @@ RSpec.describe Item::Crafted::Vehicle::Mount do
       expect(@new_item.id).not_to be_nil
     end
 
-    pending 'feeds the mount'
+    pending 'version_0.3 feeding the mount gives a bonus'
     # feeding a mount gives some boost
     # maybe requires lees/no energy for a while
 
