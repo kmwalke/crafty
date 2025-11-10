@@ -18,7 +18,7 @@ class User < ApplicationRecord
   MAX_ENERGY             = 1000
   MAX_AGE                = 100
   MAX_VITALITY           = 100
-  DEFAULT_INVENTORY_SIZE = 10
+  DEFAULT_INVENTORY_SIZE = 25
 
   def actions
     actions = []

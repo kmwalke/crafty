@@ -117,7 +117,7 @@ RSpec/ExampleLength:
 
 RSpec/InstanceVariable:
   Exclude:
-    - 'spec/models/item/crafted/*'
+    - 'spec/models/item/crafted/**/*'
 
 RSpec/MessageSpies:
   Enabled: false
