@@ -16,6 +16,13 @@ RSpec.describe Item do
     expect(item.full_name).to eq("#{item.name} #{item.pretty_type}")
   end
 
+  it 'deletes when stack set to 0' do
+    item_id = item.id
+    item.update(stack_amount: 0)
+
+    expect(described_class.find_by(id: item_id)).to be_nil
+  end
+
   describe 'access control' do
     let(:owner) { create(:user) }
     let(:visitor) { create(:user) }

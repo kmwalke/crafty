@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   include HasLevels
 
   before_create :set_defaults
+  after_save :destroy_if_stack_zero
 
   validates :name, presence: true
   validates :level, presence: true
@@ -43,5 +44,9 @@ class Item < ApplicationRecord
   def set_defaults
     self.color       ||= DEFAULT_COLOR
     self.description ||= DEFAULT_DESC
+  end
+
+  def destroy_if_stack_zero
+    destroy if stack_amount.zero?
   end
 end
