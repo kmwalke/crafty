@@ -51,16 +51,22 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
 
   def consume_ingredients
     @crafted_item.recipe.each do |recipe_type, recipe_amount|
-      @ingredients.select do |i|
-        i.type == recipe_type
-      end.each do |i|
-        while i.stack_amount.positive? && recipe_amount.positive?
-          i.stack_amount -= 1
-          recipe_amount  -= 1
-        end
-        i.save
+      typed_ingredients(recipe_type).each do |ingredient|
+        consume_item_stack(ingredient, recipe_amount)
       end
     end
+  end
+
+  def consume_item_stack(item, amount)
+    while item.stack_amount.positive? && amount.positive?
+      item.stack_amount -= 1
+      amount            -= 1
+    end
+    item.save
+  end
+
+  def typed_ingredients(type)
+    @ingredients.select { |i| i.type == type }
   end
 
   def matches_recipe?(proposed_recipe)
