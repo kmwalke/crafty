@@ -78,14 +78,14 @@ class ItemUtil
       {
         type: 'Item::Crafted::Vehicle::HoverBike',
         description: 'An old bike with a rusty trailer.',
-        name: 'Hover Bike',
+        name: 'Rusty',
         level: Level::COMMON,
         color: '#ffcccc',
         created_by: User.first
       },
       {
         type: 'Item::Crafted::Tool::GatheringTool',
-        name: 'Universal Extractor',
+        name: 'Universal',
         description: 'Magical seeming tech.  Can gather from any resource.',
         level: Level::LEGENDARY,
         color: 'gold',
@@ -93,7 +93,7 @@ class ItemUtil
       },
       {
         type: 'Item::Crafted::Tool::CraftingTool',
-        name: 'Universal Assembler',
+        name: 'Universal',
         description: 'Magical seeming tech.  Can craft any item.',
         level: Level::LEGENDARY,
         color: 'gold',
