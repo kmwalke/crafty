@@ -11,7 +11,7 @@ RSpec.describe Item::Crafted::Plastic do
         described_class,
         [
           create(:gatherable_wood, stack_amount: 1, parent_inventory: user.inventory),
-          create(:gatherable_shard, stack_amount: 3, parent_inventory: user.inventory)
+          create(:crafted_orb, stack_amount: 3, parent_inventory: user.inventory)
         ]
       )
     end
