@@ -10,7 +10,8 @@
     <% player.tool.recipes.each do |recipe| %>
       <tr>
         <td>
-          <%= recipe[:name] %>
+          <%= recipe[:item].crafting_yield if recipe[:item].crafting_yield > 1 %>
+          <%= recipe[:item].pretty_type %>
         </td>
         <td>
           <% recipe[:recipe].each do |ingredient, amount| %>
