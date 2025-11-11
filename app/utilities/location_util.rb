@@ -50,6 +50,7 @@ class LocationUtil
       { type: 'Resource::Bush', name: 'Habanero', location_id: 5, level: Level::RARE },
       { type: 'Resource::Herd', name: 'Lava Frog', location_id: 5, level: Level::EPIC },
       { type: 'Resource::Meadow', name: 'Red Cactus', location_id: 5, level: Level::EPIC },
+      { type: 'Resource::Forest', name: 'Flaming', location_id: 5, level: Level::LEGENDARY },
       { type: 'Resource::Ore', name: 'Copper', location_id: 5, level: Level::EPIC },
       { type: 'Resource::Ore', name: 'Iron', location_id: 5, level: Level::EPIC },
       { type: 'Resource::Ore', name: 'Titanium', location_id: 5, level: Level::RARE },
