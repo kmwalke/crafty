@@ -12,7 +12,7 @@
         <td>Tool:</td>
         <td>
           <% if player.tool %>
-            <%= level_color_span(player.tool.level, player.tool.name) %>
+            <%= level_color_span(player.tool.level, player.tool.full_name) %>
           <% end %>
         </td>
         <td>
@@ -25,7 +25,7 @@
         <td>Vehicle:</td>
         <td>
           <% if player.vehicle %>
-            <%= level_color_span(player.vehicle.level, player.vehicle.name) %>
+            <%= level_color_span(player.vehicle.level, player.vehicle.full_name) %>
           <% end %>
         </td>
         <td>
