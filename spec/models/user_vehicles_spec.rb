@@ -30,19 +30,8 @@ RSpec.describe User do
       expect(user2.actions).to eq([])
     end
 
-    it 'wont travel without a vehicle' do
-      user2 = create(:user)
-
-      expect { user2.travel(create(:location)) }.to raise_error(CraftyError)
-    end
-
-    it 'travels between locations' do
-      expect(vehicle).to receive(:travel)
-      user.travel(create(:location))
-    end
-
     it 'lists valid travel locations' do
-      expect(user.valid_travel_locations).to eq(Location.where.not(id: user.location_id).order(:id))
+      expect(user.vehicle.valid_travel_locations).to eq(Location.where.not(id: user.location_id).order(:id))
     end
   end
 end

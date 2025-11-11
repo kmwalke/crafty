@@ -67,37 +67,6 @@ class User < ApplicationRecord
     update(vehicle: nil)
   end
 
-  def craft(crafted_item, ingredients)
-    raise CraftyError, 'You can\'t craft without a tool.' if tool.nil?
-
-    tool.craft(crafted_item, ingredients)
-  end
-
-  def gather(resource)
-    raise CraftyError, 'You can\'t gather without a tool.' if tool.nil?
-
-    tool.gather(resource)
-  end
-
-  def travel(new_location)
-    raise CraftyError, 'You can\'t travel without a vehicle.' if vehicle.nil?
-
-    vehicle.travel(new_location)
-  end
-
-  def valid_travel_locations
-    raise CraftyError, 'You can\'t scan for locations without a vehicle.' if vehicle.nil?
-    return if vehicle.nil?
-
-    vehicle.valid_travel_locations
-  end
-
-  def valid_gather_resources
-    raise CraftyError, 'You can\'t scan for resources without a tool.' if tool.nil?
-
-    Resource.where(location: location)
-  end
-
   private
 
   def create_inventory
@@ -111,6 +80,7 @@ class User < ApplicationRecord
   end
 
   def equip_vehicle(vehicle)
+    self.vehicle&.update(parent_inventory: inventory)
     update(vehicle: vehicle)
     vehicle.update(parent_inventory: nil)
   end

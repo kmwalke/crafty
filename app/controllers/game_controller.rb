@@ -13,7 +13,7 @@ class GameController < ApplicationController
 
   def gather
     game_action do
-      item    = player.gather(Resource.find(params[:id]))
+      item    = player.tool.gather(Resource.find(params[:id]))
       @notice = level_color_span(item.level, item.full_name)
     end
   end
@@ -22,7 +22,7 @@ class GameController < ApplicationController
     game_action do
       location = Location.find(params[:id])
 
-      player.travel(location)
+      player.vehicle.travel(location)
     end
   end
 end
