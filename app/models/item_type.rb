@@ -15,7 +15,11 @@ class ItemType < ApplicationRecord
     plank: 'Item::Crafted::Plank',
     plastic: 'Item::Crafted::Plastic',
     salad: 'Item::Crafted::Salad',
-    screw: 'Item::Crafted::Screw'
+    screw: 'Item::Crafted::Screw',
+    crafting_tool: 'Item::Crafted::Tool::CraftingTool',
+    gathering_tool: 'Item::Crafted::Tool::GatheringTool',
+    hover_bike: 'Item::Crafted::Vehicle::HoverBike',
+    mount: 'Item::Crafted::Vehicle::Mount'
   }.freeze
   GATHERABLE = {
     companion: 'Item::Gatherable::Companion',
@@ -28,13 +32,13 @@ class ItemType < ApplicationRecord
   }.freeze
   TOOL       = 'Item::Crafted::Tool'.freeze
   TOOLS      = {
-    crafting_tool: 'Item::Crafted::Tool::CraftingTool',
-    gathering_tool: 'Item::Crafted::Tool::GatheringTool'
+    crafting_tool: CRAFTED[:crafting_tool],
+    gathering_tool: CRAFTED[:gathering_tool]
   }.freeze
   VEHICLE    = 'Item::Crafted::Vehicle'.freeze
   VEHICLES   = {
-    hover_bike: 'Item::Crafted::Vehicle::HoverBike',
-    mount: 'Item::Crafted::Vehicle::Mount'
+    hover_bike: CRAFTED[:hover_bike],
+    mount: CRAFTED[:mount]
   }.freeze
   TYPE_NAMES = [
     ITEM,
