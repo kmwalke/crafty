@@ -6,7 +6,7 @@
     <th>Energy</th>
   </tr>
   </thead>
-  <% player.valid_travel_locations.each do |location| %>
+  <% player.vehicle.valid_travel_locations.each do |location| %>
     <tr>
       <td><%= link_to location.name, travel_path(location) %></td>
       <td><%= @current_location.distance_from(location) %> km</td>

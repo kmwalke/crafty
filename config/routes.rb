@@ -44,6 +44,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users
+
   # Cheats
   get 'monster_energy', to: 'cheats#monster_energy'
 end

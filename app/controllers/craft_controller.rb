@@ -13,7 +13,7 @@ class CraftController < ApplicationController
         Item.find_by(id:)
       end
 
-      if (crafted_item = player.craft(crafted_item, ingredients))
+      if (crafted_item = player.tool.craft(crafted_item, ingredients))
         @notice = "Created #{level_color_span crafted_item.level, crafted_item.full_name}"
       end
     end

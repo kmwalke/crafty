@@ -9,6 +9,12 @@ RSpec.describe Item::Crafted::Tool::GatheringTool do
     user.equip_item(gathering_tool)
   end
 
+  pending 'low level tools can gather anything. But yield sucks for high level items'
+  # common gathering tool can totally gather from legendary resources
+  #   But you are getting 1/10000 legendary, 1/1000 epic, 1/100 rare, etc...
+  # Legendary gathering tool get chances biased towards better level, but not guaranteed
+  #   Like a shifting bell curve
+
   it 'lists actions' do
     expect(gathering_tool.actions).to eq(%w[gather])
   end

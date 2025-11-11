@@ -18,6 +18,10 @@ class Item::Crafted::Tool::GatheringTool < Item::Crafted::Tool
     item
   end
 
+  def valid_gather_resources
+    Resource.where(location: equipped_by.location)
+  end
+
   private
 
   def energy_usage(resource)

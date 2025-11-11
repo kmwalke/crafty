@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Game' do
-  pending 'version_0.2 create settings section for each user. Things like email notifications and change PW'
-
   describe 'logged out' do
     it 'redirects to login page' do
       visit game_path

@@ -23,8 +23,7 @@ RSpec.describe Item::Crafted::Vehicle::HoverBike do
       expect(@new_item.id).not_to be_nil
     end
 
-    pending 'does something mounts cant do'
-    # flies over water or mountains?
+    pending 'version_0.3 hoverbike has an inventory'
 
     it 'names the item' do
       expect(@new_item.name).to eq(frame.name)
