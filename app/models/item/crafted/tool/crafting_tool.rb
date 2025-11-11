@@ -18,8 +18,8 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
   end
 
   def recipes
-    ItemType::CRAFTED.map do |name, recipe|
-      { name: name.to_s.gsub('_', ' ').capitalize, recipe: recipe.constantize.new.recipe }
+    ItemType::CRAFTED.map do |_name, type|
+      { item: type.constantize.new, recipe: type.constantize.new.recipe }
     end
   end
 
