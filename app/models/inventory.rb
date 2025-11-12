@@ -22,17 +22,27 @@ class Inventory < ApplicationRecord
     item_in_inv = items.find_by(type: item.type, level: item.level, name: item.name)
 
     if item_in_inv
-      item_in_inv.update(stack_amount: (item_in_inv.stack_amount + 1))
-      item_in_inv
+      add_to_stack(item_in_inv, item)
     else
       raise CraftyError, ErrorMessage::INVENTORY[:no_space] unless remaining_space.positive?
 
-      item.parent_inventory = self
-      if item.save
-        item
-      else
-        false
-      end
+      place_in_inventory(item)
+    end
+  end
+
+  private
+
+  def add_to_stack(item_in_inv, new_item)
+    item_in_inv.update(stack_amount: (item_in_inv.stack_amount + new_item.stack_amount))
+    item_in_inv
+  end
+
+  def place_in_inventory(item)
+    item.parent_inventory = self
+    if item.save
+      item
+    else
+      false
     end
   end
 end

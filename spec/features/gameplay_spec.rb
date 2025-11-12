@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Gameplay' do
+  pending 'BUG: crafting screws a second time makes 101 screws, not 200'
+  pending 'Family tree for crafted items.'
+  # see all the created_by details for the ingredients of a large item
+  pending 'back button on browser should reload game_path'
   pending 'ItemType could be deleted if some automated listing exists'
   # something like Item.subclasses / Item::Crafted.subclasses / Item::Crafted.subclasses[:leather]
   # then the whole thing could be automated.  Including putting the types into the DB for FKs
