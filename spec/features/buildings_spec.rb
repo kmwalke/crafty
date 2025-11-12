@@ -25,4 +25,17 @@ RSpec.describe 'Buildings' do
     click_link building.name
     expect(page).to have_css("div#building-#{building.id} h4", text: building.name)
   end
+
+  pending 'places a building'
+  # building = create(:crafted_building)
+  # player.inventory.add_item(building)
+  #
+  # within 'inventory' do
+  #   click_link building.name
+  #   click_link 'Place Building'
+  # end
+  #
+  # within 'buildings' do
+  #   expect(page).to have_content(building.name)
+  # end
 end

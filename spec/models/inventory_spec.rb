@@ -28,6 +28,16 @@ RSpec.describe Inventory do
     expect { inventory.add_item(build(:gatherable_fruit)) }.to raise_error(CraftyError)
   end
 
+  it 'adds stacked items' do
+    2.times do
+      inventory.add_item(
+        build(:gatherable_fruit, level: Level::COMMON, name: 'Apple', stack_amount: 10, parent_inventory: nil)
+      )
+    end
+
+    expect(inventory.items.last.stack_amount).to eq(20)
+  end
+
   describe 'restricted inventories' do
     let(:shard_inv) { create(:inventory, type: ItemType::GATHERABLE[:shard]) }
 
