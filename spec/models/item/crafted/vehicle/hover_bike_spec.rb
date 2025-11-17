@@ -23,10 +23,26 @@ RSpec.describe Item::Crafted::Vehicle::HoverBike do
       expect(@new_item.id).not_to be_nil
     end
 
-    pending 'version_0.3 hoverbike has an inventory'
-
     it 'names the item' do
       expect(@new_item.name).to eq(frame.name)
     end
+  end
+
+  it 'has an inventory' do
+    hover_bike = create(:vehicle_hover_bike)
+
+    expect(hover_bike.child_inventory).not_to be_nil
+  end
+
+  it 'has a low level inventory' do
+    hover_bike = create(:vehicle_hover_bike, level: Level::COMMON)
+
+    expect(hover_bike.child_inventory.size).to eq(10)
+  end
+
+  it 'has a high level inventory' do
+    hover_bike = create(:vehicle_hover_bike, level: Level::LEGENDARY)
+
+    expect(hover_bike.child_inventory.size).to eq(50)
   end
 end
