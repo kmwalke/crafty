@@ -51,4 +51,32 @@ RSpec.describe User do
 
     expect(player.vehicle.child_inventory.items.include?(item)).to be false
   end
+
+  describe 'carried items' do
+    let!(:item1) { create(:gatherable_fruit, parent_inventory: player.inventory) }
+    let!(:item2) { create(:gatherable_fruit, parent_inventory: bike.child_inventory) }
+
+    it 'player inventory' do
+      expect(player.carried_items.include?(item1)).to be true
+    end
+
+    it 'vehicle inventory' do
+      expect(player.carried_items.include?(item2)).to be false
+    end
+
+    describe 'with vehicle' do
+      before do
+        player.equip_item(bike)
+      end
+      # player.carried_items == player.inventory.items + player.vehicle.child_inventory.items
+
+      it 'player inventory' do
+        expect(player.carried_items.include?(item1)).to be true
+      end
+
+      it 'vehicle inventory' do
+        expect(player.carried_items.include?(item2)).to be true
+      end
+    end
+  end
 end

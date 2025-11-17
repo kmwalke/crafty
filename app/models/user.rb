@@ -46,6 +46,10 @@ class User < ApplicationRecord
     update(energy: new_energy)
   end
 
+  def carried_items
+    inventory.items + (vehicle&.child_inventory&.items || [])
+  end
+
   def equip_item(item)
     raise CraftyError, 'You can only equip items in your inventory' unless inventory.include?(item)
 
