@@ -18,7 +18,7 @@ RSpec.describe 'Crafting' do
       let!(:fruit_4stack) { build(:gatherable_fruit, parent_inventory: nil, stack_amount: 4) }
 
       before do
-        player.inventory.add_item(fruit_4stack)
+        player.add_item(fruit_4stack)
         visit game_path
 
         within 'div.actions' do
@@ -46,8 +46,8 @@ RSpec.describe 'Crafting' do
       let(:ore2) { build(:gatherable_ore, parent_inventory: nil) }
 
       before do
-        player.inventory.add_item(ore1)
-        player.inventory.add_item(ore2)
+        player.add_item(ore1)
+        player.add_item(ore2)
         visit game_path
 
         within 'div.actions' do

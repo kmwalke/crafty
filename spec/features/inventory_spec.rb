@@ -4,8 +4,8 @@ RSpec.describe 'Inventory' do
   let!(:player) { login }
 
   before do
-    5.times.map { player.inventory.add_item(build(:generic_item, parent_inventory: nil)) }
-    player.inventory.add_item(
+    5.times.map { player.add_item(build(:generic_item, parent_inventory: nil)) }
+    player.add_item(
       build(
         :generic_item,
         parent_inventory: nil,

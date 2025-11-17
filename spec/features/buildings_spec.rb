@@ -28,7 +28,7 @@ RSpec.describe 'Buildings' do
 
   pending 'places a building'
   # building = create(:crafted_building)
-  # player.inventory.add_item(building)
+  # player.add_item(building)
   #
   # within 'inventory' do
   #   click_link building.name

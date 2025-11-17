@@ -13,7 +13,7 @@ class Item::Crafted::Tool::GatheringTool < Item::Crafted::Tool
     item            = resource.gather
     item.created_by = equipped_by
 
-    equipped_by.inventory.add_item(item)
+    equipped_by.add_item(item)
 
     item
   end

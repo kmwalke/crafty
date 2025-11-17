@@ -29,6 +29,8 @@ class User < ApplicationRecord
     actions.flatten
   end
 
+  delegate :add_item, to: :active_inventory
+
   def spend_energy(amount)
     raise CraftyError, 'Can only spend positive energy.' unless amount.positive?
     raise CraftyError, 'You don\'t have enough energy' unless amount <= energy
@@ -68,6 +70,14 @@ class User < ApplicationRecord
   end
 
   private
+
+  def active_inventory
+    if vehicle&.inventory_available?
+      vehicle.child_inventory
+    else
+      inventory
+    end
+  end
 
   def create_inventory
     Inventory.create(user: self, size: DEFAULT_INVENTORY_SIZE)
