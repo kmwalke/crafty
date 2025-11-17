@@ -4,6 +4,7 @@ class ErrorMessage
     wrong_ingredients: 'You don\'t have enough ingredients'
   }.freeze
   GENERIC  = {
+    clever: 'Clever girl...',
     interface_method: 'Implement in child class',
     invalid_level: 'Invalid level number'
   }.freeze

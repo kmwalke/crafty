@@ -30,6 +30,13 @@ class Inventory < ApplicationRecord
     end
   end
 
+  def remove_item(item)
+    raise CraftyError, ErrorMessage::GENERIC[:clever] unless items.include?(item)
+
+    item.update(parent_inventory: nil)
+    item
+  end
+
   private
 
   def add_to_stack(item_in_inv, new_item)

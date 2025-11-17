@@ -43,8 +43,6 @@ RSpec.describe 'Store' do
       end
     end
 
-    pending 'version_0.3 check privacy on actual requests, not just listing the link. prevent link spoofing'
-
     it 'picks up an item' do
       item.update(parent_inventory: building.child_inventory)
       visit game_path
@@ -112,8 +110,6 @@ RSpec.describe 'Store' do
         expect(page).to have_content 'List Sale'
       end
     end
-
-    pending 'version_0.3 check privacy on actual requests, not just listing the link'
   end
 
   pending 'version_0.5 counter a trade in the hall'
