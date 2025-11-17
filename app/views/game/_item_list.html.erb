@@ -1,0 +1,7 @@
+<% inventory.items.order(:type).each do |item| %>
+  <li data-turbo="false">
+    <span class="stack-amount"><%= stack_amount(item) %></span>
+    <%= level_color_span(item.level, link_to(item.full_name, "#item-#{ item.id }-details")) %>
+  </li>
+  <%= render partial: 'item_popup', locals: { item: } %>
+<% end %>
