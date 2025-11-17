@@ -26,6 +26,10 @@ RSpec.describe Item::Crafted::Vehicle::Mount do
     pending 'version_0.3 feeding the mount gives a bonus'
     # feeding a mount gives some boost
     # maybe requires lees/no energy for a while
+    # create item.is_boosted default false
+    # feeding mount boosts it
+    # Other items could be boosted in the future.
+    # use `include Boostable`
 
     it 'names the item' do
       expect(@new_item.name).to eq(companion.name)
