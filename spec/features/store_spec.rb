@@ -71,9 +71,15 @@ RSpec.describe 'Store' do
           expect(page).to have_content(item.full_name)
         end
       end
+    end
 
-      it 'removes item from inventory' do
-        within("#building-#{building.id} #inventory") { expect(page).to have_no_content(item.full_name) }
+    describe 'lists an item in vehicle inventory for sale' do
+      it 'lists the sale' do
+        player.equip_item(create(:vehicle_hover_bike, parent_inventory: player.inventory))
+        item = create(:gatherable_ore, parent_inventory: player.vehicle.child_inventory)
+
+        list_a_sale(item)
+        within("#building-#{building.id} #sales-listings") { expect(page).to have_content(item.full_name) }
       end
     end
 

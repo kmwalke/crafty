@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
   def new
     game_action redirect: false do
       @listing     = Listing.new
-      @valid_items = player.inventory.items + @building.child_inventory.items - building_listing_items
+      @valid_items = player.carried_items + @building.child_inventory.items - building_listing_items
     end
   end
 
