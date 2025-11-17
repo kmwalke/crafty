@@ -14,6 +14,7 @@
     </ul>
     <% if player&.vehicle&.child_inventory %>
       <div class="vehicle-inventory">
+        <span class="remaining-space"><%= player.vehicle.child_inventory.remaining_space %></span>
         <h4><%= player.vehicle.full_name %> Inventory</h4>
         <ul>
           <%= render partial: 'item_list', locals: { inventory: player.vehicle.child_inventory } %>
