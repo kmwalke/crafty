@@ -36,4 +36,22 @@ RSpec.describe Item do
       expect(private_item.permitted_user?(owner)).to be true
     end
   end
+
+  describe 'inventory available' do
+    it 'has no inventory' do
+      expect(item.inventory_available?).to be false
+    end
+
+    it 'has a full inventory' do
+      item.update(child_inventory: create(:inventory, size: 0))
+
+      expect(item.inventory_available?).to be false
+    end
+
+    it 'has an available inventory' do
+      item.update(child_inventory: create(:inventory))
+
+      expect(item.inventory_available?).to be true
+    end
+  end
 end

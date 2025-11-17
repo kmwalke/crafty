@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Store' do
   let!(:player) { create(:user) }
   let!(:building) { build(:crafted_building, parent_inventory: nil) }
-  let!(:item) { player.inventory.add_item(build(:gatherable_fruit, parent_inventory: nil)) }
+  let!(:item) { player.add_item(build(:gatherable_fruit, parent_inventory: nil)) }
 
   before do
     player.location.add_building(building)
@@ -43,8 +43,6 @@ RSpec.describe 'Store' do
       end
     end
 
-    pending 'version_0.3 check privacy on actual requests, not just listing the link. prevent link spoofing'
-
     it 'picks up an item' do
       item.update(parent_inventory: building.child_inventory)
       visit game_path
@@ -73,9 +71,15 @@ RSpec.describe 'Store' do
           expect(page).to have_content(item.full_name)
         end
       end
+    end
 
-      it 'removes item from inventory' do
-        within("#building-#{building.id} #inventory") { expect(page).to have_no_content(item.full_name) }
+    describe 'lists an item in vehicle inventory for sale' do
+      it 'lists the sale' do
+        player.equip_item(create(:vehicle_hover_bike, parent_inventory: player.inventory))
+        item = create(:gatherable_ore, parent_inventory: player.vehicle.child_inventory)
+
+        list_a_sale(item)
+        within("#building-#{building.id} #sales-listings") { expect(page).to have_content(item.full_name) }
       end
     end
 
@@ -112,8 +116,6 @@ RSpec.describe 'Store' do
         expect(page).to have_content 'List Sale'
       end
     end
-
-    pending 'version_0.3 check privacy on actual requests, not just listing the link'
   end
 
   pending 'version_0.5 counter a trade in the hall'

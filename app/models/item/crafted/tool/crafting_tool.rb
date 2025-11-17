@@ -12,7 +12,7 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
     can_craft?
 
     craft_the_item
-    consume_ingredients if equipped_by.inventory.add_item(@crafted_item)
+    consume_ingredients if equipped_by.add_item(@crafted_item)
 
     @crafted_item
   end

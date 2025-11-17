@@ -38,6 +38,19 @@ RSpec.describe Inventory do
     expect(inventory.items.last.stack_amount).to eq(20)
   end
 
+  it 'removes an item' do
+    item = create(:gatherable_fruit, parent_inventory: inventory)
+
+    inventory.remove_item(item)
+    expect(inventory.items.include?(item)).to be false
+  end
+
+  it 'only removes items in inventory' do
+    item = create(:gatherable_fruit)
+
+    expect { inventory.remove_item(item) }.to raise_error(CraftyError)
+  end
+
   describe 'restricted inventories' do
     let(:shard_inv) { create(:inventory, type: ItemType::GATHERABLE[:shard]) }
 

@@ -10,6 +10,10 @@ RSpec.describe 'Gameplay' do
   # then the whole thing could be automated.  Including putting the types into the DB for FKs
   # must be just as performant as current solution
   pending 'version_0.4 add many more locations'
+  pending 'version_0.4 add many more recipes'
+  pending 'version_0.4 user quests'
+  # sales listings in reverse - I will pay 1000 credits for 5x Epic Lava Frog Mounts
+  pending 'version_0.4 world quests'
   pending 'version_0.9 balance locations'
   pending 'version_0.9 balance crafting'
   pending 'version__ui_update make game items clickable in the viewport'

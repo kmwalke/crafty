@@ -8,15 +8,20 @@
   <div class="section-content">
     <h4 class="section-title">Inventory</h4>
     <span class="remaining-space"><%= player.inventory.remaining_space %></span>
-    <ul>
+    <ul class="player-inventory">
       <li class="credits">Credits: <%= player.credits %><%= credit_symbol %></li>
-      <% player.inventory.items.order(:type).each do |item| %>
-        <li data-turbo="false">
-          <span class="stack-amount"><%= stack_amount(item) %></span>
-          <%= level_color_span(item.level, link_to(item.full_name, "#item-#{ item.id }-details")) %>
-        </li>
-        <%= render partial: 'item_popup', locals: { item: } %>
-      <% end %>
+      <%= render partial: 'item_list', locals: { inventory: player.inventory } %>
     </ul>
+    <% if player&.vehicle&.child_inventory %>
+      <div class="vehicle-inventory">
+        <span class="remaining-space"><%= player.vehicle.child_inventory.remaining_space %></span>
+        <h4>
+          <span class="<%= level_name player.vehicle.level %>"><%= player.vehicle.full_name %> </span>
+          Inventory</h4>
+        <ul>
+          <%= render partial: 'item_list', locals: { inventory: player.vehicle.child_inventory } %>
+        </ul>
+      </div>
+    <% end %>
   </div>
 </div>

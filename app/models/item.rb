@@ -39,6 +39,10 @@ class Item < ApplicationRecord
     false
   end
 
+  def inventory_available?
+    !child_inventory.nil? && child_inventory.remaining_space.positive?
+  end
+
   private
 
   def set_defaults

@@ -1,11 +1,15 @@
 .inventory {
-  span.remaining-space {
-    position: absolute;
-    top: 5px;
+  div {
+    position: relative;
+
+    span.remaining-space {
+      position: absolute;
+      top: 1.5em;
+    }
+
+    ul {
+
+    }
+
   }
-
-  ul {
-
-  }
-
 }
