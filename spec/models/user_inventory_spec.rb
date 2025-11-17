@@ -36,4 +36,19 @@ RSpec.describe User do
 
     expect(player.inventory.items.include?(item)).to be true
   end
+
+  it 'removes from inventory' do
+    item = create(:gatherable_fruit, parent_inventory: player.inventory)
+    player.remove_item(item)
+
+    expect(player.inventory.items.include?(item)).to be false
+  end
+
+  it 'removes from vehicle inventory' do
+    player.equip_item(bike)
+    item = create(:gatherable_fruit, parent_inventory: player.vehicle.child_inventory)
+    player.remove_item(item)
+
+    expect(player.vehicle.child_inventory.items.include?(item)).to be false
+  end
 end

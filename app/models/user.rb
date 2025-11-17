@@ -53,6 +53,11 @@ class User < ApplicationRecord
     equip_tool(item) if item.type.include? ItemType::TOOL
   end
 
+  def remove_item(item)
+    inventory.remove_item(item) if inventory.include? item
+    vehicle.child_inventory.remove_item(item) if vehicle&.child_inventory&.include? item
+  end
+
   def use_item(item)
     raise CraftyError, 'You can only use items in your inventory' unless inventory.include?(item)
 

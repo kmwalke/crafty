@@ -5,7 +5,7 @@ class BuildingsController < ApplicationController
 
   def add_item
     game_action(path: inventory_building_path(@building)) do
-      @player.inventory.remove_item(@item)
+      @player.remove_item(@item)
       @building.child_inventory.add_item(@item)
     end
   end
