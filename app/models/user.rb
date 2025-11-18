@@ -51,7 +51,7 @@ class User < ApplicationRecord
   end
 
   def equip_item(item)
-    raise CraftyError, 'You can only equip items in your inventory' unless carried_items.include?(item)
+    raise CraftyError, 'You can only equip items in your inventory' unless inventory.include?(item)
 
     equip_vehicle(item) if item.type.include? ItemType::VEHICLE
     equip_tool(item) if item.type.include? ItemType::TOOL
