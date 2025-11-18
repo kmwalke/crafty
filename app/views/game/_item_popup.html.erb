@@ -12,7 +12,6 @@
     <% end %>
     <% if item.useable? %>
       <%= link_to 'Use', use_item_path(item) %><br />
-      <span>Recovers <%= item.energy %> energy</span><br />
     <% end %>
     <%= level_color_span(item.level, item.level_name) %>
     <span class="created-by">Created by <%= item.created_by.name %></span>

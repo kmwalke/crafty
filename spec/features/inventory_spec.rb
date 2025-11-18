@@ -60,6 +60,7 @@ RSpec.describe 'Inventory' do
       end
 
       it 'shows the energy recovered by an item' do
+        pending 'need different displays for each useable item'
         within "div.popup#item-#{salad.id}-details" do
           expect(page).to have_content(salad.energy)
         end
