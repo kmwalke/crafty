@@ -22,14 +22,4 @@
   <% else %>
     <%= image_tag 'house.png', class: 'background' %>
   <% end %>
-  <div class="resources">
-    <% @local_resources.each do |resource| %>
-      <div class="resource <%= resource.pretty_type.downcase %> <%= level_name(resource.level) %>"
-           style="background-color: <%= resource.color %>">
-          <span class="name">
-            <%#= resource.full_name %>
-          </span>
-      </div>
-    <% end %>
-  </div>
 </div>
