@@ -45,6 +45,14 @@
         <td>Clothes:</td>
         <td></td>
       </tr>
+      <tr>
+        <td>Bag:</td>
+        <td>
+          <% if player.bag %>
+            <%= link_to 'X', unequip_bag_path, id: 'unequip_bag' %>
+          <% end %>
+        </td>
+      </tr>
     </table>
   </div>
 </div>

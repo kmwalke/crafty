@@ -10,6 +10,9 @@ class User < ApplicationRecord
 
   belongs_to :location, optional: true
   belongs_to :inventory, optional: true
+
+  # equipment
+  belongs_to :bag, polymorphic: true, optional: true
   belongs_to :tool, polymorphic: true, optional: true
   belongs_to :vehicle, polymorphic: true, optional: true
 

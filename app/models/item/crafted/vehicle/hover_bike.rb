@@ -1,4 +1,6 @@
 class Item::Crafted::Vehicle::HoverBike < Item::Crafted::Vehicle
+  include HasInventory
+
   before_create :provision_inventory
 
   def recipe
@@ -11,15 +13,5 @@ class Item::Crafted::Vehicle::HoverBike < Item::Crafted::Vehicle
 
   def build_name(ingredients)
     ingredients.select { |i| i.type == ItemType::CRAFTED[:frame] }.first.name
-  end
-
-  private
-
-  def provision_inventory
-    create_child_inventory(size: inventory_size)
-  end
-
-  def inventory_size
-    level * 10
   end
 end
