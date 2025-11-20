@@ -8,7 +8,7 @@
     <div class="popup-content game-menu-popup">
       <%= link_to 'X', game_path, class: 'close-button', data: { turbo_target: '_top' } %>
       <h4 class="title">Game Menu</h4>
-      <span class="version">Version 0.2</span><span>build_<%= ENV['HEROKU_RELEASE_VERSION'] %></span>
+      <span class="version">Version 0.3</span><span>build_<%= ENV['HEROKU_RELEASE_VERSION'] %></span>
       <ul class="links">
         <% if player -%>
           <li><%= link_to 'Settings', edit_user_path(player) %></li>
