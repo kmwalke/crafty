@@ -16,6 +16,18 @@ RSpec.describe Item do
     expect(item.full_name).to eq("#{item.name} #{item.pretty_type}")
   end
 
+  describe 'boost' do
+    it 'defaults to false' do
+      expect(item.boosted?).to be false
+    end
+
+    it 'boosts' do
+      item.update(boost: 2)
+
+      expect(item.boosted?).to be true
+    end
+  end
+
   it 'deletes when stack set to 0' do
     item_id = item.id
     item.update(stack_amount: 0)
