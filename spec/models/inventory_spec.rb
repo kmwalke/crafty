@@ -11,6 +11,11 @@ RSpec.describe Inventory do
     expect(inventory.remaining_space).to eq(inventory.size - inventory.count)
   end
 
+  it 'gets the owner' do
+    pending 'not implemented'
+    inventory.owner
+  end
+
   it 'limits contents to inventory size' do
     inventory.add_item(build(:gatherable_fruit, parent_inventory: nil))
     expect do
