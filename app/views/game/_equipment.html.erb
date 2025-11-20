@@ -26,6 +26,9 @@
         <td>
           <% if player.vehicle %>
             <%= level_color_span(player.vehicle.level, player.vehicle.full_name) %>
+            <% if player.vehicle.boosted? %>
+              <span>(Happy)</span>
+            <% end %>
           <% end %>
         </td>
         <td>
@@ -41,6 +44,19 @@
       <tr>
         <td>Clothes:</td>
         <td></td>
+      </tr>
+      <tr>
+        <td>Bag:</td>
+        <td>
+          <% if player.bag %>
+            <%= level_color_span(player.bag.level, player.bag.full_name) %>
+          <% end %>
+        </td>
+        <td>
+          <% if player.bag %>
+            <%= link_to 'X', unequip_bag_path, id: 'unequip_bag' %>
+          <% end %>
+        </td>
       </tr>
     </table>
   </div>

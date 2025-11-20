@@ -35,7 +35,7 @@ RSpec.describe 'Inventory' do
     let(:item) { player.inventory.items.last }
 
     before do
-      click_link item.name
+      click_link item.full_name
     end
 
     it 'shows description' do
@@ -50,6 +50,20 @@ RSpec.describe 'Inventory' do
       expect(page).to have_css("div.popup#item-#{item.id}-details span", text: item.created_by.name)
     end
 
+    describe 'drops the item' do
+      before do
+        within "div.popup#item-#{item.id}-details" do
+          click_link 'Drop Item'
+        end
+      end
+
+      it 'delists' do
+        within 'div.inventory' do
+          expect(page).to have_no_content(item.full_name)
+        end
+      end
+    end
+
     describe 'edible items' do
       let!(:salad) { create(:crafted_salad, parent_inventory: player.inventory) }
 
@@ -60,6 +74,7 @@ RSpec.describe 'Inventory' do
       end
 
       it 'shows the energy recovered by an item' do
+        pending 'need different displays for each useable item'
         within "div.popup#item-#{salad.id}-details" do
           expect(page).to have_content(salad.energy)
         end

@@ -1,0 +1,10 @@
+<div id="feed">
+  <h3>Choose a food</h3>
+  <ul>
+  <% player.vehicle.feedable_items.each do |item| %>
+    <li>
+      <%= link_to item.full_name, feed_mount_path(item) %>
+    </li>
+  <% end %>
+  </ul>
+</div>

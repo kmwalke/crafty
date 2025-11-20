@@ -37,23 +37,5 @@ div.location {
       left: 0;
       height: 100%;
     }
-
-    div.building, div.resource {
-    }
-
-    div.resources {
-      position: absolute;
-      bottom: 0.5em;
-
-      div.resource {
-        position: relative;
-        display: inline-block;
-        border: 1px solid black;
-
-        span.name {
-          text-shadow: 0 0 3px $black;
-        }
-      }
-    }
   }
 }

@@ -21,4 +21,20 @@ RSpec.describe Item::Crafted::Building do
       expect(@new_item.id).not_to be_nil
     end
   end
+
+  describe 'places the building' do
+    let(:building) { create(:crafted_building, parent_inventory: user.inventory) }
+
+    before do
+      building.use
+    end
+
+    it 'removes the building' do
+      expect(user.carried_items.include?(building)).to be false
+    end
+
+    it 'add the building' do
+      expect(user.location.property.include?(building)).to be true
+    end
+  end
 end

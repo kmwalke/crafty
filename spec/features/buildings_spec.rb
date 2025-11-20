@@ -26,16 +26,22 @@ RSpec.describe 'Buildings' do
     expect(page).to have_css("div#building-#{building.id} h4", text: building.name)
   end
 
-  pending 'places a building'
-  # building = create(:crafted_building)
-  # player.add_item(building)
-  #
-  # within 'inventory' do
-  #   click_link building.name
-  #   click_link 'Place Building'
-  # end
-  #
-  # within 'buildings' do
-  #   expect(page).to have_content(building.name)
-  # end
+  describe 'places a building' do
+    let!(:building) { create(:crafted_building, parent_inventory: player.inventory) }
+
+    before do
+      visit game_path
+
+      within '.inventory' do
+        click_link building.name
+        click_link 'Use'
+      end
+    end
+
+    it 'shows the building' do
+      within '.buildings' do
+        expect(page).to have_content(building.name)
+      end
+    end
+  end
 end

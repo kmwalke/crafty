@@ -1,24 +1,30 @@
-# README
+# Crafty
+## aka: Loom 40K
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### The Game
+Crafty is a game and game engine made in Ruby on Rails.  It is meant for Async, Multiplayer gameplay.
+A description of playing the game is on the login page.
 
-Things you may want to cover:
+### Live Game
+The game is live [HERE](https://crafty.kentslaymaker.com/).
 
-* Ruby version
+### Contact
+Email me at [KentSlaymaker@gmail.com](mailto:kentslaymaker@gmail.com)
 
-* System dependencies
+## Installation
 
-* Configuration
+To run the game locally, use docker & docker compose
+```shell
+# clone the repo
+  git clone git@github.com:kmwalke/crafty.git
+  cd crafty
 
-* Database creation
+# build the images
+  docker compose build
+  
+# run the game
+  docker compose up
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Contribution
+Check [Upcoming Changes](https://crafty.kentslaymaker.com/project_management) for tickets.

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_11_200301) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_20_183406) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -45,6 +45,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_11_200301) do
     t.integer "stack_amount", default: 1, null: false
     t.integer "child_inventory_id"
     t.boolean "is_private", default: false, null: false
+    t.integer "boost", default: 0, null: false
   end
 
   create_table "levels", force: :cascade do |t|
@@ -109,6 +110,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_11_200301) do
     t.string "tool_type"
     t.string "vehicle_type"
     t.boolean "receives_emails", default: false, null: false
+    t.string "bag_type"
+    t.integer "bag_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

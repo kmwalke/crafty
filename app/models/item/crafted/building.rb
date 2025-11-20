@@ -1,4 +1,6 @@
 class Item::Crafted::Building < Item::Crafted
+  include Useable
+
   before_create :provision_inventory
 
   has_many :listings
@@ -11,6 +13,12 @@ class Item::Crafted::Building < Item::Crafted
       ItemType::CRAFTED[:beam] => 3,
       ItemType::CRAFTED[:screw] => 400
     }
+  end
+
+  def use
+    location = parent_inventory.user.location
+    parent_inventory.remove_item(self)
+    location.property.add_item(self)
   end
 
   private

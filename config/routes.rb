@@ -10,13 +10,16 @@ Rails.application.routes.draw do
   get 'vision_board', to: 'vision_board#index'
   get 'project_management', to: 'project_management#index'
 
+  get '/item/:id/drop', to: 'items#drop_item', as: 'drop_item'
   get '/item/:id/equip', to: 'items#equip_item', as: 'equip_item'
   get '/item/:id/use', to: 'items#use_item', as: 'use_item'
+  get '/unequip_bag', to: 'items#unequip_bag', as: 'unequip_bag'
   get '/unequip_tool', to: 'items#unequip_tool', as: 'unequip_tool'
   get '/unequip_vehicle', to: 'items#unequip_vehicle', as: 'unequip_vehicle'
 
   get '/resource/:id/gather', to: 'game#gather', as: 'gather'
   get '/location/:id/travel', to: 'game#travel', as: 'travel'
+  get '/feed_mount/:item_id', to: 'game#feed_mount', as: 'feed_mount'
 
   # TODO: Experiment: a vanilla, RESTful, endpoint for gameplay, integrated into UI with TURBO-frames
   # There are a few ethoses here about how to code a game engine in rails
