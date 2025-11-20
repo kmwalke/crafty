@@ -1,6 +1,10 @@
 module HasInventory
   extend ActiveSupport::Concern
 
+  def base_inventory
+    10
+  end
+
   private
 
   def provision_inventory
@@ -8,6 +12,6 @@ module HasInventory
   end
 
   def inventory_size
-    level * 10
+    level * base_inventory
   end
 end
