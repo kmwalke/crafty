@@ -20,7 +20,6 @@ RSpec.describe 'Gameplay' do
   pending 'version_0.9 balance locations'
   pending 'version_0.9 balance crafting'
   pending 'version__ui_update make game items clickable in the viewport'
-  pending 'version__ui_update organize partial views'
   pending 'version__ui_update pixel graphics'
   pending 'version__ui_update desktop interface'
   #         Loom/Fate of Atlantis/Full Throttle style interface
