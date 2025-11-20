@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :logged_in
-  before_action :set_item, except: [:unequip_tool, :unequip_vehicle]
+  before_action :set_item, except: [:unequip_bag, :unequip_tool, :unequip_vehicle]
 
   def drop_item
     game_action(path: game_path(active_control: 'inventory')) do
@@ -19,6 +19,12 @@ class ItemsController < ApplicationController
   def use_item
     game_action(path: game_path(active_control: 'inventory')) do
       player.use_item(@item) if @item.useable?
+    end
+  end
+
+  def unequip_bag
+    game_action(path: game_path(active_control: 'equipment')) do
+      player.unequip_bag
     end
   end
 

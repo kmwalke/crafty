@@ -111,6 +111,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_20_183406) do
     t.string "vehicle_type"
     t.boolean "receives_emails", default: false, null: false
     t.string "bag_type"
+    t.integer "bag_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

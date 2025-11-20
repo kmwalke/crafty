@@ -12,6 +12,17 @@
       <li class="credits">Credits: <%= player.credits %><%= credit_symbol %></li>
       <%= render partial: 'item_list', locals: { inventory: player.inventory } %>
     </ul>
+    <% if player&.bag&.child_inventory %>
+      <div class="bag-inventory">
+        <span class="remaining-space"><%= player.bag.child_inventory.remaining_space %></span>
+        <h4>
+          <span class="<%= level_name player.bag.level %>"><%= player.bag.full_name %> </span>
+          Inventory</h4>
+        <ul>
+          <%= render partial: 'item_list', locals: { inventory: player.bag.child_inventory } %>
+        </ul>
+      </div>
+    <% end %>
     <% if player&.vehicle&.child_inventory %>
       <div class="vehicle-inventory">
         <span class="remaining-space"><%= player.vehicle.child_inventory.remaining_space %></span>
