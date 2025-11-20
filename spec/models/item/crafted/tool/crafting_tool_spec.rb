@@ -27,7 +27,7 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
     let!(:old_inv) { user.inventory.items.count }
 
     before do
-      user.tool.craft(Item::Crafted::Ingot, ingredients)
+      user.tool.craft(Item::Crafted::Ingot, ingredients, color: '#bbb')
     end
 
     it 'adjusts the inventory' do
@@ -40,6 +40,10 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
 
     it 'names the new item' do
       expect(user.inventory.items.last.name).to eq('Copper Iron')
+    end
+
+    it 'colors the new item' do
+      expect(user.inventory.items.last.color).to eq('#bbb')
     end
 
     it 'gives the new item a level' do

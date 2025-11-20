@@ -1,6 +1,8 @@
 class ItemType < ApplicationRecord
   ITEM       = 'Item'.freeze
+  BAG        = 'Item::Crafted::Bag'.freeze
   CRAFTED    = {
+    bag: BAG,
     beam: 'Item::Crafted::Beam',
     book: 'Item::Crafted::Book',
     building: 'Item::Crafted::Building',
@@ -41,6 +43,7 @@ class ItemType < ApplicationRecord
     mount: CRAFTED[:mount]
   }.freeze
   TYPE_NAMES = [
+    BAG,
     ITEM,
     CRAFTED.values,
     GATHERABLE.values,
