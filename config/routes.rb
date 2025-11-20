@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'vision_board', to: 'vision_board#index'
   get 'project_management', to: 'project_management#index'
 
+  get '/item/:id/drop', to: 'items#drop_item', as: 'drop_item'
   get '/item/:id/equip', to: 'items#equip_item', as: 'equip_item'
   get '/item/:id/use', to: 'items#use_item', as: 'use_item'
   get '/unequip_tool', to: 'items#unequip_tool', as: 'unequip_tool'
