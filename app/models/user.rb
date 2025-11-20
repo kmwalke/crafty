@@ -32,7 +32,7 @@ class User < ApplicationRecord
   delegate :add_item, to: :active_inventory
 
   def spend_energy(amount)
-    raise CraftyError, 'Can only spend positive energy.' unless amount.positive?
+    raise CraftyError, 'Can only spend positive energy.' unless amount >= 0
     raise CraftyError, 'You don\'t have enough energy' unless amount <= energy
 
     update(energy: (energy - amount))

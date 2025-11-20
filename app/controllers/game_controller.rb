@@ -11,6 +11,12 @@ class GameController < ApplicationController
     end
   end
 
+  def feed_mount
+    game_action do
+      player.vehicle.feed Item.find(params[:item_id])
+    end
+  end
+
   def gather
     game_action do
       item    = player.tool.gather(Resource.find(params[:id]))

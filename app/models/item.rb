@@ -19,6 +19,10 @@ class Item < ApplicationRecord
     created_by == user || !is_private
   end
 
+  def boosted?
+    boost.positive?
+  end
+
   def full_name
     "#{name} #{pretty_type}"
   end
