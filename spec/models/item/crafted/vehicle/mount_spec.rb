@@ -9,7 +9,7 @@ RSpec.describe Item::Crafted::Vehicle::Mount do
     before do
       crafting_tool = create(:crafting_tool, parent_inventory: user.inventory)
       user.equip_item(crafting_tool)
-      @new_item = crafting_tool.craft(
+      @new_item     = crafting_tool.craft(
         described_class,
         [
           companion,
@@ -50,7 +50,14 @@ RSpec.describe Item::Crafted::Vehicle::Mount do
 
       it 'uses the bonus' do
         energy = mount.energy_usage(create(:location), create(:location))
+
         expect(energy).to eq(0)
+      end
+
+      it 'consumes the bonus' do
+        mount.travel(create(:location))
+
+        expect(mount.boost).to eq(4)
       end
     end
   end
