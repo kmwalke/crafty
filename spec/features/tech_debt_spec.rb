@@ -7,4 +7,5 @@ RSpec.describe 'Tech Debt' do
   pending 'streamline API levels: routes/controller/model'
   pending 'document api levels'
   pending 'user.inventory -> user.child_inventory'
+  pending 'organize ItemType constants'
 end
