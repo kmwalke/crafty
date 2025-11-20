@@ -1,5 +1,5 @@
-# Crafty
-## aka: Loom 40K
+# Crafty (aka: Loom 40K)
+A roguelike, multiplayer, point and click adventure
 
 ### The Game
 Crafty is a game and game engine made in Ruby on Rails.  It is meant for Async, Multiplayer gameplay.

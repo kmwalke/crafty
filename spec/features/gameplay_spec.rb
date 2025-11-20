@@ -42,7 +42,6 @@ RSpec.describe 'Gameplay' do
   #           Perhaps they get 1/10 of your skill. Plus a bonus thing for if you maxed out'
   # You should be able to see your family tree
 
-  # This is becoming a rougelike multiplayer point and click game
   pending 'version_0.8 dangers in the world. Pirates while traveling'
   # pending 'after winning, start new game+ with your child character'
 
