@@ -15,6 +15,12 @@ class Item::Crafted::Vehicle::Mount < Item::Crafted::Vehicle
     ingredients.select { |i| i.type == ItemType::GATHERABLE[:companion] }.first.name
   end
 
+  def feedable_items
+    equipped_by.carried_items.select do |item|
+      item.type == ItemType::GATHERABLE[:fish]
+    end
+  end
+
   def feed(fish)
     raise CraftyError, ErrorMessage::MOUNT[:not_favorite] unless fish.type == ItemType::GATHERABLE[:fish]
 

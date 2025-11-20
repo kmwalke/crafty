@@ -26,6 +26,9 @@
         <td>
           <% if player.vehicle %>
             <%= level_color_span(player.vehicle.level, player.vehicle.full_name) %>
+            <% if player.vehicle.boosted? %>
+              <span>(Happy)</span>
+            <% end %>
           <% end %>
         </td>
         <td>

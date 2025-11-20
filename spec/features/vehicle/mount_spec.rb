@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'Hover Bike' do
+RSpec.describe 'Mount' do
   let!(:player) { login }
+  let!(:fish) { create(:gatherable_fish, parent_inventory: player.inventory) }
   let!(:mount) { create(:vehicle_mount, parent_inventory: player.inventory) }
 
   before do
@@ -13,19 +14,21 @@ RSpec.describe 'Hover Bike' do
   describe 'feeds the mount' do
     before do
       within 'div.actions' do
-        click_link "Feed #{mount.name}"
+        click_link 'Feed'
+        click_link fish.full_name
       end
     end
 
     it 'boosts' do
       within 'div.equipment' do
-        expect(page).to have_content("#{mount.full_name} (Well Fed)")
+        expect(page).to have_content("#{mount.full_name} (Happy)")
       end
     end
 
     it 'gets travel bonus' do
       within 'div.actions' do
-        expect(page).to have_content('Well Fed bonus')
+
+        expect(page).to have_content('Happy Mount Bonus')
       end
     end
   end

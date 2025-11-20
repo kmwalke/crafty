@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get '/resource/:id/gather', to: 'game#gather', as: 'gather'
   get '/location/:id/travel', to: 'game#travel', as: 'travel'
+  get '/feed_mount/:item_id', to: 'game#feed_mount', as: 'feed_mount'
 
   # TODO: Experiment: a vanilla, RESTful, endpoint for gameplay, integrated into UI with TURBO-frames
   # There are a few ethoses here about how to code a game engine in rails
