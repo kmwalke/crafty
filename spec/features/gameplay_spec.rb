@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Gameplay' do
-  pending 'BUG: crafting screws a second time makes 101 screws, not 200'
   pending 'Family tree for crafted items.'
   # see all the created_by details for the ingredients of a large item
   pending 'back button on browser should reload game_path'
@@ -9,6 +8,9 @@ RSpec.describe 'Gameplay' do
   # something like Item.subclasses / Item::Crafted.subclasses / Item::Crafted.subclasses[:leather]
   # then the whole thing could be automated.  Including putting the types into the DB for FKs
   # must be just as performant as current solution
+  # [2] pry(main)> Rails.application.eager_load!
+  # => nil
+  # [3] pry(main)> Item.descendants
   pending 'version_0.4 add many more locations'
   pending 'version_0.4 add many more recipes'
   pending 'version_0.4 user quests'
