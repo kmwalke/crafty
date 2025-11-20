@@ -27,4 +27,4 @@ To run the game locally, use docker & docker compose
 ```
 
 ## Contribution
-Check [Upcoming Changes](https://crafty.kentslaymaker.com/project_management) for tickets.
+Run the Specs or check [Upcoming Changes](https://crafty.kentslaymaker.com/project_management) for tickets.
