@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Item::Crafted::Tool' do
   let!(:player) { login }
-  let!(:tool) { create(:gathering_tool, parent_inventory: player.inventory) }
+  let!(:tool) { create(:gathering_tool, parent_inventory: player.child_inventory) }
 
   before do
     visit game_path

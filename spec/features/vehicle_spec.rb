@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Vehicle' do
   let!(:player) { login }
-  let!(:vehicle) { create(:vehicle_hover_bike, parent_inventory: player.inventory) }
+  let!(:vehicle) { create(:vehicle_hover_bike, parent_inventory: player.child_inventory) }
 
   before do
     visit game_path

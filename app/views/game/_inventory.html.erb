@@ -7,10 +7,10 @@
   <label for="radio-inventory" class="radio">I</label>
   <div class="section-content">
     <h4 class="section-title">Inventory</h4>
-    <span class="remaining-space"><%= player.inventory.remaining_space %></span>
+    <span class="remaining-space"><%= player.child_inventory.remaining_space %></span>
     <ul class="player-inventory">
       <li class="credits">Credits: <%= player.credits %><%= credit_symbol %></li>
-      <%= render partial: 'item_list', locals: { inventory: player.inventory } %>
+      <%= render partial: 'item_list', locals: { inventory: player.child_inventory } %>
     </ul>
     <% if player&.bag&.child_inventory %>
       <div class="bag-inventory">

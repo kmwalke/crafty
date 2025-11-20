@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Bag' do
   let!(:player) { login }
-  let!(:bag) { create(:crafted_bag, parent_inventory: player.inventory) }
+  let!(:bag) { create(:crafted_bag, parent_inventory: player.child_inventory) }
   let!(:item) { create(:gatherable_fruit, parent_inventory: bag.child_inventory) }
 
   before do

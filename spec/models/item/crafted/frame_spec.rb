@@ -5,12 +5,12 @@ RSpec.describe Item::Crafted::Frame do
 
   describe 'crafts' do
     before do
-      crafting_tool = create(:crafting_tool, parent_inventory: user.inventory)
+      crafting_tool = create(:crafting_tool, parent_inventory: user.child_inventory)
       user.equip_item(crafting_tool)
       @new_item     = crafting_tool.craft(
         described_class,
         [
-          create(:crafted_ingot, stack_amount: 5, parent_inventory: user.inventory)
+          create(:crafted_ingot, stack_amount: 5, parent_inventory: user.child_inventory)
         ]
       )
     end

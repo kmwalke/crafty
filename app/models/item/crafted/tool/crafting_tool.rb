@@ -31,7 +31,7 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
       raise CraftyError, ErrorMessage::USER[:build_additional_pylons]
     end
 
-    raise CraftyError, ErrorMessage::INVENTORY[:no_space] if equipped_by.inventory.remaining_space.zero?
+    raise CraftyError, ErrorMessage::INVENTORY[:no_space] if equipped_by.child_inventory.remaining_space.zero?
 
     matches_recipe?
   end

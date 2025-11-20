@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Gathering' do
   let!(:player) { login }
-  let!(:gathering_tool) { create(:gathering_tool, parent_inventory: player.inventory) }
+  let!(:gathering_tool) { create(:gathering_tool, parent_inventory: player.child_inventory) }
   let!(:local_resource) { create(:ore, location: player.location) }
 
   before do
@@ -24,19 +24,19 @@ RSpec.describe 'Gathering' do
   end
 
   describe 'gathers resources' do
-    let!(:old_inv_count) { player.inventory.items.count }
+    let!(:old_inv_count) { player.child_inventory.items.count }
 
     before do
       gather_resource
     end
 
     it 'adds resources to inventory' do
-      expect(player.reload.inventory.items.count).to eq(old_inv_count + 1)
+      expect(player.reload.child_inventory.items.count).to eq(old_inv_count + 1)
     end
 
     describe 'does not overfill the inventory' do
       before do
-        player.inventory.update(size: old_inv_count)
+        player.child_inventory.update(size: old_inv_count)
         crystal = create(:crystal, location: player.location)
         visit game_path
         within '.actions' do
@@ -46,7 +46,7 @@ RSpec.describe 'Gathering' do
       end
 
       it 'doesnt add to the inventory' do
-        expect(player.reload.inventory.size).to eq(old_inv_count)
+        expect(player.reload.child_inventory.size).to eq(old_inv_count)
       end
 
       it 'shows the error' do

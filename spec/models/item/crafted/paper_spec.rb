@@ -5,12 +5,12 @@ RSpec.describe Item::Crafted::Paper do
 
   describe 'crafts' do
     before do
-      crafting_tool = create(:crafting_tool, parent_inventory: user.inventory)
+      crafting_tool = create(:crafting_tool, parent_inventory: user.child_inventory)
       user.equip_item(crafting_tool)
       @new_item     = crafting_tool.craft(
         described_class,
         [
-          create(:gatherable_wood, stack_amount: 1, parent_inventory: user.inventory)
+          create(:gatherable_wood, stack_amount: 1, parent_inventory: user.child_inventory)
         ]
       )
     end

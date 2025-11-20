@@ -10,11 +10,11 @@ class Listing < ApplicationRecord
 
     if infinite
       new_item                  = item.dup
-      new_item.parent_inventory = buyer.inventory
+      new_item.parent_inventory = buyer.child_inventory
       new_item.save
     else
       created_by.update(credits: (created_by.credits + price))
-      item.update(parent_inventory: buyer.inventory)
+      item.update(parent_inventory: buyer.child_inventory)
       destroy
     end
   end
