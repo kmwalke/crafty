@@ -9,7 +9,7 @@ RSpec.describe Item::Crafted::Vehicle::Mount do
     before do
       crafting_tool = create(:crafting_tool, parent_inventory: user.inventory)
       user.equip_item(crafting_tool)
-      @new_item     = crafting_tool.craft(
+      @new_item = crafting_tool.craft(
         described_class,
         [
           companion,
@@ -23,16 +23,35 @@ RSpec.describe Item::Crafted::Vehicle::Mount do
       expect(@new_item.id).not_to be_nil
     end
 
-    pending 'version_0.3 feeding the mount gives a bonus'
-    # feeding a mount gives some boost
-    # maybe requires lees/no energy for a while
-    # create item.is_boosted default false
-    # feeding mount boosts it
-    # Other items could be boosted in the future.
-    # use `include Boostable`
-
     it 'names the item' do
       expect(@new_item.name).to eq(companion.name)
+    end
+  end
+
+  describe 'feeding' do
+    let!(:mount) { create(:vehicle_mount, equipped_by: user) }
+
+    it 'action' do
+      expect(mount.actions).to eq %w[feed travel]
+    end
+
+    it 'only eats fish' do
+      expect { mount.feed(create(:gatherable_fruit, parent_inventory: user.inventory)) }.to raise_error CraftyError
+    end
+
+    describe 'gives a bonus' do
+      before do
+        mount.feed(create(:gatherable_fish, parent_inventory: user.inventory, level: Level::LEGENDARY))
+      end
+
+      it 'boosts' do
+        expect(mount.boost).to eq(5)
+      end
+
+      it 'uses the bonus' do
+        energy = mount.energy_usage(create(:location), create(:location))
+        expect(energy).to eq(0)
+      end
     end
   end
 end

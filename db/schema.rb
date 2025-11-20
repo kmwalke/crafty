@@ -45,7 +45,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_20_152547) do
     t.integer "stack_amount", default: 1, null: false
     t.integer "child_inventory_id"
     t.boolean "is_private", default: false, null: false
-    t.boolean "is_boosted", default: false, null: false
+    t.integer "boost", default: 0, null: false
   end
 
   create_table "levels", force: :cascade do |t|

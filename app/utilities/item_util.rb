@@ -84,6 +84,14 @@ class ItemUtil
         created_by: User.first
       },
       {
+        type: 'Item::Crafted::Vehicle::Mount',
+        description: 'A reliable donkey.',
+        name: 'Affordable',
+        level: Level::COMMON,
+        color: '#ffcccc',
+        created_by: User.first
+      },
+      {
         type: 'Item::Crafted::Tool::GatheringTool',
         name: 'Universal',
         description: 'Magical seeming tech.  Can gather from any resource.',
