@@ -27,7 +27,6 @@ RSpec.describe 'Mount' do
 
     it 'gets travel bonus' do
       within 'div.actions' do
-
         expect(page).to have_content('Happy Mount Bonus')
       end
     end
