@@ -13,14 +13,14 @@ class CraftController < ApplicationController
         Item.find_by(id:)
       end
 
-      if (crafted_item = player.tool.craft(crafted_item, ingredients))
+      if (crafted_item = player.tool.craft(crafted_item, ingredients, { color: craft_params[:color] }))
         @notice = "Created #{level_color_span crafted_item.level, crafted_item.full_name}"
       end
     end
   end
 
   def craft_params
-    params.expect(recipe: [:item_type, { item_ids: [] }])
+    params.expect(recipe: [:item_type, :color, { item_ids: [] }])
   end
 
   private

@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
   end
 
   def equip_item
-    game_action(path: game_path(active_control: 'equipment')) do
+    game_action do
       player.equip_item(@item) if @item.equippable?
 
       @notice = "#{level_color_span(@item.level, @item.name)} equipped"

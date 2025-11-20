@@ -1,13 +1,14 @@
 class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
-  attr_accessor :crafted_item, :ingredients
+  attr_accessor :crafted_item, :ingredients, :params
 
   def actions
     %w[craft recipes]
   end
 
-  def craft(crafted_item_class, ingredients)
+  def craft(crafted_item_class, ingredients, params = {})
     @crafted_item = crafted_item_class.new
     @ingredients  = ingredients
+    @params       = params
 
     can_craft?
 
@@ -57,6 +58,7 @@ class Item::Crafted::Tool::CraftingTool < Item::Crafted::Tool
     @crafted_item.name         = @crafted_item.build_name(@ingredients)
     @crafted_item.level        = crafted_item_level
     @crafted_item.stack_amount = @crafted_item.crafting_yield
+    @crafted_item.color        = params[:color]
   end
 
   def consume_ingredients

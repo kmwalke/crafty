@@ -4,6 +4,11 @@
     <%= f.collection_select :item_type, ItemType::CRAFTED.values, :to_s, :to_s %>
   </div>
 
+  <div>
+    <%= f.label :color %>
+    <%= f.color_field :color %>
+  </div>
+
   <ul>
     <% player.carried_items.each do |item| %>
       <li class="<%= level_name(item.level) %>">
