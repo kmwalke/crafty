@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Item::Crafted::Bag do
+RSpec.describe Item::Crafted::Pet do
   let(:user) { create(:user) }
 
   describe 'crafts' do
@@ -21,8 +21,8 @@ RSpec.describe Item::Crafted::Bag do
   end
 
   it 'has an inventory' do
-    bag = create(:crafted_bag)
+    pet = create(:crafted_pet)
 
-    expect(bag.child_inventory).not_to be_nil
+    expect(pet.child_inventory).not_to be_nil
   end
 end

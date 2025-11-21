@@ -17,34 +17,34 @@ RSpec.describe User do
       expect(user.actions).to eq(%w[gather travel])
     end
 
-    describe 'bag' do
-      let(:bag) { create(:crafted_bag, parent_inventory: user.child_inventory) }
+    describe 'pet' do
+      let(:pet) { create(:crafted_pet, parent_inventory: user.child_inventory) }
 
       before do
-        user.equip_item bag
+        user.equip_item pet
       end
 
-      it 'removes equipped bag from inventory' do
-        expect(user.child_inventory.items.include?(bag)).to be false
+      it 'removes equipped pet from inventory' do
+        expect(user.child_inventory.items.include?(pet)).to be false
       end
 
-      it 'replaces a bag with another' do
-        bag2 = create(:crafted_bag, parent_inventory: user.child_inventory)
-        user.equip_item bag2
-        expect(user.child_inventory.items.include?(bag)).to be true
+      it 'replaces a pet with another' do
+        pet2 = create(:crafted_pet, parent_inventory: user.child_inventory)
+        user.equip_item pet2
+        expect(user.child_inventory.items.include?(pet)).to be true
       end
 
-      describe 'unequips bag' do
+      describe 'unequips pet' do
         before do
-          user.unequip_bag
+          user.unequip_pet
         end
 
-        it 'unequips the bag' do
+        it 'unequips the pet' do
           expect(user.actions).to eq([])
         end
 
-        it 'adds the bag back to inventory' do
-          expect(user.child_inventory.items.include?(bag)).to be true
+        it 'adds the pet back to inventory' do
+          expect(user.child_inventory.items.include?(pet)).to be true
         end
       end
     end

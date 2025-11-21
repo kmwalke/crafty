@@ -22,10 +22,10 @@
           <td><%= level_color_span(player.vehicle.level, player.vehicle.name) %></td>
         </tr>
       <% end %>
-      <% if player.bag %>
+      <% if player.pet %>
         <tr class="equipment">
-          <td class="bag">Bag:</td>
-          <td><%= level_color_span(player.bag.level, player.bag.name) %></td>
+          <td class="pet">Pet:</td>
+          <td><%= level_color_span(player.pet.level, player.pet.name) %></td>
         </tr>
       <% end %>
       </tr>

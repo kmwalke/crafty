@@ -1,4 +1,4 @@
-class Item::Crafted::Bag < Item::Crafted
+class Item::Crafted::Pet < Item::Crafted
   include Equippable
   include HasInventory
 

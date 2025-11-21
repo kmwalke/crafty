@@ -33,7 +33,7 @@ RSpec.describe 'Gameplay' do
   pending 'version_0.7 push notifications to players'
   pending 'version_0.7 in game notifications/mail from players'
 
-  pending 'version_0.8 typed bags, can only hold certain items, but much larger'
+  pending 'version_0.8 typed pets, can only hold certain items, but much larger'
   pending 'version_0.8 new game + after your character dies'
   # pending 'if you max out your skill, perhaps the progeny gets to specialize in that skill plus another'\
   #           ' or perhaps they just get a permanent boost to that skill.  Static, but in addition to their skill' \
@@ -59,8 +59,6 @@ RSpec.describe 'Gameplay' do
   # not only to make another thing, but maybe to create an action.
   #   Equip 2 tools to get access to an action neither provides on their own
   #  "combining things to come up with novel approaches to situations"
-  pending 'replace "bag" with pet'
-  # pets have inventory, they work just like a bag, but cute
 
   pending 'use "favor" instead of credits'
   # works pretty much the same, but guild-specific

@@ -1,8 +1,7 @@
 class ItemType < ApplicationRecord
   ITEM       = 'Item'.freeze
-  BAG        = 'Item::Crafted::Bag'.freeze
   CRAFTED    = {
-    bag: BAG,
+    pet: 'Item::Crafted::Pet',
     beam: 'Item::Crafted::Beam',
     book: 'Item::Crafted::Book',
     building: 'Item::Crafted::Building',
@@ -32,6 +31,7 @@ class ItemType < ApplicationRecord
     shard: 'Item::Gatherable::Shard',
     wood: 'Item::Gatherable::Wood'
   }.freeze
+  PET        = CRAFTED[:pet].freeze
   TOOL       = 'Item::Crafted::Tool'.freeze
   TOOLS      = {
     crafting_tool: CRAFTED[:crafting_tool],
@@ -43,7 +43,6 @@ class ItemType < ApplicationRecord
     mount: CRAFTED[:mount]
   }.freeze
   TYPE_NAMES = [
-    BAG,
     ITEM,
     CRAFTED.values,
     GATHERABLE.values,

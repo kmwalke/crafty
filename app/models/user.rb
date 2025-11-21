@@ -12,7 +12,7 @@ class User < ApplicationRecord
   belongs_to :child_inventory, class_name: 'Inventory', optional: true
 
   # equipment
-  belongs_to :bag, polymorphic: true, optional: true
+  belongs_to :pet, polymorphic: true, optional: true
   belongs_to :tool, polymorphic: true, optional: true
   belongs_to :vehicle, polymorphic: true, optional: true
 
@@ -56,7 +56,7 @@ class User < ApplicationRecord
   def equip_item(item)
     raise CraftyError, 'You can only equip items in your inventory' unless child_inventory.include?(item)
 
-    equip_bag(item) if item.type.include? ItemType::BAG
+    equip_pet(item) if item.type.include? ItemType::PET
     equip_tool(item) if item.type.include? ItemType::TOOL
     equip_vehicle(item) if item.type.include? ItemType::VEHICLE
   end
@@ -72,9 +72,9 @@ class User < ApplicationRecord
     item.use
   end
 
-  def unequip_bag
-    bag.update(parent_inventory: child_inventory)
-    update(bag: nil)
+  def unequip_pet
+    pet.update(parent_inventory: child_inventory)
+    update(pet: nil)
   end
 
   def unequip_vehicle
@@ -101,10 +101,10 @@ class User < ApplicationRecord
     Inventory.create(user: self, size: DEFAULT_INVENTORY_SIZE)
   end
 
-  def equip_bag(bag)
-    self.bag&.update(parent_inventory: child_inventory)
-    update(bag: bag)
-    bag.update(parent_inventory: nil)
+  def equip_pet(pet)
+    self.pet&.update(parent_inventory: child_inventory)
+    update(pet: pet)
+    pet.update(parent_inventory: nil)
   end
 
   def equip_tool(tool)

@@ -46,15 +46,15 @@
         <td></td>
       </tr>
       <tr>
-        <td>Bag:</td>
+        <td>Pet:</td>
         <td>
-          <% if player.bag %>
-            <%= level_color_span(player.bag.level, player.bag.full_name) %>
+          <% if player.pet %>
+            <%= level_color_span(player.pet.level, player.pet.full_name) %>
           <% end %>
         </td>
         <td>
-          <% if player.bag %>
-            <%= link_to 'X', unequip_bag_path, id: 'unequip_bag' %>
+          <% if player.pet %>
+            <%= link_to 'X', unequip_pet_path, id: 'unequip_pet' %>
           <% end %>
         </td>
       </tr>
