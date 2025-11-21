@@ -6,7 +6,12 @@ class Item::Crafted::Pet < Item::Crafted
 
   def recipe
     {
-      ItemType::CRAFTED[:leather] => 2
+      ItemType::GATHERABLE[:companion] => 1,
+      ItemType::GATHERABLE[:fish] => 10
     }
+  end
+
+  def build_name(ingredients)
+    ingredients.select { |i| i.type == ItemType::GATHERABLE[:companion] }.first.name
   end
 end
