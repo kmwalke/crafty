@@ -10,7 +10,8 @@ RSpec.describe Item::Crafted::Pet do
       @new_item     = crafting_tool.craft(
         described_class,
         [
-          create(:crafted_leather, stack_amount: 2, parent_inventory: user.child_inventory)
+          create(:gatherable_companion, stack_amount: 1, parent_inventory: user.child_inventory),
+          create(:gatherable_fish, stack_amount: 10, parent_inventory: user.child_inventory)
         ]
       )
     end

@@ -12,8 +12,6 @@ if [ $? == 0 ]; then
   bundle exec rails db:migrate
   echo "Seeding data..."
   bundle exec rails db:seed
-  pwd
-  ls
   ./script/project_manager.sh
 else
   echo 'Skipping Rails DB migrations!!'
