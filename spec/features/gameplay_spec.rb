@@ -56,8 +56,9 @@ RSpec.describe 'Gameplay' do
 
   pending 'What is Endgame? Perhaps maxing out all skills?'
   pending 'crafting in this game is the act of combining things'
-  # not only to make another thing, but maybe to create an action.  Equip 2 tools to get access to an action neither provides on their own
-  # "combining things to come up with novel approaches to situations"
+  # not only to make another thing, but maybe to create an action.
+  #   Equip 2 tools to get access to an action neither provides on their own
+  #  "combining things to come up with novel approaches to situations"
   pending 'replace "bag" with pet'
   # pets have inventory, they work just like a bag, but cute
 
@@ -96,7 +97,6 @@ RSpec.describe 'Gameplay' do
   # Perhaps skill requirements: need a driver, crafter, and electrician
   # Or a combined level requirement, need 10 total levels, so a level 8 and 2 level ones or some other combo
   # rewards are proportional
-
 
   # Also need solo quests, though
   #   NPC generated, but also player generated quests
