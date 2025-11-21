@@ -4,17 +4,17 @@ RSpec.describe Item::Crafted::Vehicle::HoverBike do
   let(:user) { create(:user) }
 
   describe 'crafts' do
-    let(:frame) { create(:crafted_frame, stack_amount: 1, parent_inventory: user.inventory) }
+    let(:frame) { create(:crafted_frame, stack_amount: 1, parent_inventory: user.child_inventory) }
 
     before do
-      crafting_tool = create(:crafting_tool, parent_inventory: user.inventory)
+      crafting_tool = create(:crafting_tool, parent_inventory: user.child_inventory)
       user.equip_item(crafting_tool)
       @new_item     = crafting_tool.craft(
         described_class,
         [
           frame,
-          create(:crafted_component, stack_amount: 30, parent_inventory: user.inventory),
-          create(:crafted_plastic, stack_amount: 10, parent_inventory: user.inventory)
+          create(:crafted_component, stack_amount: 30, parent_inventory: user.child_inventory),
+          create(:crafted_plastic, stack_amount: 10, parent_inventory: user.child_inventory)
         ]
       )
     end

@@ -34,7 +34,7 @@ RSpec.describe User do
     end
 
     it 'inventory' do
-      expect(user.inventory).to be_a(Inventory)
+      expect(user.child_inventory).to be_a(Inventory)
     end
   end
 end

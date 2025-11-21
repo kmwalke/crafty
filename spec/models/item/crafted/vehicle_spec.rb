@@ -11,7 +11,7 @@ RSpec.describe Item::Crafted::Vehicle do
     let(:location1) { create(:location) }
     let(:location2) { create(:location) }
     let(:user) { create(:user, location: location1) }
-    let(:vehicle) { create(:vehicle_hover_bike, parent_inventory: user.inventory) }
+    let(:vehicle) { create(:vehicle_hover_bike, parent_inventory: user.child_inventory) }
 
     before do
       user.equip_item(vehicle)

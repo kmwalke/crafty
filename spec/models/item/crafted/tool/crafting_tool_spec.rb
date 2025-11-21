@@ -4,7 +4,7 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
   let(:user) { create(:user) }
 
   before do
-    user.equip_item(create(:crafting_tool, parent_inventory: user.inventory))
+    user.equip_item(create(:crafting_tool, parent_inventory: user.child_inventory))
   end
 
   it 'lists actions' do
@@ -20,34 +20,34 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
   describe 'crafts' do
     let!(:ingredients) do
       [
-        create(:gatherable_ore, parent_inventory: user.inventory, name: 'Copper', level: Level::LEGENDARY),
-        create(:gatherable_ore, parent_inventory: user.inventory, name: 'Iron', level: Level::COMMON)
+        create(:gatherable_ore, parent_inventory: user.child_inventory, name: 'Copper', level: Level::LEGENDARY),
+        create(:gatherable_ore, parent_inventory: user.child_inventory, name: 'Iron', level: Level::COMMON)
       ]
     end
-    let!(:old_inv) { user.inventory.items.count }
+    let!(:old_inv) { user.child_inventory.items.count }
 
     before do
       user.tool.craft(Item::Crafted::Ingot, ingredients, color: '#bbb')
     end
 
     it 'adjusts the inventory' do
-      expect(user.inventory.items.count).to eq(old_inv - 1)
+      expect(user.child_inventory.items.count).to eq(old_inv - 1)
     end
 
     it 'creates the new item' do
-      expect(user.inventory.items.last).to be_a ItemType::CRAFTED[:ingot].constantize
+      expect(user.child_inventory.items.last).to be_a ItemType::CRAFTED[:ingot].constantize
     end
 
     it 'names the new item' do
-      expect(user.inventory.items.last.name).to eq('Copper Iron')
+      expect(user.child_inventory.items.last.name).to eq('Copper Iron')
     end
 
     it 'colors the new item' do
-      expect(user.inventory.items.last.color).to eq('#bbb')
+      expect(user.child_inventory.items.last.color).to eq('#bbb')
     end
 
     it 'gives the new item a level' do
-      expect(user.inventory.items.last.level).to eq(Level::COMMON)
+      expect(user.child_inventory.items.last.level).to eq(Level::COMMON)
     end
 
     it 'consumes the ingredients' do
@@ -60,7 +60,7 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
   describe 'crafts with stacked items' do
     let!(:ingredients) do
       [
-        create(:gatherable_ore, parent_inventory: user.inventory, stack_amount: 3)
+        create(:gatherable_ore, parent_inventory: user.child_inventory, stack_amount: 3)
       ]
     end
 
@@ -69,7 +69,7 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
     end
 
     it 'creates the new item' do
-      expect(user.inventory.items.last).to be_a ItemType::CRAFTED[:ingot].constantize
+      expect(user.child_inventory.items.last).to be_a ItemType::CRAFTED[:ingot].constantize
     end
 
     it 'consumes the stack' do
@@ -80,8 +80,8 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
   describe 'crafts with a mix of stacked and unstacked items' do
     let!(:ingredients) do
       [
-        create(:gatherable_fruit, parent_inventory: user.inventory, stack_amount: 2, name: 'Apple'),
-        create(:gatherable_fruit, parent_inventory: user.inventory, stack_amount: 1, name: 'Apple')
+        create(:gatherable_fruit, parent_inventory: user.child_inventory, stack_amount: 2, name: 'Apple'),
+        create(:gatherable_fruit, parent_inventory: user.child_inventory, stack_amount: 1, name: 'Apple')
       ]
     end
 
@@ -90,11 +90,11 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
     end
 
     it 'creates the new item' do
-      expect(user.inventory.items.last).to be_a ItemType::CRAFTED[:salad].constantize
+      expect(user.child_inventory.items.last).to be_a ItemType::CRAFTED[:salad].constantize
     end
 
     it 'names the new item' do
-      expect(user.inventory.items.last.name).to eq('Apple')
+      expect(user.child_inventory.items.last.name).to eq('Apple')
     end
 
     it 'consumes the ingredients' do
@@ -109,8 +109,8 @@ RSpec.describe Item::Crafted::Tool::CraftingTool do
       user.tool.craft(
         Item::Crafted::Ingot,
         [
-          create(:gatherable_fruit, parent_inventory: user.inventory),
-          create(:gatherable_ore, parent_inventory: user.inventory)
+          create(:gatherable_fruit, parent_inventory: user.child_inventory),
+          create(:gatherable_ore, parent_inventory: user.child_inventory)
         ]
       )
     end.to raise_error CraftyError

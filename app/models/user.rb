@@ -9,10 +9,10 @@ class User < ApplicationRecord
   validates :credits, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :location, optional: true
-  belongs_to :inventory, optional: true
+  belongs_to :child_inventory, class_name: 'Inventory', optional: true
 
   # equipment
-  belongs_to :bag, polymorphic: true, optional: true
+  belongs_to :pet, polymorphic: true, optional: true
   belongs_to :tool, polymorphic: true, optional: true
   belongs_to :vehicle, polymorphic: true, optional: true
 
@@ -50,40 +50,40 @@ class User < ApplicationRecord
   end
 
   def carried_items
-    inventory.items + (vehicle&.child_inventory&.items || [])
+    child_inventory.items + (vehicle&.child_inventory&.items || [])
   end
 
   def equip_item(item)
-    raise CraftyError, 'You can only equip items in your inventory' unless inventory.include?(item)
+    raise CraftyError, 'You can only equip items in your inventory' unless child_inventory.include?(item)
 
-    equip_bag(item) if item.type.include? ItemType::BAG
+    equip_pet(item) if item.type.include? ItemType::PET
     equip_tool(item) if item.type.include? ItemType::TOOL
     equip_vehicle(item) if item.type.include? ItemType::VEHICLE
   end
 
   def remove_item(item)
-    inventory.remove_item(item) if inventory.include? item
+    child_inventory.remove_item(item) if child_inventory.include? item
     vehicle.child_inventory.remove_item(item) if vehicle&.child_inventory&.include? item
   end
 
   def use_item(item)
-    raise CraftyError, 'You can only use items in your inventory' unless inventory.include?(item)
+    raise CraftyError, 'You can only use items in your inventory' unless child_inventory.include?(item)
 
     item.use
   end
 
-  def unequip_bag
-    bag.update(parent_inventory: inventory)
-    update(bag: nil)
+  def unequip_pet
+    pet.update(parent_inventory: child_inventory)
+    update(pet: nil)
   end
 
   def unequip_vehicle
-    vehicle.update(parent_inventory: inventory)
+    vehicle.update(parent_inventory: child_inventory)
     update(vehicle: nil)
   end
 
   def unequip_tool
-    tool.update(parent_inventory: inventory)
+    tool.update(parent_inventory: child_inventory)
     update(tool: nil)
   end
 
@@ -93,7 +93,7 @@ class User < ApplicationRecord
     if vehicle&.inventory_available?
       vehicle.child_inventory
     else
-      inventory
+      child_inventory
     end
   end
 
@@ -101,20 +101,20 @@ class User < ApplicationRecord
     Inventory.create(user: self, size: DEFAULT_INVENTORY_SIZE)
   end
 
-  def equip_bag(bag)
-    self.bag&.update(parent_inventory: inventory)
-    update(bag: bag)
-    bag.update(parent_inventory: nil)
+  def equip_pet(pet)
+    self.pet&.update(parent_inventory: child_inventory)
+    update(pet: pet)
+    pet.update(parent_inventory: nil)
   end
 
   def equip_tool(tool)
-    self.tool&.update(parent_inventory: inventory)
+    self.tool&.update(parent_inventory: child_inventory)
     update(tool: tool)
     tool.update(parent_inventory: nil)
   end
 
   def equip_vehicle(vehicle)
-    self.vehicle&.update(parent_inventory: inventory)
+    self.vehicle&.update(parent_inventory: child_inventory)
     update(vehicle: vehicle)
     vehicle.update(parent_inventory: nil)
   end

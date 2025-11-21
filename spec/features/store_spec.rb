@@ -48,7 +48,7 @@ RSpec.describe 'Store' do
       visit game_path
       click_link building.name
       within("#building-#{building.id} #inventory") { find_by_id("pickup-#{item.id}").click }
-      expect(player.inventory.items.include?(item)).to be true
+      expect(player.child_inventory.items.include?(item)).to be true
     end
 
     it 'doesnt pick up an item from private' do
@@ -61,7 +61,7 @@ RSpec.describe 'Store' do
   describe 'sales listings' do
     describe 'lists an item in inventory for sale' do
       before do
-        item = player.inventory.items.last
+        item = player.child_inventory.items.last
 
         list_a_sale(item)
       end
@@ -75,7 +75,7 @@ RSpec.describe 'Store' do
 
     describe 'lists an item in vehicle inventory for sale' do
       it 'lists the sale' do
-        player.equip_item(create(:vehicle_hover_bike, parent_inventory: player.inventory))
+        player.equip_item(create(:vehicle_hover_bike, parent_inventory: player.child_inventory))
         item = create(:gatherable_ore, parent_inventory: player.vehicle.child_inventory)
 
         list_a_sale(item)
@@ -118,7 +118,7 @@ RSpec.describe 'Store' do
     end
   end
 
-  pending 'version_0.5 counter a trade in the hall'
+  pending 'version_0.5 counter offers in a trade in the hall'
 
   it 'accepts a trade in the hall' do
     listing = create(:listing, building: building, price: 1)

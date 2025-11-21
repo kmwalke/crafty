@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :logged_in
-  before_action :set_item, except: [:unequip_bag, :unequip_tool, :unequip_vehicle]
+  before_action :set_item, except: [:unequip_pet, :unequip_tool, :unequip_vehicle]
 
   def drop_item
     game_action(path: game_path(active_control: 'inventory')) do
@@ -22,9 +22,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  def unequip_bag
+  def unequip_pet
     game_action(path: game_path(active_control: 'equipment')) do
-      player.unequip_bag
+      player.unequip_pet
     end
   end
 

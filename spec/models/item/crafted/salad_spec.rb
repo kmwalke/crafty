@@ -2,16 +2,16 @@ require 'rails_helper'
 
 RSpec.describe Item::Crafted::Salad do
   let(:user) { create(:user) }
-  let(:salad) { create(:crafted_salad, parent_inventory: user.inventory) }
+  let(:salad) { create(:crafted_salad, parent_inventory: user.child_inventory) }
 
   describe 'crafts' do
     before do
-      crafting_tool = create(:crafting_tool, parent_inventory: user.inventory)
+      crafting_tool = create(:crafting_tool, parent_inventory: user.child_inventory)
       user.equip_item(crafting_tool)
       @new_item     = crafting_tool.craft(
         described_class,
         [
-          create(:gatherable_fruit, stack_amount: 3, parent_inventory: user.inventory)
+          create(:gatherable_fruit, stack_amount: 3, parent_inventory: user.child_inventory)
         ]
       )
     end

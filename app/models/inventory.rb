@@ -1,5 +1,5 @@
 class Inventory < ApplicationRecord
-  has_one :user
+  has_one :user, inverse_of: :child_inventory
   has_one :location
   has_many :items, inverse_of: :parent_inventory
 

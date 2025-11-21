@@ -76,9 +76,9 @@ class ItemUtil
         created_by: User.first
       },
       {
-        type: 'Item::Crafted::Bag',
-        description: 'A small bag.',
-        name: 'Leather',
+        type: 'Item::Crafted::Pet',
+        description: 'A loyal doggy.',
+        name: 'Fido',
         level: Level::COMMON,
         color: '#800000',
         created_by: User.first

@@ -9,16 +9,16 @@ RSpec.describe 'Inventory' do
       build(
         :generic_item,
         parent_inventory: nil,
-        type: player.inventory.items.last.type,
-        name: player.inventory.items.last.name,
-        level: player.inventory.items.last.level
+        type: player.child_inventory.items.last.type,
+        name: player.child_inventory.items.last.name,
+        level: player.child_inventory.items.last.level
       )
     )
     visit game_path
   end
 
   it 'shows the inventory items' do
-    player.inventory.items.each do |item|
+    player.child_inventory.items.each do |item|
       expect(page).to have_css('div.inventory li span', text: item.name)
     end
   end
@@ -28,11 +28,11 @@ RSpec.describe 'Inventory' do
   end
 
   it 'shows remaining inventory space' do
-    expect(page).to have_css('div.inventory span.remaining-space', text: player.inventory.remaining_space)
+    expect(page).to have_css('div.inventory span.remaining-space', text: player.child_inventory.remaining_space)
   end
 
   describe 'details on click' do
-    let(:item) { player.inventory.items.last }
+    let(:item) { player.child_inventory.items.last }
 
     before do
       click_link item.full_name
@@ -65,7 +65,7 @@ RSpec.describe 'Inventory' do
     end
 
     describe 'edible items' do
-      let!(:salad) { create(:crafted_salad, parent_inventory: player.inventory) }
+      let!(:salad) { create(:crafted_salad, parent_inventory: player.child_inventory) }
 
       before do
         player.update(energy: 0)

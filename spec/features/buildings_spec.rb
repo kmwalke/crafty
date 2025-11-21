@@ -27,7 +27,7 @@ RSpec.describe 'Buildings' do
   end
 
   describe 'places a building' do
-    let!(:building) { create(:crafted_building, parent_inventory: player.inventory) }
+    let!(:building) { create(:crafted_building, parent_inventory: player.child_inventory) }
 
     before do
       visit game_path

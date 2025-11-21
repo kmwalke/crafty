@@ -4,17 +4,17 @@ RSpec.describe Item::Crafted::Vehicle::Mount do
   let(:user) { create(:user) }
 
   describe 'crafts' do
-    let(:companion) { create(:gatherable_companion, stack_amount: 1, parent_inventory: user.inventory) }
+    let(:companion) { create(:gatherable_companion, stack_amount: 1, parent_inventory: user.child_inventory) }
 
     before do
-      crafting_tool = create(:crafting_tool, parent_inventory: user.inventory)
+      crafting_tool = create(:crafting_tool, parent_inventory: user.child_inventory)
       user.equip_item(crafting_tool)
       @new_item     = crafting_tool.craft(
         described_class,
         [
           companion,
-          create(:crafted_harness, stack_amount: 1, parent_inventory: user.inventory),
-          create(:gatherable_fish, stack_amount: 10, parent_inventory: user.inventory)
+          create(:crafted_harness, stack_amount: 1, parent_inventory: user.child_inventory),
+          create(:gatherable_fish, stack_amount: 10, parent_inventory: user.child_inventory)
         ]
       )
     end
@@ -36,12 +36,14 @@ RSpec.describe Item::Crafted::Vehicle::Mount do
     end
 
     it 'only eats fish' do
-      expect { mount.feed(create(:gatherable_fruit, parent_inventory: user.inventory)) }.to raise_error CraftyError
+      expect do
+        mount.feed(create(:gatherable_fruit, parent_inventory: user.child_inventory))
+      end.to raise_error CraftyError
     end
 
     describe 'gives a bonus' do
       before do
-        mount.feed(create(:gatherable_fish, parent_inventory: user.inventory, level: Level::LEGENDARY))
+        mount.feed(create(:gatherable_fish, parent_inventory: user.child_inventory, level: Level::LEGENDARY))
       end
 
       it 'boosts' do

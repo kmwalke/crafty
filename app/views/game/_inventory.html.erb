@@ -7,19 +7,19 @@
   <label for="radio-inventory" class="radio">I</label>
   <div class="section-content">
     <h4 class="section-title">Inventory</h4>
-    <span class="remaining-space"><%= player.inventory.remaining_space %></span>
+    <span class="remaining-space"><%= player.child_inventory.remaining_space %></span>
     <ul class="player-inventory">
       <li class="credits">Credits: <%= player.credits %><%= credit_symbol %></li>
-      <%= render partial: 'item_list', locals: { inventory: player.inventory } %>
+      <%= render partial: 'item_list', locals: { inventory: player.child_inventory } %>
     </ul>
-    <% if player&.bag&.child_inventory %>
-      <div class="bag-inventory">
-        <span class="remaining-space"><%= player.bag.child_inventory.remaining_space %></span>
+    <% if player&.pet&.child_inventory %>
+      <div class="pet-inventory">
+        <span class="remaining-space"><%= player.pet.child_inventory.remaining_space %></span>
         <h4>
-          <span class="<%= level_name player.bag.level %>"><%= player.bag.full_name %> </span>
+          <span class="<%= level_name player.pet.level %>"><%= player.pet.full_name %> </span>
           Inventory</h4>
         <ul>
-          <%= render partial: 'item_list', locals: { inventory: player.bag.child_inventory } %>
+          <%= render partial: 'item_list', locals: { inventory: player.pet.child_inventory } %>
         </ul>
       </div>
     <% end %>

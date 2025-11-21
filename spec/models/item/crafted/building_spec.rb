@@ -5,14 +5,14 @@ RSpec.describe Item::Crafted::Building do
 
   describe 'crafts' do
     before do
-      crafting_tool = create(:crafting_tool, parent_inventory: user.inventory)
+      crafting_tool = create(:crafting_tool, parent_inventory: user.child_inventory)
       user.equip_item(crafting_tool)
       @new_item     = crafting_tool.craft(
         described_class,
         [
-          create(:crafted_plank, stack_amount: 10, parent_inventory: user.inventory),
-          create(:crafted_beam, stack_amount: 3, parent_inventory: user.inventory),
-          create(:crafted_screw, stack_amount: 400, parent_inventory: user.inventory)
+          create(:crafted_plank, stack_amount: 10, parent_inventory: user.child_inventory),
+          create(:crafted_beam, stack_amount: 3, parent_inventory: user.child_inventory),
+          create(:crafted_screw, stack_amount: 400, parent_inventory: user.child_inventory)
         ]
       )
     end
@@ -23,7 +23,7 @@ RSpec.describe Item::Crafted::Building do
   end
 
   describe 'places the building' do
-    let(:building) { create(:crafted_building, parent_inventory: user.inventory) }
+    let(:building) { create(:crafted_building, parent_inventory: user.child_inventory) }
 
     before do
       building.use

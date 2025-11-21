@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Mount' do
   let!(:player) { login }
-  let!(:fish) { create(:gatherable_fish, parent_inventory: player.inventory) }
-  let!(:mount) { create(:vehicle_mount, parent_inventory: player.inventory) }
+  let!(:fish) { create(:gatherable_fish, parent_inventory: player.child_inventory) }
+  let!(:mount) { create(:vehicle_mount, parent_inventory: player.child_inventory) }
 
   before do
     visit game_path

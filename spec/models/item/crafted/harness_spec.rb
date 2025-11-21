@@ -2,17 +2,17 @@ require 'rails_helper'
 
 RSpec.describe Item::Crafted::Harness do
   let(:user) { create(:user) }
-  let(:orb) { create(:crafted_orb, stack_amount: 1, parent_inventory: user.inventory) }
+  let(:orb) { create(:crafted_orb, stack_amount: 1, parent_inventory: user.child_inventory) }
 
   describe 'crafts' do
     before do
-      crafting_tool = create(:crafting_tool, parent_inventory: user.inventory)
+      crafting_tool = create(:crafting_tool, parent_inventory: user.child_inventory)
       user.equip_item(crafting_tool)
       @new_item     = crafting_tool.craft(
         described_class,
         [
-          create(:crafted_leather, stack_amount: 5, parent_inventory: user.inventory),
-          create(:gatherable_wood, stack_amount: 1, parent_inventory: user.inventory),
+          create(:crafted_leather, stack_amount: 5, parent_inventory: user.child_inventory),
+          create(:gatherable_wood, stack_amount: 1, parent_inventory: user.child_inventory),
           orb
         ]
       )

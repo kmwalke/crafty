@@ -56,7 +56,7 @@ RSpec.describe 'Game' do
     end
 
     it 'displays actions' do
-      player.equip_item(create(:vehicle_hover_bike, parent_inventory: player.inventory))
+      player.equip_item(create(:vehicle_hover_bike, parent_inventory: player.child_inventory))
 
       visit game_path
 
@@ -74,7 +74,7 @@ RSpec.describe 'Game' do
     end
 
     describe 'displays equipment' do
-      let!(:vehicle) { create(:vehicle_hover_bike, parent_inventory: player.inventory) }
+      let!(:vehicle) { create(:vehicle_hover_bike, parent_inventory: player.child_inventory) }
 
       it 'shows the vehicle' do
         player.equip_item(vehicle)

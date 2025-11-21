@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User do
   let(:user) { create(:user) }
-  let(:vehicle) { create(:vehicle_hover_bike, parent_inventory: user.inventory) }
-  let(:gathering_tool) { create(:gathering_tool, parent_inventory: user.inventory) }
+  let(:vehicle) { create(:vehicle_hover_bike, parent_inventory: user.child_inventory) }
+  let(:gathering_tool) { create(:gathering_tool, parent_inventory: user.child_inventory) }
 
   describe 'actions' do
     it 'has no actions without equipment' do
@@ -17,34 +17,34 @@ RSpec.describe User do
       expect(user.actions).to eq(%w[gather travel])
     end
 
-    describe 'bag' do
-      let(:bag) { create(:crafted_bag, parent_inventory: user.inventory) }
+    describe 'pet' do
+      let(:pet) { create(:crafted_pet, parent_inventory: user.child_inventory) }
 
       before do
-        user.equip_item bag
+        user.equip_item pet
       end
 
-      it 'removes equipped bag from inventory' do
-        expect(user.inventory.items.include?(bag)).to be false
+      it 'removes equipped pet from inventory' do
+        expect(user.child_inventory.items.include?(pet)).to be false
       end
 
-      it 'replaces a bag with another' do
-        bag2 = create(:crafted_bag, parent_inventory: user.inventory)
-        user.equip_item bag2
-        expect(user.inventory.items.include?(bag)).to be true
+      it 'replaces a pet with another' do
+        pet2 = create(:crafted_pet, parent_inventory: user.child_inventory)
+        user.equip_item pet2
+        expect(user.child_inventory.items.include?(pet)).to be true
       end
 
-      describe 'unequips bag' do
+      describe 'unequips pet' do
         before do
-          user.unequip_bag
+          user.unequip_pet
         end
 
-        it 'unequips the bag' do
+        it 'unequips the pet' do
           expect(user.actions).to eq([])
         end
 
-        it 'adds the bag back to inventory' do
-          expect(user.inventory.items.include?(bag)).to be true
+        it 'adds the pet back to inventory' do
+          expect(user.child_inventory.items.include?(pet)).to be true
         end
       end
     end
@@ -55,7 +55,7 @@ RSpec.describe User do
       end
 
       it 'removes equipped tool from inventory' do
-        expect(user.inventory.items.include?(gathering_tool)).to be false
+        expect(user.child_inventory.items.include?(gathering_tool)).to be false
       end
 
       it 'equips the tool' do
@@ -63,9 +63,9 @@ RSpec.describe User do
       end
 
       it 'replaces a tool with another' do
-        gathering_tool2 = create(:gathering_tool, parent_inventory: user.inventory)
+        gathering_tool2 = create(:gathering_tool, parent_inventory: user.child_inventory)
         user.equip_item gathering_tool2
-        expect(user.inventory.items.include?(gathering_tool)).to be true
+        expect(user.child_inventory.items.include?(gathering_tool)).to be true
       end
 
       describe 'unequips tool' do
@@ -78,7 +78,7 @@ RSpec.describe User do
         end
 
         it 'adds the tool back to inventory' do
-          expect(user.inventory.items.include?(gathering_tool)).to be true
+          expect(user.child_inventory.items.include?(gathering_tool)).to be true
         end
       end
     end
@@ -90,7 +90,7 @@ RSpec.describe User do
     end
 
     it 'removes equipped vehicle from inventory' do
-      expect(user.inventory.items.include?(vehicle)).to be false
+      expect(user.child_inventory.items.include?(vehicle)).to be false
     end
 
     it 'equips the vehicle' do
@@ -107,7 +107,7 @@ RSpec.describe User do
       end
 
       it 'adds the vehicle back to inventory' do
-        expect(user.inventory.items.include?(vehicle)).to be true
+        expect(user.child_inventory.items.include?(vehicle)).to be true
       end
     end
   end

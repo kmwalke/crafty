@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Crafting' do
   let!(:player) { login }
-  let!(:crafting_tool) { create(:crafting_tool, parent_inventory: player.inventory) }
+  let!(:crafting_tool) { create(:crafting_tool, parent_inventory: player.child_inventory) }
 
   before do
     player.equip_item(crafting_tool)
@@ -32,7 +32,7 @@ RSpec.describe 'Crafting' do
       it 'creates the item' do
         expect(page).to have_css(
           'div.inventory li span',
-          text: player.inventory.items.find_by(type: ItemType::CRAFTED[:salad]).name
+          text: player.child_inventory.items.find_by(type: ItemType::CRAFTED[:salad]).name
         )
       end
     end
@@ -62,7 +62,7 @@ RSpec.describe 'Crafting' do
       it 'creates the item' do
         expect(page).to have_css(
           'div.inventory li span',
-          text: player.inventory.items.find_by(type: ItemType::CRAFTED[:ingot]).name
+          text: player.child_inventory.items.find_by(type: ItemType::CRAFTED[:ingot]).name
         )
       end
     end

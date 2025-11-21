@@ -14,7 +14,7 @@ RSpec.describe Listing do
 
     it 'delivers item to buyer' do
       listing.purchase(buyer)
-      expect(buyer.inventory.items.include?(listing.item)).to be true
+      expect(buyer.child_inventory.items.include?(listing.item)).to be true
     end
 
     it 'pays the seller' do
@@ -61,7 +61,7 @@ RSpec.describe Listing do
       end
 
       it 'doesnt deliver item to buyer' do
-        expect(buyer.inventory.items.include?(listing.item)).to be false
+        expect(buyer.child_inventory.items.include?(listing.item)).to be false
       end
 
       it 'doesnt pay the seller' do

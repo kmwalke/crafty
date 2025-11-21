@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item::Crafted::Tool::GatheringTool do
   let(:user) { create(:user) }
-  let(:gathering_tool) { create(:gathering_tool, parent_inventory: user.inventory) }
+  let(:gathering_tool) { create(:gathering_tool, parent_inventory: user.child_inventory) }
   let(:resource) { create(:crystal) }
 
   before do
@@ -26,8 +26,8 @@ RSpec.describe Item::Crafted::Tool::GatheringTool do
   end
 
   it 'gathers' do
-    item_count = user.inventory.items.count
+    item_count = user.child_inventory.items.count
     gathering_tool.gather(resource)
-    expect(user.inventory.items.count == item_count + 1).to be true
+    expect(user.child_inventory.items.count == item_count + 1).to be true
   end
 end

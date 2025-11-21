@@ -6,7 +6,7 @@ RSpec.describe 'Traveling' do
   let!(:location3) { create(:location) }
 
   before do
-    player.equip_item(create(:vehicle_hover_bike, parent_inventory: player.inventory))
+    player.equip_item(create(:vehicle_hover_bike, parent_inventory: player.child_inventory))
     visit game_path
   end
 
