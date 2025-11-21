@@ -118,7 +118,7 @@ RSpec.describe 'Store' do
     end
   end
 
-  pending 'version_0.5 counter a trade in the hall'
+  pending 'version_0.5 counter offers in a trade in the hall'
 
   it 'accepts a trade in the hall' do
     listing = create(:listing, building: building, price: 1)
