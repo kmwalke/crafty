@@ -10,10 +10,6 @@ RSpec.describe 'Tech Debt' do
   pending 'streamline API levels: routes/controller/model'
   pending 'document api levels'
 
-  pending 'run PM script from release.sh'
-  # also run from docker startup script
-  # add pm.html.erb gitignore
-  #
   pending 'back button on browser should reload game_path'
   pending 'ItemType could be deleted if some automated listing exists'
   # something like Item.subclasses / Item::Crafted.subclasses / Item::Crafted.subclasses[:leather]

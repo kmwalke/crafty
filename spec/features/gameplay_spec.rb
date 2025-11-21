@@ -12,6 +12,7 @@ RSpec.describe 'Gameplay' do
   pending 'version_0.4 add many more recipes'
   pending 'version_0.4 user quests'
   # sales listings in reverse - I will pay 1000 credits for 5x Epic Lava Frog Mounts
+  # Also see quest ideas below
   pending 'version_0.4 world quests'
   # pending 'what is the narrative?  Devs create a big quest,
   #          like "deliver 1 million pounds of food to the war refugees".
@@ -56,9 +57,11 @@ RSpec.describe 'Gameplay' do
 
   pending 'What is Endgame? Perhaps maxing out all skills?'
   pending 'crafting in this game is the act of combining things'
-  # not only to make another thing, but maybe to create an action.
-  #   Equip 2 tools to get access to an action neither provides on their own
+  # not only to make another thing, but to create teams, travel, everything
   #  "combining things to come up with novel approaches to situations"
+  #  Combine a travel plan with snacks, pit stops, etc.. to travel well
+  #  Combine a team of players to run a dungeon
+  #  Combine music chords to play music
 
   pending 'use "favor" instead of credits'
   # works pretty much the same, but guild-specific
@@ -77,7 +80,7 @@ RSpec.describe 'Gameplay' do
   #   a staff might have gathering, fighting, and junking.  Maybe it is random?
   #   Skilled staff maker can choose the actions
 
-  pending 'quest ideas'
+  pending 'version_0.4 dungeons'
   # multiplayer quest / dungeon run
   #   quest poster needs to fly ship to a dangerous place to get an item
   #   So must hire a cook, negotiator, and a fighter for the crew
