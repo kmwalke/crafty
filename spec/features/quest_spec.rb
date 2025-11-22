@@ -30,6 +30,17 @@ RSpec.describe 'Quests' do
         expect(page).to have_content(quest.name)
       end
     end
+
+    it 'accepts a quest' do
+      within '.quest-board-popup' do
+        click_link quest.name
+        click_link 'Accept'
+      end
+
+      within '.player-card' do
+        expect(page).to have_content(UserStatus::STATUSES[:crafting])
+      end
+    end
   end
 
   describe 'dungeon quests' do

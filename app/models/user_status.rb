@@ -4,6 +4,7 @@ class UserStatus < ApplicationRecord
   STATUSES = {
     crafting: 'Crafting',
     gathering: 'Gathering',
+    questing: 'Questing',
     resting: 'Resting',
     traveling: 'Traveling'
   }.freeze
