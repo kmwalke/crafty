@@ -8,6 +8,7 @@ RSpec.describe 'Gameplay' do
   pending 'version__ui_update desktop interface'
   #         Loom/Fate of Atlantis/Full Throttle style interface
 
+  pending 'version_0.4 chat with other players'
   pending 'version_0.4 add many more locations'
   pending 'version_0.4 add many more recipes'
   pending 'version_0.4 user quests'
