@@ -87,6 +87,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_28_181459) do
   create_table "quests", force: :cascade do |t|
     t.string "name", null: false
     t.integer "dungeon_id"
+    t.integer "location_id", null: false
     t.integer "level", null: false
     t.integer "reward_credits", null: false
     t.datetime "created_at", null: false

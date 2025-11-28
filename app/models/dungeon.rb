@@ -1,6 +1,7 @@
 class Dungeon < ApplicationRecord
   belongs_to :location
 
+  has_many :quests
   has_many :rooms, after_add: :calculate_level
 
   private

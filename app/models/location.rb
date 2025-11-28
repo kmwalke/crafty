@@ -6,6 +6,7 @@ class Location < ApplicationRecord
   validates :pos_y, presence: true
   validates :description, presence: true
 
+  has_many :quests
   has_many :users
   has_many :resources
 

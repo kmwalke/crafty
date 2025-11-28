@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :quest do
-    name { 'MyString' }
-    dungeon_id { 1 }
-    level { 1 }
+    sequence(:name) { |n| "Quest_#{n}" }
+    level { Level::NUMBERS.sample }
+    location
+    dungeon
     reward_credits { 1 }
   end
 end

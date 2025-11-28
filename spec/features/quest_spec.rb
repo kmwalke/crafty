@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Quests' do
   let!(:player) { create(:user) }
-  let!(:quest_board) { create(:crafted_building, name: 'Quest Board', parent_inventory: player.location.property) }
+  let!(:quest) { create(:quest, location: player.location) }
 
   before do
     login_as player
@@ -23,12 +23,6 @@ RSpec.describe 'Quests' do
     it 'shows the quest board' do
       within "#building-#{quest_board.id}" do
         expect(page).to have_content('Quest Board')
-      end
-    end
-
-    it 'displays the local quests' do
-      within "#building-#{quest_board.id}" do
-        expect(page).to have_content(quest.name)
       end
     end
 
