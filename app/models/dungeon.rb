@@ -1,9 +1,11 @@
 class Dungeon < ApplicationRecord
-  before_save :update_level
+  belongs_to :location
+
+  has_many :rooms, after_add: :calculate_level
 
   private
 
-  def update_level
-    raise CraftyError, 'average all of the room levels together and save'
+  def calculate_level(_room)
+    self.level = rooms.pluck(:level).reduce(:+) / rooms.count
   end
 end

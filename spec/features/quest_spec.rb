@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 RSpec.describe 'Quests' do
   let!(:player) { create(:user) }
   let!(:quest_board) { create(:crafted_building, name: 'Quest Board', parent_inventory: player.location.property) }
@@ -33,14 +32,18 @@ RSpec.describe 'Quests' do
       end
     end
 
-    it 'accepts a quest' do
-      within "#building-#{quest_board.id}" do
-        click_link quest.name
-        click_link 'Accept'
+    describe 'accepts a quest' do
+      before do
+        within "#building-#{quest_board.id}" do
+          click_link quest.name
+          click_link 'Accept'
+        end
       end
 
-      within '.player-card' do
-        expect(page).to have_content(UserStatus::STATUSES[:crafting])
+      it 'sets player status' do
+        within '.player-card' do
+          expect(page).to have_content(UserStatus::STATUSES[:question])
+        end
       end
     end
   end

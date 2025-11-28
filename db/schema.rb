@@ -23,8 +23,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_28_181459) do
   end
 
   create_table "dungeons", force: :cascade do |t|
-    t.string "name"
-    t.integer "location_id"
+    t.string "name", null: false
+    t.integer "location_id", null: false
     t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -85,10 +85,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_28_181459) do
   end
 
   create_table "quests", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "dungeon_id"
-    t.integer "level"
-    t.integer "reward_credits"
+    t.integer "level", null: false
+    t.integer "reward_credits", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -107,9 +107,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_28_181459) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.string "name"
-    t.integer "dungeon_id"
-    t.integer "level"
+    t.string "name", null: false
+    t.integer "dungeon_id", null: false
+    t.integer "level", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
