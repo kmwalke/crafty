@@ -58,6 +58,14 @@ class ItemUtil
         level: Level::RARE,
         created_by: User.find_by(name: 'Kerry'),
         color: '#663300'
+      },
+      {
+        name: 'Quest Board',
+        is_private: true,
+        description: 'Local quest listings',
+        level: Level::COMMON,
+        created_by: User.find_by(name: 'Kent'),
+        color: '#ff9900'
       }
     ]
   end

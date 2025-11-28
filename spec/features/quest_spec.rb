@@ -1,7 +1,9 @@
 require 'rails_helper'
 
+
 RSpec.describe 'Quests' do
   let!(:player) { create(:user) }
+  let!(:quest_board) { create(:crafted_building, name: 'Quest Board', parent_inventory: player.location.property) }
 
   before do
     login_as player
@@ -20,19 +22,19 @@ RSpec.describe 'Quests' do
     # Each type of quest should challenge a specific skill/job/set of skills
 
     it 'shows the quest board' do
-      within '.quest-board-popup' do
+      within "#building-#{quest_board.id}" do
         expect(page).to have_content('Quest Board')
       end
     end
 
     it 'displays the local quests' do
-      within '.quest-board-popup' do
+      within "#building-#{quest_board.id}" do
         expect(page).to have_content(quest.name)
       end
     end
 
     it 'accepts a quest' do
-      within '.quest-board-popup' do
+      within "#building-#{quest_board.id}" do
         click_link quest.name
         click_link 'Accept'
       end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_21_202126) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_28_181459) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -18,6 +18,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_21_202126) do
     t.string "name"
     t.integer "location_id"
     t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dungeons", force: :cascade do |t|
+    t.string "name"
+    t.integer "location_id"
+    t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -76,6 +84,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_21_202126) do
     t.index ["pos_x", "pos_y"], name: "index_locations_on_pos_x_and_pos_y", unique: true
   end
 
+  create_table "quests", force: :cascade do |t|
+    t.string "name"
+    t.integer "dungeon_id"
+    t.integer "level"
+    t.integer "reward_credits"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "resource_types", primary_key: "name", id: :string, force: :cascade do |t|
   end
 
@@ -87,6 +104,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_21_202126) do
     t.datetime "updated_at", null: false
     t.integer "level", null: false
     t.string "color"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.integer "dungeon_id"
+    t.integer "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_statuses", primary_key: "name", id: :string, force: :cascade do |t|
