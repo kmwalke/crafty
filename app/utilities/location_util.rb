@@ -1,7 +1,7 @@
 class LocationUtil
   attr_accessor :location
 
-  def self.provision_locations
+  def self.provision
     location_data.each do |location|
       LocationUtil.new.provision_location(location)
     end

@@ -1,7 +1,7 @@
 class UserUtil
   attr_accessor :user
 
-  def self.provision_users
+  def self.provision
     user_data.each do |user_params|
       user_params[:credits]       = 1000
       user_params[:location_id] ||= Location.first.id

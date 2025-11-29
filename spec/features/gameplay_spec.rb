@@ -9,6 +9,9 @@ RSpec.describe 'Gameplay' do
   #         Loom/Fate of Atlantis/Full Throttle style interface
 
   pending 'version_0.4 chat with other players'
+  # location based
+  # Group chat exists
+  # Walky talkie item
   pending 'version_0.4 add many more locations'
   pending 'version_0.4 add many more recipes'
   pending 'version_0.4 user quests'

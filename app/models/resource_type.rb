@@ -13,7 +13,7 @@ class ResourceType < ApplicationRecord
 
   TYPE_NAMES = TYPES.values.freeze
 
-  def self.populate_types
+  def self.populate
     ResourceType::TYPE_NAMES.each do |type|
       ResourceType.find_or_create_by(name: type)
     end

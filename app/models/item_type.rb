@@ -52,7 +52,7 @@ class ItemType < ApplicationRecord
     VEHICLES.values
   ].uniq.flatten
 
-  def self.populate_types
+  def self.populate
     ItemType::TYPE_NAMES.each do |type|
       ItemType.find_or_create_by(name: type)
     end

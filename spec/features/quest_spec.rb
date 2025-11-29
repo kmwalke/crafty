@@ -21,14 +21,14 @@ RSpec.describe 'Quests' do
     # Each type of quest should challenge a specific skill/job/set of skills
 
     it 'shows the quest board' do
-      within "#building-#{quest_board.id}" do
+      within '.quest-board-popup' do
         expect(page).to have_content('Quest Board')
       end
     end
 
     describe 'accepts a quest' do
       before do
-        within "#building-#{quest_board.id}" do
+        within '.quest-board-popup' do
           click_link quest.name
           click_link 'Accept'
         end

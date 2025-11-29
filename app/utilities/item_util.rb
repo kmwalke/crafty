@@ -1,5 +1,5 @@
 class ItemUtil
-  def self.provision_items
+  def self.provision
     building_data.each do |building_params|
       building = Item::Crafted::Building.find_or_create_by(building_params)
       Location.first.add_building(building) if building.parent_inventory.nil?
