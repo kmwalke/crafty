@@ -8,6 +8,10 @@ RSpec.describe 'Gameplay' do
   pending 'version__ui_update desktop interface'
   #         Loom/Fate of Atlantis/Full Throttle style interface
 
+  pending 'version_0.4 chat with other players'
+  # location based
+  # Group chat exists
+  # Walky talkie item
   pending 'version_0.4 add many more locations'
   pending 'version_0.4 add many more recipes'
   pending 'version_0.4 user quests'
@@ -36,6 +40,7 @@ RSpec.describe 'Gameplay' do
 
   pending 'version_0.8 typed pets, can only hold certain items, but much larger'
   pending 'version_0.8 new game + after your character dies'
+  # pending 'after dying, start new game+ with your child character'
   # pending 'if you max out your skill, perhaps the progeny gets to specialize in that skill plus another'\
   #           ' or perhaps they just get a permanent boost to that skill.  Static, but in addition to their skill' \
   #           'In this case, skills would be assigned at birth'
@@ -44,7 +49,6 @@ RSpec.describe 'Gameplay' do
   # You should be able to see your family tree
 
   pending 'version_0.8 dangers in the world. Pirates while traveling'
-  # pending 'after winning, start new game+ with your child character'
 
   pending 'version_0.9 performance refactor'
   #         Entire page needs to use turbo frames and streams

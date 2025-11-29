@@ -5,7 +5,7 @@ class CreateResourceTypes < ActiveRecord::Migration[8.0]
     end
 
     Rails.logger.debug '-- populate ResourceTypes'
-    ResourceType.populate_types
+    ResourceType.populate
 
     add_foreign_key :resources, :resource_types, column: :type, primary_key: :name
   end

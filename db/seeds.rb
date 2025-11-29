@@ -12,25 +12,30 @@ stdout_logger.warn 'SEEDING DATA...'
 stdout_logger.warn ''
 
 stdout_logger.warn 'CREATING CONSTANTS...'
-Level.populate_levels
-UserStatus.populate_statuses
-ResourceType.populate_types
-ItemType.populate_types
+Level.populate
+UserStatus.populate
+ResourceType.populate
+ItemType.populate
 stdout_logger.warn '...DONE'
 stdout_logger.warn ''
 
 stdout_logger.warn 'PROVISIONING LOCATIONS...'
-LocationUtil.provision_locations
+LocationUtil.provision
 stdout_logger.warn '...DONE'
 stdout_logger.warn ''
 
 stdout_logger.warn 'PROVISIONING USERS...'
-UserUtil.provision_users
+UserUtil.provision
 stdout_logger.warn '...DONE'
 stdout_logger.warn ''
 
 stdout_logger.warn 'PROVISIONING ITEMS...'
-ItemUtil.provision_items
+ItemUtil.provision
+stdout_logger.warn '...DONE'
+stdout_logger.warn ''
+
+stdout_logger.warn 'PROVISIONING DUNGEONS...'
+DungeonUtil.provision
 stdout_logger.warn '...DONE'
 stdout_logger.warn ''
 
