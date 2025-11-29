@@ -30,7 +30,7 @@ RUN echo " \
   " >> ~/.bashrc
 
 
-RUN gem install bundler
+RUN gem install bundler --version=2.7.2
 
 RUN git config --global --add safe.directory /app
 

@@ -492,7 +492,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-  ruby 3.4.7p58
+   ruby 3.4.7p58
 
 BUNDLED WITH
-  4.0.0.beta2
+   2.7.2
