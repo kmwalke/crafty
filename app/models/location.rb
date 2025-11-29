@@ -15,6 +15,10 @@ class Location < ApplicationRecord
 
   ALLOWABLE_NUM_OF_BUILDINGS = 50
 
+  def dungeons
+    super.where.not(level: nil)
+  end
+
   def distance_from(location)
     Math.sqrt(
       (
