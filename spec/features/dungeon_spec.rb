@@ -24,13 +24,13 @@ RSpec.describe 'Quests' do
       end
 
       it 'level' do
-        within '.dungeon-popup' do
-          expect(page).to have_content("Level: #{dungeon.level}")
+        within "#dungeon-#{dungeon.id}-popup" do
+          expect(page).to have_content("#{Level.level_name dungeon.level}")
         end
       end
 
       it 'rooms' do
-        within '.dungeon-popup' do
+        within "#dungeon-#{dungeon.id}-popup" do
           expect(page).to have_content("#{dungeon.rooms.count} Rooms")
         end
       end
