@@ -55,6 +55,8 @@ RSpec.describe 'Gameplay' do
   #         Entire backend needs cleanup.  Memory usage and DB calls
   # notice popups are lost when created in turbo frames
   #         https://hivekind.com/blog/exploring-flash-messages-with-turbo-streams-in-rails-7
+  # image pre-loading
+  # https://stackoverflow.com/a/77582262
   pending 'version_0.9 balance locations'
   pending 'version_0.9 balance crafting'
   pending 'version_1.0 ios/android app and desktop wrapper'
