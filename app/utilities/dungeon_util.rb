@@ -87,7 +87,15 @@ class DungeonUtil
 
       { name: 'Approach', dungeon_id: 5, level: Level::RARE },
       { name: 'Converse', dungeon_id: 5, level: Level::RARE },
-      { name: 'Fight / Persuade', dungeon_id: 5, level: Level::RARE }
+      { name: 'Fight / Persuade', dungeon_id: 5, level: Level::RARE },
+
+      { name: 'Fight', dungeon_id: 6, level: Level::RARE },
+
+      { name: 'Fight', dungeon_id: 7, level: Level::RARE },
+
+      { name: 'Fight', dungeon_id: 8, level: Level::EPIC },
+
+      { name: 'Fight', dungeon_id: 9, level: Level::LEGENDARY }
 
     ]
   end
