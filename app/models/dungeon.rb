@@ -8,6 +8,6 @@ class Dungeon < ApplicationRecord
 
   def calculate_level(_room)
     self.level = rooms.pluck(:level).reduce(:+) / rooms.count
-    self.save
+    save
   end
 end

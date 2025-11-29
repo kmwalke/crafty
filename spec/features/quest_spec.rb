@@ -4,15 +4,6 @@ RSpec.describe 'Quests' do
   let!(:player) { create(:user) }
   let!(:quest) { create(:quest, location: player.location) }
 
-  before do
-    # login_as player
-    # visit game_path
-    #
-    # within 'div.buildings' do
-    #   click_link 'Quest Board'
-    # end
-  end
-
   describe 'quest board' do
     # quest boards are in towns
     # They list all the quests in an area (user and system generated)
@@ -49,7 +40,6 @@ RSpec.describe 'Quests' do
     describe 'shows a dungeon in a location' do
       # A dungeon contains 1 or many rooms
       # A room has 1 or many skill checks
-
     end
 
     describe 'delves a solo dungeon' do
@@ -62,7 +52,6 @@ RSpec.describe 'Quests' do
       #   Look at / use up potions in inventory
       # Later, it will use skill levels, too
       #
-
     end
 
     describe 'delves a group dungeon' do
@@ -80,11 +69,9 @@ RSpec.describe 'Quests' do
     # May be dangers/challenges along the way
 
     describe 'solo' do
-
     end
 
     describe 'group' do
-
     end
   end
 
@@ -95,11 +82,9 @@ RSpec.describe 'Quests' do
     # Indiana Jones is the Experience comp
 
     describe 'solo' do
-
     end
 
     describe 'group' do
-
     end
   end
 
@@ -109,11 +94,9 @@ RSpec.describe 'Quests' do
     # Study under a master biologist to craft the finest bio-engineered pet
 
     describe 'solo' do
-
     end
 
     describe 'group' do
-
     end
   end
 end

@@ -12,7 +12,7 @@ class DungeonUtil
     @dungeon = Dungeon.find_or_create_by(name: dungeon_data[:name])
     @dungeon.update dungeon_data
     @dungeon.save
-    create_rooms(DungeonUtil.room_data.select { |d| d[:dungeon_id] == @dungeon.id})
+    create_rooms(DungeonUtil.room_data.select { |d| d[:dungeon_id] == @dungeon.id })
   end
 
   def create_rooms(room_data)
@@ -67,7 +67,7 @@ class DungeonUtil
       {
         name: 'Scary Machine',
         location_id: 5
-      },
+      }
     ]
   end
 
@@ -87,7 +87,7 @@ class DungeonUtil
 
       { name: 'Approach', dungeon_id: 5, level: Level::RARE },
       { name: 'Converse', dungeon_id: 5, level: Level::RARE },
-      { name: 'Fight / Persuade', dungeon_id: 5, level: Level::RARE },
+      { name: 'Fight / Persuade', dungeon_id: 5, level: Level::RARE }
 
     ]
   end

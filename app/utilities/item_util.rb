@@ -58,7 +58,7 @@ class ItemUtil
         level: Level::RARE,
         created_by: User.find_by(name: 'Kerry'),
         color: '#663300'
-      },
+      }
     ]
   end
 

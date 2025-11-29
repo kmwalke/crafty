@@ -10,7 +10,6 @@ RSpec.describe 'Quests' do
   end
 
   describe 'shows a dungeon' do
-
     it 'name' do
       within 'div.actions' do
         expect(page).to have_content(dungeon.name)
@@ -46,7 +45,6 @@ RSpec.describe 'Quests' do
     #   Look at the level of equipped items to pass skill check
     #   Look at / use up potions in inventory
     # v3: use skill levels, too
-
   end
 
   describe 'delves a group dungeon' do
