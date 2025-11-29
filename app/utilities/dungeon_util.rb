@@ -61,12 +61,12 @@ class DungeonUtil
       # 8
       {
         name: 'Old Research Station',
-        location_id: 5
+        location_id: 6
       },
       # 9
       {
         name: 'Scary Machine',
-        location_id: 5
+        location_id: 6
       }
     ]
   end
