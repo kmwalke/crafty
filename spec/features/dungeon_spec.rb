@@ -40,11 +40,30 @@ RSpec.describe 'Quests' do
   describe 'delves a solo dungeon' do
     # When you click go on a dungeon, the entire thing is simulated out, 1 room at a time, 1 skill check at a time
 
-    # v1: just subtract 20hp per room
+    # v1: just subtract x hp per room
     # v2: skill checks are completely inventory based
     #   Look at the level of equipped items to pass skill check
     #   Look at / use up potions in inventory
     # v3: use skill levels, too
+
+    before do
+      within 'div.actions' do
+        click_link dungeon.name
+        click_link 'Start'
+      end
+    end
+
+    it 'subtracts health' do
+      expect(player.vitality).to be < User::MAX_VITALITY
+    end
+
+    it 'shows the results' do
+      within "#dungeon-#{dungeon.id}-popup" do
+        dungeon.rooms.each do |room|
+          expect(page).to have_content("#{room.name} results:")
+        end
+      end
+    end
   end
 
   describe 'delves a group dungeon' do
