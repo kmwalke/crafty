@@ -5,7 +5,7 @@ FactoryBot.define do
 
     trait :with_rooms do
       after(:create) do |dungeon|
-        create_list(:room, 3, dungeon:)
+        3.times { dungeon.rooms << create(:room) }
       end
     end
   end

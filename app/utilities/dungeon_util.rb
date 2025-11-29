@@ -5,18 +5,19 @@ class DungeonUtil
     dungeon_data.each do |dungeon|
       DungeonUtil.new.provision_dungeon(dungeon)
     end
+    User.first.update(location_id: 2)
   end
 
   def provision_dungeon(dungeon_data)
     @dungeon = Dungeon.find_or_create_by(name: dungeon_data[:name])
     @dungeon.update dungeon_data
     @dungeon.save
-    create_rooms
+    create_rooms(DungeonUtil.room_data.select { |d| d[:dungeon_id] == @dungeon.id})
   end
 
-  def create_rooms
-    DungeonUtil.room_data.each do |room_params|
-      Room.find_or_create_by(room_params)
+  def create_rooms(room_data)
+    room_data.each do |room_params|
+      @dungeon.rooms << Room.build(room_params)
     end
   end
 

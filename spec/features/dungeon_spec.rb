@@ -12,14 +12,14 @@ RSpec.describe 'Quests' do
   describe 'shows a dungeon' do
 
     it 'name' do
-      within 'div.buildings' do
+      within 'div.actions' do
         expect(page).to have_content(dungeon.name)
       end
     end
 
     describe 'details' do
       before do
-        within 'div.buildings' do
+        within 'div.actions' do
           click_link dungeon.name
         end
       end

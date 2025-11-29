@@ -13,6 +13,11 @@
         <li data-turbo="false"><%= link_to action.capitalize, "##{ action }-popup" %></li>
         <%= render partial: 'action_popup', locals: { action: action } %>
       <% end %>
+      <% @current_location.dungeons.each do |dungeon| %>
+        <li data-turbo="false" class="<%= level_name dungeon.level %>">
+          <%= link_to dungeon.name, "#dungeon-#{dungeon.id}-popup" %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>
