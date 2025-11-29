@@ -5,6 +5,6 @@ class CreateItemTypes < ActiveRecord::Migration[8.0]
     end
 
     Rails.logger.debug '-- populate ItemTypes'
-    ItemType.populate_types
+    ItemType.populate
   end
 end

@@ -13,7 +13,7 @@ RSpec.describe Level do
 
     it 'populates the levels' do
       described_class.destroy_all
-      described_class.populate_levels
+      described_class.populate
       Level::NAMES.each do |name|
         expect(described_class.find_by(name:)).to be_a(described_class)
       end

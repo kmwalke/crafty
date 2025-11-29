@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Quests' do
   let!(:player) { create(:user) }
-  let!(:dungeon) { create(:quest, :with_rooms, location: player.location) }
+  let!(:dungeon) { create(:dungeon, :with_rooms, location: player.location) }
 
   before do
     login_as player

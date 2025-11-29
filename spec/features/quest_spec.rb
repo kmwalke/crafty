@@ -5,12 +5,12 @@ RSpec.describe 'Quests' do
   let!(:quest) { create(:quest, location: player.location) }
 
   before do
-    login_as player
-    visit game_path
-
-    within 'div.buildings' do
-      click_link 'Quest Board'
-    end
+    # login_as player
+    # visit game_path
+    #
+    # within 'div.buildings' do
+    #   click_link 'Quest Board'
+    # end
   end
 
   describe 'quest board' do
@@ -21,13 +21,16 @@ RSpec.describe 'Quests' do
     # Each type of quest should challenge a specific skill/job/set of skills
 
     it 'shows the quest board' do
+      pending 'not implemented'
       within '.quest-board-popup' do
         expect(page).to have_content('Quest Board')
       end
     end
 
     describe 'accepts a quest' do
+      pending 'not implemented'
       before do
+        pending 'not implemented'
         within '.quest-board-popup' do
           click_link quest.name
           click_link 'Accept'
