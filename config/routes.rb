@@ -35,6 +35,9 @@ Rails.application.routes.draw do
   # dropping an item is item#destroy
   # dont have to do it this way.  Custom routes is fine.  It just might be easier to use standard rails routes
   # But maybe not.  Maybe I like custom routes better?
+  # Standard routing does seem to name thing backwards.  See 'inventory_building_path'.
+  #   'building_inventory_path' would be better
+  #   That would have to be custom
 
   resources :dungeons, only: [:index, :show] do
     member do
