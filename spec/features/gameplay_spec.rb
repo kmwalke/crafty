@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Gameplay' do
+  pending 'Address TODOs in routes.rb'
   pending 'Family tree for crafted items.'
   # see all the created_by details for the ingredients of a large item
   pending 'version__ui_update make game items clickable in the viewport'
