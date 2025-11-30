@@ -8,6 +8,10 @@ RSpec.describe 'Gameplay' do
   pending 'version__ui_update pixel graphics'
   pending 'version__ui_update desktop interface'
   #         Loom/Fate of Atlantis/Full Throttle style interface
+  #    all sizes should be based on percentage, not em or px.
+  #        Can you base text size on percent?
+  #        put firefox on f12 -> responsive mode and drag the window size around.  ouch
+  #        watch percentage based height.  thing tend to overlap
 
   pending 'version_0.4 chat with other players'
   # location based
