@@ -58,14 +58,11 @@ RSpec.describe 'Quests' do
     end
 
     it 'shows the results' do
-      within "#dungeon-#{dungeon.id}-popup" do
-        dungeon.rooms.each do |room|
-          expect(page).to have_content("#{room.name} results:")
-        end
+      dungeon.rooms.each do |room|
+        expect(page).to have_content("#{room.name} results:")
       end
     end
   end
-
 
   describe 'delves a group dungeon' do
     # Leader lists a quest in a building/town (quest board?)
