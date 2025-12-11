@@ -4,6 +4,12 @@ class Dungeon < ApplicationRecord
   has_many :quests
   has_many :rooms, after_add: :calculate_level
 
+  def run(player)
+    rooms.each do |room|
+      room.run(player)
+    end
+  end
+
   private
 
   def calculate_level(_room)

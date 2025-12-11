@@ -3,8 +3,14 @@ require 'rails_helper'
 RSpec.describe Dungeon do
   let(:dungeon) { create(:dungeon) }
 
-  it 'has rooms' do
+  before do
+    Level::NUMBERS.each do |level|
+      dungeon.rooms << create(:room, level:)
+    end
     create(:room, dungeon:, level: Level::LEGENDARY)
+  end
+
+  it 'has rooms' do
     expect(dungeon.rooms.first).to be_a Room
   end
 
@@ -13,11 +19,13 @@ RSpec.describe Dungeon do
   end
 
   it 'sets the level' do
-    Level::NUMBERS.each do |level|
-      dungeon.rooms << create(:room, level:)
-    end
-    create(:room, dungeon:, level: Level::LEGENDARY)
-
     expect(dungeon.level).to eq(Level::RARE)
+  end
+
+  it 'runs a dungeon' do
+    player = create(:user)
+    dungeon.run(player)
+
+    expect(player.vitality).to eq(User::MAX_VITALITY - (dungeon.rooms.count * 20))
   end
 end
