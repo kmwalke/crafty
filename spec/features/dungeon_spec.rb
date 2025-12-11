@@ -25,7 +25,7 @@ RSpec.describe 'Quests' do
 
       it 'level' do
         within "#dungeon-#{dungeon.id}-popup" do
-          expect(page).to have_content("#{Level.level_name dungeon.level}")
+          expect(page).to have_content(Level.level_name(dungeon.level).to_s)
         end
       end
 
@@ -65,6 +65,7 @@ RSpec.describe 'Quests' do
   end
 
   describe 'delves a group dungeon' do
+    pending 'not implemented'
     # Leader lists a quest in a building/town (quest board?)
     # assemble a group
     # Group members can chat with each other
