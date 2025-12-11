@@ -3,8 +3,9 @@ class DungeonsController < ApplicationController
   before_action :set_dungeon
 
   def run
-    # game_action(redirect: false) do
-    # end
+    game_action(redirect: false) do
+      @results = @dungeon.run(player)
+    end
   end
 
   def show; end

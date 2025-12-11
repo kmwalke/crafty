@@ -5,7 +5,7 @@ class Dungeon < ApplicationRecord
   has_many :rooms, after_add: :calculate_level
 
   def run(player)
-    rooms.each do |room|
+    rooms.map do |room|
       room.run(player)
     end
   end

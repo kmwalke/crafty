@@ -54,12 +54,12 @@ RSpec.describe 'Quests' do
     end
 
     it 'subtracts health' do
-      expect(player.vitality).to be < User::MAX_VITALITY
+      expect(player.reload.vitality).to be < User::MAX_VITALITY
     end
 
     it 'shows the results' do
       dungeon.rooms.each do |room|
-        expect(page).to have_content("#{room.name} results:")
+        expect(page).to have_content("#{room.name} Result:")
       end
     end
   end
