@@ -2,12 +2,15 @@
   <h1>Dungeon Run Results</h1>
 
   <ul>
-  <% @results.each do |room_result| %>
+  <% @results[:rooms].each do |room_name, room_result| %>
     <li>
-      <span class="<%= level_name room_result[:room].level %>"><%= room_result[:room].name %></span>
-      Result:
+      <span class="<%= level_name room_result[:room].level %>"><%= room_name %></span>
+      <br>
       <%= room_result[:result] %>
     </li>
   <% end %>
+    <li>
+      <strong><%= @results[:reward] %></strong>
+    </li>
   </ul>
 <% end %>

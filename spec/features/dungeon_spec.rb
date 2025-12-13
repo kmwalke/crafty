@@ -59,7 +59,7 @@ RSpec.describe 'Quests' do
 
     it 'shows the results' do
       dungeon.rooms.each do |room|
-        expect(page).to have_content("#{room.name} Result:")
+        expect(page).to have_content("#{room.name}")
       end
     end
   end
