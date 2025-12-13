@@ -1,12 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe 'Gameplay' do
+  pending 'Address TODOs in routes.rb'
   pending 'Family tree for crafted items.'
   # see all the created_by details for the ingredients of a large item
   pending 'version__ui_update make game items clickable in the viewport'
   pending 'version__ui_update pixel graphics'
   pending 'version__ui_update desktop interface'
   #         Loom/Fate of Atlantis/Full Throttle style interface
+  #    all sizes should be based on percentage, not em or px.
+  #        Can you base text size on percent?
+  #        put firefox on f12 -> responsive mode and drag the window size around.  ouch
+  #        watch percentage based height.  thing tend to overlap
 
   pending 'version_0.4 chat with other players'
   # location based

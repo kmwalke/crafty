@@ -1,9 +1,8 @@
 <div id="dungeon-<%= dungeon.id %>-popup" class="popup">
   <div class="popup-content dungeon-popup">
     <%= link_to 'X', game_path(active_control: 'actions'), class: 'close-button', data: { turbo_target: '_top' } %>
-    <h4 class="title"><%= dungeon.name %></h4>
-    <span class="<%= level_name dungeon.level %>"><%= Level.level_name dungeon.level %></span>
-    <br />
-    <span><%= dungeon.rooms.count %> Rooms</span>
+    <%= turbo_frame_tag 'dungeon-details', src: dungeon do %>
+      <%= render partial: 'dungeons/details', locals: { dungeon: } %>
+    <% end %>
   </div>
 </div>

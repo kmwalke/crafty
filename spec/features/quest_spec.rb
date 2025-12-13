@@ -38,11 +38,13 @@ RSpec.describe 'Quests' do
 
   describe 'dungeon quests' do
     describe 'shows a dungeon in a location' do
+      pending 'not implemented'
       # A dungeon contains 1 or many rooms
       # A room has 1 or many skill checks
     end
 
     describe 'delves a solo dungeon' do
+      pending 'not implemented'
       # player accepts a quest in a building/town (quest board?)
       # player travels to quest location to start the dungeon
       # When you click go on a dungeon, the entire thing is simulated out, 1 room at a time, 1 skill check at a time
@@ -55,6 +57,7 @@ RSpec.describe 'Quests' do
     end
 
     describe 'delves a group dungeon' do
+      pending 'not implemented'
       # Leader lists a quest in a building/town (quest board?)
       # assemble a group
       # Group members can chat with each other
@@ -63,40 +66,49 @@ RSpec.describe 'Quests' do
   end
 
   describe 'fetch quests' do
+    pending 'not implemented'
     # tests your traveling skill
     # Go pickup the cargo from location x and deliver to location y
     # Space trucker quest
     # May be dangers/challenges along the way
 
     describe 'solo' do
+      pending 'not implemented'
     end
 
     describe 'group' do
+      pending 'not implemented'
     end
   end
 
   describe 'gathering quests' do
+    pending 'not implemented'
     # gather items and sell it to the lister
     # Delve into a dungeon with rare crystals in the back
     # Travel to a far off provence to beg/borrow/steal rare items
     # Indiana Jones is the Experience comp
 
     describe 'solo' do
+      pending 'not implemented'
     end
 
     describe 'group' do
+      pending 'not implemented'
     end
   end
 
   describe 'crafting quests' do
+    pending 'not implemented'
     # craft an item and sell it to the lister
     # Travel to the dwarf kingdom to use the fabled Mithril Forge # There you craft the best sword ever made
     # Study under a master biologist to craft the finest bio-engineered pet
 
     describe 'solo' do
+      pending 'not implemented'
     end
 
     describe 'group' do
+      pending 'not implemented'
     end
   end
 end

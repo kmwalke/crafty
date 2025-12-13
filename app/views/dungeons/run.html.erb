@@ -1,0 +1,16 @@
+<%= turbo_frame_tag 'dungeon-details' do %>
+  <h1>Dungeon Run Results</h1>
+
+  <ul>
+  <% @results[:rooms].each do |room_name, room_result| %>
+    <li>
+      <span class="<%= level_name room_result[:room].level %>"><%= room_name %></span>
+      <br>
+      <%= room_result[:result] %>
+    </li>
+  <% end %>
+    <li>
+      <span><%= @results[:reward] %></span>
+    </li>
+  </ul>
+<% end %>

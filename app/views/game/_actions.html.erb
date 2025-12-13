@@ -16,8 +16,8 @@
       <% @current_location.dungeons.each do |dungeon| %>
         <li data-turbo="false">
           <%= link_to dungeon.name, "#dungeon-#{dungeon.id}-popup", class: level_name(dungeon.level) %>
-          <%= render partial: 'dungeon_popup', locals: { dungeon: dungeon } %>
         </li>
+        <%= render partial: 'dungeon_popup', locals: { dungeon: dungeon } %>
       <% end %>
     </ul>
   </div>

@@ -1,0 +1,12 @@
+<h4 class="title"><%= dungeon.name %></h4>
+<span class="<%= level_name dungeon.level %>"><%= Level.level_name dungeon.level %></span>
+<br/>
+<span><%= dungeon.rooms.count %> Rooms</span>
+<ul>
+  <% dungeon.rooms.each do |room| %>
+    <li class="<%= level_name room.level %>">
+      <%= room.name %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to 'Start', run_dungeon_path(dungeon) %>

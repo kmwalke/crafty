@@ -22,11 +22,28 @@ Rails.application.routes.draw do
   get '/feed_mount/:item_id', to: 'game#feed_mount', as: 'feed_mount'
 
   # TODO: Experiment: a vanilla, RESTful, endpoint for gameplay, integrated into UI with TURBO-frames
-  # There are a few ethoses here about how to code a game engine in rails
-  # Pick a single one before too long
-  # there should be one API for gameplay actions
-  # could the whole game be CRUD?  gathering is creating, I guess.  traveling is updating the players location?
-  # Lots of logic in models & controllers.  Need to pick an approach
+  # Combined with turbo, this could really make sense
+  # game_path renders the ui
+  # the viewport could have location#show
+  # dungeons:
+  #   dungeon#show/index/run
+  #   maybe admins can visit dungeon#edit?
+  # designing an item is craft#new
+  # crafting an item is item#create
+  # looking at an item is item#show, rendered inside a popup with turbo
+  # renaming an item is item#edit
+  # dropping an item is item#destroy
+  # dont have to do it this way.  Custom routes is fine.  It just might be easier to use standard rails routes
+  # But maybe not.  Maybe I like custom routes better?
+  # Standard routing does seem to name thing backwards.  See 'inventory_building_path'.
+  #   'building_inventory_path' would be better
+  #   That would have to be custom
+
+  resources :dungeons, only: [:index, :show] do
+    member do
+      get 'run', to: 'dungeons#run'
+    end
+  end
 
   get 'craft/design', to: 'craft#design', as: 'craft_design'
   post 'craft/confirm', to: 'craft#confirm', as: 'craft_confirm'
