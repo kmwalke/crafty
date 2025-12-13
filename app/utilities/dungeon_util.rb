@@ -10,9 +10,9 @@ class DungeonUtil
 
   def provision_dungeon(dungeon_data)
     @dungeon = Dungeon.find_or_create_by(name: dungeon_data[:name])
-    @dungeon.rooms.destroy_all
     @dungeon.update dungeon_data
     @dungeon.save
+    @dungeon.rooms.destroy_all
     create_rooms(DungeonUtil.room_data.select { |d| d[:dungeon_id] == @dungeon.id })
   end
 
