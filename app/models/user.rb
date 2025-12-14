@@ -50,7 +50,7 @@ class User < ApplicationRecord
   end
 
   def carried_items
-    child_inventory.items + (vehicle&.child_inventory&.items || [])
+    child_inventory.items + (vehicle&.child_inventory&.items || []) + (pet&.child_inventory&.items || [])
   end
 
   def equip_item(item)
@@ -64,6 +64,7 @@ class User < ApplicationRecord
   def remove_item(item)
     child_inventory.remove_item(item) if child_inventory.include? item
     vehicle.child_inventory.remove_item(item) if vehicle&.child_inventory&.include? item
+    pet.child_inventory.remove_item(item) if pet&.child_inventory&.include? item
   end
 
   def use_item(item)
