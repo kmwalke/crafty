@@ -3,6 +3,10 @@ class Item::Crafted::Salad < Item::Crafted
 
   ENERGY = 100
 
+  def description
+    "Restores #{energy} energy."
+  end
+
   def energy
     ENERGY * level
   end
