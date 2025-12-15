@@ -7,7 +7,13 @@ class ChatsController < ApplicationController
   end
 
   def create
-
+    game_action do
+      Chat.create(
+        content: params[:content],
+        location_id: params[:location_id],
+        user: @player
+      )
+    end
   end
 
   private

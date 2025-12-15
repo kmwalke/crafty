@@ -7,6 +7,7 @@ class GameController < ApplicationController
       @local_players    = User.where(location: @current_location).where.not(id: player.id)
       @local_resources  = Resource.where(location: @current_location)
       @local_buildings  = @current_location.property
+      @local_messages   = Chat.where(location: @current_location).order(created_at: :desc).limit(25)
       @active_control   = params[:active_control] || 'actions'
     end
   end

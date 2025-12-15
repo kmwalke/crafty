@@ -1,36 +1,17 @@
 <div class="chat-wrapper">
   <div class="chatbox">
     <ul>
-      <li>
-        Player3: Cut it, you two!
-      </li>
-      <li>
-        Player2: hey yourself
-      </li>
-      <li>
-        Player1: Hey there!
-      </li>
-      <li>
-        Player2: hey yourself
-      </li>
-      <li>
-        Player1: Hey there!
-      </li>
-      <li>
-        Player2: hey yourself
-      </li>
-      <li>
-        Player1: Hey there!
-      </li>
-      <li>
-        Player2: hey yourself
-      </li>
-      <li>
-        Player1: Hey there!
-      </li>
+      <% @local_messages.each do |message| %>
+        <li>
+          <%= message.user.name %>:
+          <%= message.content %>
+        </li>
+      <% end %>
     </ul>
-    <input type="text" />
-    <input type="button" value="Send" />
+    <%= form_with(url: chats_path(@current_location), method: :post) do |form| %>
+      <%= form.text_field :content, value: '' %>
+      <%= form.submit value: 'Send' %>
+    <% end %>
   </div>
 </div>
 <table class="bars">
