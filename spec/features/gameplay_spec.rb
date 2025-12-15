@@ -91,7 +91,7 @@ RSpec.describe 'Gameplay' do
   #   a staff might have gathering, fighting, and junking.  Maybe it is random?
   #   Skilled staff maker can choose the actions
 
-  pending 'version_0.4 dungeons (solo, groups, rewards)'
+  pending 'version_0.4 dungeons (solo, groups, rewards, inventory checks)'
   # multiplayer quest / dungeon run
   #   quest poster needs to fly ship to a dangerous place to get an item
   #   So must hire a cook, negotiator, and a fighter for the crew

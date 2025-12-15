@@ -22,10 +22,20 @@ RSpec.describe Dungeon do
     expect(dungeon.level).to eq(Level::RARE)
   end
 
-  it 'runs a dungeon' do
-    player = create(:user)
-    dungeon.run(player)
+  describe 'runs a dungeon' do
+    let(:player) { create(:user) }
 
-    expect(player.vitality).to eq(User::MAX_VITALITY - (dungeon.rooms.count * 20))
+    before do
+      dungeon.run(player)
+    end
+
+    it 'subtracts health for v1' do
+      expect(player.vitality).to eq(User::MAX_VITALITY - (dungeon.rooms.count * 20))
+    end
+
+    it 'gives the player a reward' do
+      pending 'not implemented'
+      expect(player.carried_items.include?(dungeon.reward)).to be true
+    end
   end
 end
