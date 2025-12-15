@@ -17,9 +17,15 @@ Rails.application.routes.draw do
   get '/unequip_tool', to: 'items#unequip_tool', as: 'unequip_tool'
   get '/unequip_vehicle', to: 'items#unequip_vehicle', as: 'unequip_vehicle'
 
-  get '/resource/:id/gather', to: 'game#gather', as: 'gather'
-  get '/location/:id/travel', to: 'game#travel', as: 'travel'
   get '/feed_mount/:item_id', to: 'game#feed_mount', as: 'feed_mount'
+  get '/location/:id/travel', to: 'game#travel', as: 'travel'
+  get '/resource/:id/gather', to: 'game#gather', as: 'gather'
+
+  resources :locations, param: :location_id, only: [] do
+    member do
+      resources :chats, only: [:index, :create]
+    end
+  end
 
   # TODO: Experiment: a vanilla, RESTful, endpoint for gameplay, integrated into UI with TURBO-frames
   # Combined with turbo, this could really make sense
