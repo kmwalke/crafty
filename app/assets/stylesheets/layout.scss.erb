@@ -139,25 +139,28 @@ html {
           }
         }
 
-        .player-card {
+        .chat-wrapper {
           display: inline-block;
-          width: 20%;
+          width: 50%;
+          height: 100%;
 
-          div.status {
+          div.chatbox {
             display: inline-block;
-            vertical-align: top;
+            width: 100%;
+            height: 90%;
+            margin-top: 0.25em;
+            border: 1px solid $white;
+            padding: 0;
 
-            span {
-              display: block;
-              text-transform: uppercase;
-            }
+            ul {
+              height: 75%;
+              margin: 0;
+              padding: 0.1em;
 
-            span.title {
-
-            }
-
-            span.value {
-              font-size: larger;
+              li {
+                font-size: small;
+                line-height: 1.25em;
+              }
             }
           }
         }
@@ -170,7 +173,7 @@ html {
         table.bars {
           display: inline-block;
           float: right;
-          width: 45%;
+          width: 32%;
           border-spacing: 0.5em;
 
           tbody {
@@ -190,7 +193,7 @@ html {
                   border-radius: 0.5em;
 
                   span.value {
-                    margin-left: 1em;
+                    margin-left: 0.5em;
                     text-wrap: nowrap;
                     visibility: hidden;
                   }

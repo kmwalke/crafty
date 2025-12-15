@@ -30,7 +30,7 @@ RSpec.describe 'Quests' do
 
       it 'sets player status' do
         within '.player-card' do
-          expect(page).to have_content(UserStatus::STATUSES[:question])
+          expect(page).to have_content(UserStatus::STATUSES[:questing])
         end
       end
     end

@@ -29,20 +29,6 @@ RSpec.describe 'Game' do
       end
     end
 
-    describe 'user info' do
-      it 'displays player name' do
-        expect(page).to have_content(player.name)
-      end
-
-      it 'displays energy' do
-        expect(page).to have_content("Energy: #{player.energy}")
-      end
-
-      it 'displays status' do
-        expect(page).to have_content(player.status.to_s)
-      end
-    end
-
     it 'has buildings section' do
       expect(page).to have_content('Buildings')
     end
