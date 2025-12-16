@@ -7,9 +7,7 @@ class ChatsController < ApplicationController
   def create
     game_action(path: game_path(chat_focus: true)) do
       Chat.create(
-        content: params[:content],
-        location_id: params[:location_id],
-        user: @player
+        chat_params.merge({ user: @player })
       )
     end
   end
@@ -18,5 +16,9 @@ class ChatsController < ApplicationController
 
   def set_location
     @location = Location.find(params[:location_id])
+  end
+
+  def chat_params
+    params.expect(chat: [:location_id, :content])
   end
 end
