@@ -9,7 +9,7 @@
       <% end %>
     </ul>
     <%= form_with(url: chats_path(@current_location), method: :post) do |form| %>
-      <%= form.text_field :content, value: '' %>
+      <%= form.text_field :content, value: '', autocomplete: :off, autofocus: params[:chat_focus] %>
       <%= form.submit value: 'Send' %>
     <% end %>
   </div>
