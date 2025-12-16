@@ -11,7 +11,7 @@
     <%= form_with(model: Chat.new, url: chats_path(@current_location), method: :post) do |form| %>
       <%= form.hidden_field :location_id, value: @current_location.id %>
       <%= form.text_field :content, value: '', autocomplete: :off, autofocus: params[:chat_focus], id: 'chat-content' %>
-      <%= form.submit value: 'Send' %>
+      <%= form.submit value: '>' %>
     <% end %>
   </div>
 </div>
