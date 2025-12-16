@@ -5,11 +5,11 @@ class UserUtil
     user_data.each do |user_params|
       user_params[:credits]       = 1000
       user_params[:location_id] ||= Location.first.id
-      @user                        = User.find_or_create_by(user_params)
-      @user.password               = '123'
+      @user                       = User.find_or_create_by(user_params)
+      @user.password              = '123'
       @user.save
 
-      self.set_skillz
+      set_skillz
     end
   end
 
