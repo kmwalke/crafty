@@ -11,7 +11,7 @@ if [ $? == 0 ]; then
   echo "Running Rails DB migrations..."
   bundle exec rails db:migrate
   echo "Seeding data..."
-  bundle exec rails db:seed:replant
+  DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:reset
   ./script/project_manager.sh
 else
   echo 'Skipping Rails DB migrations!!'
