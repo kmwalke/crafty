@@ -4,7 +4,7 @@ class UserUtil
   def self.provision
     user_data.each do |user_params|
       user_params[:credits]       = 1000
-      user_params[:location_id] ||= Location.first.id
+      user_params[:location_id] ||= 1
       @user                       = User.find_or_create_by(user_params)
       @user.password              = '123'
       @user.save
