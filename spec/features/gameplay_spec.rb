@@ -13,7 +13,7 @@ RSpec.describe 'Gameplay' do
   #        put firefox on f12 -> responsive mode and drag the window size around.  ouch
   #        watch percentage based height.  thing tend to overlap
 
-  pending 'version_0.4 chat with other players'
+  pending 'version_0.4 group chat with other players'
   # location based
   # Group chat exists
   # Walky talkie item
