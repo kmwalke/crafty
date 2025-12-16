@@ -9,6 +9,7 @@ $blue: #14323f;
 $blue-light: #68d1ee;
 $brown: #8c5a4e;
 $green: green;
+$green-light: #00ff00;
 $grey: grey;
 $grey-dark: #333333;
 $grey-light: #BBBBBB;
@@ -50,6 +51,7 @@ $section-equipment-color: $orange;
 $section-inventory-color: $white;
 $section-lifeforms-color: $brown;
 $section-resources-color: $blue-light;
+$section-skills-color: $green-light;
 
 @mixin rounded-corners($radius) {
   border-radius: $radius;

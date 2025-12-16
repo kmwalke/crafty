@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   before_create :set_energy
-  after_create :create_inventory
+  after_create :create_inventory, :create_skills
 
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
@@ -17,6 +17,8 @@ class User < ApplicationRecord
   belongs_to :vehicle, polymorphic: true, optional: true
 
   has_many :listings
+
+  has_one :skills
 
   MAX_ENERGY             = 1000
   MAX_AGE                = 100
@@ -98,10 +100,6 @@ class User < ApplicationRecord
     end
   end
 
-  def create_inventory
-    Inventory.create(user: self, size: DEFAULT_INVENTORY_SIZE)
-  end
-
   def equip_pet(pet)
     self.pet&.update(parent_inventory: child_inventory)
     update(pet: pet)
@@ -122,5 +120,13 @@ class User < ApplicationRecord
 
   def set_energy
     self.energy = User::MAX_ENERGY
+  end
+
+  def create_inventory
+    Inventory.create(user: self, size: DEFAULT_INVENTORY_SIZE)
+  end
+
+  def create_skills
+    Skills.create(user: self)
   end
 end

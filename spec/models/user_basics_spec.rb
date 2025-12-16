@@ -36,5 +36,9 @@ RSpec.describe User do
     it 'inventory' do
       expect(user.child_inventory).to be_a(Inventory)
     end
+
+    it 'skills' do
+      expect(user.skills).to be_a(Skills)
+    end
   end
 end

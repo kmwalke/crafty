@@ -133,6 +133,26 @@ div.controls {
       }
     }
 
+    div.skills {
+      label.radio {
+        color: $section-skills-color;
+      }
+
+      div.section-content {
+        border-top: 2px solid $section-skills-color;
+
+        h4 {
+          color: $section-skills-color;
+        }
+      }
+    }
+    input[type="radio"]:checked + div.skills {
+
+      label.radio {
+        box-shadow: inset 0 0 10px $section-skills-color;
+      }
+    }
+
     input[type="radio"]:checked + div.section {
 
       label.radio {
