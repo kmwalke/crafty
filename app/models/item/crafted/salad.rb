@@ -3,6 +3,10 @@ class Item::Crafted::Salad < Item::Crafted
 
   ENERGY = 100
 
+  def description
+    "Restores #{energy} energy."
+  end
+
   def energy
     ENERGY * level
   end
@@ -15,10 +19,6 @@ class Item::Crafted::Salad < Item::Crafted
 
   def use
     parent_inventory.user.add_energy(energy)
-    if stack_amount > 1
-      update(stack_amount: (stack_amount - 1))
-    else
-      destroy
-    end
+    consume_self
   end
 end

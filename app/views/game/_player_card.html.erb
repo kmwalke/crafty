@@ -1,14 +1,20 @@
-<fieldset class="player-card">
-  <legend><%= player.name %></legend>
-  <div class="status">
-    <span class="title">
-      Status_
-    </span>
-    <span class="value status-<%= player.status.downcase %>">
-      <%= player.status %>
-    </span>
+<div class="chat-wrapper">
+  <div class="chatbox">
+    <ul>
+      <% @local_messages.each do |message| %>
+        <li>
+          <%= message.user.name %>:
+          <%= message.content %>
+        </li>
+      <% end %>
+    </ul>
+    <%= form_with(model: Chat.new, url: chats_path(@current_location), method: :post) do |form| %>
+      <%= form.hidden_field :location_id, value: @current_location.id %>
+      <%= form.text_field :content, value: '', autocomplete: :off, autofocus: params[:chat_focus], id: 'chat-content' %>
+      <%= form.submit value: 'Send' %>
+    <% end %>
   </div>
-</fieldset>
+</div>
 <table class="bars">
   <tr class="energy">
     <td class="title">E</td>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_28_181459) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_15_215357) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -20,6 +20,14 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_28_181459) do
     t.string "name"
     t.string "type"
     t.datetime "updated_at", null: false
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.integer "location_id"
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "dungeons", force: :cascade do |t|
@@ -46,7 +54,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_28_181459) do
     t.string "color", null: false
     t.datetime "created_at", null: false
     t.integer "created_by_id", null: false
-    t.text "description", null: false
+    t.text "description"
     t.boolean "is_private", default: false, null: false
     t.integer "level", null: false
     t.string "name", null: false
