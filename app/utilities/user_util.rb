@@ -5,10 +5,19 @@ class UserUtil
     user_data.each do |user_params|
       user_params[:credits]       = 1000
       user_params[:location_id] ||= Location.first.id
-      user                        = User.find_or_create_by(user_params)
-      user.password               = '123'
-      user.save
+      @user                        = User.find_or_create_by(user_params)
+      @user.password               = '123'
+      @user.save
+
+      self.set_skillz
     end
+  end
+
+  def self.set_skillz
+    Skills::NAMES.each do |skill|
+      @user.skills.send("#{skill.downcase}=", rand(1..Skills::MAX_LEVEL))
+    end
+    @user.skills.save
   end
 
   def self.user_data
