@@ -6,4 +6,9 @@ class ChangeBag < ActiveRecord::Migration[8.0]
     ItemType.populate
     Item.where(type: 'Item::Crafted::Bag').update_all(type: ItemType::CRAFTED[:pet])
   end
+
+  def down
+    rename_column :users, :pet_id, :bag_id
+    rename_column :users, :pet_type, :bag_type
+  end
 end
