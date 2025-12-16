@@ -5,7 +5,6 @@ class DungeonUtil
     dungeon_data.each do |dungeon|
       DungeonUtil.new.provision_dungeon(dungeon)
     end
-    User.first.update(location_id: 2)
   end
 
   def provision_dungeon(dungeon_data)
