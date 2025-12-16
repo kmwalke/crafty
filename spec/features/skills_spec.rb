@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Skills' do
-  let!(:player) { login }
-
   before do
+    login
     visit game_path
   end
 

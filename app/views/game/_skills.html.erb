@@ -1,0 +1,43 @@
+<input type="radio" id="radio-skills" name="radios" value="skills"
+       <% if @active_control == 'skills' %>
+       checked="checked"
+       <% end %>
+         />
+<div class="section skills">
+  <label for="radio-skills" class="radio">S</label>
+  <div class="section-content">
+    <h4 class="section-title">Skills</h4>
+    <table>
+      <tr>
+        <td><%= Skills::CRAFTING %>:</td>
+        <td>
+          <%= @player.skills.crafting %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= Skills::FIGHTING %>:</td>
+        <td>
+          <%= @player.skills.fighting %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= Skills::GATHERING %>:</td>
+        <td>
+          <%= @player.skills.gathering %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= Skills::TRADING %>:</td>
+        <td>
+          <%= @player.skills.trading %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= Skills::TRAVELING %>:</td>
+        <td>
+          <%= @player.skills.traveling %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

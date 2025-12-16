@@ -2,6 +2,20 @@ class Skills < ApplicationRecord
   MIN_LEVEL = 1
   MAX_LEVEL = 1000
 
+  CRAFTING  = 'Crafting'.freeze
+  FIGHTING  = 'Fighting'.freeze
+  GATHERING = 'Gathering'.freeze
+  TRADING   = 'Trading'.freeze
+  TRAVELING = 'Traveling'.freeze
+
+  NAMES = [
+    CRAFTING,
+    FIGHTING,
+    GATHERING,
+    TRADING,
+    TRAVELING
+  ].freeze
+
   validates :crafting, numericality: { greater_than: 0, less_than_or_equal_to: MAX_LEVEL }
   validates :fighting, numericality: { greater_than: 0, less_than_or_equal_to: MAX_LEVEL }
   validates :gathering, numericality: { greater_than: 0, less_than_or_equal_to: MAX_LEVEL }
