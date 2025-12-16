@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_15_215357) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_16_171428) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -121,6 +121,15 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_15_215357) do
     t.integer "level", null: false
     t.string "name", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.integer "crafting", default: 1, null: false
+    t.integer "fighting", default: 1, null: false
+    t.integer "gathering", default: 1, null: false
+    t.integer "trading", default: 1, null: false
+    t.integer "traveling", default: 1, null: false
+    t.integer "user_id", null: false
   end
 
   create_table "user_statuses", primary_key: "name", id: :string, force: :cascade do |t|

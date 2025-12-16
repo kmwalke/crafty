@@ -28,7 +28,7 @@ RSpec.describe 'Chat' do
 
     it 'sends a chat' do
       fill_in 'chat-content', with: 'chat message'
-      click_button 'Send'
+      click_button '>'
 
       within '.chatbox' do
         expect(page).to have_content('chat message')
