@@ -1,6 +1,8 @@
 <h4 class="title"><%= dungeon.name %></h4>
 <span class="<%= level_name dungeon.level %>"><%= Level.level_name dungeon.level %></span>
-<br/>
+<p>
+  <%= dungeon.description %>
+</p>
 <span><%= dungeon.rooms.count %> Rooms</span>
 <ul>
   <% dungeon.rooms.each do |room| %>

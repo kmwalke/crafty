@@ -14,8 +14,8 @@ class AddTextToRooms < ActiveRecord::Migration[8.1]
   end
 
   def down
-    drop_column :rooms, :intro_text
-    drop_column :rooms, :fail_text
-    drop_column :rooms, :success_text
+    remove_column :rooms, :intro_text
+    remove_column :rooms, :fail_text
+    remove_column :rooms, :success_text
   end
 end

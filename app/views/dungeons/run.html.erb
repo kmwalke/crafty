@@ -4,8 +4,12 @@
   <ul>
   <% @results[:rooms].each do |room_name, room_result| %>
     <li>
-      <span class="<%= level_name room_result[:room].level %>"><%= room_name %></span>
-      <br>
+      <span class="<%= level_name room_result[:room].level %>">
+        <%= room_name %>
+      </span>
+      <p>
+        <%= room_result[:room].intro_text %>
+      </p>
       <%= room_result[:result] %>
     </li>
   <% end %>
